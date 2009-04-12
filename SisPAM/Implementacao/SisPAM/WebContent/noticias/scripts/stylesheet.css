@@ -1,0 +1,46 @@
+
+
+
+	  a.cool
+	  {
+	  color:#000000;
+	  text-decoration:none
+	  }
+
+	  a:hover.cool
+	  {
+	  color:#000000;
+	  text-decoration:underline
+	  }
+
+	  table.borderNoticias
+	  {
+	  border:solid darkred 1px;
+	  cursor:default;
+	  }
+
+	  td
+	  {
+	  font-family:verdana;
+	  font-size:8pt;
+	  }
+
+	  td.title
+	  {
+	  padding:4px;
+	  padding-bottom:6px;
+	  background-color:#DDDDDD;
+	  font-weight:bold;
+	  }
+
+	  td.content
+	  {
+	  padding:2px;
+	  padding-bottom:12px;
+	  }
+
+	  td.labelNoticias
+	  {
+	  background-color:darkred;
+	  color:#FFFFFF;
+	  }
