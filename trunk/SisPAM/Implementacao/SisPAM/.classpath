@@ -3,27 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre6"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/asm-1.5.3.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/asm-attrs-1.5.3.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/cglib-2.1_3.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/commons-collections-3.2.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/commons-logging-api-1.1.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/ehcache-1.2.3.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/freemarker-2.3.13.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/hibernate-3.2.1.ga.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/hibernate-annotations-3.2.1.ga.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/hibernate-entitymanager-3.2.1.ga.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/javassist-3.3.ga.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/jboss-archive-browsing-5.0.0alpha-200607201-119.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/jta-1.0.1B.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/ognl-2.6.11.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/persistence-api-1.0.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/postgresql-8.3-603.jdbc3.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/struts2-core-2.1.6.jar"/>
-	<classpathentry kind="lib" path="D:/Projeto Academico/SisPAM/Implementacao/SisPAM/WebContent/WEB-INF/lib/xwork-2.1.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
