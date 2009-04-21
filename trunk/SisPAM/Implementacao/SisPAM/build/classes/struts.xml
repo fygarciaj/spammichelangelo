@@ -10,6 +10,11 @@
         			<result name="sucesso">index.jsp</result>
         			<result name="falha">index.jsp</result>
         		</action>
+        		
+        		<!-- Usuario Action -->
+        		<action name="usuarioAction!*" method="{1}"  class="br.com.sispam.action.UsuarioAction">
+        			<result name="sucesso">mantem-usuario.jsp</result>
+        		</action>
 	     </package>
 	
 </struts>
