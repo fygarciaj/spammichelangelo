@@ -8,7 +8,7 @@
 <body>
 <div id="menu">
   <ul>
-    <li><a href="http://www.free-css-templates.co.uk/" title = "teste">Link 1</a></li>
+    <li><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir Usuário" target="CENTRAL">Incluir Usuário</a></li>
     <li><a href="http://www.free-css-templates.co.uk/">Link 2</a></li>
     <li><a href="http://www.free-css-templates.co.uk/">Link 3</a></li>
     <li><a href="http://www.free-css-templates.co.uk/">Link 5</a></li>

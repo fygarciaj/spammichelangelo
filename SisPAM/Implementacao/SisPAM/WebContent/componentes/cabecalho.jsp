@@ -9,10 +9,10 @@
 <div id="tabs">
   <ul>
 	
-    <li><a href="mnAdministrativo.jsp" target="MENU"><span>ADMINISTRATIVO</span></a></li>
-	<li><a href="mnAtendimento.jsp" target="MENU"><span>ATENDIMENTO</span></a></li>
-    <li><a href="mnCadastro.jsp" target="MENU"><span>CADASTRO</span></a></li>
-    <li><a href="mnRelatorio.jsp" target="MENU"><span>RELATÓRIOS</span></a></li>
+    <li><a href="menu.jsp" target="MENU"><span>ADMINISTRATIVO</span></a></li>
+	<li><a href="menu.jsp" target="MENU"><span>ATENDIMENTO</span></a></li>
+    <li><a href="menu.jsp" target="MENU"><span>CADASTRO</span></a></li>
+    <li><a href="menu.jsp" target="MENU"><span>RELATÓRIOS</span></a></li>
     
 
   </ul>

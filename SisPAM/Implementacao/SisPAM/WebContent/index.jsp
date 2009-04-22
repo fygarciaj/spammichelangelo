@@ -1,20 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>SisPAM - Sistema de Pronto Atendimento Médico</title>
+<link rel="stylesheet" href="..\resources\styles.css" type="text/css" />
 </head>
-<body>
-<s:if test="stringPagina != null">
-	<s:property value="stringPagina" />
-</s:if>
-<s:url id="linkSucesso" action="teste!sucesso" />
-<s:url id="linkFalha" action="teste!falha" />
-<s:a href="%{linkSucesso}">Teste Sucesso</s:a>
-<br>
-<s:a href="%{linkFalha}">Teste Falha</s:a>
-</body>
+
+<FRAMESET ROWS="127px,*" framespacing="1" frameborder="yes" bordercolor="#BCD2E6">
+     <FRAMESET COLS="25%,*" frameborder="no" framespacing="0">
+		<FRAME SRC="componentes\logo.jsp" NAME=LOGO noresize="noresize" scrolling="no">
+		<FRAME SRC="componentes\cabecalho.jsp" NAME=CABECALHO SCROLLING=no noresize="noresize" >
+	</FRAMESET>	 
+     <FRAMESET COLS="25%,*" frameborder="no" framespacing="0">
+        <FRAME SRC="componentes\menu.jsp" NAME=MENU noresize="noresize">
+        <FRAME SRC="componentes\defaut.jsp" NAME=CENTRAL noresize="noresize">
+     </FRAMESET>
+
+</FRAMESET>
+
 </html>
