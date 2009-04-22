@@ -6,12 +6,7 @@
 <struts>
 	<include file="struts-default.xml"/>
 	    <package name="default" extends="struts-default">
-	    		<action name="teste!*" method="{1}"  class="br.com.sispam.action.TesteAction">
-        			<result name="sucesso">index.jsp</result>
-        			<result name="falha">index.jsp</result>
-        		</action>
-        		
-        		<!-- Usuario Action -->
+	    		<!-- Usuario Action -->
         		<action name="usuarioAction!*" method="{1}"  class="br.com.sispam.action.UsuarioAction">
         			<result name="carregarNovoUsuario">/usuario/inclui-usuario.jsp</result>
         		</action>
