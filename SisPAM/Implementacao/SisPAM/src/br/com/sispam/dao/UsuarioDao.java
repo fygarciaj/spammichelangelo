@@ -63,7 +63,7 @@ public class UsuarioDao {
 		Usuario usuario = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("select u from Usuario u where u.cpf = :cpf ");
+			Query query = manager.createQuery("from Usuario where cpf = :cpf ");
 			//seta o parametro
 			query.setParameter("cpf", cpf);
 			usuario = (Usuario) query.getSingleResult();

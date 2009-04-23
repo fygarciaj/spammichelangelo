@@ -37,7 +37,7 @@ public class TesteUsuarioDao {
 		
 		//TESTE E VERIFICAÇÃO
 		
-		Usuario usuario2 = usuarioDao.recupera(123456);
+		Usuario usuario2 = usuarioDao.recupera(1234567);
 		assertNotNull(usuario2);
 		assertEquals(usuario.getNome(), usuario2.getNome());
 	}
