@@ -31,7 +31,7 @@ img {
 	}
 	
 #menu {
-	width: 200px;
+	width: 150px;
 	margin: 10px;
 	border-style: solid solid none solid;
 	border-color: #BCD2E6;
@@ -46,7 +46,17 @@ img {
 	text-decoration: none;
 	
 	}	
-	
+.subMenu{
+	height: 10px;
+   	voice-family: inherit;
+  	height: 5px;
+	text-decoration: none;
+	list-style: none;
+	margin: 0px;
+	padding: 0;
+	color: #BCD2E6;
+	font-size: 12px;
+}	
 #menu li a:link, #menu li a:visited {
 	color: #8BADCF;
 	display: block;
