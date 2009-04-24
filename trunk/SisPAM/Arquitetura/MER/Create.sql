@@ -46,7 +46,7 @@ CREATE SEQUENCE usr_seq;
 CREATE TABLE usr (
   usrcod INTEGER  NOT NULL DEFAULT NEXTVAL('usr_seq'),
   usrnom VARCHAR(40) NULL,
-  usrsex INTEGER NULL,
+  usrsex CHAR(1) NULL,
   usrcpf VARCHAR(15) NULL,
   usrrg NUMERIC(10) NULL,
   usrorgexp VARCHAR(5) NULL,
