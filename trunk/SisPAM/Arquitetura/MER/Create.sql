@@ -47,7 +47,7 @@ CREATE TABLE usr (
   usrcod INTEGER  NOT NULL DEFAULT NEXTVAL('usr_seq'),
   usrnom VARCHAR(40) NULL,
   usrsex INTEGER NULL,
-  usrcpf NUMERIC(11) NULL,
+  usrcpf VARCHAR(15) NULL,
   usrrg NUMERIC(10) NULL,
   usrorgexp VARCHAR(5) NULL,
   usrend VARCHAR(50) NULL,
@@ -109,7 +109,7 @@ CREATE SEQUENCE adt_seq;
 
 CREATE TABLE adt (
   adtcod NUMERIC(12) NOT NULL DEFAULT NEXTVAL('adt_seq'),
-  adtdatref DATE NULL,
+  adtdatref TIMESTAMP NULL,
   adtip VARCHAR(15) NULL
 );
 
@@ -169,7 +169,7 @@ CREATE TABLE cpm (
   agmcod INTEGER  NOT NULL,
   cpmdes VARCHAR(50) NULL,
   cpmtip VARCHAR(14) NULL,
-  cpmdta DATE NULL,
+  cpmdta TIMESTAMP NULL,
   cpmhorini NUMERIC(4) NULL,
   cpmhorter NUMERIC(4) NULL  
 );
@@ -216,7 +216,7 @@ CREATE TABLE pct (
   cvncod INTEGER NOT NULL,
   pctplnrde VARCHAR(25) NULL,
   pctacm VARCHAR(30) NULL,
-  pctplnvld DATE NULL
+  pctplnvld TIMESTAMP NULL
 );
 
 ALTER TABLE pct
@@ -243,7 +243,7 @@ CREATE TABLE agd (
   emdcod INTEGER  NOT NULL,
   mdccod INTEGER  NOT NULL,
   agdtip INTEGER  NULL,
-  agddat DATE NULL,
+  agddat TIMESTAMP NULL,
   agdhor INTEGER  NULL,
   agdobs VARCHAR(200) NULL
 );
