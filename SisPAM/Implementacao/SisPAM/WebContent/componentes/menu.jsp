@@ -4,7 +4,8 @@
 <head>
 <script type="text/javascript">
 	function selecionaMenu(valor){
-		if(valor == 'usuario'){
+		switch (valor) {
+		case "usuario":
 			var div = document.getElementById("menuUsuario"); 
 			if(div.style.display == 'block'){
 				div.style.display = 'none';
@@ -12,6 +13,18 @@
 			else{
 				div.style.display = 'block'
 				}
+			break;
+		case "convenio":
+			var div = document.getElementById("menuConvenio"); 
+			if(div.style.display == 'block'){
+				div.style.display = 'none';
+			}
+			else{
+				div.style.display = 'block'
+				}
+			break;
+		default:
+			break;
 		}
 	}
 </script>
@@ -23,20 +36,23 @@
 <div id="menu">
   <ul>
     <li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('usuario')" title = "Incluir Usuário" target="CENTRAL">Usuário</a>
+		<a href="javaScript:void(0)" onclick="selecionaMenu('usuario')" title = "Manter Usuário" target="CENTRAL">USUÁRIO</a>
 		<div id="menuUsuario" style="display:none">
-			<ul class="subMenu">
+			<ul id="subMenu">
 			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Incluir</a></li>
-			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Alterar</a></li>
-			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Excluir</a></li>
-			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Consultar</a></li>
+			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 			</ul>
 		</div>
 	</li>
-    <li><a href="http://www.free-css-templates.co.uk/">Link 2</a></li>
-    <li><a href="http://www.free-css-templates.co.uk/">Link 3</a></li>
-    <li><a href="http://www.free-css-templates.co.uk/">Link 5</a></li>
-    <li><a href="http://www.free-css-templates.co.uk/">Link 6</a></li>
+    <li>
+		<a href="javaScript:void(0)" onclick="selecionaMenu('convenio')" title = "Manter Convênio" target="CENTRAL">CONVÊNIO</a>
+		<div id="menuConvenio" style="display:none">
+			<ul id="subMenu">
+			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Incluir</a></li>
+			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
+			</ul>
+		</div>
+	</li>
   </ul>
 </div>
 </body>

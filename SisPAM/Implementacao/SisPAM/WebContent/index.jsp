@@ -9,12 +9,12 @@
 </head>
 
 <FRAMESET ROWS="127px,*" framespacing="1" frameborder="yes" bordercolor="#BCD2E6">
-     <FRAMESET COLS="25%,*" frameborder="no" framespacing="0">
+     <FRAMESET COLS="250px,*" frameborder="no" framespacing="0">
 		<FRAME SRC="componentes\logo.jsp" NAME=LOGO noresize="noresize" scrolling="no">
-		<FRAME SRC="componentes\cabecalho.jsp" NAME=CABECALHO SCROLLING=no noresize="noresize" >
+		<FRAME SRC="componentes\cabecalho.jsp" NAME=CABECALHO scrolling=no noresize="noresize" >
 	</FRAMESET>	 
-     <FRAMESET COLS="25%,*" frameborder="no" framespacing="0">
-        <FRAME SRC="componentes\menu.jsp" NAME=MENU noresize="noresize">
+     <FRAMESET COLS="250px,*" frameborder="no" framespacing="0" scrolling="yes">
+        <FRAME SRC="componentes\menu.jsp" NAME=MENU SCROLLING=no noresize="noresize">
         <FRAME SRC="componentes\defaut.jsp" NAME=CENTRAL noresize="noresize">
      </FRAMESET>
 

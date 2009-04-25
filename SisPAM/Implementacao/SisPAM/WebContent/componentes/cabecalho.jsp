@@ -8,14 +8,11 @@
 <body>
 <div id="tabs">
   <ul>
-	
     <li><a href="menu.jsp" target="MENU"><span>ADMINISTRATIVO</span></a></li>
 	<li><a href="menu.jsp" target="MENU"><span>ATENDIMENTO</span></a></li>
     <li><a href="menu.jsp" target="MENU"><span>CADASTRO</span></a></li>
     <li><a href="menu.jsp" target="MENU"><span>RELATÓRIOS</span></a></li>
-    
-
-  </ul>
+   </ul>
 </div>
 </body>
 </html>
