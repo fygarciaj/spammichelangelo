@@ -21,7 +21,7 @@
 			<tr>
 				<td>
 					<div id="usuario" style="display:none">
-						<table border="0" width="80%" class="tabela_moldura" cellpadding="3"	cellspacing="4">
+						<table border="0" width="80%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 							<tr>
 								<td>Nome:&nbsp;<s:textfield theme="simple" name="usuario.nome" size="60" maxlength="60"/></td>
 								<td>Sexo:&nbsp;<s:select list="sexos" theme="simple" headerKey="0" headerValue="" listKey="sigla"/></td>

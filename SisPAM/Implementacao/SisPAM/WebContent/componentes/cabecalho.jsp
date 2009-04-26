@@ -6,8 +6,12 @@
 <link rel="stylesheet" href="..\resources\styles.css" type="text/css" />
 </head>
 <body>
+
 <div id="tabs">
-  <ul>
+<img src="img\simbolo.jpg" width="250px" align="left" hspace="5"  >
+  <br><br><br><br>
+<ul>
+	
     <li><a href="menu.jsp" target="MENU"><span>ADMINISTRATIVO</span></a></li>
 	<li><a href="menu.jsp" target="MENU"><span>ATENDIMENTO</span></a></li>
     <li><a href="menu.jsp" target="MENU"><span>CADASTRO</span></a></li>
