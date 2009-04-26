@@ -1,6 +1,6 @@
 body {
 	font: bold 12px/1.5em Verdana;
-	background:#F4F7FB;
+	background:#F4F7FB ;
 	}
 	
 h1 {
@@ -14,27 +14,28 @@ h1 {
 hr {
 	border:none;
 	border-top:1px solid #CCCCCC;
-	height:10px;
-	margin-bottom:25px;
+	height:0px;
+	margin-bottom:0px;
 	}
 	
 #tabs {
 	float:left;
 	width:100%;
-	background:#F4F7FB;
-	font-size:93%;
+	
+	font-size:95%;
 	line-height:inherit;
-	border-bottom:0px solid #BCD2E6;
+	border-bottom:0 solid #BCD2E6;
 	}
 #tabs ul {
 	margin:0;
-	padding:80px 1px 6px 0;
+	padding:9 0 13 260;
 	list-style:none;
+	background: #191970;
 	}
 #tabs li {
 	display:inline;
 	margin:0;
-	padding:10px;
+	padding:1px;
 	}
 #tabs a {
 	float:left;

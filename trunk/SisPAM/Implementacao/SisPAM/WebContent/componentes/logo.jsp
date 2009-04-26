@@ -7,6 +7,6 @@
 <link rel="stylesheet" href="..\resources\styles.css" type="text/css" />
 </head>
 <body >
-	<img src="img\simbolo.jpg" width="230px" align="left">
+	
 </body>
 </html>
