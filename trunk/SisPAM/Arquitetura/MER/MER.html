@@ -44,213 +44,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">adt
-     <font class="fontS"><br>Tabela de Log de Auditoria</font></td>
-  </tr>
-  <tr>
-    <td>
-      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d0dfff">
-        <tr>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">ColumnName</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">DataType</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">PrimaryKey&nbsp;&nbsp;</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">NotNull&nbsp;&nbsp;</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">Flags</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Default Value</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="20%">Comment</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">AutoInc</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>adtcod</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>NUMERIC(12)</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do registro de auditoria</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">AI</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">usrcod</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do usuario(FK)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">adtdatref</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">TIMESTAMP</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">data de referencia do log</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">adtip</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">VARCHAR(15)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">tipo de registro de auditoria</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td class="fontB">
-      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d8e6ff">
-        <tr>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexName</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexType</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Columns</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">adtcod<br></td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-
-</table>
-<br>
-<br>
-<table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
-  <tr>
-    <td class="fontX">agd
-     <font class="fontS"><br>Tabela de Agendamento</font></td>
-  </tr>
-  <tr>
-    <td>
-      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d0dfff">
-        <tr>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">ColumnName</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">DataType</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">PrimaryKey&nbsp;&nbsp;</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">NotNull&nbsp;&nbsp;</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">Flags</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Default Value</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="20%">Comment</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">AutoInc</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>agdcod</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>INTEGER</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do agendamento</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">AI</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">pctidfseg</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NUMERIC(14)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do paciente(FK)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">emdcod</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo da especialidade(FK)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">mdccod</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do medico(FK)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdtip</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">tipo de agendamento</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agddat</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">TIMESTAMP</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">data do agendamento</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdhor</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">hora do agendamento</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdobs</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">VARCHAR(200)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">observacao do agendamento</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td class="fontB">
-      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d8e6ff">
-        <tr>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexName</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexType</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Columns</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdcod<br></td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-
-</table>
-<br>
-<br>
-<table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
-  <tr>
-    <td class="fontX">agm
+    <td class="fontX">agendamedica
      <font class="fontS"><br>Tabela de Agenda Médica</font></td>
   </tr>
   <tr>
@@ -283,7 +77,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do medico(FK)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
         </tr>
         <tr>
@@ -353,7 +147,213 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">cid
+    <td class="fontX">agendamento
+     <font class="fontS"><br>Tabela de Agendamento</font></td>
+  </tr>
+  <tr>
+    <td>
+      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d0dfff">
+        <tr>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">ColumnName</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">DataType</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">PrimaryKey&nbsp;&nbsp;</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">NotNull&nbsp;&nbsp;</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">Flags</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Default Value</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="20%">Comment</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">AutoInc</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>agdcod</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>INTEGER</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do agendamento</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">AI</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">emdcod</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">pctidfseg</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NUMERIC(14)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">mdccod</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdtip</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">tipo de agendamento</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agddat</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">TIMESTAMP</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">data do agendamento</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdhor</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">hora do agendamento</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdobs</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">VARCHAR(200)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">observacao do agendamento</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="fontB">
+      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d8e6ff">
+        <tr>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexName</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexType</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Columns</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">agdcod<br></td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+
+</table>
+<br>
+<br>
+<table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
+  <tr>
+    <td class="fontX">auditoria
+     <font class="fontS"><br>Tabela de Log de Auditoria</font></td>
+  </tr>
+  <tr>
+    <td>
+      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d0dfff">
+        <tr>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">ColumnName</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">DataType</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">PrimaryKey&nbsp;&nbsp;</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">NotNull&nbsp;&nbsp;</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">Flags</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Default Value</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="20%">Comment</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">AutoInc</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>adtcod</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>NUMERIC(12)</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do registro de auditoria</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">AI</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">usrcod</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">adtdatref</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">TIMESTAMP</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">data de referencia do log</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">adtip</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">VARCHAR(15)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">tipo de registro de auditoria</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="fontB">
+      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d8e6ff">
+        <tr>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexName</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexType</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Columns</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">adtcod<br></td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+
+</table>
+<br>
+<br>
+<table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
+  <tr>
+    <td class="fontX">codigodoenca
      <font class="fontS"><br>Tabela de Codigos Internacionais de Doenças</font></td>
   </tr>
   <tr>
@@ -421,7 +421,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">cpm
+    <td class="fontX">compromisso
      <font class="fontS"><br>Tabela de Compromisso</font></td>
   </tr>
   <tr>
@@ -454,7 +454,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo da agenda(FK)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
         </tr>
         <tr>
@@ -539,7 +539,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">cvn
+    <td class="fontX">convenio
      <font class="fontS"><br>Tabela de Convênio</font></td>
   </tr>
   <tr>
@@ -677,7 +677,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">emd
+    <td class="fontX">especialidademedica
      <font class="fontS"><br>Tabela de Especialidade Médica</font></td>
   </tr>
   <tr>
@@ -745,7 +745,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">htc
+    <td class="fontX">historicoprontuario
      <font class="fontS"><br>Tabela de Historico de Prontuário</font></td>
   </tr>
   <tr>
@@ -772,23 +772,23 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">AI</td>
         </tr>
         <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">pctidfseg</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NUMERIC(14)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo paciente(FK)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">cidcod</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo cid(FK)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">pctidfseg</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NUMERIC(14)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
         </tr>
         <tr>
@@ -863,7 +863,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">mdc
+    <td class="fontX">medico
      <font class="fontS"><br>Tabela de Médico</font></td>
   </tr>
   <tr>
@@ -896,7 +896,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo usuario(FK)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
         </tr>
         <tr>
@@ -946,7 +946,70 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">pct
+    <td class="fontX">medico_especialidade
+     <font class="fontS"><br>Tabela de Relacionamento medico x especialidade</font></td>
+  </tr>
+  <tr>
+    <td>
+      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d0dfff">
+        <tr>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">ColumnName</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">DataType</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">PrimaryKey&nbsp;&nbsp;</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">NotNull&nbsp;&nbsp;</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">Flags</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Default Value</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="20%">Comment</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">AutoInc</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>mdccod</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>INTEGER</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>emdcod</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>INTEGER</b></td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="fontB">
+      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d8e6ff">
+        <tr>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexName</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexType</td>
+          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Columns</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">mdccod<br>emdcod<br></td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+
+</table>
+<br>
+<br>
+<table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
+  <tr>
+    <td class="fontX">paciente
      <font class="fontS"><br>Tabela de Paciente</font></td>
   </tr>
   <tr>
@@ -973,23 +1036,23 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
         </tr>
         <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">usrcod</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do usuario(FK)</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">cvncod</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do convenio(FK)</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">usrcod</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">INTEGER</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
+          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
           <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
         </tr>
         <tr>
@@ -1054,7 +1117,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">pmt
+    <td class="fontX">parametro
      <font class="fontS"><br>Tabela de Parâmetro</font></td>
   </tr>
   <tr>
@@ -1142,70 +1205,7 @@ div, p, td {font-family: Tahoma, Verdana, Arial, MS Sans Serif; color: black; fo
 <br>
 <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
   <tr>
-    <td class="fontX">rme
-     <font class="fontS"><br>Tabela de Relacionamento medico x especialidade</font></td>
-  </tr>
-  <tr>
-    <td>
-      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d0dfff">
-        <tr>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">ColumnName</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">DataType</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">PrimaryKey&nbsp;&nbsp;</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">NotNull&nbsp;&nbsp;</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">Flags</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Default Value</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="20%">Comment</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="1%">AutoInc</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>mdccod</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>INTEGER</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo do medico</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>emdcod</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0"><b>INTEGER</b></td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">PK</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">NN</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">UNSIGNED </td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">codigo da especialidade</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">&nbsp;</td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td class="fontB">
-      <table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#d8e6ff">
-        <tr>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexName</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">IndexType</td>
-          <td class="fontSB" style="border-bottom: 1px solid #606060" width="15%">Columns</td>
-        </tr>
-        <tr>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0" valign="top">PRIMARY</td>
-          <td class="fontS" style="border-bottom: 1px solid #C0C0C0">mdccod<br>emdcod<br></td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-
-</table>
-<br>
-<br>
-<table cellpadding="2" cellspacing="0" border="0" width="100%" bgcolor="#e4efff">
-  <tr>
-    <td class="fontX">usr
+    <td class="fontX">usuario
      <font class="fontS"><br>Tabela de Usuário</font></td>
   </tr>
   <tr>
