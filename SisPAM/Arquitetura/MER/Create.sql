@@ -4,15 +4,15 @@
 
 CREATE SEQUENCE emd_seq;
 
-CREATE TABLE emd (
+CREATE TABLE especialidademedica (
   emdcod INTEGER  NOT NULL DEFAULT NEXTVAL('emd_seq'),
   emddes VARCHAR(50) NULL
 );
 
-ALTER TABLE emd
+ALTER TABLE especialidademedica
    ADD CONSTRAINT emdA PRIMARY KEY(emdcod);
 
-CREATE INDEX emdB ON emd (emddes);
+CREATE INDEX emdB ON especialidademedica (emddes);
 
 -- ------------------------------------------------------------
 -- Tabela de Convênio
@@ -20,7 +20,7 @@ CREATE INDEX emdB ON emd (emddes);
 
 CREATE SEQUENCE cvn_seq;
 
-CREATE TABLE cvn (
+CREATE TABLE convenio (
   cvncod INTEGER  NOT NULL DEFAULT NEXTVAL('cvn_seq'),
   cvnanscod INTEGER  NULL,
   cvndes VARCHAR(50) NULL,
@@ -32,10 +32,10 @@ CREATE TABLE cvn (
   cvntel NUMERIC(8) NULL
 );
 
-ALTER TABLE cvn
+ALTER TABLE convenio
    ADD CONSTRAINT cvnA PRIMARY KEY(cvncod);  
 
-CREATE INDEX cvnB ON cvn (cvndes);
+CREATE INDEX cvnB ON convenio (cvndes);
 
 -- ------------------------------------------------------------
 -- Tabela de Usuário
@@ -43,7 +43,7 @@ CREATE INDEX cvnB ON cvn (cvndes);
 
 CREATE SEQUENCE usr_seq;
 
-CREATE TABLE usr (
+CREATE TABLE usuario (
   usrcod INTEGER  NOT NULL DEFAULT NEXTVAL('usr_seq'),
   usrnom VARCHAR(40) NULL,
   usrsex CHAR(1) NULL,
@@ -61,10 +61,10 @@ CREATE TABLE usr (
   usrpfl NUMERIC(1) NOT NULL
 );
 
-ALTER TABLE usr
+ALTER TABLE usuario
    ADD CONSTRAINT usrA PRIMARY KEY(usrcod);
 
-CREATE INDEX usrB ON usr (usrnom);
+CREATE INDEX usrB ON usuario (usrnom);
 
 -- ------------------------------------------------------------
 -- Tabela de Parâmetro
@@ -72,7 +72,7 @@ CREATE INDEX usrB ON usr (usrnom);
 
 CREATE SEQUENCE pmt_seq;
 
-CREATE TABLE pmt (
+CREATE TABLE parametro (
   pmtcod INTEGER  NOT NULL DEFAULT NEXTVAL('pmt_seq'),
   pmtdes VARCHAR(30) NOT NULL,
   pmtval VARCHAR(100) NOT NULL,
@@ -80,10 +80,10 @@ CREATE TABLE pmt (
 );
 
 
-ALTER TABLE pmt
+ALTER TABLE parametro
    ADD CONSTRAINT pmtA PRIMARY KEY(pmtcod);  
 
-CREATE INDEX pmtB ON pmt (pmtdes);
+CREATE INDEX pmtB ON parametro (pmtdes);
 
 -- ------------------------------------------------------------
 -- Tabela de Codigos Internacionais de Doenças
@@ -91,15 +91,15 @@ CREATE INDEX pmtB ON pmt (pmtdes);
 
 CREATE SEQUENCE cid_seq;
 
-CREATE TABLE cid (
+CREATE TABLE codigodoenca (
   cidcod INTEGER  NOT NULL DEFAULT NEXTVAL('cid_seq'),
   ciddes VARCHAR(50) NULL 
 );
 
-ALTER TABLE cid
+ALTER TABLE codigodoenca
    ADD CONSTRAINT cidA PRIMARY KEY(cidcod);  
 
-CREATE INDEX cidB ON cid (ciddes);
+CREATE INDEX cidB ON codigodoenca (ciddes);
 
 -- ------------------------------------------------------------
 -- Tabela de Log de Auditoria
@@ -107,13 +107,13 @@ CREATE INDEX cidB ON cid (ciddes);
 
 CREATE SEQUENCE adt_seq;
 
-CREATE TABLE adt (
+CREATE TABLE auditoria (
   adtcod NUMERIC(12) NOT NULL DEFAULT NEXTVAL('adt_seq'),
   adtdatref TIMESTAMP NULL,
   adtip VARCHAR(15) NULL
 );
 
-ALTER TABLE adt
+ALTER TABLE auditoria
    ADD CONSTRAINT adtA PRIMARY KEY(adtcod);
 
 -- ------------------------------------------------------------
@@ -122,19 +122,19 @@ ALTER TABLE adt
 
 CREATE SEQUENCE mdc_seq;
 
-CREATE TABLE mdc (
+CREATE TABLE medico (
   mdccod INTEGER  NOT NULL DEFAULT NEXTVAL('mdc_seq'),
   usrcod INTEGER  NOT NULL,
   mdccrm INTEGER  NULL,
   mdccrmuf VARCHAR(2) NULL
 );
 
-ALTER TABLE mdc
+ALTER TABLE medico
    ADD CONSTRAINT mdcA PRIMARY KEY(mdccod);
 
-ALTER TABLE mdc
-   ADD CONSTRAINT FK_mdc_USR FOREIGN KEY (usrcod)
-                          REFERENCES USR (usrcod);
+ALTER TABLE medico
+   ADD CONSTRAINT FK_medico_USUARIO FOREIGN KEY (usrcod)
+                          REFERENCES USUARIO (usrcod);
 
 -- ------------------------------------------------------------
 -- Tabela de Agenda Médica
@@ -142,7 +142,7 @@ ALTER TABLE mdc
 
 CREATE SEQUENCE agm_seq;
 
-CREATE TABLE agm (
+CREATE TABLE agendamedica (
   agmcod INTEGER  NOT NULL DEFAULT NEXTVAL('agm_seq'),
   mdccod INTEGER  NOT NULL,
   agmdtaatd VARCHAR(14) NULL,
@@ -151,12 +151,12 @@ CREATE TABLE agm (
   agmcnsatd NUMERIC(4) NULL
 );
 
-ALTER TABLE agm
+ALTER TABLE agendamedica
    ADD CONSTRAINT agmA PRIMARY KEY(agmcod);  
 
-ALTER TABLE agm
-   ADD CONSTRAINT FK_agm_MDC FOREIGN KEY (mdccod)
-                          REFERENCES MDC (mdccod);    
+ALTER TABLE agendamedica
+   ADD CONSTRAINT FK_agendamedica_MEDICO FOREIGN KEY (mdccod)
+                          REFERENCES MEDICO (mdccod);    
 
 -- ------------------------------------------------------------
 -- Tabela de Compromisso
@@ -164,7 +164,7 @@ ALTER TABLE agm
 
 CREATE SEQUENCE cpm_seq;
 
-CREATE TABLE cpm (
+CREATE TABLE compromisso  (
   cpmcod INTEGER  NOT NULL DEFAULT NEXTVAL('cpm_seq'),
   agmcod INTEGER  NOT NULL,
   cpmdes VARCHAR(50) NULL,
@@ -174,34 +174,34 @@ CREATE TABLE cpm (
   cpmhorter NUMERIC(4) NULL  
 );
 
-ALTER TABLE cpm
+ALTER TABLE compromisso
    ADD CONSTRAINT cpmA PRIMARY KEY(cpmcod);  
 
-CREATE INDEX cpmB ON cpm (cpmdes);
+CREATE INDEX cpmB ON compromisso (cpmdes);
 
-ALTER TABLE cpm
-   ADD CONSTRAINT FK_cpm_AGM FOREIGN KEY (agmcod)
-                          REFERENCES AGM (agmcod); 
+ALTER TABLE compromisso
+   ADD CONSTRAINT FK_compromisso_AGENDAMEDICA FOREIGN KEY (agmcod)
+                          REFERENCES AGENDAMEDICA (agmcod); 
 
 -- ------------------------------------------------------------
 -- Tabela de Relacionamento medico x especialidade
 -- ------------------------------------------------------------
 
 
-CREATE TABLE rme (
+CREATE TABLE medico_especialidade  (
   mdccod INTEGER  NOT NULL,
   emdcod INTEGER  NOT NULL
 );
 
-ALTER TABLE rme
+ALTER TABLE medico_especialidade
    ADD CONSTRAINT rmeA PRIMARY KEY(mdccod, emdcod);  
 
-ALTER TABLE rme
-   ADD CONSTRAINT FK_rme_MDC FOREIGN KEY (mdccod)
-                          REFERENCES MDC (mdccod); 
-ALTER TABLE rme
-   ADD CONSTRAINT FK_rme_EMD FOREIGN KEY (emdcod)
-                          REFERENCES EMD (emdcod); 
+ALTER TABLE medico_especialidade
+   ADD CONSTRAINT FK_medico_especialidade_MEDICO FOREIGN KEY (mdccod)
+                          REFERENCES MEDICO (mdccod); 
+ALTER TABLE medico_especialidade
+   ADD CONSTRAINT FK_medico_especialidade_ESPECIALIDADEMEDICA FOREIGN KEY (emdcod)
+                          REFERENCES ESPECIALIDADEMEDICA (emdcod); 
 
 
 -- ------------------------------------------------------------
@@ -210,7 +210,7 @@ ALTER TABLE rme
 
 CREATE SEQUENCE pct_seq;
 
-CREATE TABLE pct (
+CREATE TABLE paciente (
   pctidfseg NUMERIC(14) NOT NULL DEFAULT NEXTVAL('pct_seq'),
   usrcod INTEGER NOT NULL,
   cvncod INTEGER NOT NULL,
@@ -219,17 +219,17 @@ CREATE TABLE pct (
   pctplnvld TIMESTAMP NULL
 );
 
-ALTER TABLE pct
+ALTER TABLE paciente
    ADD CONSTRAINT pctA PRIMARY KEY(pctidfseg);
   
-CREATE INDEX pctB ON pct (pctplnrde);
+CREATE INDEX pctB ON paciente (pctplnrde);
 
-ALTER TABLE pct
-   ADD CONSTRAINT FK_pct_USR FOREIGN KEY (usrcod)
-                          REFERENCES USR (usrcod);
-ALTER TABLE pct
-   ADD CONSTRAINT FK_pct_CVN FOREIGN KEY (cvncod)
-                          REFERENCES CVN (cvncod);
+ALTER TABLE paciente
+   ADD CONSTRAINT FK_paciente_USUARIO FOREIGN KEY (usrcod)
+                          REFERENCES USUARIO (usrcod);
+ALTER TABLE paciente
+   ADD CONSTRAINT FK_paciente_CONVENIO FOREIGN KEY (cvncod)
+                          REFERENCES CONVENIO (cvncod);
 
 -- ------------------------------------------------------------
 -- Tabela de Agendamento
@@ -237,7 +237,7 @@ ALTER TABLE pct
 
 CREATE SEQUENCE agd_seq;
 
-CREATE TABLE agd (
+CREATE TABLE agendamento (
   agdcod INTEGER NOT NULL DEFAULT NEXTVAL('agd_seq'),
   pctidfseg NUMERIC(14) NOT NULL,
   emdcod INTEGER  NOT NULL,
@@ -248,18 +248,18 @@ CREATE TABLE agd (
   agdobs VARCHAR(200) NULL
 );
 
-ALTER TABLE agd
+ALTER TABLE agendamento
    ADD CONSTRAINT agdA PRIMARY KEY(agdcod);  
 
-ALTER TABLE agd
-   ADD CONSTRAINT FK_agd_MDC FOREIGN KEY (mdccod)
-                          REFERENCES MDC (mdccod);    
-ALTER TABLE agd
-   ADD CONSTRAINT FK_agd_PCT FOREIGN KEY (pctidfseg)
-                          REFERENCES PCT (pctidfseg);
-ALTER TABLE agd
-   ADD CONSTRAINT FK_agd_EMD FOREIGN KEY (emdcod)
-                          REFERENCES EMD (emdcod);
+ALTER TABLE agendamento
+   ADD CONSTRAINT FK_agendamento_MEDICO FOREIGN KEY (mdccod)
+                          REFERENCES MEDICO (mdccod);    
+ALTER TABLE agendamento
+   ADD CONSTRAINT FK_agendamento_PACIENTE FOREIGN KEY (pctidfseg)
+                          REFERENCES PACIENTE (pctidfseg);
+ALTER TABLE agendamento
+   ADD CONSTRAINT FK_agendamento_ESPECIALIDADEMEDICA FOREIGN KEY (emdcod)
+                          REFERENCES ESPECIALIDADEMEDICA (emdcod);
 
 -- ------------------------------------------------------------
 -- Tabela de Historico de Prontuário
@@ -267,7 +267,7 @@ ALTER TABLE agd
 
 CREATE SEQUENCE htc_seq;
 
-CREATE TABLE htc (
+CREATE TABLE historicoprontuario (
   htccod INTEGER  NOT NULL DEFAULT NEXTVAL('htc_seq'),
   cidcod INTEGER  NOT NULL,
   pctidfseg NUMERIC(14) NOT NULL,
@@ -277,17 +277,17 @@ CREATE TABLE htc (
   htcprc VARCHAR(400) NULL
 );
 
-ALTER TABLE htc
+ALTER TABLE historicoprontuario
    ADD CONSTRAINT htcA PRIMARY KEY(htccod);  
 
-CREATE INDEX htcB ON htc (htcstm, htcldo);
+CREATE INDEX htcB ON historicoprontuario (htcstm, htcldo);
 
-ALTER TABLE htc
-   ADD CONSTRAINT FK_htc_CID FOREIGN KEY (cidcod)
-                          REFERENCES CID (cidcod); 
-ALTER TABLE htc
-   ADD CONSTRAINT FK_htc_PCT FOREIGN KEY (pctidfseg)
-                          REFERENCES PCT (pctidfseg);
+ALTER TABLE historicoprontuario
+   ADD CONSTRAINT FK_historicoprontuario_CODIGODOENCA FOREIGN KEY (cidcod)
+                          REFERENCES CODIGODOENCA (cidcod); 
+ALTER TABLE historicoprontuario
+   ADD CONSTRAINT FK_historicoprontuario_PACIENTE FOREIGN KEY (pctidfseg)
+                          REFERENCES PACIENTE (pctidfseg);
 
 
 
