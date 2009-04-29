@@ -2,10 +2,11 @@ package br.com.sispam.dominio;
 
 public class Convenio {
 	private String nome;	 
-	private int cnpj;	 
+	private long cnpj;	 
 	private String endereco;	 
 	private String cidade;	 
 	private String uf;	 
+	private long cep;
 	private String site;	 
 	private String email; 
 	private int ddd; 
@@ -18,10 +19,10 @@ public class Convenio {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getCnpj() {
+	public long getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(int cnpj) {
+	public void setCnpj(long cnpj) {
 		this.cnpj = cnpj;
 	}
 	public String getEndereco() {
@@ -35,6 +36,12 @@ public class Convenio {
 	}
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+	public long getCep() {
+		return cep;
+	}
+	public void setCep(long cep) {
+		this.cep = cep;
 	}
 	public String getUf() {
 		return uf;

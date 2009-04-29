@@ -11,6 +11,11 @@
         			<result name="carregarNovoUsuario">/usuario/inclui-usuario.jsp</result>
         		</action>
         		
+        		<!-- Convenio Action -->
+        		<action name="convenioAction!*" method="{1}"  class="br.com.sispam.action.ConvenioAction">
+        			<result name="sucesso">/convenio/inclui-convenio.jsp</result>        			
+        		</action>
+        		
         			<!-- Login Action -->
         		<action name="loginAction!*" method="{1}"  class="br.com.sispam.action.LoginAction">
         			<result name="sucesso">index.jsp</result>
