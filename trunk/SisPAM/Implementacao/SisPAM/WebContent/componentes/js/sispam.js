@@ -25,3 +25,7 @@ function definirPerfil(){
 	else{
 	}
 }
+
+function formaConsultaConvenio(){
+	var selecionado = document.getElementById("forma").value;
+}

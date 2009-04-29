@@ -42,6 +42,7 @@ label{
 	color: #172F4A;
 	font-weight: bold;
 	cursor: help;
+			
 }
 
 select {
@@ -64,6 +65,7 @@ input {
 	border: 1px solid #A7C2DA;
 	height: 16px;
 	margin: 0px 0px 0px 0px;
+	vertical-align: middle;
 }
 input:focus {
 	border: 1px solid green;
@@ -84,7 +86,7 @@ a:hover{
 }
  
 .tabela_moldura {
-	border: 1px solid #F4F7FB;
+	
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-right: 0px;
@@ -92,6 +94,14 @@ a:hover{
 	position: relative;
 	padding: 0px;
 	clear: left;
+	cursor: text;
+	width: auto;
+	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
+	background-color: #F2F7FE;
+	border: 1px solid #7f9db9;
+	padding-left: 5px;
+	color: #515151;
+	vertical-align: middle;
 }
  .botao_logar {
 	margin: 0px 0px 0px 0px;
