@@ -11,7 +11,7 @@ public class ConvenioAction extends Action{
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
 		
-		return SUCESSO;
+		return SUCESSO_INCLUIR_CONVENIO;
 	}
 	
 	public String consultarConvenio(){

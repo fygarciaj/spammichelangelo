@@ -6,6 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-<h1>Mensagem padrão!</h1>
+<h1>SisPAM - Sistema de Pronto Atendimento Médico</h1>
 </body>
 </html>
