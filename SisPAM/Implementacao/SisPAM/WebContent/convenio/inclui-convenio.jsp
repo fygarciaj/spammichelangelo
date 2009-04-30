@@ -10,33 +10,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Cadastro de Convênio</h3>
+	<table width="89%" id="cmnUsr" class="caminhoUsuario">
+	<tr>
+    <td>
+    	<br>
+		<div>Cadastro<img src="img/seta.gif" />    		
+    	Convênio<img src="img/seta.gif" />
+		Incluir				    		
+    	</div>
+    </td>	
+	</table>
+	<h2>Cadastro de Convênios</h2>
 	<s:form id="formConvenio" action="convenioAction!incluirConvenio.action">
 		<table border="0" width="100%" class="tabela_moldura" cellpadding="3"	cellspacing="4">
 			<tr>
 				<td>
-					
-						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">
+						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">								
+							
+							<tr>							    
+								<td><label class="label" >Nome do Convênio:</label></td><td><s:textfield theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
+								<td><label class="label" >CNPJ:</label></td><td><s:textfield theme="simple" name="convenio.cpf" size="17" maxlength="14"/></td>
+							</tr>																				
 							<tr>
-								<td>Nome do Convênio:<s:textfield theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
-							</tr>
+							    <td><label class="label" >Endereço:</label></td><td colspan="3"><s:textfield theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>
+							</tr>							
 							<tr>
-								<td>CNPJ:<s:textfield theme="simple" name="convenio.cpf" size="17" maxlength="14"/></td>
-							</tr>
-							<tr>
-								<td>Site:<s:textfield theme="simple" name="convenio.site" size="30" maxlength="30"/></td>        	 					
-        				       		
-								<td>E-mail:<s:textfield theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
-							</tr>
-							<tr>
-								<td>Endereço:<s:textfield theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>								
-							</tr>
-							<tr>
-								<td align="left" colspan="2">Cidade:<s:textfield theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
+								<td><label class="label" >Cidade:</label></td><td><s:textfield theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
 								</td>
 							</tr>
 							<tr>
-								<td align="left" colspan="2">Estado:<select name="estado">
+								<td><label class="label" >Estado:</label></td><td><select name="estado">
 											<option value="0">--Selecione--</option>
 											<option value="AC">Acre</option>
 											<option value="AL">Alagoas</option>
@@ -68,19 +71,31 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="1" width="40%">CEP:<s:textfield theme="simple" name="convenio.cep" size="15" maxlength="8"/>
-								DDD:<s:textfield theme="simple" name="convenio.ddd" size="2" maxlength="2"/>
-								Telefone:<s:textfield theme="simple" name="convenio.telefone" size="8" maxlength="8"/>
-								</td>								
+								<td><label class="label" >CEP:</label></td><td><s:textfield theme="simple" name="convenio.cep" size="15" maxlength="8"/></td>
+							</tr>							
+							<tr>
+								<td><label class="label" >DDD:</label></td><td><s:textfield theme="simple" name="convenio.ddd" size="2" maxlength="2"/>
+								<label class="label" >&nbsp;&nbsp;&nbsp;Telefone:&nbsp;&nbsp;</label><s:textfield theme="simple" name="convenio.telefone" size="8" maxlength="8"/></td>								
 							</tr>
 							<tr>
-								<td><s:date var="afd"  name="dataEntrada"/></td>
+							    <td><label class="label" >Site:</label></td><td><s:textfield theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
+								<td><label class="label" >E-mail:</label></td><td colspan="2"><s:textfield theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
 							</tr>
+							<tr>
+								<td><s:date var="afd"  name="dataEntrada"/></td>								
+							</tr>													
 						</table>
-									
+						<table border="0" align="center" cellpadding="20" cellspacing="20">
+							<tr>
+																								
+								<td><br><input type="submit" tabindex="1" name="confirmarAction" value="Incluir" class="button"><br></td>								
+								<td><br><input type="reset" tabindex="2" name="limparAction" value="Limpar" class="button"><br></td>
+								
+							</tr>
+						</table>					
 				</td>
 			</tr>
-		</table>
+		</table>						
 	</s:form>
 	
 </body>

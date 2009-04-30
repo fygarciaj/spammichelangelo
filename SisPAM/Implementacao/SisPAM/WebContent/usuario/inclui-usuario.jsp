@@ -10,7 +10,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Cadastro de Usuário</h3>
+	<table width="89%" id="cmnUsr" class="caminhoUsuario">
+	<tr>
+    <td>
+    	<br>
+		<div>Cadastro<img src="img/seta.gif" />    		
+    	Usuário<img src="img/seta.gif" />
+		Incluir				    		
+    	</div>
+    </td>	
+	</table>
+	<h2>Cadastro de Usuários</h2>	
 	<s:form id="formPerfil" action="usuarioAction!salvarUsuario.action">
 		<table border="0" width="100%" class="tabela_moldura" cellpadding="3"	cellspacing="4">
 			<tr>

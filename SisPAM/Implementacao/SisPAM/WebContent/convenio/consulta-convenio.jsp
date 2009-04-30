@@ -10,81 +10,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Cadastro de Convênio</h3>
+	<table width="89%" id="cmnUsr" class="caminhoUsuario">
+	<tr>
+    <td>
+    	<br>
+		<div>Cadastro<img src="img/seta.gif" />    		
+    	Convênio<img src="img/seta.gif" />
+		Alterar/Excluir				    		
+    	</div>		
+    </td>	
+	</tr>	
+	</table>
+	<h2>Pesquisa de Convênios</h2>
 	<s:form id="formConvenio" action="convenioAction!consultarConvenio.action">
 		<table border="0" width="100%" class="tabela_moldura" cellpadding="3"	cellspacing="4">
-			<tr>
-				<td><label>Forma de Consulta</label>
-					<s:select list="formas" headerKey="0" id="forma" headerValue="--Selecione--" name="formaConsultaSelecionada"
-					onchange = "formaConsultaConvenio()" listKey="codigo" theme="simple"/></td>
-			</tr>
-			<tr>
-
-				<td>					
-						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">
-							<tr>
-								<td colspan="1">Nome:<s:textfield theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
-								<td colspan="2">CNPJ:<s:textfield theme="simple" name="convenio.cpf" size="17" maxlength="14"/></td>
-							</tr>
-							<tr>
-								<td>Site:<s:textfield theme="simple" name="convenio.site" size="30" maxlength="30"/></td>        	 					
-        				       		
-								<td>E-mail:<s:textfield theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
-							</tr>
-							<tr>
-								<td>Endereço:<s:textfield theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>								
-							</tr>
-							<tr>
-								<td align="left" colspan="2">Cidade:<s:textfield theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
-								</td>
-							</tr>
-							<tr>
-								<td align="left" colspan="2">Estado:<select name="estado">
-											<option value="0">--Selecione--</option>
-											<option value="AC">Acre</option>
-											<option value="AL">Alagoas</option>
-											<option value="AP">Amapá</option>
-											<option value="AM">Amazonas</option>
-											<option value="BA">Bahia</option>
-											<option value="CE">Ceará</option>											
-											<option value="ES">Espírito Santo</option>
-											<option value="GO">Goiás</option>
-											<option value="MA">Maranhão</option>
-											<option value="MT">Mato Grosso</option>
-											<option value="MS">Mato Grosso do Sul</option>
-											<option value="MG">Minas Gerais</option>
-											<option value="PA">Pará</option>
-											<option value="PB">Paraíba</option>
-											<option value="PR">Paraná</option>
-											<option value="PE">Pernambuco</option>
-											<option value="PI">Piauí</option>
-											<option value="RJ">Rio de Janeiro</option>
-											<option value="RN">Rio Grande do Norte</option>
-											<option value="RS">Rio Grande do Sul</option>
-											<option value="RO">Rondônia</option>
-											<option value="RR">Roraima</option>
-											<option value="SC">Santa Catarina</option>
-											<option value="SP">São Paulo</option>
-											<option value="SE">Sergipe</option>
-											<option value="TO">Tocantins</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="1" width="40%">CEP:<s:textfield theme="simple" name="convenio.cep" size="15" maxlength="8"/>
-								DDD:<s:textfield theme="simple" name="convenio.ddd" size="2" maxlength="2"/>
-								Telefone:<s:textfield theme="simple" name="convenio.telefone" size="8" maxlength="8"/>
-								</td>								
-							</tr>
-							<tr>
-								<td><s:date var="afd"  name="dataEntrada"/></td>
-							</tr>
-						</table>
-									
-				</td>
-			</tr>
+			<tr>			
+        	<td><label class="label">Forma de Consulta&nbsp;</label>
+        	<!-- Forma de Consulta -->
+        	
+			<select name="cmbFrmCns">
+				<option value="Selecione">Selecione</option>
+    	        <option value="0">Nome do Convênio</option>			
+				<option value="1">CNPJ</option>
+			</select>
+        	</td>
+			</tr>			
 		</table>
-	</s:form>
-	
+	</s:form>	
 </body>
 </html>

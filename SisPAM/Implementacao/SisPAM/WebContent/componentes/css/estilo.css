@@ -19,9 +19,10 @@ h1{
 }
 
 h2{
-	font-size: 20px;
+	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
+	font-size: 20px;	
 	clear:left;
-	color: #172F4A;
+	color: #00008B;
 	padding: 5px 10px 5px 0px;
 	margin: 0;
 }
@@ -41,7 +42,7 @@ label{
 	margin-bottom: 2px;
 	color: #172F4A;
 	font-weight: bold;
-			
+	width: 10px;		
 }
 
 select {
@@ -49,7 +50,7 @@ select {
 	font-size: 11px;
 	background-color: #FFFFFF;
 	border: 1px solid #172F4A;
-	;
+	height: 19px;
 	position: relative;
 	margin: 0px 0px 0px 0px;
 	height: 19px;
@@ -100,7 +101,6 @@ a:hover{
 	border: 1px solid #7f9db9;
 	padding-left: 5px;
 	color: #515151;
-	vertical-align: middle;
 }
  .botao_logar {
 	margin: 0px 0px 0px 0px;
@@ -114,4 +114,19 @@ a:hover{
 	clear:left;
 	position: relative;
 	margin: 0px 0 0 0;
+}
+
+.caminhoUsuario{
+	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
+}
+
+.button{
+	width: 70px;
+	cursor: pointer;
+	display: block;
+	font-weight: bold;
+	padding: 5px;
+	background-color: #00447E;
+	color: #E3EFF9;
+	height: 24px;	
 }

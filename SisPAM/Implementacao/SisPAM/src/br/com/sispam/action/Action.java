@@ -5,4 +5,6 @@ public class Action {
 	public final String CARREGAR_NOVO_USUARIO = "carregarNovoUsuario";
 	public final String FALHA = "falha";
 	public final String CARREGAR_CONVENIO_EXISTENTE = "carregarConvenioExistente";
+	public final String SUCESSO_INCLUIR_CONVENIO = "sucessoIncluirConvenio";
+	
 }
