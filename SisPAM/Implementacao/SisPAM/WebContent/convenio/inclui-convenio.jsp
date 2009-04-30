@@ -18,8 +18,10 @@
 					
 						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 							<tr>
-								<td colspan="1">Nome:<s:textfield theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
-								<td colspan="2">CNPJ:<s:textfield theme="simple" name="convenio.cpf" size="17" maxlength="14"/></td>
+								<td>Nome do Convênio:<s:textfield theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
+							</tr>
+							<tr>
+								<td>CNPJ:<s:textfield theme="simple" name="convenio.cpf" size="17" maxlength="14"/></td>
 							</tr>
 							<tr>
 								<td>Site:<s:textfield theme="simple" name="convenio.site" size="30" maxlength="30"/></td>        	 					
