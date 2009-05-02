@@ -29,24 +29,26 @@
 							
 							<tr>							    
 								<td><label class="label" >Nome do Convênio:</label></td><td><s:textfield theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
-								<td><label class="label" >CNPJ:</label></td><td><s:textfield theme="simple" name="convenio.cpf" size="17" maxlength="14"/></td>
+								<td><label class="label" >CNPJ:</label></td><td><s:textfield theme="simple" name="convenio.cnpj" size="17" maxlength="14"/></td>
 							</tr>																				
 							<tr>
-							    <td><label class="label" >Endereço:</label></td><td colspan="3"><s:textfield theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>
+							    <td><label class="label" >Endereço:</label></td><td colspan="1"><s:textfield theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>
+								<td><label class="label" >Código ANS:</label></td><td><s:textfield theme="simple" name="convenio.codigoANS" size="17" maxlength="14"/></td>
 							</tr>							
 							<tr>
 								<td><label class="label" >Cidade:</label></td><td><s:textfield theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
 								</td>
 							</tr>
 							<tr>
-								<td><label class="label" >Estado:</label></td><td><select name="estado">
+								<td><label class="label" >Estado:</label></td><td><select name="convenio.estado">
 											<option value="0">--Selecione--</option>
 											<option value="AC">Acre</option>
 											<option value="AL">Alagoas</option>
 											<option value="AP">Amapá</option>
 											<option value="AM">Amazonas</option>
 											<option value="BA">Bahia</option>
-											<option value="CE">Ceará</option>											
+											<option value="CE">Ceará</option>
+											<option value="DF">Distrito Federal</option>
 											<option value="ES">Espírito Santo</option>
 											<option value="GO">Goiás</option>
 											<option value="MA">Maranhão</option>
@@ -80,10 +82,7 @@
 							<tr>
 							    <td><label class="label" >Site:</label></td><td><s:textfield theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
 								<td><label class="label" >E-mail:</label></td><td colspan="2"><s:textfield theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
-							</tr>
-							<tr>
-								<td><s:date var="afd"  name="dataEntrada"/></td>								
-							</tr>													
+							</tr>												
 						</table>
 						<table border="0" align="center" cellpadding="20" cellspacing="20">
 							<tr>

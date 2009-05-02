@@ -5,8 +5,8 @@ import br.com.sispam.facade.ConvenioFacade;
 
 public class ConvenioAction extends Action{
 
-	public Convenio convenio;
-	public ConvenioFacade convenioFacade;
+	private Convenio convenio;
+	private ConvenioFacade convenioFacade;
 	
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
@@ -19,4 +19,21 @@ public class ConvenioAction extends Action{
 		
 		return CARREGAR_CONVENIO_EXISTENTE;
 	}
+
+	public Convenio getConvenio() {
+		return convenio;
+	}
+
+	public void setConvenio(Convenio convenio) {
+		this.convenio = convenio;
+	}
+
+	public ConvenioFacade getConvenioFacade() {
+		return convenioFacade;
+	}
+
+	public void setConvenioFacade(ConvenioFacade convenioFacade) {
+		this.convenioFacade = convenioFacade;
+	}
+	
 }
