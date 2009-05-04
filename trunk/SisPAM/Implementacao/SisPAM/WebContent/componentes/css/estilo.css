@@ -121,12 +121,12 @@ a:hover{
 }
 
 .button{
-	width: 70px;
+	width: 100px;
 	cursor: pointer;
 	display: block;
 	font-weight: bold;
-	padding: 5px;
-	background-color: #00447E;
+	padding: 5px, 5px, 5px, 5px;
+	background-color: #191970;
 	color: #E3EFF9;
 	height: 24px;	
 }

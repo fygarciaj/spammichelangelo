@@ -13,8 +13,8 @@
         		
         		<!-- Convenio Action -->
         		<action name="convenioAction!*" method="{1}"  class="br.com.sispam.action.ConvenioAction">
-        			<result name="sucessoIncluirConvenio">/convenio/inclui-convenio.jsp</result>
-        			<result name="carregarConvenioExistente">/convenio/consulta-convenio.jsp</result>        			
+        			<result name="sucessoIncluirConvenio">/convenio/incluiConvenio.jsp</result>
+        			<result name="carregarConvenioExistente">/convenio/consultaConvenio.jsp</result>        			
         		</action>
         		
         			<!-- Login Action -->

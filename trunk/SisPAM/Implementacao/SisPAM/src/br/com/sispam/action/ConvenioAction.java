@@ -10,13 +10,13 @@ public class ConvenioAction extends Action{
 	
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
-		
+		convenioFacade.verificaCnpj(convenio);
 		return SUCESSO_INCLUIR_CONVENIO;
 	}
 	
 	public String consultarConvenio(){
 		convenioFacade = new ConvenioFacade();
-		
+		convenioFacade.pesquisaConvenio(convenio);		
 		return CARREGAR_CONVENIO_EXISTENTE;
 	}
 
