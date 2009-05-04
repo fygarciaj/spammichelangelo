@@ -14,7 +14,7 @@ public class Conexao {
 	 * @return
 	 */
 	public EntityManager getEntityManger(){
-		this.factory = Persistence.createEntityManagerFactory("sispam-db");
+		this.factory = Persistence.createEntityManagerFactory("sispam");
 		this.manager = factory.createEntityManager();
 		return this.manager;
 	}

@@ -17,4 +17,19 @@ public class ConvenioFacade {
 		return true;
 	
 	}
+	
+	public Convenio pesquisaConvenio(Convenio convenio){
+		
+		try {
+			convenioDao = new ConvenioDao();
+			convenioDao.consultarConvenio(convenio.getCnpj());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+			e.printStackTrace();
+		}
+		
+		
+		return convenio;
+	}
 }

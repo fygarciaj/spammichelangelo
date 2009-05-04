@@ -27,5 +27,22 @@ function definirPerfil(){
 }
 
 function formaConsultaConvenio(){
-	var selecionado = document.getElementById("forma").value;
+	var selecionado = document.getElementById("cmbFrmCns").value;
+	var divCnpj = document.getElementById("cnpj");
+	var divNome = document.getElementById("nomeConvenio");
+	var divBotoes = document.getElementById("botoes");
+	
+	if (selecionado == 0){
+		divNome.style.display = 'block';	
+		document.getElementById("cmbFrmCns").disabled = true;
+		divBotoes.style.display = 'block';
+		
+	}
+	else if (selecionado == 1){
+		divCnpj.style.display = 'block';		
+		document.getElementById("cmbFrmCns").disabled = true;
+		divBotoes.style.display = 'block';
+		
+	}	
 }
+ 
