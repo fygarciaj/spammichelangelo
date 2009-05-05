@@ -30,7 +30,7 @@
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" href="..\resources\styleMenu.css" type="text/css" />
+<link rel="stylesheet" href="../resources/styleMenu.css" type="text/css" />
 </head>
 <body>
 <div id="menu">
@@ -40,7 +40,7 @@
 		<div id="menuUsuario" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Incluir</a></li>
-			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
+			<li ><a href="../usuario/consultar-usuario.jsp" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 			</ul>
 		</div>
 	</li>
@@ -49,7 +49,7 @@
 		<div id="menuConvenio" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="../convenio/inclui-convenio.jsp" title = "Incluir" target="CENTRAL">Incluir</a></li>
-			<li ><a href="../convenio/consultaConvenio.jsp" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
+			<li ><a href="../convenio/consulta-convenio.jsp" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 			</ul>
 		</div>
 	</li>

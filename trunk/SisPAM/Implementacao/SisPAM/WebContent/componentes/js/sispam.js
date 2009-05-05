@@ -33,17 +33,17 @@ function formaConsultaConvenio(){
 	
 	if (selecionado == 1){
 		divNome.style.display = 'block';	
-		document.getElementById("cmbFrmCns").disabled = true;
 		divBotoes.style.display = 'block';
+		divCnpj.style.display = 'none';
 		
 	}
 	else if (selecionado == 2){
 		divCnpj.style.display = 'block';		
-		document.getElementById("cmbFrmCns").disabled = true;
 		divBotoes.style.display = 'block';
+		divNome.style.display = 'none';
 		
 	}else{
-		alert("Fironfas");
+		alert("Selecione uma forma de consulta!");
 	}
 }
 	

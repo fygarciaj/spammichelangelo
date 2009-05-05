@@ -16,7 +16,7 @@ public class TesteUsuarioDao {
 	public void salvarUsuario(){
 		Usuario usuario = new Usuario();
 		usuarioDao = new UsuarioDao();
-		usuario.setCpf(9876554);
+		usuario.setCpf("9876554");
 		usuario.setEndereco("rua xx casa yy");
 		usuario.setNome("João cunha");
 		usuario.setRg(123);
@@ -28,7 +28,7 @@ public class TesteUsuarioDao {
 	public void recuperarUsuarioPeloCpf(){
 		Usuario usuario = new Usuario();
 		usuarioDao = new UsuarioDao();
-		usuario.setCpf(1234567);
+		usuario.setCpf("1234567");
 		usuario.setEndereco("Rua 15 lote 12 shis");
 		usuario.setNome("Mauro da silva");
 		usuario.setRg(1223);
@@ -37,7 +37,7 @@ public class TesteUsuarioDao {
 		
 		//TESTE E VERIFICAÇÃO
 		
-		Usuario usuario2 = usuarioDao.recupera(1234567);
+		Usuario usuario2 = usuarioDao.recupera("1234567");
 		assertNotNull(usuario2);
 		assertEquals(usuario.getNome(), usuario2.getNome());
 	}
