@@ -22,7 +22,7 @@
 		<action name="convenioAction!*" method="{1}"
 			class="br.com.sispam.action.ConvenioAction">
 			<result name="sucessoIncluirConvenio">/convenio/inclui-convenio.jsp</result>
-			<result name="carregarConvenioExistente">/convenio/consulta-convenio.jsp</result>
+			<result name="carregarConvenioExistente">/convenio/retorno-convenio.jsp</result>
 		</action>
 
 		<!-- Login Action -->

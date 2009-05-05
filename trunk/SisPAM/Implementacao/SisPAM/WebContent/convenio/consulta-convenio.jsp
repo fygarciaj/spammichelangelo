@@ -72,9 +72,13 @@
 		</table>
 	</s:form>
 	<s:if test="isExisteConvenio == 2">
-		<td>
-			<s:property value="convenio.nome" />
-		</td>		
+		<table>
+		<tr>		
+		<td>			
+			<s:property value="nome" />
+		</td>
+		</tr>	
+		</table>	
 		<!-- faksdfjslkfjkslfjsdjfkds -->
 	</s:if>	
 	<s:elseif test="isExisteConvenio == 1">
