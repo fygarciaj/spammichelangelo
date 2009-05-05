@@ -100,7 +100,7 @@ a:hover{
 	background-color: #F2F7FE;
 	border: 1px solid #7f9db9;
 	padding-left: 5px;
-	color: #515151;
+	color: #515151;	
 }
  .botao_logar {
 	margin: 0px 0px 0px 0px;
@@ -126,9 +126,11 @@ a:hover{
 	display: block;
 	font-weight: bold;
 	padding: 5px, 5px, 5px, 5px;
-	background-color: #191970;
-	color: #E3EFF9;
-	height: 24px;	
+	
+	color:#627EB7;
+	height: 24px;
+	align: middle;
+	background: url("../img/menu.gif") no-repeat left top;	
 }
 
 .botao_pesquisar {
@@ -137,6 +139,7 @@ a:hover{
 	background: #F4F7FB url(../img/pesquisar.png) no-repeat 2px 1px;
 	font-size:12px;
 	height: 20px;
+	cursor: pointer;
 }
  .botao_salvar {
 	margin: 0px 0px 0px 0px;
@@ -144,6 +147,7 @@ a:hover{
 	background: #F4F7FB url(../img/add.png) no-repeat 2px 1px;
 	font-size:12px;
 	height: 20px;
+	cursor: pointer;
 }
 
 .errorMessage{

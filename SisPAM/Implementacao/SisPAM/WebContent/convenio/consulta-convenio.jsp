@@ -24,12 +24,11 @@
 	</tr>	
 	</table>
 	<h2>Pesquisa de Convênios</h2>
-	<s:form id="formConvenio" action="convenioAction!consultarConvenio.action">
-		<table border="0" width="100%" class="tabela_moldura" cellpadding="3"	cellspacing="4">
+	<s:form action="convenioAction!consultarConvenio.action">
+		<table class="tabela_moldura">
 			<tr>			
         	<td><label class="label">Forma de Consulta</label>
-        	<!-- Forma de Consulta -->
-        	
+        	<!-- Forma de Consulta -->        	
 			<select onchange="formaConsultaConvenio()" id="cmbFrmCns">
 				<option value="0">Selecione</option>
     	        <option value="1">Nome do Convênio</option>			
@@ -37,6 +36,10 @@
 			</select>
         	</td>
 			</tr>
+		</table>	
+	</s:form>
+	<s:form id="formConvenio" action="convenioAction!consultarConvenio.action">
+		<table class="tabela_moldura">			
 			<tr>
 			<td>				
 				<div id="nomeConvenio" style="display:none">
