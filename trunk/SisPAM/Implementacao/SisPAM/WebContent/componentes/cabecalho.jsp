@@ -3,12 +3,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="..\resources\styles.css" type="text/css" />
+<link rel="stylesheet" href="../resources/styles.css" type="text/css" />
 </head>
 <body>
 
 <div id="tabs">
-<img src="img\simbolo.jpg" width="250px" align="left" hspace="5"  >
+<img src="img/simbolo.jpg" width="250px" align="left" hspace="5"  >
   <br><br><br><br>
 <ul>
 	

@@ -2,6 +2,7 @@ package br.com.sispam.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -51,13 +52,13 @@ public class UsuarioDao {
 		conexao.finalizaConexao();
 		return lista;
 	}
-	
+
 	/**
 	 * @descricao: recupera o usuário pelo seu cpf.
 	 * @param cpf
 	 * @return
 	 */
-	public Usuario recupera(long cpf){
+	public Usuario recupera(String cpf){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
@@ -72,6 +73,38 @@ public class UsuarioDao {
 		}
 		conexao.finalizaConexao();
 		return usuario;
+	}
+
+	/**
+	 * @descricao: Lista os últimos usuários cadastrados no sistema.
+	 * @return
+	 */
+	public List<Usuario> recuperarUltimosCadastrados() {
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Usuario> lista = null;
+		try{
+			Query query = manager.createQuery("from Usuario order by id desc");
+			query.setMaxResults(8);
+			lista = query.getResultList();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		conexao.finalizaConexao();
+		return lista;
+	}
+
+	public void removerTodosTeste() {
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		try{
+			manager.getTransaction().begin();
+			Query query = manager.createQuery("delete from Usuario where id > 0");
+			query.executeUpdate();
+			manager.getTransaction().commit();
+		}catch (EntityExistsException e) {
+			e.printStackTrace();
+		}
 	}
 
 
