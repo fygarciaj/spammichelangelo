@@ -8,7 +8,7 @@
 <BODY>
 <center>
 </center>
-	<img src="componentes\img\simbLogin.jpg"  width="30%">
+	<img src="componentes/img/simbLogin.jpg"  width="30%">
 <center> 
 <s:form action="loginAction!logar.action">
 	<table width=225 border=0 cellpadding=3 height="123" class="tabela_login" >

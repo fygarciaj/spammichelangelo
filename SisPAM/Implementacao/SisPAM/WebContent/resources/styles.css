@@ -40,7 +40,7 @@ hr {
 	}
 #tabs a {
 	float:left;
-	background:url("..\componentes\img\tableft.gif") no-repeat left top;
+	background:url("../componentes/img/tableft.gif") no-repeat left top;
 	margin:0px;
 	padding:0 2px 0 4px;
 	text-decoration:none;
@@ -48,7 +48,7 @@ hr {
 #tabs a span {
 	float:left;
 	display:block;
-	background:url("..\componentes\img\tabright.gif") no-repeat right top;
+	background:url("../componentes/img/tabright.gif") no-repeat right top;
 	padding:10px 10px 4px 6px;
 	color:#627EB7;
 	}

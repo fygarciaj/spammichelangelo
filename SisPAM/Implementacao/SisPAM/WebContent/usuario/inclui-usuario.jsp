@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/estilo.css" type="text/css" />
-<script type="text/javascript" src="js/sispam.js"></script>
+<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
+<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Cadastro<img src="img/seta.gif" /> Usuário<img
-			src="img/seta.gif" /> Incluir</div>
+		<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário<img
+			src="../componentes/img/seta.gif" /> Incluir</div>
 		</td>
 </table>
 <h2>Cadastro de Usuários</h2>
