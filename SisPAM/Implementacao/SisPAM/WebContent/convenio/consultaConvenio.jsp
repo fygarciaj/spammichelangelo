@@ -4,9 +4,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/estilo.css" type="text/css" />
-<script type="text/javascript" src="js/sispam.js"></script>
+<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
+<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,10 +30,10 @@
         	<td><label class="label">Forma de Consulta</label>
         	<!-- Forma de Consulta -->
         	
-			<select onchange="formaConsultaConvenio()" name="cmbFrmCns">
-				<option value="Selecione">Selecione</option>
-    	        <option value="0">Nome do Convênio</option>			
-				<option value="1">CNPJ</option>
+			<select onchange="formaConsultaConvenio()" id="cmbFrmCns">
+				<option value="0">Selecione</option>
+    	        <option value="1">Nome do Convênio</option>			
+				<option value="2">CNPJ</option>
 			</select>
         	</td>
 			</tr>
@@ -65,6 +67,12 @@
 			</td>
 			</tr>	
 		</table>
-	</s:form>	
+	</s:form>
+	<s:if test="isExisteConvenio == 2">
+		<!-- faksdfjslkfjkslfjsdjfkds -->
+	</s:if>	
+	<s:elseif test="isExisteConvenio == 1">
+		Nenhum registro encontrado com esses dados!
+	</s:elseif>
 </body>
 </html>

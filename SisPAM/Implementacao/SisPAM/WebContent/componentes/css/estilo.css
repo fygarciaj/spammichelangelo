@@ -130,3 +130,41 @@ a:hover{
 	color: #E3EFF9;
 	height: 24px;	
 }
+
+.botao_pesquisar {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 5px 0px 20px;
+	background: #F4F7FB url(../img/pesquisar.png) no-repeat 2px 1px;
+	font-size:12px;
+	height: 20px;
+}
+ .botao_salvar {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 5px 0px 20px;
+	background: #F4F7FB url(../img/add.png) no-repeat 2px 1px;
+	font-size:12px;
+	height: 20px;
+}
+
+.errorMessage{
+	color:#FF0000;
+	border: 1px solid #ff0000;
+	margin: 5px 0px 5px 0px;
+	padding: 2px 0px 2px 28px;
+	background: #FFf4f1 url(img/emoticon_unhappy.png) no-repeat 5px 1px ;
+	display:block;
+	text-align: left;
+	list-style-type: none;
+}
+
+.errorMessageSis{
+	color:#FF0000;
+	border: 1px solid #ff0000;
+	margin: 5px 0px 5px 0px;
+	padding: 2px 0px 2px 28px;
+	font-size: 20px;
+	background: #FFf4f1;
+	display:block;
+	text-align: center;
+	list-style-type: none;
+}

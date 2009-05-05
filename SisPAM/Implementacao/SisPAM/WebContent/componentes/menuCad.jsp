@@ -48,8 +48,8 @@
 		<a href="javaScript:void(0)" onclick="selecionaMenu('convenio')" title = "Manter Convênio" target="CENTRAL">CONVÊNIO</a>
 		<div id="menuConvenio" style="display:none">
 			<ul id="subMenu">
-			<li ><a href="/convenio/incluiConvenio.jsp" title = "Incluir" target="CENTRAL">Incluir</a></li>
-			<li ><a href="convenioAction!consultarConvenio.action" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
+			<li ><a href="../convenio/inclui-convenio.jsp" title = "Incluir" target="CENTRAL">Incluir</a></li>
+			<li ><a href="../convenio/consultaConvenio.jsp" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 			</ul>
 		</div>
 	</li>

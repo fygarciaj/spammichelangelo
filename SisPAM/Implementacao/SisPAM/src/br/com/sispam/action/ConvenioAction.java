@@ -7,6 +7,7 @@ public class ConvenioAction extends Action{
 
 	private Convenio convenio;
 	private ConvenioFacade convenioFacade;
+	private int isExisteConvenio;
 	
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
@@ -16,7 +17,13 @@ public class ConvenioAction extends Action{
 	
 	public String consultarConvenio(){
 		convenioFacade = new ConvenioFacade();
-		convenioFacade.pesquisaConvenio(convenio);		
+		this.convenio = convenioFacade.pesquisaConvenio(convenio);
+		if(this.convenio != null){
+			this.isExisteConvenio = 2;
+		}
+		else{
+			this.isExisteConvenio = 1;
+		}
 		return CARREGAR_CONVENIO_EXISTENTE;
 	}
 
@@ -35,5 +42,14 @@ public class ConvenioAction extends Action{
 	public void setConvenioFacade(ConvenioFacade convenioFacade) {
 		this.convenioFacade = convenioFacade;
 	}
+
+	public int isExisteConvenio() {
+		return isExisteConvenio;
+	}
+
+	public void setExisteConvenio(int isExisteConvenio) {
+		this.isExisteConvenio = isExisteConvenio;
+	}
+	
 	
 }

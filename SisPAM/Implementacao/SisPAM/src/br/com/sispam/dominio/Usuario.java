@@ -5,23 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 @Entity
-@Table(name = "usr")
 public class Usuario {
 	
 	private int id;
 	private String nome;
-	private Sexo sexo;
-	private long cpf;
+	private char sexo;
+	private String cpf;
 	private long rg;
 	private String expedidorRg;
 	private String endereco;
 	private long cep;
-	private int cidade;
-	private int uf;
+	private String cidade;
+	private String uf;
 	private int ddd;
 	private long telefone;
 	private String email;
@@ -47,17 +47,17 @@ public class Usuario {
 		this.nome = nome;
 	}
 	@Column(name = "usrsex")
-	public Sexo getSexo() {
+	public char getSexo() {
 		return sexo;
 	}
-	public void setSexo(Sexo sexo) {
+	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
 	@Column(name = "usrcpf")
-	public long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	@Column(name = "usrrg")
@@ -89,17 +89,17 @@ public class Usuario {
 		this.cep = cep;
 	}
 	@Column(name = "usrcde")
-	public int getCidade() {
+	public String getCidade() {
 		return cidade;
 	}
-	public void setCidade(int cidade) {
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 	@Column(name = "usruf")
-	public int getUf() {
+	public String getUf() {
 		return uf;
 	}
-	public void setUf(int uf) {
+	public void setUf(String uf) {
 		this.uf = uf;
 	}
 	@Column(name = "usrddd")
@@ -137,6 +137,4 @@ public class Usuario {
 	public void setPerfil(int perfil) {
 		this.perfil = perfil;
 	}
-	
-	
 }
