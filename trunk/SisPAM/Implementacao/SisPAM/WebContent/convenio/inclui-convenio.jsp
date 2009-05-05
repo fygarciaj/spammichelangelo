@@ -22,7 +22,7 @@
 	</table>
 	<h2>Cadastro de Convênios</h2>
 	<s:form id="formConvenio" action="convenioAction!incluirConvenio.action">
-		<table border="0" width="100%" class="tabela_moldura" cellpadding="3"	cellspacing="4">
+		<table>
 			<tr>
 				<td>
 						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">								
@@ -41,7 +41,7 @@
 							</tr>
 							<tr>
 								<td><label class="label" >Estado:</label></td><td><select name="convenio.estado">
-											<option value="0">--Selecione--</option>
+											<option value="0">Selecione</option>
 											<option value="AC">Acre</option>
 											<option value="AL">Alagoas</option>
 											<option value="AP">Amapá</option>
@@ -83,15 +83,16 @@
 							    <td><label class="label" >Site:</label></td><td><s:textfield theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
 								<td><label class="label" >E-mail:</label></td><td colspan="2"><s:textfield theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
 							</tr>												
-						</table>
-						<table border="0" align="center" cellpadding="20" cellspacing="20">
 							<tr>
 																								
 								<td><br><input type="submit" tabindex="1" name="confirmarAction" value="Incluir" class="button"><br></td>								
 								<td><br><input type="reset" tabindex="2" name="limparAction" value="Limpar" class="button"><br></td>
 								
-							</tr>
-						</table>					
+							</tr>						
+						</table>
+						
+
+											
 				</td>
 			</tr>
 		</table>						

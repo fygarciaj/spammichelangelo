@@ -29,7 +29,7 @@ function formaConsultaConvenio(){
 	var selecionado = document.getElementById("cmbFrmCns").value;
 	var divCnpj = document.getElementById("cnpj");
 	var divNome = document.getElementById("nomeConvenio");
-	var divBotoes = document.getElementById("botoes");
+	var divBotoes = document.getElementById("botoes");	
 	
 	if (selecionado == 1){
 		divNome.style.display = 'block';	
