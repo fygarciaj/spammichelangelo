@@ -18,12 +18,13 @@ public class ConvenioAction extends Action{
 	public String consultarConvenio(){
 		convenioFacade = new ConvenioFacade();
 		this.convenio = convenioFacade.pesquisaConvenio(convenio);
+		
 		if(this.convenio != null){
 			this.isExisteConvenio = 2;
 		}
 		else{
 			this.isExisteConvenio = 1;
-		}
+		}		
 		return CARREGAR_CONVENIO_EXISTENTE;
 	}
 

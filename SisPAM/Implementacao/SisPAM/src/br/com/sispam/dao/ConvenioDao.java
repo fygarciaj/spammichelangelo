@@ -40,11 +40,11 @@ public class ConvenioDao {
 			Query query = manager.createQuery("from Convenio where cnpj = :cnpj ");
 			//seta o parametro
 			query.setParameter("cnpj", cnpj);
-			convenio = (Convenio) query.getSingleResult();
+			convenio = (Convenio) query.getSingleResult();						
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		conexao.finalizaConexao();		
 		return convenio;
 	}
 }

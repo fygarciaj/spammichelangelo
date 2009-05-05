@@ -1,9 +1,13 @@
 package br.com.sispam.facade;
 
+import java.util.List;
+
 import br.com.sispam.dao.ConvenioDao;
+import br.com.sispam.dao.UsuarioDao;
 
 
 import br.com.sispam.dominio.Convenio;
+import br.com.sispam.dominio.Usuario;
 
 
 
@@ -23,13 +27,21 @@ public class ConvenioFacade {
 		try {
 			convenioDao = new ConvenioDao();
 			convenioDao.consultarConvenio(convenio.getCnpj());
+			System.out.println(convenio.getNome());
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();
 			e.printStackTrace();
 		}
-		
-		
-		return convenio;
+		return convenioDao.consultarConvenio(convenio.getCnpj());
 	}
+	/**
+	 * @descricao: Recupera os últimos usuários cadastrados.
+	 * @return
+	 */
+	/*public List<Usuario> recuperarUltimosCadastrados() {
+		this.usuarioDao = new UsuarioDao();
+		return this.usuarioDao.recuperarUltimosCadastrados();
+	}*/
 }
