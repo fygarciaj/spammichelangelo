@@ -17,7 +17,7 @@ public class TesteConvenioDao {
 		convenio.setNome("TESTE");
 		convenio.setCep(73);
 		convenio.setCidade("cidade");
-		convenio.setCnpj(28022);
+		convenio.setCnpj("28022174000128");
 		convenio.setDdd(61);
 		convenio.setEmail("email");
 		convenio.setEndereco("endereco");
@@ -29,4 +29,17 @@ public class TesteConvenioDao {
 		convenioDao.incluirConvenio(convenio);
 		
 	}
+	
+	@Test
+	public void recuperarConvenio(){
+		Convenio convenio = new Convenio();
+		convenioDao = new ConvenioDao();
+		convenio.setNome("TESTE");
+		convenio.setCnpj("28022174000128");
+		
+		convenio = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
+		convenio = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+		System.out.println(convenio.getCnpj() + convenio.getNome());
+	}
+	
 }

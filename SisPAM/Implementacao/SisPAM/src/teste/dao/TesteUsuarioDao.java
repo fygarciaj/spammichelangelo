@@ -20,7 +20,7 @@ public class TesteUsuarioDao {
 		usuario.setEndereco("rua xx casa yy");
 		usuario.setNome("João cunha");
 		usuario.setRg(123);
-		usuario.setSexo(Sexo.MASCULINO);
+		//usuario.setSexo(Sexo.MASCULINO);
 		usuarioDao.salvarUsuario(usuario);
 	}
 	
@@ -32,7 +32,7 @@ public class TesteUsuarioDao {
 		usuario.setEndereco("Rua 15 lote 12 shis");
 		usuario.setNome("Mauro da silva");
 		usuario.setRg(1223);
-		usuario.setSexo(Sexo.MASCULINO);
+		//usuario.setSexo(Sexo.MASCULINO);
 		usuarioDao.salvarUsuario(usuario);
 		
 		//TESTE E VERIFICAÇÃO

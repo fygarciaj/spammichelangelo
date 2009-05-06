@@ -46,7 +46,7 @@ public class ConvenioAction extends Action{
 	
 	/**
 	 * @descricao: Direciona para a tela de consulta, exibindo os últimos cadastros de convênios realizados 
-	 * @return
+	 * @return 
 	 */
 	public String listaUltimosConveniosCadastrados(){
 		this.convenioFacade = new ConvenioFacade();

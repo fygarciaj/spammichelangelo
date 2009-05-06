@@ -24,7 +24,7 @@ CREATE TABLE convenio (
   cvncod INTEGER  NOT NULL DEFAULT NEXTVAL('convenio_cvn_seq'),
   cvnanscod INTEGER  NULL,
   cvndes VARCHAR(50) NOT NULL,
-  cvncpj NUMERIC(14) NOT NULL,
+  cvncpj VARCHAR(18) NOT NULL,
   cvnend VARCHAR(50) NULL,
   cvncde VARCHAR(30) NULL,
   cvnetd VARCHAR(20) NULL,
@@ -40,6 +40,7 @@ ALTER TABLE convenio
 
 CREATE INDEX cvnB ON convenio (cvndes);
 
+CREATE INDEX cvnC ON convenio (cvncpj);
 -- ------------------------------------------------------------
 -- Tabela de Usuário
 -- ------------------------------------------------------------

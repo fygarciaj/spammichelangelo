@@ -5,12 +5,12 @@ package br.com.sispam.facade;
 import java.util.List;
 
 import br.com.sispam.dao.ConvenioDao;
-import br.com.sispam.dao.UsuarioDao;
+
 
 
 
 import br.com.sispam.dominio.Convenio;
-import br.com.sispam.dominio.Usuario;
+
 
 import br.com.sispam.excecao.CampoInvalidoException;
 
@@ -23,26 +23,43 @@ public class ConvenioFacade {
 		validaCampos(convenio);
 		try{
 			convenioDao = new ConvenioDao();		
-			convenioDao.incluirConvenio(convenio);	
+			if (verificaExistencia(convenio) == true){
+				convenioDao.incluirConvenio(convenio);
+			}else {
+				System.out.println("existe");
+			}
+							
 		}catch(Exception e){
 			e.getStackTrace();
 		}
 					
 	}
 	
+	public boolean verificaExistencia(Convenio convenio){
+		boolean status = true;
+		Convenio convenioNew = null;
+		convenioNew = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
+		convenioNew = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+		System.out.println(convenioNew.getCnpj() + convenioNew.getNome());
+		if ((convenioNew.getNome() == null) && (convenioNew.getCnpj() == null)){
+			status = false;
+		}
+		
+		return status;
+	}
+	
 	public Convenio pesquisaConvenio(Convenio convenio){
 		
 		try {
 			convenioDao = new ConvenioDao();
-			convenioDao.consultarConvenio(convenio.getCnpj());
-			System.out.println(convenio.getNome());
+			convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();
 			e.printStackTrace();
 		}
-		return convenioDao.consultarConvenio(convenio.getCnpj());
+		return convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
 	}
 	
 	/**
@@ -66,7 +83,7 @@ public class ConvenioFacade {
 			if(convenio.getNome() == null || convenio.getNome().length() == 0){
 				throw new CampoInvalidoException("Campo Nome do Convênio inválido");
 			}						
-			if(convenio.getCnpj() == 0) {
+			if(convenio.getCnpj() == null || convenio.getCnpj().isEmpty()) {
 				throw new CampoInvalidoException("Campo CNPJ inválido");
 			}
 			if(convenio.getEndereco() == null || convenio.getEndereco().length() == 0){

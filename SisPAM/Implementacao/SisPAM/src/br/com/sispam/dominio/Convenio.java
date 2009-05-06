@@ -11,7 +11,7 @@ public class Convenio {
 	
 	private int id;
 	private String nome;	 
-	private long cnpj;	 
+	private String cnpj;	 
 	private String endereco;	 
 	private String cidade;	 
 	private String estado;	 
@@ -39,10 +39,10 @@ public class Convenio {
 		this.nome = nome;
 	}
 	@Column(name = "cvncpj")
-	public long getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(long cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 	@Column(name = "cvnend")
