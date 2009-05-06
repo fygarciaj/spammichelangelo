@@ -1,17 +1,33 @@
 package br.com.sispam.action;
 
+import java.util.List;
+
 import br.com.sispam.dominio.Convenio;
+import br.com.sispam.dominio.Usuario;
+import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.ConvenioFacade;
+import br.com.sispam.facade.UsuarioFacade;
 
 public class ConvenioAction extends Action{
 
 	private Convenio convenio;
 	private ConvenioFacade convenioFacade;
 	private int isExisteConvenio;
+	private List<Convenio> conveniosCadastrados;
 	
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
-		convenioFacade.verificaCnpj(convenio);
+		try {
+			convenioFacade.salvaConvenio(convenio);
+			mensagens.put("salvo", "Dados cadastrados com sucesso!");
+		} catch (CampoInvalidoException e) {
+			e.printStackTrace();
+			erros.put("campoInavlido", e.getMessage());
+			apresentaErrors();
+			return FALHA_SALVAR_CONVENIO;
+		}
+		apresentaMensagens();
+		limparCampos();
 		return SUCESSO_INCLUIR_CONVENIO;
 	}
 	
@@ -26,6 +42,21 @@ public class ConvenioAction extends Action{
 			this.isExisteConvenio = 1;
 		}		
 		return CARREGAR_CONVENIO_EXISTENTE;
+	}
+	
+	/**
+	 * @descricao: Direciona para a tela de consulta, exibindo os últimos cadastros de convênios realizados 
+	 * @return
+	 */
+	public String listaUltimosConveniosCadastrados(){
+		this.convenioFacade = new ConvenioFacade();
+		this.conveniosCadastrados = this.convenioFacade.recuperarUltimosCadastrados();
+		return LISTAR_CONVENIOS;
+	}
+
+	/*Utilitário*/
+	private void limparCampos(){
+		this.convenio = null;		
 	}
 
 	public Convenio getConvenio() {
@@ -51,6 +82,13 @@ public class ConvenioAction extends Action{
 	public void setExisteConvenio(int isExisteConvenio) {
 		this.isExisteConvenio = isExisteConvenio;
 	}
-	
-	
+
+	public List<Convenio> getConveniosCadastrados() {
+		return conveniosCadastrados;
+	}
+
+	public void setConveniosCadastrados(List<Convenio> conveniosCadastrados) {
+		this.conveniosCadastrados = conveniosCadastrados;
+	}
+		
 }

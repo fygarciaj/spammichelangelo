@@ -15,7 +15,9 @@ public class Action extends ActionSupport{
 	public  final String SUCESSO_SALVAR_USUARIO = "sucessoSalvarUsuario";
 	public  final String TELA_SELECIONADA = "telaSelecionada";
 	public 	final String LISTAR_USUARIOS = "listaUsuarios";
+	public 	final String LISTAR_CONVENIOS = "listaConvenios";
 	public final String SUCESSO_INCLUIR_CONVENIO = "sucessoIncluirConvenio";;
+	public  final String FALHA_SALVAR_CONVENIO = "falhaSalvarConvenio";
 	
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();

@@ -19,15 +19,15 @@
 		</action>
 
 		<!-- Convenio Action -->
-		<action name="convenioAction!*" method="{1}"
-			class="br.com.sispam.action.ConvenioAction">
+		<action name="convenioAction!*" method="{1}" class="br.com.sispam.action.ConvenioAction">
 			<result name="sucessoIncluirConvenio">/convenio/inclui-convenio.jsp</result>
+			<result name="falhaSalvarConvenio">/convenio/inclui-convenio.jsp</result>
 			<result name="carregarConvenioExistente">/convenio/retorno-convenio.jsp</result>
+			<result name="listaConvenios">/convenio/consulta-convenio.jsp</result>
 		</action>
 
 		<!-- Login Action -->
-		<action name="loginAction!*" method="{1}"
-			class="br.com.sispam.action.LoginAction">
+		<action name="loginAction!*" method="{1}" class="br.com.sispam.action.LoginAction">
 			<result name="sucesso">index.jsp</result>
 			<result name="falha">login.jsp</result>
 		</action>

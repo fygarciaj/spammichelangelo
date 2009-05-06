@@ -22,7 +22,7 @@
 	</table>
 	<h2>Pesquisa de Convênios</h2>
 	<s:form id="formConvenio" action="convenioAction!incluirConvenio.action">
-		<table>
+		<table class="tabela_moldura">
 			<tr>
 				<td>
 						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">								
@@ -82,17 +82,14 @@
 							<tr>
 							    <td><label class="label" >Site:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
 								<td><label class="label" >E-mail:</label></td><td colspan="2"><s:textfield disabled="true" theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
-							</tr>												
-							<tr>
-																								
-								<td><br><input type="submit" tabindex="1" name="confirmarAction" value="Alterar" class="button"><br></td>								
-								<td><br><input type="submit" tabindex="2" name="limparAction" value="Excluir" class="button"><br></td>
-								
-							</tr>						
+							</tr>																									
 						</table>
-						
-
-											
+							<table border="0" align="center">
+							<tr>																								
+								<td><br><input type="submit" tabindex="1" name="alterarAction" value="Alterar" class="button"><br></td>								
+								<td><br><input type="submit" tabindex="2" name="excluirAction" value="Excluir" class="button"><br></td>								
+							</tr>
+							</table>
 				</td>
 			</tr>
 		</table>						
