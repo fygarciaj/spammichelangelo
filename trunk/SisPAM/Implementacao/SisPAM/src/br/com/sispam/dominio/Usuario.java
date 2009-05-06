@@ -33,7 +33,7 @@ public class Usuario {
 	/*Get & Set*/
 	@Id
 	@Column(name = "usrcod")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
