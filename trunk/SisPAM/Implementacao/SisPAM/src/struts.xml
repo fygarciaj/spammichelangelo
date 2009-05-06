@@ -29,6 +29,7 @@
 		<action name="loginAction!*" method="{1}"
 			class="br.com.sispam.action.LoginAction">
 			<result name="sucesso">index.jsp</result>
+			<result name="falha">login.jsp</result>
 		</action>
 	</package>
 

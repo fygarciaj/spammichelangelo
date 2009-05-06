@@ -1,5 +1,9 @@
 package br.com.sispam.action;
 
+import br.com.sispam.dominio.Login;
+import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.util.Cripto;
+
 public class LoginAction extends Action{
 
 	private String usuario;
@@ -7,15 +11,19 @@ public class LoginAction extends Action{
 
 
 	public String logar(){
-		if(usuario != null && usuario.equals("admin")
-				&& senha != null && senha.equals("admin")){
-			return SUCESSO;
-		}
-		else{
-			return FALHA;
-		}
+		Login user = new Login();
+		System.out.println(user.getUser());
+		System.out.println(user.getSenha());
+		System.out.println(usuario);
+		System.out.println(senha);
+		
+			if(usuario != null && usuario.equals(user.getUser())
+				&& senha != null && senha.equals(user.getSenha())){
+				return SUCESSO;
+			}else{
+				return FALHA;
+			}
 	}
-
 
 	/*Get & Set*/
 	public String getUsuario() {
@@ -28,7 +36,8 @@ public class LoginAction extends Action{
 		return senha;
 	}
 	public void setSenha(String senha) {
-		this.senha = senha;
+		Cripto encript = new Cripto();
+		this.senha = encript.criptografar(senha);
 	}
 
 

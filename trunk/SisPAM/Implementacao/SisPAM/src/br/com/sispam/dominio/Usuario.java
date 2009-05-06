@@ -25,10 +25,10 @@ public class Usuario {
 	private int ddd;
 	private long telefone;
 	private String email;
-	private String senha;
 	private int perfil;
-	
+	private String senha;
 		
+	
 	/*Get & Set*/
 	@Id
 	@Column(name = "usrcod")
@@ -137,4 +137,5 @@ public class Usuario {
 	public void setPerfil(int perfil) {
 		this.perfil = perfil;
 	}
+
 }
