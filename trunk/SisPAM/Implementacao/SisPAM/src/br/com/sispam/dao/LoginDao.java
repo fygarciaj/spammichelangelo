@@ -16,18 +16,18 @@ public class LoginDao {
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
+
 		try{
-			//cria uma queri para fazer a busca pelo perfil
+			//cria uma query para fazer a busca pelo usuário de acesso
 			Query query = manager.createQuery("from Usuario where usracs = :usracs ");
-			//seta o parametro
+			//define o parametro
 			query.setParameter("usracs", userAcess);
 			usuario = (Usuario) query.getSingleResult();
 		
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		System.out.println(usuario.getUser());
-		System.out.println(usuario.getSenha());
+		
 		conexao.finalizaConexao();
 		return usuario;
 		

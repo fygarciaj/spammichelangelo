@@ -75,22 +75,7 @@ public class UsuarioDao {
 		return usuario;
 	}
 	
-	public Usuario recuperaSenha(String userAcess){
-		conexao = new Conexao();
-		manager = conexao.getEntityManger();
-		Usuario usuario = null;
-		try{
-			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Usuario where userAcess = :userAcess ");
-			//seta o parametro
-			query.setParameter("userAcess", userAcess);
-			usuario = (Usuario) query.getSingleResult();
-		}catch (NoResultException e) {
-			e.printStackTrace();
-		}
-		conexao.finalizaConexao();
-		return usuario;
-	}
+	
 
 	/**
 	 * @descricao: Lista os últimos usuários cadastrados no sistema.
