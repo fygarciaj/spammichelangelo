@@ -47,6 +47,20 @@ function formaConsultaConvenio(){
 	}
 }
 	
+function confirmaAcao(){
+	var acao = document.getElementById("").name;
+	
+	if (acao == "excluirAction"){
+		
+		document.forms[0].action = "usuarioAction!definirTelaUsuario.action?codigoPerfilString="+selecionado;
+		document.forms[0].submit();
+	}
+	else if (acao == "alterarAction"){
+		document.forms[0].action = "usuarioAction!definirTelaUsuario.action?codigoPerfilString="+selecionado;
+		document.forms[0].submit();	
+	}	
+}
+
 function atualizaPaginaCentral(){
 	//TODO:
 }

@@ -38,7 +38,7 @@
 			</tr>
 		</table>	
 	</s:form>
-	<s:form id="formConvenio" action="convenioAction!consultarConvenio.action">
+	<s:form id="formConvenio" action="convenioAction!listaUltimosConveniosCadastrados.action">
 		<table class="tabela_moldura">			
 			<tr>
 			<td>				

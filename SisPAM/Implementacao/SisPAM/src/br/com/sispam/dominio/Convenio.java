@@ -5,9 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 @Entity
-@Table(name = "convenio")
 public class Convenio {
 	
 	private int id;
@@ -25,7 +24,7 @@ public class Convenio {
 		
 	@Id
 	@Column(name = "cvncod")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}

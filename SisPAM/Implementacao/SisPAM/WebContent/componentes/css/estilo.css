@@ -121,16 +121,15 @@ a:hover{
 }
 
 .button{
+	font: bold 12px/1.5em Verdana;
 	width: 100px;
 	cursor: pointer;
 	display: block;
 	font-weight: bold;
-	padding: 5px, 5px, 5px, 5px;
-	
-	color:#627EB7;
-	height: 24px;
-	align: middle;
-	background: url("../img/menu.gif") no-repeat left top;	
+	padding: 5px, 5px, 5px, 5px;	
+	color:white;
+	height: 24px;	
+	background: #191970;	
 }
 
 .botao_pesquisar {
@@ -151,17 +150,19 @@ a:hover{
 }
 
 .errorMessage{
-	color:#FF0000;
+	font: bold 12px/1.5em Verdana;
+	color:black;
 	border: 1px solid #ff0000;
 	margin: 5px 0px 5px 0px;
 	padding: 2px 0px 2px 28px;
-	background: #FFf4f1 url(img/emoticon_unhappy.png) no-repeat 5px 1px ;
+	background: #FFf4f1 url(../img/ico_alert.gif) no-repeat 5px 1px ;
 	display:block;
 	text-align: left;
 	list-style-type: none;
 }
 
 .errorMessageSis{
+	font: bold 12px/1.5em Verdana;
 	color:#FF0000;
 	border: 1px solid #ff0000;
 	margin: 5px 0px 5px 0px;

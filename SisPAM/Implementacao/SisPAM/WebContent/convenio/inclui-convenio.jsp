@@ -21,8 +21,18 @@
     </td>	
 	</table>
 	<h2>Cadastro de Convênios</h2>
+	<table width="89%" id="AreaMsg" class="AreaMsg">			
+	<tr>	
+	<td>	
+		<div id="MensagensErro" >						
+			<s:fielderror cssErrorClass="errorMessage" />
+			<s:actionmessage />
+		</div>
+	</td>
+	</tr>
+	</table>
 	<s:form id="formConvenio" action="convenioAction!incluirConvenio.action">
-		<table>
+		<table class="tabela_moldura">
 			<tr>
 				<td>
 						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">								
@@ -83,20 +93,15 @@
 							    <td><label class="label" >Site:</label></td><td><s:textfield theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
 								<td><label class="label" >E-mail:</label></td><td colspan="2"><s:textfield theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
 							</tr>												
-							<tr>
-																								
-								<td><br><input type="submit" tabindex="1" name="confirmarAction" value="Incluir" class="button"><br></td>								
-								<td><br><input type="reset" tabindex="2" name="limparAction" value="Limpar" class="button"><br></td>
-								
-							</tr>						
-						</table>
-						
-
-											
+							<table border="0" align="center">
+							<tr>																								
+								<td align="center"><br><input type="submit" tabindex="1" name="confirmarAction" value="Incluir" class="button"><br></td>																								
+							</tr>
+							</table>						
+						</table>						
 				</td>
 			</tr>
 		</table>						
-	</s:form>
-	
+	</s:form>	
 </body>
 </html>
