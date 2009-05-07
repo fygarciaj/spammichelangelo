@@ -11,7 +11,7 @@
 	<FRAMESET ROWS="127px,*" framespacing="1" frameborder="yes" bordercolor="#BCD2E6">
    		<FRAME SRC="componentes/cabecalho.jsp" NAME=CABECALHO scrolling=no noresize="noresize" frameborder="0">
 	 <FRAMESET COLS="250px,*" frameborder="no" framespacing="0">
-        <FRAME SRC="componentes/menuAtd.jsp" NAME=MENU SCROLLING=no noresize="noresize">
+        <FRAME SRC="" NAME=MENU SCROLLING=no noresize="noresize">
         <FRAME SRC="componentes/defaut.jsp" NAME=CENTRAL noresize="noresize">
      </FRAMESET>
 
