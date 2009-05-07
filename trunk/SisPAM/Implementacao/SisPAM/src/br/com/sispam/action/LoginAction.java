@@ -15,14 +15,14 @@ public class LoginAction extends Action{
 	public String logar(){
 		usr = new Usuario();
 		loginFacade = new LoginFacade();
-		this.usr = loginFacade.pesquisaUsuario(usr);
+		usr = loginFacade.pesquisaUsuario(usr);
 		
-		System.out.println(usr.getUser());
+/*		System.out.println(usr.getUsracs());
 		System.out.println(usr.getSenha());
-		System.out.println(usuario);
+*/		System.out.println(usuario);
 		System.out.println(senha);
 		
-			if(usuario != null && usuario.equals(usr.getUser())
+			if(usuario != null && usuario.equals(usr.getUsracs())
 				&& senha != null && senha.equals(usr.getSenha())){
 				return SUCESSO;
 			}else{

@@ -5,10 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.Table;
 
-import br.com.sispam.enums.Perfil;
-import br.com.sispam.enums.Sexo;
 @Entity
 public class Usuario {
 	
@@ -139,10 +137,11 @@ public class Usuario {
 		this.perfil = perfil;
 	}
 	@Column(name = "usracs")
-	public String getUser() {
+	public String getUsracs() {
 		return usracs;
 	}
-	public void setUser(String usracs) {
+	public void setUsracs(String usracs) {
 		this.usracs = usracs;
 	}
-}
+	
+	}
