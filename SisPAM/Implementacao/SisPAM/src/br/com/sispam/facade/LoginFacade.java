@@ -11,7 +11,7 @@ public class LoginFacade {
 	public Usuario pesquisaUsuario(Usuario usuario){
 		try {
 			loginDao = new LoginDao();
-			usuarioNew = loginDao.recuperaSenha(usuario.getUser());
+			usuarioNew = loginDao.recuperaSenha(usuario.getUsracs());
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -25,7 +25,7 @@ public class LoginFacade {
 		if(objeto != null && objeto instanceof Usuario){
 			Usuario user = (Usuario)objeto;
 
-			if(user.getUser() == null){
+			if(user.getUsracs() == null){
 				throw new CampoInvalidoException("Usuário deve ser informado.");
 			}
 			if(user.getSenha() == null){
