@@ -68,7 +68,7 @@
 					</tr>
 					<tr>
 						<td><label class="label">Estado:</label></td>
-						<td><select name="convenio.estado">
+						<td><select name="usuario.uf">
 							<option value="0">Selecione</option>
 							<option value="AC">Acre</option>
 							<option value="AL">Alagoas</option>

@@ -21,7 +21,7 @@
     </td>	
 	</table>
 	<h2>Pesquisa de Convênios</h2>
-	<s:form id="formConvenio" action="convenioAction!incluirConvenio.action">
+	<s:form id="formConvenio" action="convenioAction!excluirConvenio.action">
 		<table class="tabela_moldura">
 			<tr>
 				<td>
@@ -57,7 +57,7 @@
 						</table>
 							<table border="0" align="center">
 							<tr>																								
-								<td><br><input type="submit" tabindex="1" name="alterarAction" value="Alterar" class="button"><br></td>								
+								<td><br><input type="submit" onclick="confirmaAcao()" id="submit" tabindex="1" name="alterarAction" value="Alterar" class="button"><br></td>								
 								<td><br><input type="submit" tabindex="2" name="excluirAction" value="Excluir" class="button"><br></td>								
 							</tr>
 							</table>

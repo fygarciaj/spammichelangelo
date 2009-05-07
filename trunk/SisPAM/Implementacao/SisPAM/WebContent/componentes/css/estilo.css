@@ -8,14 +8,12 @@ body {
 	padding: 0px;
 }
 h1{
-	*padding:4px 4px 9px 4px;
-	padding: 0px 0px 5px 0px;
-	width: 800px;
-	margin: 0 auto 0 auto;
-	font-size: 25px;
-	line-height: 35px;
-	*line-height: 32px;
-	color: #172F4A;
+	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
+	font-size: 20px;	
+	clear:left;
+	color: #00008B;
+	padding: 5px 10px 5px 0px;
+	margin: 0;
 }
 
 h2{

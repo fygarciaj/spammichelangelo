@@ -48,17 +48,28 @@ function formaConsultaConvenio(){
 }
 	
 function confirmaAcao(){
-	var acao = document.getElementById("").name;
+	var acao = document.getElementById("submit").name;
+	var divCnpj = document.getElementById("cnpj");
 	
-	if (acao == "excluirAction"){
-		
-		document.forms[0].action = "usuarioAction!definirTelaUsuario.action?codigoPerfilString="+selecionado;
+	if (acao == "excluirAction"){		
+		document.forms[0].action = "convenioAction!excluirConvenio.action";
 		document.forms[0].submit();
 	}
 	else if (acao == "alterarAction"){
-		document.forms[0].action = "usuarioAction!definirTelaUsuario.action?codigoPerfilString="+selecionado;
-		document.forms[0].submit();	
-	}	
+		document.forms[0].action = "convenioAction!incluirConvenio.action";
+		document.forms[0].submit();			
+	}
+	else if (acao == "pesquisarAction" && divCnpj.style.display == 'block'){
+		document.forms[0].action = "convenioAction!consultarConvenio.action";
+		document.forms[0].submit();		
+	}
+	else if (acao == "pesquisarAction" && divCnpj.style.display == 'none'){
+		document.forms[0].action = "convenioAction!listaUltimosConveniosCadastrados.action";
+		document.forms[0].submit();
+	}
+	else {
+		alert("acao de submit nao existe!");
+	}
 }
 
 function atualizaPaginaCentral(){

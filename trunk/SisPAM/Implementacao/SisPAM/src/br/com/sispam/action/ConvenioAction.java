@@ -18,8 +18,13 @@ public class ConvenioAction extends Action{
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
 		try {
-			convenioFacade.salvaConvenio(convenio);
-			mensagens.put("salvo", "Dados cadastrados com sucesso!");
+			if (convenioFacade.salvaConvenio(convenio) == false){
+				convenioFacade.salvaConvenio(convenio);
+				mensagens.put("salvo", "Dados cadastrados com sucesso!");
+			}
+			else{
+				mensagens.put("Já existe", "Convênio já existe!");
+			}
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInavlido", e.getMessage());
@@ -29,6 +34,19 @@ public class ConvenioAction extends Action{
 		apresentaMensagens();
 		limparCampos();
 		return SUCESSO_INCLUIR_CONVENIO;
+	}
+	
+	public String excluirConvenio(){
+		convenioFacade = new ConvenioFacade();
+		try {
+			convenioFacade.excluiConvenio(convenio);
+			mensagens.put("excluido", "Convenio excluido com sucesso!");
+		} catch (Exception e) {
+			e.printStackTrace();					
+			return FALHA_EXCLUIR_CONVENIO;
+		}
+		apresentaMensagens();		
+		return SUCESSO_EXCLUIR_CONVENIO;
 	}
 	
 	public String consultarConvenio(){

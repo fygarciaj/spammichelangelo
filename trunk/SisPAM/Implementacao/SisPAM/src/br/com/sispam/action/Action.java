@@ -18,6 +18,9 @@ public class Action extends ActionSupport{
 	public 	final String LISTAR_CONVENIOS = "listaConvenios";
 	public final String SUCESSO_INCLUIR_CONVENIO = "sucessoIncluirConvenio";;
 	public  final String FALHA_SALVAR_CONVENIO = "falhaSalvarConvenio";
+	public  final String FALHA_EXCLUIR_CONVENIO = "falhaExcluirConvenio";
+	public  final String SUCESSO_EXCLUIR_CONVENIO = "sucessoExcluirConvenio";
+	
 	
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();
