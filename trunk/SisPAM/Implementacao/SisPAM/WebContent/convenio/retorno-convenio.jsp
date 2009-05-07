@@ -28,31 +28,31 @@
 						<table border="0" width="100%" class="tabela_moldura" cellpadding="3" cellspacing="4">								
 							
 							<tr>							    
-								<td><label class="label" >Nome do Convênio:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
-								<td><label class="label" >CNPJ:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.cnpj" size="17" maxlength="14"/></td>
+								<td><label class="label" >Nome do Convênio:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
+								<td><label class="label" >CNPJ:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.cnpj" size="17" maxlength="14"/></td>
 							</tr>																				
 							<tr>
-							    <td><label class="label" >Endereço:</label></td><td colspan="1"><s:textfield disabled="true" theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>
-								<td><label class="label" >Código ANS:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.codigoANS" size="17" maxlength="14"/></td>
+							    <td><label class="label" >Endereço:</label></td><td colspan="1"><s:textfield readonly="true" theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>
+								<td><label class="label" >Código ANS:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.codigoANS" size="17" maxlength="14"/></td>
 							</tr>							
 							<tr>
-								<td><label class="label" >Cidade:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
+								<td><label class="label" >Cidade:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
 								</td>
 							</tr>
 							<tr>
-								<td><label class="label" >Estado:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.estado" size="20" maxlength="20"/>&nbsp;
+								<td><label class="label" >Estado:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.estado" size="20" maxlength="20"/>&nbsp;
 								</td>
 							</tr>
 							<tr>
-								<td><label class="label" >CEP:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.cep" size="15" maxlength="8"/></td>
+								<td><label class="label" >CEP:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.cep" size="15" maxlength="8"/></td>
 							</tr>							
 							<tr>
-								<td><label class="label" >DDD:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.ddd" size="2" maxlength="2"/>
-								<label class="label" >&nbsp;&nbsp;&nbsp;Telefone:&nbsp;&nbsp;</label><s:textfield disabled="true" theme="simple" name="convenio.telefone" size="8" maxlength="8"/></td>								
+								<td><label class="label" >DDD:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.ddd" size="2" maxlength="2"/>
+								<label class="label" >&nbsp;&nbsp;&nbsp;Telefone:&nbsp;&nbsp;</label><s:textfield readonly="true" theme="simple" name="convenio.telefone" size="8" maxlength="8"/></td>								
 							</tr>
 							<tr>
-							    <td><label class="label" >Site:</label></td><td><s:textfield disabled="true" theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
-								<td><label class="label" >E-mail:</label></td><td colspan="2"><s:textfield disabled="true" theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
+							    <td><label class="label" >Site:</label></td><td><s:textfield readonly="true" theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
+								<td><label class="label" >E-mail:</label></td><td colspan="2"><s:textfield readonly="true" theme="simple" name="convenio.email" size="30" maxlength="30"/></td>
 							</tr>																									
 						</table>
 							<table border="0" align="center">
