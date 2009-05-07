@@ -35,8 +35,20 @@ public class ConvenioDao {
 		conexao.finalizaConexao();
 	}
 	
-	public void alterarConvenio(Convenio convenio){
+	public void excluirConvenio(Convenio convenio){
+		consultarConvenioPorCnpj(convenio.getCnpj());
 		
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		manager.getTransaction().begin();
+		
+		manager.remove(convenio);
+		manager.getTransaction().commit();
+		conexao.finalizaConexao();
+	}
+	
+	public void alterarConvenio(Convenio convenio){
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		manager.merge(convenio);
