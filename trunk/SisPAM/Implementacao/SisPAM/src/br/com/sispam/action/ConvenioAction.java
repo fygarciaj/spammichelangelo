@@ -37,9 +37,9 @@ public class ConvenioAction extends Action{
 	}
 	
 	public String excluirConvenio(){
-		convenioFacade = new ConvenioFacade();
+		this.convenioFacade = new ConvenioFacade();
 		try {
-			convenioFacade.excluiConvenio(convenio);
+			this.convenioFacade.excluiConvenio(convenio);
 			mensagens.put("excluido", "Convenio excluido com sucesso!");
 		} catch (Exception e) {
 			e.printStackTrace();					
