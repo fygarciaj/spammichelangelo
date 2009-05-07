@@ -8,7 +8,7 @@
 <body>
 
 <div id="tabs">
-<img src="img/simbolo.jpg" width="250px" align="left" hspace="5"  >
+<img src="img\simbolo.jpg" width="250px" align="left" hspace="5"  >
   <br><br><br><br>
 <ul>
 	
