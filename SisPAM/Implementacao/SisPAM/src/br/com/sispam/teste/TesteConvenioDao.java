@@ -42,7 +42,7 @@ public class TesteConvenioDao {
 		System.out.println(convenio.getCnpj() + convenio.getNome());
 	}
 
-	/*@Test
+	@Test
 	public void excluirConvenio(){
 		Convenio convenio = new Convenio();
 		convenioDao = new ConvenioDao();
@@ -50,5 +50,5 @@ public class TesteConvenioDao {
 		convenio.setCnpj("28022174000128");
 		
 		convenioDao.excluirConvenio(convenio.getCnpj());
-	}*/
+	}
 }
