@@ -114,6 +114,10 @@ a:hover{
 	margin: 0px 0 0 0;
 }
 
+.campos{
+	height: 20px;
+	vertical-align: 2px;
+	}
 .caminhoUsuario{
 	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
 }

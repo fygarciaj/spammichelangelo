@@ -18,7 +18,7 @@ public class Cripto{
 		String hexString;
 
 		for (int i = 0; i < text.length; i++) {
-			hexString = "Sistema_Pronto_Atendimento_Medico" + Integer.toHexString(text[i]);
+			hexString = "$isP@m" + Integer.toHexString(text[i]);
 			hexString.toUpperCase().getChars(hexString.length() - 2, 
 					hexString.length(), hexOutput, i * 2);
 		}
