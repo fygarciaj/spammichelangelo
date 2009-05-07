@@ -1,4 +1,4 @@
-package br.com.sispam.facade;
+﻿package br.com.sispam.facade;
 
 
 
@@ -19,33 +19,43 @@ import br.com.sispam.excecao.CampoInvalidoException;
 public class ConvenioFacade {
 	private ConvenioDao convenioDao; 
 		
-	public void salvaConvenio(Convenio convenio) throws CampoInvalidoException{
+	public boolean salvaConvenio(Convenio convenio) throws CampoInvalidoException{
 		validaCampos(convenio);
+		boolean existencia = true;
 		try{
 			convenioDao = new ConvenioDao();		
-			if (verificaExistencia(convenio) == true){
+			if (verificaExistencia(convenio) == false){
 				convenioDao.incluirConvenio(convenio);
-			}else {
-				System.out.println("existe");
+				existencia = false;
 			}
 							
 		}catch(Exception e){
 			e.getStackTrace();
 		}
-					
+		return existencia;
+	}
+	
+	public void excluiConvenio(Convenio convenio){
+		convenioDao = new ConvenioDao();
+		try{
+			convenioDao.excluirConvenio(convenio.getCnpj());							
+		}catch(Exception e){
+			e.getStackTrace();
+		}					
 	}
 	
 	public boolean verificaExistencia(Convenio convenio){
-		boolean status = true;
+		convenioDao = new ConvenioDao();				
+		boolean existencia = true;
 		Convenio convenioNew = null;
 		convenioNew = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
-		convenioNew = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
-		System.out.println(convenioNew.getCnpj() + convenioNew.getNome());
-		if ((convenioNew.getNome() == null) && (convenioNew.getCnpj() == null)){
-			status = false;
+		//convenioNew = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+
+		if (convenioNew == null){
+			existencia = false;
 		}
 		
-		return status;
+		return existencia;
 	}
 	
 	public Convenio pesquisaConvenio(Convenio convenio){

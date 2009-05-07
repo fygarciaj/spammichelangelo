@@ -63,7 +63,7 @@
 				<div id="botoes" style="display:none">
 				<table border="0" align="center">
 				<tr>																								
-					<td><br><input type="submit" tabindex="1" name="confirmarAction" value="Pesquisar" class="button"><br></td>																					
+					<td><br><input type="submit" onclick="confirmaAcao()" tabindex="1" name="pesquisarAction" value="Pesquisar" id="submit" class="button"><br></td>																					
 				</tr>
 				</table>
 				</div>				

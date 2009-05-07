@@ -2,6 +2,7 @@ package br.com.sispam.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -35,15 +36,21 @@ public class ConvenioDao {
 		conexao.finalizaConexao();
 	}
 	
-	public void excluirConvenio(Convenio convenio){
-		consultarConvenioPorCnpj(convenio.getCnpj());
-		
+	public void excluirConvenio(String cnpj){
+				
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		manager.getTransaction().begin();
-		
-		manager.remove(convenio);
-		manager.getTransaction().commit();
+		try{
+			manager.getTransaction().begin();
+			
+			Query query = manager.createQuery("delete from Convenio where cnpj = :cnpj");
+			//seta o parametro
+			query.setParameter("cnpj", cnpj);
+			query.executeUpdate();
+			manager.getTransaction().commit();
+		}catch(EntityExistsException e){
+			e.printStackTrace();
+		}
 		conexao.finalizaConexao();
 	}
 	
