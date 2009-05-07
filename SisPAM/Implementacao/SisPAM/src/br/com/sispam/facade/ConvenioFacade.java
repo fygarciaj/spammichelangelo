@@ -36,9 +36,10 @@ public class ConvenioFacade {
 	}
 	
 	public void excluiConvenio(Convenio convenio){
-		convenioDao = new ConvenioDao();
+		this.convenioDao = new ConvenioDao();
+		 
 		try{
-			convenioDao.excluirConvenio(convenio.getCnpj());							
+			this.convenioDao.excluirConvenio(convenio.getCnpj());							
 		}catch(Exception e){
 			e.getStackTrace();
 		}					
