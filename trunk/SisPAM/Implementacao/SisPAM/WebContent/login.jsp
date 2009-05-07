@@ -14,7 +14,7 @@
 <br><br>
 <center> 
 <s:form action="loginAction!logar.action">
-	<table width=225 border=0 cellpadding=3 height="123" class="tabela_login" >
+	<table width=235 border=0 cellpadding=3 height="123" class="tabela_login" >
 		<tr>
 			<td colspan=6 height="13">
 				<center>
@@ -29,14 +29,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td><font face="Verdana" style="font-size: 8pt; font-weight: 700"><b>Usuário</b></font></td>
-			<td align="right"><s:textfield name="usuario" theme="simple"/></td>
+			<td><font face="Verdana"  style="font-size: 8pt; font-weight: 700"><b>Usuário</b></font></td>
+			<td align="justify" colspan="2"><s:textfield  name="usuario" cssClass="campos" theme="simple" size="30" maxlength="25"/></td>
 		</tr>
 		<tr>
-			<td><font face="Verdana" style="font-size: 8pt; font-weight: 400"><b>Senha</b></font>
-			<s:submit theme="simple" cssClass="botao_logar" value="Entrar"/>
-			</td>
-			<td><s:password name="senha" cssClass="" theme="simple"/></td>
+			<td><font face="Verdana" style="font-size: 8pt; font-weight: 700"><b>Senha</b></font></td>
+			<td align="left"><s:password name="senha" cssClass="campos" theme="simple" size="8" maxlength="6"/></td> 
+			<td align="right"><s:submit theme="simple" cssClass="button" value="Entrar"/></td>
+			
 			<td valign="bottom" height="26" ></td>
 		</tr>
 	</table>
