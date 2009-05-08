@@ -25,7 +25,7 @@ public class Usuario {
 	private String email;
 	private int perfil;
 	private String senha;
-	private String usracs;
+	private String acesso;
 		
 	
 	/*Get & Set*/
@@ -137,11 +137,11 @@ public class Usuario {
 		this.perfil = perfil;
 	}
 	@Column(name = "usracs")
-	public String getUsracs() {
-		return usracs;
+	public String getAcesso() {
+		return acesso;
 	}
-	public void setUsracs(String usracs) {
-		this.usracs = usracs;
+	public void setAcesso(String acesso) {
+		this.acesso = acesso;
 	}
 	
 	}
