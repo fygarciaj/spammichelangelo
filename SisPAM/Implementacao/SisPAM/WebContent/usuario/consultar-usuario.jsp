@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
@@ -12,25 +11,24 @@
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 	<title>Insert title here</title>
 </head>
-
 <body>
-<table width="89%" id="cmnUsr" class="caminhoUsuario">
-	<tr>
-		<td><br>
-		<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário<img
-			src="../componentes/img/seta.gif" /> Consultar</div>
-		</td>
-</table>
-<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
+	<table width="89%" id="cmnUsr" class="caminhoUsuario">
+		<tr>
+			<td><br>
+			<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário<img
+				src="../componentes/img/seta.gif" /> Incluir</div>
+			</td>
+	</table>
+	<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
 	<h2>Consulta de Usuários</h2>
-</s:if>
-<s:elseif test="codigoPerfilSelecionado == 3">
+	</s:if>
+	<s:elseif test="codigoPerfilSelecionado == 3">
 	<h2>Consulta de Médicos</h2>
-</s:elseif>
-<s:elseif test="codigoPerfilSelecionado == 4">
+	</s:elseif>
+	<s:elseif test="codigoPerfilSelecionado == 4">
 	<h2>Consulta de Pacientes</h2>
-</s:elseif>
-<s:form action="usuarioAction!definirTelaConsulta.action">
+	</s:elseif>
+	<s:form action="usuarioAction!definirTelaConsulta.action">
 	<table>
 		<tr>
 			<td><label>Selecione o Perfil&nbsp;</label> <s:select
@@ -140,7 +138,6 @@
 		</s:iterator>
 	</table>
 </s:if>
-
 
 </body>
 </html>
