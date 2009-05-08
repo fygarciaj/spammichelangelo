@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td><font face="Verdana"  style="font-size: 8pt; font-weight: 700"><b>Usuário</b></font></td>
-			<td align="justify" colspan="2"><s:textfield  name="usuario" cssClass="campos" theme="simple" size="30" maxlength="25"/></td>
+			<td align="justify" colspan="2"><s:textfield  name="acesso" cssClass="campos" theme="simple" size="30" maxlength="25"/></td>
 		</tr>
 		<tr>
 			<td><font face="Verdana" style="font-size: 8pt; font-weight: 700"><b>Senha</b></font></td>
