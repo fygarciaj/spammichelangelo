@@ -13,24 +13,25 @@ public class LoginDao {
 	private Conexao conexao;
 	private EntityManager manager;
 	
-	public Usuario recuperaSenha(String usracs){
+	public Usuario recuperaSenha(String acesso){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 
 		try{
 			//cria uma query para fazer a busca pelo usuário de acesso
-			Query query = manager.createQuery("from Usuario where usracs = :usracs ");
+			Query query = manager.createQuery("from Usuario where acesso = :acesso ");
 			//define o parametro
-			query.setParameter("usracs", usracs);
+			query.setParameter("acesso", acesso);
 			usuario = (Usuario) query.getSingleResult();
 		
 		}catch (NoResultException e) {
+			 System.out.println("teste1");
 			e.printStackTrace();
 			usuario = null;
 		}catch (NonUniqueResultException e) {   
 		      e.printStackTrace();   
-		      System.out.println("teste");
+		      System.out.println("teste2");
 		} 
 		
 		conexao.finalizaConexao();

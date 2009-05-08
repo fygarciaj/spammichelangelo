@@ -7,22 +7,25 @@ import br.com.sispam.util.Cripto;
 
 public class LoginAction extends Action{
 
-	private String usuario;
+	private String acesso;
 	private String senha;
 	private LoginFacade loginFacade;
+	private LoginAction login;
 	private Usuario usr;
 
 	public String logar(){
+		login  = new LoginAction();
 		usr = new Usuario();
 		loginFacade = new LoginFacade();
-		usr = loginFacade.pesquisaUsuario(usr);
-		
-/*		System.out.println(usr.getUsracs());
-		System.out.println(usr.getSenha());
-*/		System.out.println(usuario);
+
+		usr = loginFacade.pesquisaUsuario(acesso);
+		System.out.println(acesso);
 		System.out.println(senha);
+		System.out.println(usr.getAcesso());
+		System.out.println(usr.getSenha());
+	
 		
-			if(usuario != null && usuario.equals(usr.getUsracs())
+			if(acesso != null && acesso.equals(usr.getAcesso())
 				&& senha != null && senha.equals(usr.getSenha())){
 				return SUCESSO;
 			}else{
@@ -32,11 +35,11 @@ public class LoginAction extends Action{
 	}
 
 	/*Get & Set*/
-	public String getUsuario() {
-		return usuario;
+	public String getAcesso() {
+		return acesso;
 	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setAcesso(String acesso) {
+		this.acesso = acesso;
 	}
 	public String getSenha() {
 		return senha;
