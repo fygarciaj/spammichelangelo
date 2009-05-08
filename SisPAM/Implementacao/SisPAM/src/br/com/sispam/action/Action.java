@@ -20,6 +20,7 @@ public class Action extends ActionSupport{
 	
 	public final String SUCESSO_INCLUIR_CONVENIO = "sucessoIncluirConvenio";;
 	public final String CARREGAR_CONVENIO_EXISTENTE = "carregarConvenioExistente";	
+	public  final String FALHA_CARREGAR_CONVENIO = "falhaCarregarConvenio";
 	public 	final String LISTAR_CONVENIOS = "listaConvenios";	
 	public  final String FALHA_SALVAR_CONVENIO = "falhaSalvarConvenio";
 	public  final String FALHA_EXCLUIR_CONVENIO = "falhaExcluirConvenio";
