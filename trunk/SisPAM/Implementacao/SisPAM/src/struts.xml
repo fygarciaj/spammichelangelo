@@ -10,12 +10,15 @@
 		<action name="usuarioAction!*" method="{1}"	class="br.com.sispam.action.UsuarioAction">
 			<result name="carregarNovoUsuario">/usuario/inclui-usuario.jsp</result>
 			<result name="telaSelecionada">/usuario/inclui-usuario.jsp</result>
-			<result name="sucessoSalvarUsuario" type="chain">
-				<param name="action">usuarioAction</param>
-				<param name="method">listaUltimosUsuarioCadastrados</param>
-			</result>
+			
+			<result name="sucessoSalvarUsuario">/usuario/inclui-usuario.jsp</result>
+		
 			<result name="falhaSalvarUsuario">/usuario/inclui-usuario.jsp</result>
 			<result name="listaUsuarios">/usuario/consultar-usuario.jsp</result>
+			<result name="sucessoCarregarConsulta">/usuario/consultar-usuario.jsp</result>
+			<result name="sucessoTelaConsulta">/usuario/consultar-usuario.jsp</result>
+			<result name="falhaConsultarUsuario">/usuario/consultar-usuario.jsp</result>
+			
 		</action>
 
 		<!-- Convenio Action -->

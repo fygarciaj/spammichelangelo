@@ -72,6 +72,14 @@ function confirmaAcao(){
 	}
 }
 
+function confirmaExclusao(nome){
+	if(confirm("Deseja efetuar ExclusÃ£o?")){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 function atualizaPaginaCentral(){
 	//TODO:
 }

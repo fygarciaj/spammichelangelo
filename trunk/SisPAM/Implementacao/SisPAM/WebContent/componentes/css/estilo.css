@@ -175,3 +175,6 @@ a:hover{
 	text-align: center;
 	list-style-type: none;
 }
+.zebra td{
+	background-color: #dcdcdc;
+}
