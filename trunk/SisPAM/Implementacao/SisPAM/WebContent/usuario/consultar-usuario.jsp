@@ -14,10 +14,12 @@
 <body>
 	<table width="89%" id="cmnUsr" class="caminhoUsuario">
 		<tr>
-			<td><br>
-			<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário<img
-				src="../componentes/img/seta.gif" /> Incluir</div>
+			<td>
+				<br>
+				<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário
+				<img src="../componentes/img/seta.gif" /> Consultar</div>
 			</td>
+		</tr>
 	</table>
 	<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
 	<h2>Consulta de Usuários</h2>
@@ -118,6 +120,10 @@
 		<s:iterator value="usuariosCadastrados" status="status">
 			<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
 				<s:url id="excluirUsuario" action="usuarioAction!excluirUsuario.action">
+					<s:param name="usuario.id" value="id"/>
+					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
+				</s:url>
+				<s:url id="editarUsuario" action="usuarioAction!carregarEdicao.action">
 					<s:param name="usuario.id" value="id"/>
 					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
 				</s:url>
