@@ -21,26 +21,22 @@ public class LoginAction extends Action{
 		loginFacade = new LoginFacade();
 		
 		try{
-			this.usr = this.loginFacade.pesquisaUsuario(acesso, senha);
+			usr = this.loginFacade.pesquisaUsuario(acesso, senha);
 			System.out.println(acesso);
 			System.out.println(senha);
 			System.out.println(usr.getAcesso());
 			System.out.println(usr.getSenha());
 			
+			if(acesso != null && acesso.equals(usr.getAcesso())
+					&& senha != null && senha.equals(usr.getSenha())){
+				return SUCESSO;
+			}else{
+				return FALHA;
+			}
+			
 		}catch(CampoInvalidoException ex) {
 			erros.put("campoInvalido", ex.getMessage());
 			apresentaErrors();
-			return FALHA;
-		}catch(NoResultException e){
-			erros.put("Usuário não cadastrado!", e.getMessage());
-			apresentaErrors();
-			return FALHA;
-		}
-		
-		if(acesso != null && acesso.equals(usr.getAcesso())
-				&& senha != null && senha.equals(usr.getSenha())){
-			return SUCESSO;
-		}else{
 			return FALHA;
 		}
 	}
