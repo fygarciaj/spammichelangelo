@@ -4,14 +4,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
+<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css"/>
+<script type="text/javascript" src="componentes/js/sispam.js"></script>
 <title>Login SisPAM</title>
 </HEAD>
 <BODY >
 <center>
 	<img src="componentes/img/simbLogin.jpg"  width="100%">
 </center>
-<br><br>
+<br>
+<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+<s:actionmessage theme="simple" cssClass="errorMessage" cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+<br>
 <center> 
 <s:form action="loginAction!logar.action">
 	<table width="235" border="0"cellpadding=3 height="123" class="tabela_login" >

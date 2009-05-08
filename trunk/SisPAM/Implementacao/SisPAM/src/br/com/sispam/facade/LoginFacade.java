@@ -1,6 +1,5 @@
 package br.com.sispam.facade;
 
-import br.com.sispam.action.LoginAction;
 import br.com.sispam.dao.LoginDao;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInvalidoException;
@@ -9,12 +8,14 @@ public class LoginFacade {
 	private LoginDao loginDao;
 	private Usuario usuarioNew;
 	
-	public Usuario pesquisaUsuario(String acesso){
+	public Usuario pesquisaUsuario(String acesso, String senha) throws CampoInvalidoException{
 		try {
-			System.out.println(acesso);
 			loginDao = new LoginDao();
-			usuarioNew = loginDao.recuperaSenha(acesso);
-			
+			if((acesso == null && acesso.trim().length() == 0) || (senha == null && senha.trim().length() == 0)){
+				throw new CampoInvalidoException("Usuário e Senha são obrigatórios!");
+			}else{
+				usuarioNew = loginDao.recuperaSenha(acesso);
+			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -29,10 +30,10 @@ public class LoginFacade {
 			Usuario user = (Usuario)objeto;
 
 			if(user.getAcesso() == null){
-				throw new CampoInvalidoException("Usuário deve ser informado.");
+				throw new CampoInvalidoException("Usuário inválido.");
 			}
 			if(user.getSenha() == null){
-				throw new CampoInvalidoException("Senha deve ser informada.");
+				throw new CampoInvalidoException("Senha inválida.");
 			}
 		}
 	}
