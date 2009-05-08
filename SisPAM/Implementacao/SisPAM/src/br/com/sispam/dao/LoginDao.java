@@ -28,7 +28,6 @@ public class LoginDao {
 		}catch (NoResultException e) {
 			 System.out.println("teste1");
 			e.printStackTrace();
-			usuario = null;
 		}catch (NonUniqueResultException e) {   
 		      e.printStackTrace();   
 		      System.out.println("teste2");
