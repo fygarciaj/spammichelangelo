@@ -33,7 +33,21 @@ public class UsuarioFacade {
 		}
 	}
 
-
+	/**
+	 * @descricao: Recupera o usuário pelo seu id.
+	 * @param id
+	 */
+	public Usuario recuperarPeloId(int id){
+		this.usuarioDao = new UsuarioDao();
+		Usuario usuario = this.usuarioDao.recuperarPeloId(id);
+		return usuario;
+	}
+	
+	/**
+	 * @descricao: Valida os campos que devem ser inteiros.
+	 * @param mapa
+	 * @throws CampoInvalidoException
+	 */
 	public void verificaCampoInteiro(Map<String, String> mapa) throws CampoInvalidoException{
 
 		if(mapa != null && mapa.size() > 0){
@@ -51,6 +65,18 @@ public class UsuarioFacade {
 					throw new CampoInteiroException(nomeCampo+" é um campo inteiro!");
 				}
 			}
+		}
+	}
+	
+	/**
+	 * @descicao: Verifica se o cpf já está sendo usado.
+	 * @param cpf
+	 */
+	public void verificaCpfJaExistente(String cpf, int id)throws CampoInvalidoException{
+		this.usuarioDao = new UsuarioDao();
+		Usuario usuario = this.usuarioDao.recupera(cpf);
+		if(usuario != null && id != usuario.getId()){
+			throw new CampoInvalidoException("Este CPF já está sendo usado!");
 		}
 	}
 

@@ -72,6 +72,9 @@ public class UsuarioAction extends Action{
 			//verifica se os campo obrigatorios foram preenchidos
 			usuarioFacade.validaCampos(usuario);
 
+			//verifica se o cpf está sendo usado
+			usuarioFacade.verificaCpfJaExistente(usuario.getCpf(), usuario.getId());
+
 			usuario.setPerfil(this.codigoPerfilSelecionado);
 			usuario.setCep(Long.parseLong(cepAux));
 			usuario.setDdd(Integer.parseInt(dddAux));
@@ -96,7 +99,6 @@ public class UsuarioAction extends Action{
 		limparCampos(true);
 		return SUCESSO_SALVAR_USUARIO;
 	}
-
 
 	/**
 	 * @descricao: Carrega a tela de consulta de usuários.
@@ -129,15 +131,24 @@ public class UsuarioAction extends Action{
 		}
 		this.usuariosCadastrados = new ArrayList<Usuario>();
 		this.usuariosCadastrados.add(this.usuario);
-		
+
 		limparCampos(false);
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
 
 	public String carregarEdicao(){
-		return null;
+		this.usuarioFacade = new UsuarioFacade();
+		this.usuario = this.usuarioFacade.recuperarPeloId(this.usuario.getId());
+		//seta os valores nas variáveis auxiliares
+		this.cepAux = String.valueOf(this.usuario.getCep());
+		this.dddAux = String.valueOf(this.usuario.getDdd());
+		this.telefoneAux = String.valueOf(this.usuario.getTelefone());
+		this.rgAux = String.valueOf(this.usuario.getRg());
+		return TELA_SELECIONADA;
 	}
 	
+
+
 	/**
 	 * @descricao: Remove o usuário do sistema.
 	 * @return
@@ -145,7 +156,7 @@ public class UsuarioAction extends Action{
 	public String excluirUsuario(){
 		this.usuarioFacade = new UsuarioFacade();
 		this.usuarioFacade.removerUsuario(this.usuario.getId());
-		this.codigoPerfilString.valueOf(this.codigoPerfilSelecionado);
+		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
 		return definirTelaConsulta();
 	}
 
@@ -278,7 +289,5 @@ public class UsuarioAction extends Action{
 	public void setDddAux(String dddAux) {
 		this.dddAux = dddAux;
 	}
-
-
 
 }

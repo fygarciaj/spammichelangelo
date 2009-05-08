@@ -11,6 +11,18 @@ function definirPerfil(){
 	
 }
 
+function definirPerfilConsulta(){
+	var selecionado = document.getElementById("perfil").value;
+	if(selecionado == 0){
+		alert("Selecione um perfil para o novo cadastro!");
+		return false;
+	}else{
+		document.forms[0].action = "usuarioAction!definirTelaConsulta.action?codigoPerfilString="+selecionado;
+		document.forms[0].submit();
+	}
+
+}
+
 
 function verificaCamposPesquisa(){
 	var cpf = document.getElementById("cpf").value;
