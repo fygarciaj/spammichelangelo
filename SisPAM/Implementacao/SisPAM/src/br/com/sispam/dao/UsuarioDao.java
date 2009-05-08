@@ -1,4 +1,4 @@
-package br.com.sispam.dao;
+﻿package br.com.sispam.dao;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class UsuarioDao {
 	public void salvarUsuario(Usuario usuario){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-
+		
 		manager.getTransaction().begin();
 		//verifica se possui id caso possua apenas atualiza os dados no banco
 		if(usuario != null && usuario.getId() > 0){
@@ -33,6 +33,7 @@ public class UsuarioDao {
 		else{
 			manager.persist(usuario);
 		}
+		
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
 	}
@@ -51,6 +52,31 @@ public class UsuarioDao {
 		List<Usuario> lista = query.getResultList();
 		conexao.finalizaConexao();
 		return lista;
+	}
+	
+	/**
+	 * @descricao: Remove o usuario do sistema.
+	 * @param usuario
+	 */
+	public void removerUsuario(Usuario usuario){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		manager.getTransaction().begin();
+		usuario = manager.merge(usuario);
+		manager.remove(usuario);
+		manager.getTransaction().commit();
+		conexao.finalizaConexao();
+	}
+	
+	/**
+	 * @descricao: Recupera o usuário pelo Id.
+	 * @param id
+	 * @return
+	 */
+	public Usuario recuperarPeloId(int id){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		return manager.find(Usuario.class, id);
 	}
 
 	/**
@@ -76,17 +102,39 @@ public class UsuarioDao {
 	}
 	
 	
+	/**
+	 * @descricao: recupera o usuário pelo seu nome.
+	 * @param cpf
+	 * @return
+	 */
+	public Usuario recuperaPeloNome(String nome){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Usuario usuario = null;
+		try{
+			//cria uma queri para fazer a busca pelo perfil
+			Query query = manager.createQuery("from Usuario where nome = :nome ");
+			//seta o parametro
+			query.setParameter("nome", nome);
+			usuario = (Usuario) query.getSingleResult();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		conexao.finalizaConexao();
+		return usuario;
+	}
 
 	/**
 	 * @descricao: Lista os últimos usuários cadastrados no sistema.
 	 * @return
 	 */
-	public List<Usuario> recuperarUltimosCadastrados() {
+	public List<Usuario> recuperarUltimosCadastrados(int codigoPerfil) {
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Usuario> lista = null;
 		try{
-			Query query = manager.createQuery("from Usuario order by id desc");
+			Query query = manager.createQuery("from Usuario where perfil = :perfil order by id desc");
+			query.setParameter("perfil", codigoPerfil);
 			query.setMaxResults(8);
 			lista = query.getResultList();
 		}catch (NoResultException e) {

@@ -12,6 +12,8 @@
 			}
 			else{
 				div.style.display = 'block'
+				document.getElementById("menuConvenio").style.display = 'none';
+					
 				}
 			break;
 		case "convenio":
@@ -21,6 +23,7 @@
 			}
 			else{
 				div.style.display = 'block'
+					document.getElementById("menuUsuario").style.display = 'none';
 				}
 			break;
 		default:
@@ -40,7 +43,8 @@
 		<div id="menuUsuario" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Incluir</a></li>
-			<li ><a href="../usuario/consultar-usuario.jsp" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
+			<li ><a href="usuarioAction!carregarConsulta.action" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
+			
 			</ul>
 		</div>
 	</li>
