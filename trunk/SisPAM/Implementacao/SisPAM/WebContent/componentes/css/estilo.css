@@ -163,6 +163,18 @@ a:hover{
 	list-style-type: none;
 }
 
+.sucessMessage{
+	font: bold 12px/1.5em Verdana;
+	color:black;
+	border: 1px solid #7f9db9;
+	margin: 5px 0px 5px 0px;
+	padding: 2px 0px 2px 28px;
+	background: #F2F7FE url(../img/ico_alert.gif) no-repeat 5px 1px ;
+	display:block;
+	text-align: left;
+	list-style-type: none;
+}
+
 .errorMessageSis{
 	font: bold 12px/1.5em Verdana;
 	color:#FF0000;

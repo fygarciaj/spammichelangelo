@@ -85,7 +85,27 @@ function confirmaAcao(){
 }
 
 function confirmaExclusao(nome){
-	if(confirm("Deseja efetuar ExclusÃ£o?")){
+	if(confirm("Deseja Efetuar Exclusão?")){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function confirmaInclusao(){
+	var acao = document.getElementById("submit").name;
+	
+	if(confirm("Deseja Efetuar Inclusão?")){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function confirmaAlteracao(){
+	var acao = document.getElementById("submit").name;
+	
+	if(confirm("Deseja Efetuar Alteração?")){
 		return true;
 	}else{
 		return false;

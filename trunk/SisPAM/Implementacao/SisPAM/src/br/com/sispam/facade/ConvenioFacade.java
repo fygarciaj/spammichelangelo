@@ -3,6 +3,7 @@
 
 
 import java.util.List;
+import java.util.Map;
 
 import br.com.sispam.dao.ConvenioDao;
 
@@ -12,15 +13,21 @@ import br.com.sispam.dao.ConvenioDao;
 import br.com.sispam.dominio.Convenio;
 
 
+import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 
 
 
 public class ConvenioFacade {
 	private ConvenioDao convenioDao; 
-		
+	
+	/**
+	 * @descricao: Salva um convênio.
+	 * @param convenio
+	 * @throws CampoInvalidoException
+	 */
 	public boolean salvaConvenio(Convenio convenio) throws CampoInvalidoException{
-		validaCampos(convenio);
+		
 		boolean existencia = true;
 		try{
 			convenioDao = new ConvenioDao();		
@@ -35,6 +42,11 @@ public class ConvenioFacade {
 		return existencia;
 	}
 	
+	/**
+	 * @descricao: Exclui um convênio.
+	 * @param convenio
+	 * 
+	 */
 	public void excluiConvenio(Convenio convenio){
 		
 		convenioDao = new ConvenioDao();
@@ -46,6 +58,11 @@ public class ConvenioFacade {
 		}					
 	}
 	
+	/**
+	 * @descricao: verifica existencia do convenio.
+	 * @param convenio
+	 * 
+	 */
 	public boolean verificaExistencia(Convenio convenio){
 		convenioDao = new ConvenioDao();				
 		boolean existencia = true;
@@ -60,6 +77,12 @@ public class ConvenioFacade {
 		return existencia;
 	}
 	
+	
+	/**
+	 * @descricao: Pesquisa convenio por CNPJ.
+	 * @param convenio
+	 * 
+	 */
 	public Convenio pesquisaConvenio(Convenio convenio){
 		
 		try {
@@ -75,12 +98,36 @@ public class ConvenioFacade {
 	}
 	
 	/**
-	 * @descricao: Recupera os últimos usuários cadastrados.
+	 * @descricao: Recupera os últimos convênios cadastrados.
 	 * @return
 	 */
 	public List<Convenio> recuperarUltimosCadastrados() {
 		this.convenioDao = new ConvenioDao();
 		return this.convenioDao.recuperarUltimosCadastrados();
+	}
+	/**
+	 * @descricao: Valida os campos que devem ser inteiros.
+	 * @param mapa
+	 * @throws CampoInvalidoException
+	 */
+	public void verificaCampoInteiro(Map<String, String> mapa) throws CampoInvalidoException{
+
+		if(mapa != null && mapa.size() > 0){
+			for(String nomeCampo: mapa.keySet()){
+				try{
+					String campoString = mapa.get(nomeCampo);
+
+					if(campoString != null && campoString.trim().length() > 0){
+						int valorCampo = Integer.parseInt(campoString);
+					}else{
+						throw new CampoInvalidoException("Campo "+nomeCampo+" inválido!");
+					}
+				}
+				catch (NumberFormatException e) {
+					throw new CampoInteiroException(nomeCampo+" é um campo inteiro!");
+				}
+			}
+		}
 	}
 	
 	/**
@@ -88,7 +135,7 @@ public class ConvenioFacade {
 	 * @param convenio
 	 * @throws CampoInvalidoException 
 	 */
-	private void validaCampos(Convenio convenio) throws CampoInvalidoException{
+	public void validaCampos(Convenio convenio) throws CampoInvalidoException{
 
 		if(convenio != null){
 			
@@ -100,25 +147,13 @@ public class ConvenioFacade {
 			}
 			if(convenio.getEndereco() == null || convenio.getEndereco().length() == 0){
 				throw new CampoInvalidoException("Campo Endereço inválido");
-			}
-			if(convenio.getCodigoANS() == 0){
-				throw new CampoInvalidoException("Campo Código ANS inválido");
-			}
+			}			
 			if(convenio.getCidade() == null){
 				throw new CampoInvalidoException("Campo Cidade inválido");
 			}
 			if(convenio.getEstado() ==  null || convenio.getEstado().isEmpty()){
 				throw new CampoInvalidoException("Campo Estado inválido");
-			}
-			if(convenio.getCep() == 0){
-				throw new CampoInvalidoException("Campo CEP inválido");
-			}			
-			if(convenio.getDdd() == 0){
-				throw new CampoInvalidoException("Campo DDD inválido");
-			}
-			if(convenio.getTelefone() == 0){
-				throw new CampoInvalidoException("Campo Telefone inválido");
-			}			
+			}												
 			if(convenio.getSite() == null || convenio.getSite().length() == 0){
 				throw new CampoInvalidoException("Campo Site inválido");
 			}

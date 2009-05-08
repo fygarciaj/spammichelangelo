@@ -5,7 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<script type="text/javascript" src="js/sispam.js"></script>
+	<link rel="stylesheet" href="../css/estilo.css" type="text/css" />
+	<script type="text/javascript" src="../js/sispam.js"></script>
+<title>Insert title here</title>
 </head>
 <body>
 <br>
@@ -14,8 +18,8 @@
 	<tr>	
 	<td>	
 		<div id="MensagensErro" >						
-			<s:fielderror cssErrorClass="errorMessage" />
-			<s:actionmessage />
+			<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+			<s:actionmessage theme="simple" cssClass="sucessMessage" cssErrorStyle="sucessMessage" cssErrorClass="sucessMessage"/>
 		</div>
 	</td>
 	</tr>

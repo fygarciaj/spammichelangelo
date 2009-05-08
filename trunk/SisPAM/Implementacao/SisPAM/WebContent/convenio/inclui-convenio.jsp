@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
-<script type="text/javascript" src="../componentes/js/sispam.js"></script>
+	<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
+	<script type="text/javascript" src="componentes/js/sispam.js"></script>
+	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
+	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -25,8 +27,8 @@
 	<tr>	
 	<td>	
 		<div id="MensagensErro" >						
-			<s:fielderror cssErrorClass="errorMessage" />
-			<s:actionmessage />
+			<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+			<s:actionmessage theme="simple" cssClass="sucessMessage" cssErrorStyle="sucessMessage" cssErrorClass="sucessMessage"/>
 		</div>
 	</td>
 	</tr>
@@ -43,7 +45,7 @@
 							</tr>																				
 							<tr>
 							    <td><label class="label" >Endereço:</label></td><td colspan="1"><s:textfield theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>
-								<td><label class="label" >Código ANS:</label></td><td><s:textfield theme="simple" name="convenio.codigoANS" size="17" maxlength="14"/></td>
+								<td><label class="label" >Código ANS:</label></td><td><s:textfield theme="simple" name="codigoANSAux" size="17" maxlength="14"/></td>
 							</tr>							
 							<tr>
 								<td><label class="label" >Cidade:</label></td><td><s:textfield theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
@@ -83,11 +85,11 @@
 								</td>
 							</tr>
 							<tr>
-								<td><label class="label" >CEP:</label></td><td><s:textfield theme="simple" name="convenio.cep" size="15" maxlength="8"/></td>
+								<td><label class="label" >CEP:</label></td><td><s:textfield theme="simple" name="cepAux" size="15" maxlength="8"/></td>
 							</tr>							
 							<tr>
-								<td><label class="label" >DDD:</label></td><td><s:textfield theme="simple" name="convenio.ddd" size="2" maxlength="2"/>
-								<label class="label" >&nbsp;&nbsp;&nbsp;Telefone:&nbsp;&nbsp;</label><s:textfield theme="simple" name="convenio.telefone" size="8" maxlength="8"/></td>								
+								<td><label class="label" >DDD:</label></td><td><s:textfield theme="simple" name="dddAux" size="2" maxlength="2"/>
+								<label class="label" >&nbsp;&nbsp;&nbsp;Telefone:&nbsp;&nbsp;</label><s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8"/></td>								
 							</tr>
 							<tr>
 							    <td><label class="label" >Site:</label></td><td><s:textfield theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
@@ -95,7 +97,7 @@
 							</tr>												
 							<table border="0" align="center">
 							<tr>																								
-								<td align="center"><br><input type="submit" tabindex="1" name="confirmarAction" value="Incluir" class="button"><br></td>																								
+								<td align="center"><br><input type="submit" tabindex="1" onclick="return confirmaInclusao()" name="confirmarAction" value="Incluir" class="button"><br></td>																								
 							</tr>
 							</table>						
 						</table>						
