@@ -32,7 +32,6 @@
 			</tr>
 		</table>
 	</s:form>
-</s:if>
 
 <s:elseif test="codigoPerfilSelecionado == 3">
 	<br>

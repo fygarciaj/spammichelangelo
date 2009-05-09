@@ -1,29 +1,39 @@
 package br.com.sispam.facade;
 
+import javax.persistence.NoResultException;
+
 import br.com.sispam.dao.LoginDao;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.util.Cripto;
 
 public class LoginFacade {
 	private LoginDao loginDao;
 	private Usuario usuarioNew;
-	
+
 	public Usuario pesquisaUsuario(String acesso, String senha) throws CampoInvalidoException{
-		try {
-			loginDao = new LoginDao();
-			if((acesso == null && acesso.trim().length() == 0) || (senha == null && senha.trim().length() == 0)){
-				throw new CampoInvalidoException("Usuário e Senha são obrigatórios!");
-			}else{
-				usuarioNew = loginDao.recuperaSenha(acesso);
+
+		loginDao = new LoginDao();
+		if(acesso == null || acesso.isEmpty()){
+			throw new CampoInvalidoException("Usuário é campo obrigatório!");
+		}else if  (senha == null || senha.isEmpty()){
+			throw new CampoInvalidoException("Senha é campo obrigatório!");
+		}else{
+			try{
+			usuarioNew = loginDao.recuperaSenha(acesso);
+			}catch (NoResultException e) {
+				throw new CampoInvalidoException("Usuário ou Senha inválida!");
 			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
-			e.printStackTrace();
 		}
 		return usuarioNew;
 	}
+
+
+	public String criptografaSenha(String senha){
+		Cripto cripto = new Cripto();
+		return cripto.criptografar(senha);
+	}
+
 	private void validaCampos(Object objeto) throws CampoInvalidoException{
 
 		if(objeto != null && objeto instanceof Usuario){

@@ -190,3 +190,7 @@ a:hover{
 .zebra td{
 	background-color: #dcdcdc;
 }
+
+.linkEditar{
+	background: #FFf4f1 url(img/editar.png) no-repeat 5px 1px ;
+}

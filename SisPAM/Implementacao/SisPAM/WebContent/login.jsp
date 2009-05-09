@@ -18,7 +18,7 @@
 <br>
 <center> 
 <s:form action="loginAction!logar.action">
-	<table width="235" border="0"cellpadding=3 height="123" class="tabela_login" >
+	<table width="235" border="0"cellpadding="3" height="123" class="tabela_login" >
 		<tr>
 			<td colspan="6" height="13">
 				<center>
@@ -29,7 +29,7 @@
 		<tr>
 			<td rowspan="3">
 				<p align="right">
-					<img border="0" src="componentes\img\user.gif"	width="80" height="80" align="left">
+					<img border="0" src="componentes/img/user.gif"	width="80" height="80" align="left">
 				</p>
 			</td>
 		</tr>

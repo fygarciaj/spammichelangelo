@@ -1,5 +1,6 @@
 package br.com.sispam.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +23,8 @@ public class ConvenioAction extends Action{
 	private String cepAux;
 	private String cnpjAux;
 	private String dddAux;
-	
-	
+
+
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
 		//monta um mapa com todos os campos que devem ser inteiros.	
@@ -32,25 +33,25 @@ public class ConvenioAction extends Action{
 		mapa.put("telefone", telefoneAux);
 		mapa.put("codigoANS", codigoANSAux);
 		mapa.put("cep", cepAux);
-		
+
 		try {
 			//verifica se os campos são inteiros
 			convenioFacade.verificaCampoInteiro(mapa);
-			
+
 			//verifica se os campo obrigatorios foram preenchidos
 			convenioFacade.validaCampos(convenio);
-			
-			if (convenioFacade.salvaConvenio(convenio) == false){
-				convenio.setCep(Long.parseLong(cepAux));
-				convenio.setDdd(Integer.parseInt(dddAux));
-				convenio.setCodigoANS(Integer.parseInt(codigoANSAux));
-				convenio.setTelefone(Integer.parseInt(telefoneAux));
-				convenioFacade.salvaConvenio(convenio);
-				mensagens.put("salvo", "Dados cadastrados com sucesso!");
-			}
-			else{
-				mensagens.put("Já existe", "Convênio já existe!");
-			}
+
+			//seta os valores das variváveis auxiliares.
+			convenio.setCep(Long.parseLong(cepAux));
+			convenio.setDdd(Integer.parseInt(dddAux));
+			convenio.setCodigoANS(Integer.parseInt(codigoANSAux));
+			convenio.setTelefone(Integer.parseInt(telefoneAux));
+
+			//verifica se já existe convênio cadastrado com esses dados.
+			convenioFacade.verificaExistencia(convenio);
+			convenioFacade.salvaConvenio(convenio);
+			mensagens.put("salvo", "Convênio cadastrado com sucesso!");
+
 		}catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
@@ -65,7 +66,7 @@ public class ConvenioAction extends Action{
 		this.limparCampos();
 		return SUCESSO_INCLUIR_CONVENIO;
 	}
-	
+
 	public String excluirConvenio(){
 		this.convenioFacade = new ConvenioFacade();		
 		try {
@@ -78,35 +79,37 @@ public class ConvenioAction extends Action{
 		apresentaMensagens();		
 		return SUCESSO_EXCLUIR_CONVENIO;
 	}
-	
+
 	public String consultarConvenio(){
 		convenioFacade = new ConvenioFacade();
-		this.convenio = convenioFacade.pesquisaConvenio(convenio);
-		
-		if(this.convenio != null){
-			this.isExisteConvenio = 2;
-			return CARREGAR_CONVENIO_EXISTENTE;	
+		try {
+			this.conveniosCadastrados = new ArrayList<Convenio>();
+			this.convenio = convenioFacade.pesquisaConvenio(convenio);
+			this.conveniosCadastrados.add(this.convenio);
+		} catch (CampoInvalidoException e) {
+			erros.put("erro", e.getMessage());
 		}
-		else{
-			this.isExisteConvenio = 1;
-			return FALHA_CARREGAR_CONVENIO;			
-		}		
-		
+
+		return LISTAR_CONVENIOS;
+
 	}
 	
-	/**
-	 * @descricao: Direciona para a tela de consulta, exibindo os últimos cadastros de convênios realizados 
-	 * @return 
-	 */
-	public String listaUltimosConveniosCadastrados(){
+	public String carregaEdicaoConvenio(){
 		this.convenioFacade = new ConvenioFacade();
-		this.conveniosCadastrados = this.convenioFacade.recuperarUltimosCadastrados();
-		return LISTAR_CONVENIOS;
+		this.convenio = this.convenioFacade.recuperarPeloId(convenio.getId());
+		this.cepAux = String.valueOf(convenio.getCep());
+		return SUCESSO_INCLUIR_CONVENIO;
 	}
+
 
 	/*Utilitário*/
 	private void limparCampos(){
-		this.convenio = null;		
+		this.convenio = null;
+		this.cepAux = null;
+		this.cnpjAux = null;
+		this.codigoANSAux = null;
+		this.dddAux = null;
+		this.telefoneAux = null;
 	}
 
 	public Convenio getConvenio() {
@@ -181,5 +184,5 @@ public class ConvenioAction extends Action{
 		this.dddAux = dddAux;
 	}
 
-	
+
 }

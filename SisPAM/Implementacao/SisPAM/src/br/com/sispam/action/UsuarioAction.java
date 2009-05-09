@@ -30,6 +30,7 @@ public class UsuarioAction extends Action{
 	private String cepAux;
 	private String rgAux;
 	private String dddAux;
+	private String usrLogado;
 
 
 
@@ -288,6 +289,10 @@ public class UsuarioAction extends Action{
 
 	public void setDddAux(String dddAux) {
 		this.dddAux = dddAux;
+	}
+
+	public String getUsrLogado() {
+		return getUsuarioLogado().getAcesso();
 	}
 
 }

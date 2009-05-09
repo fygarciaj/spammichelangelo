@@ -5,6 +5,8 @@
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.NoResultException;
+
 import br.com.sispam.dao.ConvenioDao;
 
 
@@ -20,37 +22,31 @@ import br.com.sispam.excecao.CampoInvalidoException;
 
 public class ConvenioFacade {
 	private ConvenioDao convenioDao; 
-	
+
 	/**
 	 * @descricao: Salva um convênio.
 	 * @param convenio
 	 * @throws CampoInvalidoException
 	 */
-	public boolean salvaConvenio(Convenio convenio) throws CampoInvalidoException{
-		
-		boolean existencia = true;
+	public void salvaConvenio(Convenio convenio) throws CampoInvalidoException{
+
 		try{
 			convenioDao = new ConvenioDao();		
-			if (verificaExistencia(convenio) == false){
-				convenioDao.incluirConvenio(convenio);
-				existencia = false;
-			}
-							
+			convenioDao.incluirConvenio(convenio);
 		}catch(Exception e){
 			e.getStackTrace();
 		}
-		return existencia;
 	}
-	
+
 	/**
 	 * @descricao: Exclui um convênio.
 	 * @param convenio
 	 * 
 	 */
 	public void excluiConvenio(Convenio convenio){
-		
+
 		convenioDao = new ConvenioDao();
-		
+
 		try{			
 			convenioDao.excluirConvenio(convenio.getCnpj());							
 		}catch(Exception e){
@@ -58,45 +54,61 @@ public class ConvenioFacade {
 		}					
 	}
 	
+	public Convenio recuperarPeloId(int id){
+		this.convenioDao = new ConvenioDao();
+		Convenio convenio = null;
+		if(id != 0){
+			convenio = this.convenioDao.recuperarPeloId(id);
+		}
+		return convenio;
+	}
+
 	/**
 	 * @descricao: verifica existencia do convenio.
 	 * @param convenio
+	 * @throws CampoInvalidoException 
 	 * 
 	 */
-	public boolean verificaExistencia(Convenio convenio){
+	public void verificaExistencia(Convenio convenio) throws CampoInvalidoException{
 		convenioDao = new ConvenioDao();				
-		boolean existencia = true;
-		Convenio convenioNew = null;
-		convenioNew = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
-		//convenioNew = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
-
-		if (convenioNew == null){
-			existencia = false;
+		Convenio convenioNew = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
+		if(convenioNew != null){
+			throw new CampoInvalidoException("Convênio já cadastrado com esse cnpj!");
 		}
-		
-		return existencia;
+		convenioNew = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+		if(convenioNew != null){
+			throw new CampoInvalidoException("Convênio já cadastrado com esse nome!");
+		}
+
 	}
-	
-	
+
+
 	/**
 	 * @descricao: Pesquisa convenio por CNPJ.
 	 * @param convenio
+	 * @throws CampoInvalidoException 
 	 * 
 	 */
-	public Convenio pesquisaConvenio(Convenio convenio){
-		
+	public Convenio pesquisaConvenio(Convenio convenio) throws CampoInvalidoException{
+		convenioDao = new ConvenioDao();
+		Convenio convenio2 = null;
 		try {
-			convenioDao = new ConvenioDao();
-			convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.getMessage();
-			e.printStackTrace();
+			if((convenio.getCnpj() == null || convenio.getCnpj().isEmpty()) && (convenio.getNome() == null || convenio.getNome().isEmpty())){
+				throw new CampoInvalidoException("Preencha um dos campos para efetuar a pesquisa!");
+			}else if(convenio.getCnpj() != null && !convenio.getCnpj().isEmpty()) {
+				convenio2 = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
+			}else{
+				convenio2 = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+			}
+
+		} catch (NoResultException e) {
+			throw new CampoInvalidoException("Nenhum registro encontrado");
 		}
 		return convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
 	}
 	
+	
+
 	/**
 	 * @descricao: Recupera os últimos convênios cadastrados.
 	 * @return
@@ -129,7 +141,7 @@ public class ConvenioFacade {
 			}
 		}
 	}
-	
+
 	/**
 	 * @descricao: valida os campos do convenio da tela passado.
 	 * @param convenio
@@ -138,7 +150,7 @@ public class ConvenioFacade {
 	public void validaCampos(Convenio convenio) throws CampoInvalidoException{
 
 		if(convenio != null){
-			
+
 			if(convenio.getNome() == null || convenio.getNome().length() == 0){
 				throw new CampoInvalidoException("Campo Nome do Convênio inválido");
 			}						
@@ -160,7 +172,7 @@ public class ConvenioFacade {
 			if(convenio.getEmail() == null || convenio.getEmail().length() == 0){
 				throw new CampoInvalidoException("Campo E-mail inválido");
 			}						
-			
+
 		}
 	}	
 }
