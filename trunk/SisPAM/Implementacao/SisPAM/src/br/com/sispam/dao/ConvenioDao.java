@@ -54,13 +54,10 @@ public class ConvenioDao {
 		conexao.finalizaConexao();
 	}
 	
-	public void alterarConvenio(Convenio convenio){
+	public Convenio recuperarPeloId(int id){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		manager.getTransaction().begin();
-		manager.merge(convenio);
-		manager.getTransaction().commit();
-		conexao.finalizaConexao();
+		return manager.find(Convenio.class, id);
 	}
 	
 	public Convenio consultarConvenioPorCnpj(String cnpj){
@@ -86,9 +83,9 @@ public class ConvenioDao {
 		Convenio convenio = null;
 		try{
 			//cria uma queri para fazer a busca pelo nome
-			Query query = manager.createQuery("from Convenio where nome = :nome ");
+			Query query = manager.createQuery("from Convenio where nome like :nome ");
 			//seta o parametro
-			query.setParameter("nome", nome);
+			query.setParameter("nome", "%"+nome+"%");
 			convenio = (Convenio) query.getSingleResult();				
 		}catch (NoResultException e) {
 			e.printStackTrace();

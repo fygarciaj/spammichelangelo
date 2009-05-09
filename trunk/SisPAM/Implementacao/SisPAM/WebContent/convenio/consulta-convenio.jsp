@@ -38,7 +38,9 @@
 			</tr>
 		</table>	
 	</s:form>
-	<s:form id="formConvenio" action="convenioAction!consultarConvenio.action">
+	
+	<s:form id="formConvenio" action="convenioAction!consultarConvenio.action" theme="simple">
+		<div id="paiDivs" style="display:none">
 		<table class="tabela_moldura">			
 			<tr>
 			<td>				
@@ -70,6 +72,7 @@
 			</td>
 			</tr>	
 		</table>
+		</div>
 	</s:form>
 	<!-- Lista dos últimos convênios cadastrados -->
 	<s:if test="conveniosCadastrados != null && conveniosCadastrados.size() > 0">
@@ -102,11 +105,11 @@
 			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
 			
 				<!-- Monta a url para carregar a edição do convênio -->
-				<s:url id="editarConvenio" action="usuarioAction!carregarEdicao.action">
+				<s:url id="editarConvenio" action="convenioAction!carregaEdicaoConvenio.action">
 					<s:param name="convenio.id" value="%{id}"/>
 				</s:url>
 					<!-- Monta a url para carregar a exclusão do convênio -->
-				<s:url id="excluirConvenio" action="usuarioAction!carregarEdicao.action">
+				<s:url id="excluirConvenio" action="convenioAction!excluirUsuario.action">
 					<s:param name="convenio.id" value="%{id}"/>
 				</s:url>
 				<td>

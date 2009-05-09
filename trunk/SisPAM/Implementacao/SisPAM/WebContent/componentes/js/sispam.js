@@ -14,7 +14,7 @@ function definirPerfil(){
 function definirPerfilConsulta(){
 	var selecionado = document.getElementById("perfil").value;
 	if(selecionado == 0){
-		alert("Selecione um perfil para o novo cadastro!");
+		alert("Selecione um perfil para efetuar a busca!");
 		return false;
 	}else{
 		document.forms[0].action = "usuarioAction!definirTelaConsulta.action?codigoPerfilString="+selecionado;
@@ -41,15 +41,18 @@ function formaConsultaConvenio(){
 	var selecionado = document.getElementById("cmbFrmCns").value;
 	var divCnpj = document.getElementById("cnpj");
 	var divNome = document.getElementById("nomeConvenio");
-	var divBotoes = document.getElementById("botoes");	
+	var divBotoes = document.getElementById("botoes");
+	var divPai = document.getElementById("paiDivs");
 	
 	if (selecionado == 1){
+		divPai.style.display = 'block';	
 		divNome.style.display = 'block';	
 		divBotoes.style.display = 'block';
 		divCnpj.style.display = 'none';
 		
 	}
 	else if (selecionado == 2){
+		divPai.style.display = 'block';	
 		divCnpj.style.display = 'block';		
 		divBotoes.style.display = 'block';
 		divNome.style.display = 'none';

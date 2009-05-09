@@ -30,16 +30,18 @@
 	<s:elseif test="codigoPerfilSelecionado == 4">
 	<h2>Consulta de Pacientes</h2>
 	</s:elseif>
-	<s:form action="usuarioAction!definirTelaConsulta.action">
+	
 	<table>
 		<tr>
-			<td><label>Selecione o Perfil&nbsp;</label> <s:select
-				list="perfils" headerKey="0" id="perfil" headerValue="--Selecione--"
-				name="codigoPerfilSelecionado" onchange="return definirPerfilConsulta()"
-				listKey="codigo" theme="simple" /></td>
+			<s:form action="usuarioAction!definirTelaConsulta.action">
+				<td><label>Selecione o Perfil&nbsp;</label> <s:select
+					list="perfils" headerKey="0" id="perfil" headerValue="--Selecione--"
+					name="codigoPerfilSelecionado" onchange="return definirPerfilConsulta()"
+					listKey="codigo" theme="simple" /></td>
+			</s:form>
 		</tr>
 	</table>
-</s:form>
+
 
 <s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
 	<br>
@@ -133,9 +135,7 @@
 				<td align="center"><s:property value="cpf" /></td>
 				<td align="center"><s:property value="telefone" /></td>
 				<td align="center"><s:property value="rg" /></td>
-				<td align="center"><s:a href="%{#editarUsuario}">
-					<img src="img/editar.png" alt="Alterar" />
-				</s:a></td>
+				<td align="center"><s:a href="%{#editarUsuario}" cssClass="linkEditar" ></s:a></td>
 				<td align="center"><s:a href="%{#excluirUsuario}" onclick="return confirmaExclusao()">
 					<img src="img/excluir.png" alt="Excluir" />
 				</s:a></td>

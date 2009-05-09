@@ -9,6 +9,7 @@ import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.util.Cripto;
 
 public class UsuarioFacade {
 	private UsuarioDao usuarioDao;
@@ -22,7 +23,9 @@ public class UsuarioFacade {
 	public void salvarUsuario(Object objeto) throws CampoInvalidoException{
 
 		if(objeto != null && objeto instanceof Usuario){
+			Cripto cripto = new Cripto();
 			Usuario usuario = (Usuario)objeto;
+			usuario.setSenha(cripto.criptografar(usuario.getSenha()));
 			this.usuarioDao = new UsuarioDao();
 			this.usuarioDao.salvarUsuario(usuario);
 		}

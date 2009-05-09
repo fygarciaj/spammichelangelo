@@ -16,7 +16,7 @@ public class LoginDao {
 	public Usuario recuperaSenha(String acesso){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		Usuario usuario = new Usuario();
+		Usuario usuario = null;
 
 		try{
 			//cria uma query para fazer a busca pelo usuário de acesso

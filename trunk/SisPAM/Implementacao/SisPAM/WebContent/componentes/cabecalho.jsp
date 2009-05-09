@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 
-<html>
+
+<%@page import="br.com.sispam.dominio.Usuario"%><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="../resources/styles.css" type="text/css" />
@@ -8,7 +10,8 @@
 <body>
 
 <div id="tabs">
-<img src="img\simbolo.jpg" width="250px" align="left" hspace="5"  >
+<img src="img/simbolo.jpg" width="250px" align="left" hspace="5"  >
+ Bem-vindo <%=((Usuario)session.getAttribute("usuarioLogado")).getAcesso() %>
   <br><br><br><br>
 <ul>
 	
