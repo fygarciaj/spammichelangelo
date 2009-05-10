@@ -1,7 +1,6 @@
 body {
 	font: bold 12px/1.5em Verdana;
 	background-color: #F2F7FE;
-	
 	}
 	
 h1 {
@@ -18,7 +17,22 @@ hr {
 	height:0px;
 	margin-bottom:0px;
 	}
-	
+.nomeSistema{
+	font: 12px tahoma, verdana, bold, helvetica, sans-serif;
+	font-size: 24px;	
+	clear:left;
+	color: #00008B;
+	margin: 0;
+}
+
+.userLogado{
+	font: 9px tahoma, verdana, bold, helvetica, sans-serif;
+	font-size: 11px;	
+	clear:left;
+	color: #00008B;
+	margin: 0;
+}
+
 #tabs {
 	float:left;
 	width:100%;
@@ -29,7 +43,7 @@ hr {
 	}
 #tabs ul {
 	margin:0;
-	padding:9 0 13 260;
+	padding:9px 10px 14px 50px;
 	list-style:none;
 	background: #191970;
 	}
@@ -42,7 +56,7 @@ hr {
 	float:left;
 	background:url("../componentes/img/tableft.gif") no-repeat left top;
 	margin:0px;
-	padding:0 2px 0 4px;
+	padding:0 10px 0 4px;
 	text-decoration:none;
 	}
 #tabs a span {

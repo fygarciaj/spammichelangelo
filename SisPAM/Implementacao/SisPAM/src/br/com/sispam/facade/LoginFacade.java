@@ -1,6 +1,11 @@
 package br.com.sispam.facade;
 
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import br.com.sispam.dao.LoginDao;
 import br.com.sispam.dominio.Usuario;
@@ -11,7 +16,7 @@ public class LoginFacade {
 	private LoginDao loginDao;
 	private Usuario usuarioNew;
 
-	public Usuario pesquisaUsuario(String acesso, String senha) throws CampoInvalidoException{
+	public Usuario pesquisaUsuario(String acesso, String senha) throws CampoInvalidoException, PersistenceException{
 
 		loginDao = new LoginDao();
 		if(acesso == null || acesso.isEmpty()){
@@ -23,28 +28,22 @@ public class LoginFacade {
 			usuarioNew = loginDao.recuperaSenha(acesso);
 			}catch (NoResultException e) {
 				throw new CampoInvalidoException("Usuário ou Senha inválida!");
+			}catch (PersistenceException e) {
+				throw new CampoInvalidoException("Sem comunicação com Banco de Dados");
 			}
 		}
 		return usuarioNew;
 	}
 
-
 	public String criptografaSenha(String senha){
 		Cripto cripto = new Cripto();
 		return cripto.criptografar(senha);
 	}
-
-	private void validaCampos(Object objeto) throws CampoInvalidoException{
-
-		if(objeto != null && objeto instanceof Usuario){
-			Usuario user = (Usuario)objeto;
-
-			if(user.getAcesso() == null){
-				throw new CampoInvalidoException("Usuário inválido.");
-			}
-			if(user.getSenha() == null){
-				throw new CampoInvalidoException("Senha inválida.");
-			}
-		}
+	
+	public String dataHoraLogin(){
+		Locale locale = new Locale("pt","BR"); 
+		GregorianCalendar calendar = new GregorianCalendar(); 
+		SimpleDateFormat formatador = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' às 'HH':'mm'h'",locale); 
+		return formatador.format(calendar.getTime());
 	}
 }

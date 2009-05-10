@@ -9,13 +9,15 @@
 <title>Login SisPAM</title>
 </HEAD>
 <BODY >
-<center>
 	<img src="componentes/img/simbLogin.jpg"  width="100%">
-</center>
-<br>
+<br><table align="center" width="352px">
+<tr><td>
 <s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
 <s:actionmessage theme="simple" cssClass="errorMessage" cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
-<br>
+</td>
+</tr>
+</table>
+
 <center> 
 <s:form action="loginAction!logar.action">
 	<table width="235" border="0"cellpadding="3" height="123" class="tabela_login" >
@@ -39,7 +41,7 @@
 		</tr>
 		<tr>
 			<td><font face="Verdana" style="font-size: 8pt; font-weight: 700"><b>Senha</b></font></td>
-			<td align="left"><s:password name="senha" cssClass="campos" theme="simple" size="8" maxlength="6"/></td> 
+			<td align="left"><s:password name="senha" cssClass="campos" theme="simple" size="8" maxlength="6" /></td> 
 			<td align="right"><s:submit theme="simple" cssClass="button" value="Entrar"/></td>
 			
 			<td valign="bottom" height="26" ></td>

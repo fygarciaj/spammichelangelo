@@ -108,15 +108,20 @@ a:hover{
 	height: 20px;
 }
 .tabela_login{
+	font: px tahoma, verdana, bold, helvetica, sans-serif;
+	color: #00008B;
 	background-color: #F4F7FB;
 	clear:left;
 	position: relative;
-	margin: 0px 0 0 0;
+	margin: 0 0 0 0;
+	border-color: black;
 }
 
 .campos{
 	height: 20px;
 	vertical-align: 2px;
+	font-weight: bolder;
+	font-stretch: expanded;
 	}
 .caminhoUsuario{
 	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
@@ -156,7 +161,8 @@ a:hover{
 	color:black;
 	border: 1px solid #ff0000;
 	margin: 5px 0px 5px 0px;
-	padding: 2px 0px 2px 28px;
+	padding: 2px 2px 2px 28px;
+	background-position: center;
 	background: #FFf4f1 url(../img/ico_alert.gif) no-repeat 5px 1px ;
 	display:block;
 	text-align: left;

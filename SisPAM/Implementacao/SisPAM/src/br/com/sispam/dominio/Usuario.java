@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.sispam.facade.LoginFacade;
+
 @Entity
 public class Usuario {
 	
@@ -26,6 +28,7 @@ public class Usuario {
 	private int perfil;
 	private String senha;
 	private String acesso;
+	private String dtHoraAcesso;
 		
 	
 	/*Get & Set*/
@@ -142,6 +145,14 @@ public class Usuario {
 	}
 	public void setAcesso(String acesso) {
 		this.acesso = acesso;
+	}
+	public String getDtHoraAcesso() {
+		LoginFacade lf = new LoginFacade();
+		return lf.dataHoraLogin();
+	}
+	public void setDtHoraAcesso(String dtHoraAcesso) {
+		LoginFacade lf = new LoginFacade();
+		this.dtHoraAcesso = lf.dataHoraLogin();
 	}
 	
 	}

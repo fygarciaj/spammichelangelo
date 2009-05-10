@@ -1,19 +1,21 @@
 package br.com.sispam.dao;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Usuario;
+import br.com.sispam.excecao.CampoInvalidoException;
 
 
 public class LoginDao {
 	private Conexao conexao;
 	private EntityManager manager;
 	
-	public Usuario recuperaSenha(String acesso){
+	public Usuario recuperaSenha(String acesso)throws CampoInvalidoException, PersistenceException{
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
@@ -25,14 +27,12 @@ public class LoginDao {
 			query.setParameter("acesso", acesso);
 			usuario = (Usuario) query.getSingleResult();
 		
-		}catch (NoResultException e) {
-			 System.out.println("teste1");
-			 usuario = null;
+		}catch(NoResultException e) {
 			e.printStackTrace();
-		}catch (NonUniqueResultException e) {   
-		      e.printStackTrace();   
-		      System.out.println("teste2");
-		} 
+		}catch(PersistenceException exc){
+			exc.printStackTrace();
+			throw new PersistenceException("Sem comunicação com Banco de Dados");
+		}
 		
 		conexao.finalizaConexao();
 		return usuario;

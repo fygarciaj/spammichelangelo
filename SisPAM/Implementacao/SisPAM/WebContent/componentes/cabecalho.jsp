@@ -2,7 +2,8 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 
 
-<%@page import="br.com.sispam.dominio.Usuario"%><html>
+<%@page import="br.com.sispam.dominio.Usuario"%>
+<%@page import="br.com.sispam.action.LoginAction"%><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="../resources/styles.css" type="text/css" />
@@ -10,9 +11,18 @@
 <body>
 
 <div id="tabs">
-<img src="img/simbolo.jpg" width="250px" align="left" hspace="5"  >
- Bem-vindo <%=((Usuario)session.getAttribute("usuarioLogado")).getAcesso() %>
-  <br><br><br><br>
+<img src="img/simbolo.jpg" width="248px" align="left">
+<br>
+<table width="75%">
+	<tr>
+		<td class="nomeSistema" rowspan="2" width="50%">Sistema de Pronto Atendimento Médico</td>
+		<td class="userLogado" width="25%">Usuário logado: <%=((Usuario) session.getAttribute("usuarioLogado")).getAcesso().toUpperCase()%>
+		<br>Login em: <%=((Usuario) session.getAttribute("dtHrAcess")).getDtHoraAcesso()%>
+		</td>
+	</tr>
+</table>
+
+<br>
 <ul>
 	
     <li><a href="menuAdm.jsp" target="MENU"><span>ADMINISTRATIVO</span></a></li>

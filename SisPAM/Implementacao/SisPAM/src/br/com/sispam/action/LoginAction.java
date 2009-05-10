@@ -7,12 +7,13 @@ import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.LoginFacade;
 
 public class LoginAction extends Action{
-
 	private String acesso;
 	private String senha;
 	private LoginFacade loginFacade;
 	private Usuario usr;
 	private String usrLogado;
+	private String dataHoraAcesso;
+
 
 	public String logar(){
 		usr = new Usuario();
@@ -21,13 +22,21 @@ public class LoginAction extends Action{
 		try{
 			usr = this.loginFacade.pesquisaUsuario(acesso, senha);
 			senha = this.loginFacade.criptografaSenha(senha);
-			
-			if(usr != null &&  usr.getSenha().equals(senha)){
-				ActionContext.getContext().getSession().put(USUARIO_LOGADO, usr);
-				this.usrLogado = getUsuarioLogado().getAcesso();
-				return SUCESSO;
+
+			if(usr != null){
+				if(usr.getSenha().equals(senha)){
+					ActionContext.getContext().getSession().put(USUARIO_LOGADO, usr);
+					this.usrLogado = (getUsuarioLogado().getAcesso());
+					ActionContext.getContext().getSession().put(DATA_HORA_ACESSO, usr);
+					this.dataHoraAcesso = getDataHoraAcesso().getDtHoraAcesso();
+					return SUCESSO;
+				}else{
+					erros.put("campoInvalido", "Senha inválida!");
+					apresentaErrors();
+					return FALHA;
+				}
 			}else{
-				erros.put("campoInvalido", "Acesso negado!");
+				erros.put("campoInvalido", "Usuário não cadastrado!");
 				apresentaErrors();
 				return FALHA;
 			}
@@ -70,6 +79,10 @@ public class LoginAction extends Action{
 
 	public String getUsrLogado() {
 		return this.usrLogado;
+	}
+
+	public String getDtHoraAcesso() {
+		return this.dataHoraAcesso;
 	}
 
 }
