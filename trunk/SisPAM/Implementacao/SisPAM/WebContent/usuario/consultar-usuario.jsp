@@ -16,7 +16,7 @@
 		<tr>
 			<td>
 				<br>
-				<div>Cadastro<img src="*/componentes/img/seta.gif" /> Usuário
+				<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário
 				<img src="../componentes/img/seta.gif" /> Consultar</div>
 			</td>
 		</tr>
