@@ -23,7 +23,7 @@ public class UsuarioDao {
 	public void salvarUsuario(Usuario usuario){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		
+
 		manager.getTransaction().begin();
 		//verifica se possui id caso possua apenas atualiza os dados no banco
 		if(usuario != null && usuario.getId() > 0){
@@ -33,7 +33,7 @@ public class UsuarioDao {
 		else{
 			manager.persist(usuario);
 		}
-		
+
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
 	}
@@ -53,7 +53,7 @@ public class UsuarioDao {
 		conexao.finalizaConexao();
 		return lista;
 	}
-	
+
 	/**
 	 * @descricao: Remove o usuario do sistema.
 	 * @param usuario
@@ -67,7 +67,7 @@ public class UsuarioDao {
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
 	}
-	
+
 	/**
 	 * @descricao: Recupera o usuário pelo Id.
 	 * @param id
@@ -100,28 +100,29 @@ public class UsuarioDao {
 		conexao.finalizaConexao();
 		return usuario;
 	}
-	
-	
+
+
 	/**
 	 * @descricao: recupera o usuário pelo seu nome.
-	 * @param cpf
+	 * @param nome, codigoPerfil
 	 * @return
 	 */
-	public Usuario recuperaPeloNome(String nome){
+	public List<Usuario> recuperaPeloNome(String nome, int codigoPerfil){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		Usuario usuario = null;
+		List<Usuario> lista = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Usuario where nome = :nome ");
+			Query query = manager.createQuery("from Usuario where nome like :nome and perfil = :perfil");
 			//seta o parametro
-			query.setParameter("nome", nome);
-			usuario = (Usuario) query.getSingleResult();
+			query.setParameter("nome", "%"+nome+"%");
+			query.setParameter("perfil", codigoPerfil);
+			lista = query.getResultList();
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
 		conexao.finalizaConexao();
-		return usuario;
+		return lista;
 	}
 
 	/**
@@ -155,6 +156,28 @@ public class UsuarioDao {
 		}catch (EntityExistsException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @descricao: Recupera o usuário pelo Login.
+	 * @param acesso
+	 * @return
+	 */
+	public Usuario recuperaPeloLogin(String acesso) {
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Usuario usuario = null;
+		try{
+			//cria uma queri para fazer a busca pelo perfil
+			Query query = manager.createQuery("from Usuario where acesso = :acesso ");
+			//seta o parametro
+			query.setParameter("acesso", acesso);
+			usuario = (Usuario) query.getSingleResult();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		conexao.finalizaConexao();
+		return usuario;
 	}
 
 

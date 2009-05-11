@@ -8,6 +8,7 @@ import java.util.Map;
 
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
+import br.com.sispam.enums.Dia;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
@@ -30,7 +31,7 @@ public class UsuarioAction extends Action{
 	private String cepAux;
 	private String rgAux;
 	private String dddAux;
-	private String usrLogado;
+	private List<Dia>dias;
 
 
 
@@ -49,6 +50,16 @@ public class UsuarioAction extends Action{
 	 */
 	public String definirTelaUsuario(){
 		this.codigoPerfilSelecionado = Integer.parseInt(this.codigoPerfilString);
+		
+		//monta a lista de dias para o cadastro dos dias de trabalho do médico.
+		if(this.codigoPerfilSelecionado == Perfil.MEDICO.getCodigo()){
+			Dia[] diasVetor = Dia.values();
+			this.dias = new ArrayList<Dia>();
+			for(Dia dia: diasVetor){
+				dias.add(dia);
+			}
+			
+		}
 		limparCampos(false);
 		return TELA_SELECIONADA;
 	}
@@ -75,6 +86,9 @@ public class UsuarioAction extends Action{
 
 			//verifica se o cpf está sendo usado
 			usuarioFacade.verificaCpfJaExistente(usuario.getCpf(), usuario.getId());
+			
+			//verifica se o login está sendo usado
+			usuarioFacade.verificaLoginJaExistente(usuario.getAcesso(), usuario.getId());
 
 			usuario.setPerfil(this.codigoPerfilSelecionado);
 			usuario.setCep(Long.parseLong(cepAux));
@@ -124,14 +138,12 @@ public class UsuarioAction extends Action{
 	public String consultarUsuario(){
 		this.usuarioFacade = new UsuarioFacade();
 		try{
-			this.usuario = this.usuarioFacade.recuperarUsuario(usuario.getCpf(), usuario.getNome());
+		this.usuariosCadastrados = this.usuarioFacade.recuperarUsuario(usuario.getCpf(), usuario.getNome(), this.codigoPerfilSelecionado);
 		}catch (CampoInvalidoException e) {
 			erros.put("campoInvalido", e.getMessage());
 			apresentaErrors();
 			return FALHA_CONSULTAR_USUARIO;
 		}
-		this.usuariosCadastrados = new ArrayList<Usuario>();
-		this.usuariosCadastrados.add(this.usuario);
 
 		limparCampos(false);
 		return SUCESSO_CARREGAR_CONSULTA;
@@ -291,8 +303,13 @@ public class UsuarioAction extends Action{
 		this.dddAux = dddAux;
 	}
 
-	public String getUsrLogado() {
-		return getUsuarioLogado().getAcesso();
+	public List<Dia> getDias() {
+		return dias;
 	}
+
+	public void setDias(List<Dia> dias) {
+		this.dias = dias;
+	}
+	
 
 }

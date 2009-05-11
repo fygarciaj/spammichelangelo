@@ -1,5 +1,6 @@
 package br.com.sispam.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class UsuarioFacade {
 		Usuario usuario = this.usuarioDao.recuperarPeloId(id);
 		return usuario;
 	}
-	
+
 	/**
 	 * @descricao: Valida os campos que devem ser inteiros.
 	 * @param mapa
@@ -70,7 +71,7 @@ public class UsuarioFacade {
 			}
 		}
 	}
-	
+
 	/**
 	 * @descicao: Verifica se o cpf já está sendo usado.
 	 * @param cpf
@@ -83,8 +84,8 @@ public class UsuarioFacade {
 		}
 	}
 
-	public Usuario recuperarUsuario(String cpf, String nome) throws CampoInvalidoException{
-
+	public List<Usuario> recuperarUsuario(String cpf, String nome, int codigoPerfil) throws CampoInvalidoException{
+		List<Usuario> lista = null;
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = null;
 
@@ -92,12 +93,17 @@ public class UsuarioFacade {
 			throw new CampoInvalidoException("Preencha um dos campos para realizar a pesquisa!");
 		}
 		else if(cpf != null && cpf.trim().length() > 0){
+			lista = new ArrayList<Usuario>();
 			usuario = usuarioDao.recupera(cpf);
+			if(usuario != null){
+				lista.add(usuario);
+			}
+
 		}else{
-			usuario = usuarioDao.recuperaPeloNome(nome);
+			lista = usuarioDao.recuperaPeloNome(nome, codigoPerfil);
 		}
-		
-		return usuario;
+
+		return lista;
 	}
 
 
@@ -110,7 +116,7 @@ public class UsuarioFacade {
 		this.usuarioDao = new UsuarioDao();
 		return this.usuarioDao.recuperarUltimosCadastrados(codigoPerfilSelecionado);
 	}
-	
+
 	/**
 	 * @descricao: Remove o usuário do sistema.
 	 * @param id
@@ -131,33 +137,47 @@ public class UsuarioFacade {
 		if(objeto != null && objeto instanceof Usuario){
 			Usuario usuario = (Usuario)objeto;
 
-			if(usuario.getCidade() == null || usuario.getCidade().isEmpty()){
-				throw new CampoInvalidoException("Campo cidade inválido");
+			if(usuario.getNome() == null || usuario.getNome().length() == 0){
+				throw new CampoInvalidoException("Campo nome inválido");
 			}
 			if(usuario.getCpf() == null || usuario.getCpf().isEmpty()) {
 				throw new CampoInvalidoException("Campo cpf inválido");
 			}
-			if(usuario.getEmail() == null || usuario.getEmail().length() == 0){
-				throw new CampoInvalidoException("Campo e-mail inválido");
+			if(usuario.getExpedidorRg() == null || usuario.getExpedidorRg().length() == 0){
+				throw new CampoInvalidoException("Campo orgão expedidor inválido");
+			}
+			if(usuario.getSexo() == '0'){
+				throw new CampoInvalidoException("Campo sexo inválido");
 			}
 			if(usuario.getEndereco() == null || usuario.getEndereco().length() == 0){
 				throw new CampoInvalidoException("Campo endereço inválido");
 			}
-			if(usuario.getExpedidorRg() == null || usuario.getExpedidorRg().length() == 0){
-				throw new CampoInvalidoException("Campo orgão expedidor inválido");
-			}
-			if(usuario.getNome() == null || usuario.getNome().length() == 0){
-				throw new CampoInvalidoException("Campo nome inválido");
-			}
-			if(usuario.getSenha() == null || usuario.getSenha().length() == 0){
-				throw new CampoInvalidoException("Campo senha inválido");
-			}
-			if(usuario.getSexo() == '\0'){
-				throw new CampoInvalidoException("Campo sexo inválido");
+			if(usuario.getCidade() == null || usuario.getCidade().isEmpty()){
+				throw new CampoInvalidoException("Campo cidade inválido");
 			}
 			if(usuario.getUf() ==  null || usuario.getUf().isEmpty()){
 				throw new CampoInvalidoException("Campo UF inválido");
 			}
+			if(usuario.getAcesso() == null || usuario.getAcesso().isEmpty()){
+				throw new CampoInvalidoException("Campo Login inválido");
+			}
+			if(usuario.getSenha() == null || usuario.getSenha().length() == 0){
+				throw new CampoInvalidoException("Campo senha inválido");
+			}
+			if(usuario.getEmail() == null || usuario.getEmail().length() == 0){
+				throw new CampoInvalidoException("Campo e-mail inválido");
+			}
+		}
+
+	}
+
+	public void verificaLoginJaExistente(String acesso, int id) throws CampoInvalidoException {
+		this.usuarioDao = new UsuarioDao();
+
+		Usuario usuario = this.usuarioDao.recuperaPeloLogin(acesso);
+
+		if(usuario != null && id != usuario.getId()){
+			throw new CampoInvalidoException("Este Login já está em uso, digite outro Login!");
 		}
 
 	}
