@@ -31,8 +31,10 @@
 		</tr>
 	</table>
 </s:form>
-<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
-<s:actionmessage theme="simple" cssClass="errorMessage" cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+<div id="MensagensErro" >	
+	<s:fielderror theme="simple" cssClass="errorMessage" />
+	<s:actionmessage theme="simple" cssClass="sucessMessage" />
+</div>
 
 <s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
 	<s:form id="formPerfil" action="usuarioAction!salvarUsuario.action">
@@ -49,7 +51,7 @@
 				<td><label class="label">RG:</label></td>
 				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Expedidor:&nbsp;&nbsp;</label>
-				<s:textfield theme="simple" name="usuario.expedidorRg" size="15" maxlength="15" />
+				<s:textfield theme="simple" name="usuario.expedidorRg" size="15" maxlength="15" /></td>
 				<td><label class="label">Sexo:</label></td>
 				<td><s:select list="sexos" theme="simple" name="usuario.sexo" headerKey="0" headerValue="" listKey="sigla" /></td>
 			</tr>
@@ -98,16 +100,18 @@
 				</td>
 				<td><label class="label">DDD:</label></td>
 				<td>
-					<s:textfield theme="simple" name="dddAux" size="3"	maxlength="3" />&nbsp;&nbsp; 
+					<s:textfield theme="simple" name="dddAux" size="2"	maxlength="2" />&nbsp;&nbsp; 
 					<label class="label">Tel:&nbsp;&nbsp;</label>
 					<s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8" />
 				</td>
 			</tr>
 			<tr>
+				<td><label class="label">Login:</label></td>
+				<td><s:textfield theme="simple" name="usuario.acesso" maxlength="25" size="25" />&nbsp;
+				<label class="label">Senha:</label><s:password theme="simple" name="usuario.senha"	maxlength="25" size="25" /></td>
 				<td><label class="label">E-mail:</label></td>
 				<td><s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>
-				<td><label class="label">Senha:</label></td>
-				<td><s:password theme="simple" name="usuario.senha"	maxlength="25" size="25" /></td>
+				
 			</tr>
 			<tr>
 				<td><s:submit value="Salvar" cssClass="button" /></td>
@@ -116,7 +120,10 @@
 </s:form>
 </s:if>	
 <s:elseif test="codigoPerfilSelecionado == 3">
-		<table border="0" width="100%" class="tabela_moldura"	cellpadding="3" cellspacing="4">
+	<s:form action="medicoAction!salvarMedico.action">
+	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
+	<s:hidden name="usuario.id" value="%{usuario.id}"/>
+		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
 				<td><label class="label">Nome:</label></td>
 				<td><s:textfield theme="simple" name="usuario.nome" size="60" maxlength="60" /></td>
@@ -125,10 +132,9 @@
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
-				<td>
-					<s:textfield theme="simple" name="usuario.rg" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="label">Expedidor:</label><s:textfield	theme="simple" name="usuario.expedidorRg" size="15"	maxlength="15" />
-				</td>	
+				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">Expedidor:&nbsp;&nbsp;</label>
+				<s:textfield theme="simple" name="usuario.expedidorRg" size="15" maxlength="15" /></td>
 				<td><label class="label">Sexo:</label></td>
 				<td><s:select list="sexos" theme="simple" name="usuario.sexo" headerKey="0" headerValue="" listKey="sigla" /></td>
 			</tr>
@@ -141,7 +147,7 @@
 			<tr>
 				<td><label class="label">Estado:</label></td>
 				<td>
-					<select name="convenio.estado">
+					<select name="usuario.uf">
 						<option value="0">Selecione</option>
 						<option value="AC">Acre</option>
 						<option value="AL">Alagoas</option>
@@ -171,27 +177,28 @@
 						<option value="SE">Sergipe</option>
 						<option value="TO">Tocantins</option>
 					</select>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label class="label">CEP:</label><s:textfield theme="simple" name="usuario.cep" size="15" maxlength="8" />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="label">CEP:&nbsp;&nbsp;</label>
+					<s:textfield theme="simple" name="cepAux" size="15" maxlength="8" />
 				</td>
 				<td><label class="label">DDD:</label></td>
 				<td>
-					<s:textfield theme="simple" name="usuario.ddd" size="3"	maxlength="3" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-					<label class="label">Tel:</label>
-					<s:textfield theme="simple"	name="usuario.telefone" size="8" maxlength="8" />
+					<s:textfield theme="simple" name="dddAux" size="2"	maxlength="2" />&nbsp;&nbsp; 
+					<label class="label">Tel:&nbsp;&nbsp;</label>
+					<s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8" />
 				</td>
 			</tr>
 			<tr>
+				<td><label class="label">Login:</label></td>
+				<td><s:textfield theme="simple" name="usuario.acesso" maxlength="25" size="25" />&nbsp;
+				<label class="label">Senha:</label><s:password theme="simple" name="usuario.senha"	maxlength="25" size="25" /></td>
 				<td><label class="label">E-mail:</label></td>
 				<td><s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>
-				<td><label class="label">Senha:</label></td>
-				<td><s:password theme="simple" name="usuario.senha"	maxlength="25" size="25" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">CRM:</label></td>
-				<td><s:textfield theme="simple" name="medico.crm" size="7" maxlength="7" /></td>
-				<td><label class="label">UF:</label></td>
-				<td>
+				<td><s:textfield theme="simple" name="medico.crm" size="7" maxlength="7" />&nbsp;&nbsp; 
+				<label class="label">UF-CRM:</label>&nbsp;
 					<select name="medico.crmUf">	
 						<option value="0">Selecione</option>
 						<option value="AC">Acre</option>
@@ -223,11 +230,16 @@
 						<option value="TO">Tocantins</option>
 					</select>
 				</td>
+				<td colspan="2" ><label class="label">Dias de Atendimento:</label>&nbsp;
+				<s:iterator value="dias">
+					<s:checkbox value="false" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />
+				</s:iterator>
 			</tr>
 			<tr>
 				<td><s:submit value="Salvar" cssClass="button" /></td>
 			</tr>
-		</table>
+	</table>
+	</s:form>		
 </s:elseif>
 
 </body>

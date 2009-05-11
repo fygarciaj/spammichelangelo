@@ -27,8 +27,8 @@
 	<tr>	
 	<td>	
 		<div id="MensagensErro" >						
-			<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
-			<s:actionmessage theme="simple" cssClass="sucessMessage" cssErrorStyle="sucessMessage" cssErrorClass="sucessMessage"/>
+			<s:fielderror theme="simple" cssClass="errorMessage" />
+			<s:actionmessage theme="simple" cssClass="sucessMessage" />
 		</div>
 	</td>
 	</tr>

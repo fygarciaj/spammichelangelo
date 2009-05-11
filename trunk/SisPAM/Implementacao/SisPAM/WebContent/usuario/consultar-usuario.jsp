@@ -92,13 +92,13 @@
 		<tr>
 				<th colspan="6" class="principal style2" scope="col">
 					<s:if test="codigoPerfilSelecionado == 1">
-						Ùltimos	Administradores cadastrados
+						Últimos	Administradores cadastrados
 					</s:if>
 					<s:elseif test="codigoPerfilSelecionado == 2">
-						Ùltimos	Atendentes cadastrados
+						Últimos	Atendentes cadastrados
 					</s:elseif>
 					<s:elseif test="codigoPerfilSelecionado == 3">
-						Ùltimos	Médicos cadastrados
+						Últimos	Médicos cadastrados
 					</s:elseif>
 					<s:elseif test="codigoPerfilSelecionado == 4">
 						Ùltimos	Pacientes cadastrados
@@ -135,7 +135,7 @@
 				<td align="center"><s:property value="cpf" /></td>
 				<td align="center"><s:property value="telefone" /></td>
 				<td align="center"><s:property value="rg" /></td>
-				<td align="center"><s:a href="%{#editarUsuario}" cssClass="linkEditar" ></s:a></td>
+				<td align="center"><s:a href="%{#editarUsuario}" ><img  src="img/editar.png" alt="Excluir" /></s:a></td>
 				<td align="center"><s:a href="%{#excluirUsuario}" onclick="return confirmaExclusao()">
 					<img src="img/excluir.png" alt="Excluir" />
 				</s:a></td>

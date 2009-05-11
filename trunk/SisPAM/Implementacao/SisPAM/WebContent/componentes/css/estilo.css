@@ -175,7 +175,7 @@ a:hover{
 	border: 1px solid #7f9db9;
 	margin: 5px 0px 5px 0px;
 	padding: 2px 0px 2px 28px;
-	background: #F2F7FE url(../img/ico_alert.gif) no-repeat 5px 1px ;
+	background: #F2F7FE url(../img/positivo2.gif) no-repeat 5px 1px ;
 	display:block;
 	text-align: left;
 	list-style-type: none;
@@ -198,5 +198,5 @@ a:hover{
 }
 
 .linkEditar{
-	background: #FFf4f1 url(img/editar.png) no-repeat 5px 1px ;
+	background: #FFf4f1 url(../img/editar.png) no-repeat 5px 1px ;
 }
