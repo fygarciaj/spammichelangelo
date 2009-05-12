@@ -25,7 +25,7 @@
 		<tr>
 			<td colspan="6" height="13">
 				<center>
-					<p><font face="Arial Black">Autenticação do sistema</font></p>
+					<p><font face="Arial Black">Autenticação do Sistema</font></p>
 				</center>
 			</td>
 		</tr>

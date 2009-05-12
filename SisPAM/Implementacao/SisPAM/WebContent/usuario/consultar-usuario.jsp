@@ -31,10 +31,10 @@
 	<h2>Consulta de Pacientes</h2>
 	</s:elseif>
 	
-	<table>
+	<table class="tabela_moldura">
 		<tr>
 			<s:form action="usuarioAction!definirTelaConsulta.action">
-				<td><label>Selecione o Perfil&nbsp;</label> <s:select
+				<td><label class="label">Selecione o Perfil&nbsp;</label> <s:select
 					list="perfils" headerKey="0" id="perfil" headerValue="--Selecione--"
 					name="codigoPerfilSelecionado" onchange="return definirPerfilConsulta()"
 					listKey="codigo" theme="simple" /></td>

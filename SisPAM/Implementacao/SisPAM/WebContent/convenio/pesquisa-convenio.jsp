@@ -22,106 +22,80 @@
 		</tr>
 	</table>	
 	<br>
-	<s:form action="usuarioAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()" theme="simple">
-	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}"/>
-		<table class="tabela" >
+	<s:form action="convenioAction!consultarConvenio.action" theme="simple">	
+		<table class="tabela_moldura" >
 			<tr>
-				<td><label>CPF</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><s:submit value="Consultar" cssClass="botao_pesquisar" theme="simple"/></td>
+				<td><label>CNPJ</label></td><td><s:textfield name="convenio.cnpj" id="cnpj" theme="simple" size="17" maxlength="18"/></td>
+				<td align="right" width="60px"><label>Nome</label></td><td><s:textfield name="convenio.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
+				<td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>
 
-<s:elseif test="codigoPerfilSelecionado == 3">
+	<!-- Lista dos últimos convênios cadastrados -->
+	<s:if test="conveniosCadastrados != null && conveniosCadastrados.size() > 0">
 	<br>
-	<s:form action="usuarioAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()" theme="simple">
-		<table class="tabela" >
-			<tr>
-				<td><label>CRM</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><s:submit value="Consultar" cssClass="botao_pesquisar" theme="simple"/></td>
-			</tr>
-		</table>
-	</s:form>
-</s:elseif>
-
-<s:elseif test="codigoPerfilSelecionado == 4">
-	<br>
-	<s:form action="usuarioAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()">
-		<table class="tabela" >
-			<tr>
-				<td><label>Prontuário</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><s:submit value="Consultar" cssClass="botao_pesquisar" theme="simple"/></td>
-			</tr>
-		</table>
-	</s:form>
-</s:elseif>
-
-
-<!-- Lista dos últimos usuários cadastrados -->
-<s:if test="usuariosCadastrados != null && usuariosCadastrados.size() > 0 ">
-	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1"
-		cellpadding="2" align="center">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
 		<tr>
-				<th colspan="6" class="principal style2" scope="col">
-					<s:if test="codigoPerfilSelecionado == 1">
-						Ùltimos	Administradores cadastrados
-					</s:if>
-					<s:elseif test="codigoPerfilSelecionado == 2">
-						Ùltimos	Atendentes cadastrados
-					</s:elseif>
-					<s:elseif test="codigoPerfilSelecionado == 3">
-						Ùltimos	Médicos cadastrados
-					</s:elseif>
-					<s:elseif test="codigoPerfilSelecionado == 4">
-						Ùltimos	Pacientes cadastrados
-					</s:elseif>
-				</th>
+			<th colspan="6" class="principal style2" scope="col">Ùltimos Convênios Cadastrados</th>
 		</tr>
-		<tr>
-			<th width="40%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">Nome</span></th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">CPF</span></th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">Telefone</span></th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">RG</span></th>
-			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">Editar</span></th>
-			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">Excluir</span></th>
+		<tr>		
+			<th width="40%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Nome</span>
+			</th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">CNPJ</span>
+			</th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Telefone</span>
+			</th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Codigo ANS</span>
+			</th>
+			<th width="5%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Editar</span>
+			</th>
+			<th width="5%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Excluir</span>
+			</th>
 		</tr>
-		<s:iterator value="usuariosCadastrados" status="status">
-			<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
-				<s:url id="excluirUsuario" action="usuarioAction!excluirUsuario.action">
-					<s:param name="usuario.id" value="id"/>
-					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
+		<s:iterator value="conveniosCadastrados" status="status">
+			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
+			
+				<!-- Monta a url para carregar a edição do convênio -->
+				<s:url id="editarConvenio" action="convenioAction!carregaEdicaoConvenio.action">
+					<s:param name="convenio.id" value="%{id}"/>
 				</s:url>
-				<s:url id="editarUsuario" action="usuarioAction!carregarEdicao.action">
-					<s:param name="usuario.id" value="id"/>
-					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
+					<!-- Monta a url para carregar a exclusão do convênio -->
+				<s:url id="excluirConvenio" action="convenioAction!excluirConvenio.action">
+					<s:param name="convenio.cnpj" value="%{cnpj}"/>
 				</s:url>
-			</s:if>
-			<tr	class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
-				<td><s:property value="nome" /></td>
-				<td align="center"><s:property value="cpf" /></td>
-				<td align="center"><s:property value="telefone" /></td>
-				<td align="center"><s:property value="rg" /></td>
-				<td align="center"><s:a href="%{#editarUsuario}">
-					<img src="img/editar.png" alt="Alterar" />
-				</s:a></td>
-				<td align="center"><s:a href="%{#excluirUsuario}" onclick="return confirmaExclusao()">
-					<img src="img/excluir.png" alt="Excluir" />
-				</s:a></td>
-
+				<td>
+					<s:property value="nome" />
+				</td>
+				<td>
+					<s:property value="cnpj"/>
+				</td>
+				<td>
+					<s:property value="telefone"/>
+				</td>
+				<td>
+					<s:property value="codigoANS"/>
+				</td>
+				<td align="center">
+					<s:a href="%{#editarConvenio}">
+						<img src="../componentes/img/editar.png" alt="Alterar" />
+					</s:a>
+				</td>
+				<td align="center">
+					<s:a href="%{#excluirConvenio}">
+						<img src="../componentes/img/excluir.png" alt="Excluir" />
+					</s:a>
+				</td>
+			
 			</tr>
-		</s:iterator>
+		</s:iterator>	
 	</table>
-</s:if>
-
+	</s:if>		
 </body>
 </html>

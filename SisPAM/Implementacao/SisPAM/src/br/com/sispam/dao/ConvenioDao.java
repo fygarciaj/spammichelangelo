@@ -65,7 +65,7 @@ public class ConvenioDao {
 		manager = conexao.getEntityManger();
 		Convenio convenio = null;
 		try{
-			//cria uma queri para fazer a busca pelo cnpj
+			//cria uma query para fazer a busca pelo cnpj
 			Query query = manager.createQuery("from Convenio where cnpj = :cnpj ");
 			//seta o parametro
 			query.setParameter("cnpj", cnpj);
