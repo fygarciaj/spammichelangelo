@@ -1,37 +1,42 @@
 package br.com.sispam.facade;
 
 import br.com.sispam.dao.ConvenioDao;
+import br.com.sispam.dao.ReceitaDao;
 import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.Convenio;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInvalidoException;
 
 public class ReceitaFacade {
-	private PacienteDao pacienteDao;
+	private Usuario paciente;
+	private ReceitaDao receitaDao;
 	
-	private void emiteReceita(Paciente paciente){
-		
+	/**
+	 * @descricao: Emite Receita Médica.
+	 * @param String
+	 * @throws CampoInvalidoException 
+	 *  
+	 */
+	private void emiteReceita(String id) throws CampoInvalidoException{
+		validaCampos(paciente);
 		try {
-			pacienteDao = new PacienteDao();
-			pacienteDao.EmitirReceita(paciente.getCnpj());
+			receitaDao = new ReceitaDao();
+			receitaDao.emitirReceita(id);
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			e.getMessage();
 			e.printStackTrace();
 		}
-		
-		
-		return paciente;	
+						
 	}
 	
-	
-	
+		
 	/**
 	 * @descricao: valida os campos do objeto da tela passado.
 	 * @param objeto
 	 * @throws CampoInvalidoException 
 	 */
-	private void validaCampos(Paciente paciente) throws CampoInvalidoException{
+	private void validaCampos(Usuario paciente) throws CampoInvalidoException{
 
 			if(paciente.getCpf() == null || paciente.getCpf().isEmpty()) {
 				throw new CampoInvalidoException("Campo cpf inválido");

@@ -31,27 +31,29 @@
 	<h2>Consulta de Pacientes</h2>
 	</s:elseif>
 	
-	<table class="tabela_moldura">
+	<table>
 		<tr>
 			<s:form action="usuarioAction!definirTelaConsulta.action">
+			<table class="tabela_moldura">
+				<tr>
 				<td><label class="label">Selecione o Perfil&nbsp;</label> <s:select
-					list="perfils" headerKey="0" id="perfil" headerValue="--Selecione--"
+					list="perfils" headerKey="0" id="perfil" headerValue="Selecione"
 					name="codigoPerfilSelecionado" onchange="return definirPerfilConsulta()"
 					listKey="codigo" theme="simple" /></td>
+				</tr>
+			</table>
 			</s:form>
 		</tr>
 	</table>
-
-
 <s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
 	<br>
 	<s:form action="usuarioAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()" theme="simple">
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}"/>
-		<table class="tabela" >
+		<table class="tabela_moldura" >
 			<tr>
-				<td><label>CPF</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><s:submit value="Consultar" cssClass="botao_pesquisar" theme="simple"/></td>
+				<td><label>CPF</label></td><td><s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
+				<td align="right" width="60px"><label>Nome</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
+				<td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>
@@ -88,7 +90,7 @@
 <s:if test="usuariosCadastrados != null && usuariosCadastrados.size() > 0 ">
 	<br>
 	<table class="tabela_moldura" width="90%" cellspacing="1"
-		cellpadding="2" align="center">
+		cellpadding="2" align="left">
 		<tr>
 				<th colspan="6" class="principal style2" scope="col">
 					<s:if test="codigoPerfilSelecionado == 1">
