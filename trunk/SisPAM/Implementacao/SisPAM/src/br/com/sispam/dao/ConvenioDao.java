@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
@@ -36,7 +37,7 @@ public class ConvenioDao {
 		conexao.finalizaConexao();
 	}
 	
-	public void excluirConvenio(String cnpj){
+	public void excluirConvenio(String cnpj) throws EntityExistsException{
 				
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
@@ -50,6 +51,7 @@ public class ConvenioDao {
 			manager.getTransaction().commit();
 		}catch(EntityExistsException e){
 			e.printStackTrace();
+			throw new EntityExistsException("Atenção! Pacientes vinculados a esse convênio, não permitindo a sua exclusao.");
 		}
 		conexao.finalizaConexao();
 	}

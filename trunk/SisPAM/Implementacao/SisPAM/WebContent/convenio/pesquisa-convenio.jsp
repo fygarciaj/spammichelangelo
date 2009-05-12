@@ -13,15 +13,17 @@
 </head>
 <body>
 	<table width="89%" id="cmnUsr" class="caminhoUsuario">
-		<tr>
-			<td>
-				<br>
-				<div>Cadastro<img src="../componentes/img/seta.gif" /> Convênio
-				<img src="../componentes/img/seta.gif" /> Alterar/Excluir</div>
-			</td>
-		</tr>
-	</table>	
-	<br>
+	<tr>
+    <td>
+    	<br>
+		<div>Cadastro<img src="../componentes/img/seta.gif" />    		
+    	Convênio<img src="../componentes/img/seta.gif" />
+		Alterar/Excluir				    		
+    	</div>		
+    </td>	
+	</tr>	
+	</table>
+	<h2>Pesquisa de Convênios</h2>
 	<s:form action="convenioAction!consultarConvenio.action" theme="simple">	
 		<table class="tabela_moldura" >
 			<tr>
@@ -35,7 +37,7 @@
 	<!-- Lista dos últimos convênios cadastrados -->
 	<s:if test="conveniosCadastrados != null && conveniosCadastrados.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
 			<th colspan="6" class="principal style2" scope="col">Ùltimos Convênios Cadastrados</th>
 		</tr>

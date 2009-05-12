@@ -1,15 +1,16 @@
 package br.com.sispam.action;
 
 import br.com.sispam.facade.ConvenioFacade;
+import br.com.sispam.facade.ReceitaFacade;
 
 public class ReceitaAction extends Action{
 
-	private Paciente paciente;
+	private String id;
 	private ReceitaFacade receitaFacade;
 	
-	public String emitirReceita(paciente){
+	public String emitirReceita(String id){
 		receitaFacade = new ReceitaFacade();
-		this.paciente = receitaFacade.emiteReceita(paciente);
+		
 		
 		return CARREGAR_CONVENIO_EXISTENTE;
 	}
