@@ -9,8 +9,9 @@
 <title>Login SisPAM</title>
 </HEAD>
 <BODY >
-	<img src="componentes/img/simbLogin.jpg"  width="100%">
-<br><table align="center" width="352px">
+	<img src="componentes/img/simbLogin.jpg"  width="100%" align="top">
+<br>
+<table align="center" width="352px">
 <tr><td>
 <s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
 <s:actionmessage theme="simple" cssClass="errorMessage" cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>

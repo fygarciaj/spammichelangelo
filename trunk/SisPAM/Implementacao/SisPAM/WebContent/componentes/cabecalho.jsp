@@ -13,10 +13,10 @@
 <div id="tabs">
 <img src="img/simbolo.jpg" width="248px" align="left">
 <br>
-<table width="75%">
-	<tr>
-		<td class="nomeSistema" rowspan="2" width="50%">Sistema de Pronto Atendimento Médico</td>
-		<td class="userLogado" width="25%">Usuário logado: <%=((Usuario) session.getAttribute("usuarioLogado")).getAcesso().toUpperCase()%>
+<table width="750px">
+	<tr >
+		<td class="nomeSistema" width="500px">Sistema de Pronto Atendimento Médico</td>
+		<td class="userLogado" width="240">Usuário logado: <%=((Usuario) session.getAttribute("usuarioLogado")).getAcesso().toUpperCase()%>
 		<br>Login em: <%=((Usuario) session.getAttribute("dtHrAcess")).getDtHoraAcesso()%>
 		</td>
 	</tr>
