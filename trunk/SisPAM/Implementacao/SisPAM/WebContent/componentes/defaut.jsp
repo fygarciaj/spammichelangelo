@@ -13,7 +13,7 @@
 </head>
 <body>
 <br>
-<h1>SisPAM - Sistema de Pronto Atendimento Médico</h1>
+
 <table width="89%" id="AreaMsg" class="AreaMsg">			
 	<tr>	
 	<td>	

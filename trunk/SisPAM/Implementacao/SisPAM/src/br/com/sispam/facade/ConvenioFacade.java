@@ -91,20 +91,20 @@ public class ConvenioFacade {
 	 */
 	public Convenio pesquisaConvenio(Convenio convenio) throws CampoInvalidoException{
 		convenioDao = new ConvenioDao();
-		Convenio convenio2 = null;
+		Convenio convenioRetornado = null;
 		try {
 			if((convenio.getCnpj() == null || convenio.getCnpj().isEmpty()) && (convenio.getNome() == null || convenio.getNome().isEmpty())){
 				throw new CampoInvalidoException("Preencha um dos campos para efetuar a pesquisa!");
 			}else if(convenio.getCnpj() != null && !convenio.getCnpj().isEmpty()) {
-				convenio2 = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
+				convenioRetornado = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
 			}else{
-				convenio2 = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+				convenioRetornado = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
 			}
 
 		} catch (NoResultException e) {
 			throw new CampoInvalidoException("Nenhum registro encontrado");
 		}
-		return convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
+		return convenioRetornado;
 	}
 	
 	

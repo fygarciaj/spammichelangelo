@@ -68,6 +68,7 @@ public class ConvenioAction extends Action{
 	}
 
 	public String excluirConvenio(){
+		 
 		this.convenioFacade = new ConvenioFacade();		
 		try {
 			this.convenioFacade.excluiConvenio(this.convenio);
@@ -97,7 +98,10 @@ public class ConvenioAction extends Action{
 	public String carregaEdicaoConvenio(){
 		this.convenioFacade = new ConvenioFacade();
 		this.convenio = this.convenioFacade.recuperarPeloId(convenio.getId());
+		this.codigoANSAux = String.valueOf(convenio.getCodigoANS());
 		this.cepAux = String.valueOf(convenio.getCep());
+		this.dddAux = String.valueOf(convenio.getDdd());
+		this.telefoneAux = String.valueOf(convenio.getTelefone());
 		return SUCESSO_INCLUIR_CONVENIO;
 	}
 

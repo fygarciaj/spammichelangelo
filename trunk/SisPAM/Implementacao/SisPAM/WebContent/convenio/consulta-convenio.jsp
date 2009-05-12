@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 <script type="text/javascript" src="../componentes/js/sispam.js"></script>
+<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
+<script type="text/javascript" src="componentes/js/sispam.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -79,7 +81,7 @@
 	<br>
 	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
 		<tr>
-			<th colspan="6" class="principal style2" scope="col">Ùltimos convênios cadastrados</th>
+			<th colspan="6" class="principal style2" scope="col">Ùltimos Convênios Cadastrados</th>
 		</tr>
 		<tr>		
 			<th width="40%" bgcolor="#A7C2DA" scope="col">
@@ -109,8 +111,8 @@
 					<s:param name="convenio.id" value="%{id}"/>
 				</s:url>
 					<!-- Monta a url para carregar a exclusão do convênio -->
-				<s:url id="excluirConvenio" action="convenioAction!excluirUsuario.action">
-					<s:param name="convenio.id" value="%{id}"/>
+				<s:url id="excluirConvenio" action="convenioAction!excluirConvenio.action">
+					<s:param name="convenio.cnpj" value="%{cnpj}"/>
 				</s:url>
 				<td>
 					<s:property value="nome" />
@@ -126,12 +128,12 @@
 				</td>
 				<td align="center">
 					<s:a href="%{#editarConvenio}">
-						<img src="img/editar.png" alt="Alterar" />
+						<img src="../componentes/img/editar.png" alt="Alterar" />
 					</s:a>
 				</td>
 				<td align="center">
 					<s:a href="%{#excluirConvenio}">
-						<img src="img/excluir.png" alt="Alterar" />
+						<img src="../componentes/img/excluir.png" alt="Excluir" />
 					</s:a>
 				</td>
 			
