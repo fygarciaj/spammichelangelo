@@ -28,7 +28,7 @@
 				cellspacing="4">
 				<tr>
 					<td><label class="label">Tipo:</label></td>
-					<td><select name="compromisso.nome">
+					<td><select name="agendaMedica.tipo">
 						<option value="0">Selecione</option>
 						<option value="1">Consulta</option>
 						<option value="2">Cirurgia</option>
@@ -39,21 +39,21 @@
 				</tr>
 				<tr>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple" name="compromisso.data"
-						size="10" maxlength="10" />&nbsp;</td>
+					<td><s:textfield theme="simple" name="agendaMedica.data"
+						size="10" maxlength="10"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td><label class="label">Hora Inicial:</label></td>
-					<td><s:textfield theme="simple" name="compromisso.horaInicial"
+					<td><s:textfield theme="simple" name="agendaMedica.horaInicial"
 						size="4" maxlength="5" />&nbsp;&nbsp;&nbsp;&nbsp; <label
 						class="label">Hora Final:</label>&nbsp; <s:textfield
-						theme="simple" name="compromisso.horaFinal" size="4" maxlength="5" />&nbsp;</td>
+						theme="simple" name="agendaMedica.horaFinal" size="4" maxlength="5" />&nbsp;</td>
 
 				</tr>
 				<tr>
 					<td><label class="label">Descrição:</label></td>
 					<td colspan="4"><s:textfield theme="simple"
-						name="compromisso.descricao" size="65" maxlength="50" />&nbsp;</td>
+						name="agendaMedica.descricao" size="65" maxlength="50" />&nbsp;</td>
 				</tr>
 			</table>
 		<table border="0" align="center">
