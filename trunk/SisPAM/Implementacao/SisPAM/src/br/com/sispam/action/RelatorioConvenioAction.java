@@ -12,10 +12,10 @@ public class RelatorioConvenioAction extends Action {
 	
 	private RelatorioConvenioFacade relatorioConvenioFacade;
 	
-	public String emitirRelatorioConvenio(String tipoRelatorio, String categoria){
+	public String emitirRelatorioConvenio(String tipoRelatorio, String ordenacao){
 		relatorioConvenioFacade = new RelatorioConvenioFacade();
 		try {
-			relatorioConvenioFacade.emiteRelatorioConvenio(tipoRelatorio, categoria);
+			relatorioConvenioFacade.emiteRelatorioConvenio(tipoRelatorio, ordenacao);
 		} catch (CampoInvalidoException e) {
 			
 			e.printStackTrace();

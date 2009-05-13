@@ -10,7 +10,7 @@ import br.com.sispam.excecao.CampoInvalidoException;
 public class RelatorioConvenioFacade {
 	private RelatorioConvenioDao relatorioConvenioDao; 
 	
-	public Convenio emiteRelatorioConvenio(String tipoRelatorio, String categoria) throws CampoInvalidoException{
+	public Convenio emiteRelatorioConvenio(String tipoRelatorio, String ordenacao) throws CampoInvalidoException{
 		relatorioConvenioDao = new RelatorioConvenioDao();
 		Convenio convenioRetornado = null;
 		try {

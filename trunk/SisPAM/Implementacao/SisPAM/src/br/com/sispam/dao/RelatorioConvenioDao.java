@@ -11,7 +11,7 @@ public class RelatorioConvenioDao {
 	private Conexao conexao;
 	private EntityManager manager;
 	
-	public void emitirRelatorioConvenio(String tipoRelatorio, String categoria){
+	public void emitirRelatorioConvenio(String tipoRelatorio, String ordenacao){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		

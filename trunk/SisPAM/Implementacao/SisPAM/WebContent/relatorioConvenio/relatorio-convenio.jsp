@@ -28,7 +28,7 @@
 			<tr>			
         	<td colspan="2"><label class="label">Tipo de Relatório</label>
         	</td><td colspan="4">
-        	<!-- Forma de Consulta -->        	
+        	<!-- Tipo de Relatorio -->        	
 			<select id="cmbTipRel">
 				<option value="1">Sintético</option>			
 				<option value="2">Analítico</option>
@@ -36,12 +36,13 @@
         	</td>
 			</tr>			
 			<tr>			
-        	<td colspan="2"><label class="label">Categoria</label>
+        	<td colspan="2"><label class="label">Ordenação</label>
 			</td><td colspan="2">
-        	<!-- Forma de Consulta -->        	
-			<select id="cmbTipRel">
+        	<!-- Categorizacao -->        	
+			<select id="cmbOrdRel">
 				<option value="1">Nome do Convênio</option>			
 				<option value="2">CNPJ</option>
+				<option value="3">Código ANS</option>
 			</select>
         	</td>
 			<td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
