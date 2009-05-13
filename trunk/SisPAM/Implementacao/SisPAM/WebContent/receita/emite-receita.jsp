@@ -5,41 +5,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/estilo.css" type="text/css" />
-<script type="text/javascript" src="js/sispam.js"></script>
-<link rel="stylesheet" href="../css/estilo.css" type="text/css" />
-<script type="text/javascript" src="../js/sispam.js"></script>
-<title>Insert title here</title>
+	<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
+	<script type="text/javascript" src="componentes/js/sispam.js"></script>
+	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
+	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
+	<title>Insert title here</title>
 </head>
 <body>
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Relatório<img src="/componentes/img/seta.gif" />Emitir Receita<img
-			src="img/seta.gif" /> Receita</div>
+		<div>Relatório<img src="../componentes/img/seta.gif" />Receita<img
+			src="../componentes/img/seta.gif" />Emitir</div>
 		</td>
 </table>
-<h2>Emissao de Receita</h2>
-<s:form action="receitaAction!emitirReceita.action">
-	<table>
-		<tr>
-			<td><label>Selecione o Perfil&nbsp;</label> <s:select
-				list="perfils" headerKey="0" id="perfil" headerValue="--Selecione--"
-				name="codigoPerfilSelecionado" onchange="return definirPerfil()"
-				listKey="codigo" theme="simple" /></td>
-		</tr>
-	</table>
-</s:form>
+<h2>Emissão de Receita</h2>
 <s:fielderror cssErrorClass="errorMessage" />
 <s:actionmessage />
 
-<s:form action="usuarioAction!salvarUsuario.action" onsubmit="return verificaCamposPesquisa()">
-		<table class="tabela" >
+<s:form action="receitaAction!emitirReceita.action">
+		<table class="tabela_moldura" >
 			<tr>
-				<td><label>Paciente</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Data de Atendimento</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><label>Hora de Atendimento</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><s:submit value="Consultar" cssClass="botao_pesquisar" theme="simple"/></td>
+				<td><label>Paciente</label></td><td><s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
+				<td><label>Data de Atendimento</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="10" maxlength="10"/></td>
+				<td><label>Hora de Atendimento</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="6" maxlength="5"/></td>
+				<td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>
@@ -47,7 +37,7 @@
 	<!-- Lista dos últimos Pacientes atendidos -->
 	<s:if test="usuariosCadastrados != null && usuariosCadastrados.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
 			<th colspan="6" class="principal style2" scope="col">Ùltimos pacientes atendidos</th>
 		</tr>
@@ -60,9 +50,6 @@
 			</th>
 			<th width="12%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Telefone</span>
-			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Perfil</span>
 			</th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Editar</span>
@@ -91,9 +78,7 @@
 				<td>
 					<s:property value="telefone"/>
 				</td>
-				<td>
-					<s:property value="perfil"/>
-				</td>
+				
 				<td align="center">
 					<s:a href="%{#editarUsuario}">
 						<img src="img/editar.png" alt="Alterar" />

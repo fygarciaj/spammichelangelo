@@ -17,7 +17,7 @@ public class ReceitaFacade {
 	 * @throws CampoInvalidoException 
 	 *  
 	 */
-	private void emiteReceita(String id) throws CampoInvalidoException{
+	public void emiteReceita(String id) throws CampoInvalidoException{
 		validaCampos(paciente);
 		try {
 			receitaDao = new ReceitaDao();
