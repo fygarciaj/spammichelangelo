@@ -32,9 +32,13 @@
 			<result name="listaConvenios">/convenio/pesquisa-convenio.jsp</result>
 		</action>
 		
+		<!-- Relatorio de Convenio Action -->
+		<action name="relatorioConvenioAction!*" method="{1}" class="br.com.sispam.action.RelatorioConvenioAction">
+			<result name="sucesso">relatorio-convenio.jsp</result>
+		</action>
+		
 		<!-- Receita Action -->
-		<action name="receitaAction!*" method="{1}"
-			class="br.com.sispam.action.ReceitaAction">
+		<action name="receitaAction!*" method="{1}" class="br.com.sispam.action.ReceitaAction">
 			<result name="sucesso">emite-receita.jsp</result>
 		</action>
 
