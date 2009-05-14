@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="340" pageHeight="420" columnWidth="300" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="titulo" isDefault="false" fontName="tahoma, verdana, arial, helvetica, sans-serif;" fontSize="11"/>
+	<style name="zebra" isDefault="false" forecolor="#DCDCDC">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean( $V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style isDefault="false" style="zebra" mode="Opaque" backcolor="#DCDCDC"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT USUARIO.USRNOM, HISTORICOPRONTUARIO.HTCCOD, USUARIO.USRSEX, PACIENTE.PCTACM, CONVENIO.CVNDES, HISTORICOPRONTUARIO.HTCPRC
+FROM USUARIO, HISTORICOPRONTUARIO, PACIENTE, CONVENIO, AGENDAMENTO, MEDICO
+WHERE USUARIO.USRCOD = PACIENTE.USRCOD 
+AND AGENDAMENTO.PCTIDFSEG = HISTORICOPRONTUARIO.PCTIDFSEG
+AND CONVENIO.CVNCOD = PACIENTE.CVNCOD 
+AND PACIENTE.PCTIDFSEG = 1 
+AND AGENDAMENTO.AGDDAT = '2009-05-11'
+AND AGENDAMENTO.AGDHOR = 1200]]>
+	</queryString>
+	<field name="usrnom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="htccod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usrsex" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pctacm" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvndes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="htcprc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="79">
+			<frame>
+				<reportElement mode="Opaque" x="129" y="31" width="171" height="41" isPrintInFirstWholeBand="true" forecolor="#F4F8FB" backcolor="#F4F8FB"/>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="129" y="64" width="171" height="15" isPrintInFirstWholeBand="true" backcolor="#191970"/>
+			</frame>
+			<image scaleImage="FillFrame">
+				<reportElement x="4" y="31" width="135" height="48" isPrintInFirstWholeBand="true"/>
+				<imageExpression class="java.lang.String"><![CDATA["D:\\Projeto Acadêmico\\SisPAM\\Implementacao\\SisPAM\\WebContent\\componentes\\img\\simbolo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="titulo" mode="Opaque" x="77" y="31" width="206" height="18" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
+				<textElement textAlignment="Justified">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Receituário/Solicitação de exames]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="43"/>
+	</columnHeader>
+	<detail>
+		<band height="230">
+			<staticText>
+				<reportElement x="4" y="23" width="59" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="23" width="83" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Prontuário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="81" width="100" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="81" width="100" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Idade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="81" width="94" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Convênio]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="43" width="125" height="20" forecolor="#000000"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrnom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="101" width="100" height="20" forecolor="#000000"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrsex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="101" width="100" height="20" forecolor="#000000"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrsex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="101" width="94" height="20" forecolor="#000000"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cvndes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="43" width="100" height="20" forecolor="#000000"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{htccod}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="104" y="150" width="103" height="20" forecolor="#003399"/>
+				<textElement textAlignment="Center">
+					<font fontName="tahoma, verdana, arial, helvetica, sans-serif;" size="15"/>
+				</textElement>
+				<text><![CDATA[Prescrição]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="194" width="296" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{htcprc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54">
+			<staticText>
+				<reportElement x="4" y="2" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="4" y="22" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="23" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrnom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="129" y="3" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Médico/CRM]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42"/>
+	</summary>
+</jasperReport>

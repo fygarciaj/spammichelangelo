@@ -31,12 +31,7 @@
 			<result name="falhaCarregarConvenio">/componentes/defaut.jsp</result>
 			<result name="listaConvenios">/convenio/pesquisa-convenio.jsp</result>
 		</action>
-		
-		<!-- Relatorio de Convenio Action -->
-		<action name="relatorioConvenioAction!*" method="{1}" class="br.com.sispam.action.RelatorioConvenioAction">
-			<result name="sucesso">relatorio-convenio.jsp</result>
-		</action>
-		
+				
 		<!-- Receita Action -->
 		<action name="receitaAction!*" method="{1}" class="br.com.sispam.action.ReceitaAction">
 			<result name="sucesso">emite-receita.jsp</result>
@@ -47,6 +42,13 @@
 			<result name="sucesso">index.jsp</result>
 			<result name="falha">login.jsp</result>
 		</action>
+		
+			<!-- Medico Action -->
+		<action name="medicoAction!*" method="{1}" class="br.com.sispam.action.MedicoAction">
+			<result name="falhaSalvarMedico">/usuario/inclui-usuario.jsp</result>
+		</action>
+		
+		
 	</package>
 
 </struts>

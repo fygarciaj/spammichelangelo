@@ -2,6 +2,7 @@
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +54,7 @@ public class ConvenioFacade {
 			e.getStackTrace();
 		}					
 	}
-	
+
 	public Convenio recuperarPeloId(int id){
 		this.convenioDao = new ConvenioDao();
 		Convenio convenio = null;
@@ -72,12 +73,18 @@ public class ConvenioFacade {
 	public void verificaExistencia(Convenio convenio) throws CampoInvalidoException{
 		convenioDao = new ConvenioDao();				
 		Convenio convenioNew = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
-		if(convenioNew != null){
+		if(convenioNew != null && convenio.getId() != convenioNew.getId()){
 			throw new CampoInvalidoException("Convênio já cadastrado com esse cnpj!");
 		}
-		convenioNew = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
-		if(convenioNew != null){
-			throw new CampoInvalidoException("Convênio já cadastrado com esse nome!");
+
+		List<Convenio> convenios = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+
+		if(convenios != null && convenios.size() > 0){
+			for (Convenio convenio2 : convenios) {
+				if(convenio2 != null && convenio.getId() != convenio2.getId() ){
+					throw new CampoInvalidoException("Convênio já cadastrado com esse nome!");
+				}
+			}
 		}
 
 	}
@@ -89,25 +96,28 @@ public class ConvenioFacade {
 	 * @throws CampoInvalidoException 
 	 * 
 	 */
-	public Convenio pesquisaConvenio(Convenio convenio) throws CampoInvalidoException{
+	public List<Convenio> pesquisaConvenio(Convenio convenio) throws CampoInvalidoException{
 		convenioDao = new ConvenioDao();
 		Convenio convenioRetornado = null;
+		List<Convenio> conveniosRetornados = null;
 		try {
 			if((convenio.getCnpj() == null || convenio.getCnpj().isEmpty()) && (convenio.getNome() == null || convenio.getNome().isEmpty())){
 				throw new CampoInvalidoException("Preencha um dos campos para efetuar a pesquisa!");
 			}else if(convenio.getCnpj() != null && !convenio.getCnpj().isEmpty()) {
+				conveniosRetornados = new ArrayList<Convenio>();
 				convenioRetornado = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
+				conveniosRetornados.add(convenioRetornado);
 			}else{
-				convenioRetornado = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
+				conveniosRetornados = convenioDao.consultarConvenioPorDescricao(convenio.getNome());
 			}
 
 		} catch (NoResultException e) {
 			throw new CampoInvalidoException("Nenhum registro encontrado");
 		}
-		return convenioRetornado;
+		return conveniosRetornados;
 	}
-	
-	
+
+
 
 	/**
 	 * @descricao: Recupera os últimos convênios cadastrados.

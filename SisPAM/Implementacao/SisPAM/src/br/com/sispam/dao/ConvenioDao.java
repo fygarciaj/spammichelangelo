@@ -79,22 +79,22 @@ public class ConvenioDao {
 		return convenio;
 	}
 	
-	public Convenio consultarConvenioPorDescricao(String nome){
+	public List<Convenio> consultarConvenioPorDescricao(String nome){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		Convenio convenio = null;
+		List<Convenio> convenios = null;
 		try{
 			//cria uma queri para fazer a busca pelo nome
 			Query query = manager.createQuery("from Convenio where nome like :nome ");
 			//seta o parametro
 			query.setParameter("nome", "%"+nome+"%");
-			convenio = (Convenio) query.getSingleResult();				
+			convenios = query.getResultList();				
 		}catch (NoResultException e) {
 			e.printStackTrace();
 			e.getMessage();
 		}
 		conexao.finalizaConexao();		
-		return convenio;
+		return convenios;
 	}	
 	
 	/**

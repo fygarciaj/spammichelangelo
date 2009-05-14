@@ -156,7 +156,7 @@ public class UsuarioFacade {
 				throw new CampoInvalidoException("Campo cidade inválido");
 			}
 			if(usuario.getUf() ==  null || usuario.getUf().isEmpty()){
-				throw new CampoInvalidoException("Campo UF inválido");
+				throw new CampoInvalidoException("Campo Estado inválido");
 			}
 			if(usuario.getAcesso() == null || usuario.getAcesso().isEmpty()){
 				throw new CampoInvalidoException("Campo Login inválido");

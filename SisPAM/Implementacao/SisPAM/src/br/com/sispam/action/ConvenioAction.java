@@ -68,7 +68,7 @@ public class ConvenioAction extends Action{
 	}
 
 	public String excluirConvenio(){
-		 
+
 		this.convenioFacade = new ConvenioFacade();		
 		try {
 			this.convenioFacade.excluiConvenio(this.convenio);
@@ -85,16 +85,15 @@ public class ConvenioAction extends Action{
 		convenioFacade = new ConvenioFacade();
 		try {
 			this.conveniosCadastrados = new ArrayList<Convenio>();
-			this.convenio = convenioFacade.pesquisaConvenio(convenio);
-			this.conveniosCadastrados.add(this.convenio);
+			this.conveniosCadastrados = convenioFacade.pesquisaConvenio(convenio);
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 		}
-
+		limparCampos();
 		return LISTAR_CONVENIOS;
 
 	}
-	
+
 	public String carregaEdicaoConvenio(){
 		this.convenioFacade = new ConvenioFacade();
 		this.convenio = this.convenioFacade.recuperarPeloId(convenio.getId());
