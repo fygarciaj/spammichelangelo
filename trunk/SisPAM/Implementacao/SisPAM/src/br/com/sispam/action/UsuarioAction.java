@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.postgresql.jdbc2.EscapedFunctions;
+
+import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Dia;
@@ -13,6 +16,7 @@ import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.UsuarioFacade;
 
 public class UsuarioAction extends Action{
@@ -20,6 +24,7 @@ public class UsuarioAction extends Action{
 	private Usuario usuario;
 	private Medico medico;
 	private UsuarioFacade usuarioFacade;
+	private EspecialidadeFacade especialidadeFacade;
 	private Perfil[] perfils = Perfil.values();
 	private Integer codigoPerfilSelecionado;
 	private String codigoPerfilString;
@@ -32,6 +37,8 @@ public class UsuarioAction extends Action{
 	private String rgAux;
 	private String dddAux;
 	private List<Dia>dias;
+	private List<EspecialidadeMedica> especialidades;
+
 
 
 
@@ -60,6 +67,8 @@ public class UsuarioAction extends Action{
 			}
 			
 		}
+		this.especialidadeFacade = new EspecialidadeFacade();
+		this.especialidades = this.especialidadeFacade.recuperarTodas();
 		limparCampos(false);
 		return TELA_SELECIONADA;
 	}
@@ -309,6 +318,14 @@ public class UsuarioAction extends Action{
 
 	public void setDias(List<Dia> dias) {
 		this.dias = dias;
+	}
+
+	public List<EspecialidadeMedica> getEspecialidades() {
+		return especialidades;
+	}
+
+	public void setEspecialidades(List<EspecialidadeMedica> especialidades) {
+		this.especialidades = especialidades;
 	}
 	
 

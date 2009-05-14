@@ -15,6 +15,7 @@ public class Action extends ActionSupport{
 	public final String SUCESSO_SALVAR_USUARIO = "sucessoSalvarUsuario";
 	public final String CARREGAR_NOVO_USUARIO = "carregarNovoUsuario";
 	public final String FALHA_SALVAR_USUARIO = "falhaSalvarUsuario";
+	public final String FALHA_SALVAR_MEDICO = "falhaSalvarMedico";
 	public final String TELA_SELECIONADA = "telaSelecionada";
 	public final String LISTAR_USUARIOS = "listaUsuarios";
 	public final String SUCESSO_CARREGAR_CONSULTA = "sucessoCarregarConsulta";

@@ -18,7 +18,12 @@
     	<br>
 		<div>Cadastro<img src="../componentes/img/seta.gif" />    		
     	Convênio<img src="../componentes/img/seta.gif" />
-		Incluir				    		
+    	<s:if test="convenio.id > 0">
+    		Alterar
+    	</s:if>
+    	<s:else>
+			Incluir
+		</s:else>				    		
     	</div>
     </td>	
 	</table>
@@ -33,7 +38,8 @@
 	</td>
 	</tr>
 	</table>
-	<s:form id="formConvenio" action="convenioAction!incluirConvenio.action">
+	<s:form id="formConvenio" action="convenioAction!incluirConvenio.action" method="post">
+		<s:hidden name="convenio.id" value="%{convenio.id}"/>
 		<table class="tabela_moldura">
 			<tr>
 				<td>
@@ -97,7 +103,14 @@
 							</tr>												
 							<table border="0" align="center">
 							<tr>																								
-								<td align="center"><br><input type="submit" tabindex="1" onclick="return confirmaInclusao()" name="confirmarAction" value="Incluir" class="button"><br></td>																								
+								<td align="center"><br>
+									<s:if test="convenio.id > 0">
+										<input type="submit" tabindex="1" name="confirmarAction" value="Alterar" class="button"><br>
+									</s:if>
+									<s:else>
+										<input type="submit" tabindex="1"  name="confirmarAction" value="Incluir" class="button"><br>
+									</s:else>
+								</td>																								
 							</tr>
 							</table>						
 						</table>						

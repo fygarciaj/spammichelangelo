@@ -6,12 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.sispam.facade.LoginFacade;
 
 @Entity
 public class Usuario {
-	
+
 	private int id;
 	private String nome;
 	private char sexo;
@@ -29,8 +30,8 @@ public class Usuario {
 	private String senha;
 	private String acesso;
 	private String dtHoraAcesso;
-		
-	
+
+
 	/*Get & Set*/
 	@Id
 	@Column(name = "usrcod")
@@ -146,6 +147,8 @@ public class Usuario {
 	public void setAcesso(String acesso) {
 		this.acesso = acesso;
 	}
+
+	@Transient
 	public String getDtHoraAcesso() {
 		LoginFacade lf = new LoginFacade();
 		return lf.dataHoraLogin();
@@ -154,5 +157,5 @@ public class Usuario {
 		LoginFacade lf = new LoginFacade();
 		this.dtHoraAcesso = lf.dataHoraLogin();
 	}
-	
-	}
+
+}
