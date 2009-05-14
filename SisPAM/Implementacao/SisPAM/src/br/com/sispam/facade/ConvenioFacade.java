@@ -117,8 +117,6 @@ public class ConvenioFacade {
 		return conveniosRetornados;
 	}
 
-
-
 	/**
 	 * @descricao: Recupera os últimos convênios cadastrados.
 	 * @return

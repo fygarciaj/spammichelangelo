@@ -32,11 +32,11 @@ public class Action extends ActionSupport{
 	public final String USUARIO_LOGADO = "usuarioLogado";
 	public final String DATA_HORA_ACESSO = "dtHrAcess";
 	
-//	public final String SUCESSO_SALVAR_COMPROMISSO = "sucessoSalvarCompromisso";
-//	public final String SUCESSO_EDICAO_COMPROMISSO = "sucessoEdicaoCompromisso";
-//	public final String FALHA_SALVAR_COMPROMISSO = "falhaSalvarCompromisso";
-//	public final String FALHA_EXCLUIR_COMPROMISSO = "falhaExcluirCompromisso";
-//	public final String LISTAR_COMPROMISSOS = "listarCompromissos";
+	public final String SUCESSO_SALVAR_COMPROMISSO = "sucessoSalvarCompromisso";
+	public final String SUCESSO_EDICAO_COMPROMISSO = "sucessoEdicaoCompromisso";
+	public final String FALHA_SALVAR_COMPROMISSO = "falhaSalvarCompromisso";
+	public final String FALHA_EXCLUIR_COMPROMISSO = "falhaExcluirCompromisso";
+	public final String LISTAR_COMPROMISSOS = "listarCompromissos";
 
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();

@@ -1,8 +1,10 @@
 package br.com.sispam.dominio;
 
+import java.sql.Time;
+
 public class Compromisso {
 	private int id;
-	private int codMedico;
+	private Medico medico;
 	private String data;
 	private String descricao;
 	private int horaInicio;
@@ -53,13 +55,15 @@ public class Compromisso {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	public int getCodMedico() {
-		return codMedico;
+
+	public Medico getMedico() {
+		return medico;
 	}
 
-	public void setCodMedico(int codMedico) {
-		this.codMedico = codMedico;
-	}	
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+	
+	
 	
 }

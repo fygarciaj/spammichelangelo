@@ -49,13 +49,13 @@
 		</action>
 		
 		<!--Compromisso Action -->
-<!--		<action name="compromissoAction" method="{1}" class="br.com.sispam.action.CompromissoAction">-->
-<!--			<result name="sucessoSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>-->
-<!--			<result name="sucessoEdicaoCompromisso">/compromisso/inclui-compromisso.jsp</result>-->
-<!--			<result name="falhaSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>-->
-<!--			<result name="falhaExcluirCompromisso">/compromisso/consulta-compromisso.jsp</result>-->
-<!--			<result name="listarCompromissos">/compromisso/consulta-compromisso.jsp</result>-->
-<!--		</action>-->
+		<action name="compromissoAction" method="{1}" class="br.com.sispam.action.CompromissoAction">
+			<result name="sucessoSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>
+			<result name="sucessoEdicaoCompromisso">/compromisso/inclui-compromisso.jsp</result>
+			<result name="falhaSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>
+			<result name="falhaExcluirCompromisso">/compromisso/consulta-compromisso.jsp</result>
+			<result name="listarCompromissos">/compromisso/consulta-compromisso.jsp</result>
+		</action>
 		
 	</package>
 
