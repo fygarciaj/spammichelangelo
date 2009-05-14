@@ -25,8 +25,8 @@
 <form action="../relatorioConvenio.sispam" method="post">
 		<table class="tabela_moldura" >
 			<tr>			
-        	<td colspan="2"><label class="label">Tipo de Relatório</label>
-        	</td><td colspan="4">
+        	<td><label class="label">Tipo de Relatório</label>
+        	</td><td>
         	<!-- Tipo de Relatorio -->        	
 			<select id="cmbTipRel" name="tipoRelatorio">
 				<option value="1">Sintético</option>			
@@ -34,16 +34,10 @@
 			</select>
         	</td>
 			</tr>			
-			<tr>			
-        	<td colspan="2"><label class="label">Ordenação</label>
-			</td><td colspan="2">
-        	<!-- Categorizacao -->        	
-			<select id="cmbOrdRel" name="filtro">
-				<option value="1">Nome do Convênio</option>			
-				<option value="2">CNPJ</option>
-				<option value="3">Código ANS</option>
-			</select>
-        	</td>
+			<tr>			        	
+        	<!-- Filtro -->        	
+			<td><label class="label" >Nome do Convênio</label></td><td><input type="text" name="convenio.nome" size="60" maxlength="60"/></td>
+        	
 			<td><input type="submit" value="Consultar" class="button"/></td>
 			</tr>	
 		</table>
