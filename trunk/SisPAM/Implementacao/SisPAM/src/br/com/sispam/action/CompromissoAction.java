@@ -14,12 +14,11 @@ public class CompromissoAction extends Action{
 	
 	private Compromisso compromisso;
 	private CompromissoFacade compromissoFacade;
-	private int isExisteConvenio;
 	private List<Compromisso> compromissosCadastrados;
 	private String horaInicioAux;
 	private String horaFimAux;
 	
-/*	public String incluirCompromisso(){
+	public String incluirCompromisso(){
 		compromissoFacade = new CompromissoFacade();
 		
 		//monta um mapa com todos os campos que devem ser inteiros.	
@@ -77,8 +76,7 @@ public class CompromissoAction extends Action{
 		compromissoFacade= new CompromissoFacade();
 		try {
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
-			this.compromisso = compromissoFacade.pesquisaCompromisso(compromisso);
-			this.compromissosCadastrados.add(this.compromisso);
+			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 		}
@@ -114,12 +112,6 @@ public class CompromissoAction extends Action{
 	}
 	public void setCompromissoFacade(CompromissoFacade compromissoFacade) {
 		this.compromissoFacade = compromissoFacade;
-	}
-	public int getIsExisteConvenio() {
-		return isExisteConvenio;
-	}
-	public void setIsExisteConvenio(int isExisteConvenio) {
-		this.isExisteConvenio = isExisteConvenio;
 	}
 	public List<Compromisso> getCompromissosCadastrados() {
 		return compromissosCadastrados;
