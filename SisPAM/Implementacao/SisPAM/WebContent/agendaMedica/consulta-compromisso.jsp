@@ -29,16 +29,16 @@
 			<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 				<tr>
 					<td><label class="label">Médico:</label></td>
-					<td colspan="3"><s:textfield theme="simple" name="agendaMedica.medico"
+					<td colspan="3"><s:textfield theme="simple" name="compromisso.medico"
 						size="35" maxlength="50"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple" name="agendaMedica.data"
+					<td><s:textfield theme="simple" name="compromisso.data"
 						size="10" maxlength="10"/>&nbsp;</td>
 			
-					<td><label class="label">Tipo:</label></td>
-					<td><select name="agendaMedica.nome">
+					<td><label class="label">Tipo de Evento:</label></td>
+					<td><select name="compromisso.tipo">
 						<option value="0">Selecione</option>
 						<option value="1">Consulta</option>
 						<option value="2">Cirurgia</option>
