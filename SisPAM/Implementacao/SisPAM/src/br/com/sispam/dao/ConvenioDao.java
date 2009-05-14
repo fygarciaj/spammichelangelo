@@ -87,7 +87,7 @@ public class ConvenioDao {
 			//cria uma queri para fazer a busca pelo nome
 			Query query = manager.createQuery("from Convenio where nome like :nome ");
 			//seta o parametro
-			query.setParameter("nome", "%"+nome+"%");
+			query.setParameter("nome", nome+"%");
 			convenios = query.getResultList();				
 		}catch (NoResultException e) {
 			e.printStackTrace();

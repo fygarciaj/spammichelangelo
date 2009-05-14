@@ -4,17 +4,7 @@
 <head>
 <script type="text/javascript">
 	function selecionaMenu(valor){
-		switch (valor) {
-		case "receita":
-			var div = document.getElementById("menuReceita"); 
-			if(div.style.display == 'block'){
-				div.style.display = 'none';
-			}
-			else{
-				div.style.display = 'block'
-		        document.getElementById("menuRelatorioConvenio").style.display = 'none';
-				}
-			break;
+		switch (valor) {		
 		case "relatorioConvenio":
 			var div = document.getElementById("menuRelatorioConvenio"); 
 			if(div.style.display == 'block'){
@@ -36,15 +26,7 @@
 </head>
 <body>
 <div id="menu">
-  <ul>
-    <li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('receita')" title = "Emitir Receita" target="CENTRAL">RECEITA</a>
-		<div id="menuReceita" style="display:none">
-			<ul id="subMenu">
-			<li ><a href="../receita/emite-receita.jsp" title = "Emitir" target="CENTRAL">Emitir</a></li>
-			</ul>
-		</div>
-	</li>
+  <ul>  
 	<li>
 		<a href="javaScript:void(0)" onclick="selecionaMenu('relatorioConvenio')" title = "Emitir Relatorio Convenio" target="CENTRAL">RELATÓRIO CONVÊNIO</a>
 		<div id="menuRelatorioConvenio" style="display:none">

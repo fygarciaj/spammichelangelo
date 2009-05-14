@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioConvenioSemFiltroAnalitico" pageWidth="842" pageHeight="650" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="titulo" isDefault="false" fontName="tahoma, verdana, arial, helvetica, sans-serif;" fontSize="11"/>
+	<style name="zebra" isDefault="false" forecolor="#DCDCDC">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean( $V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style isDefault="false" style="zebra" mode="Opaque" backcolor="#DCDCDC"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     convenio."cvnanscod" AS cvnanscod,
+     convenio."cvndes" AS cvndes,
+     convenio."cvncpj" AS cvncpj,
+     convenio."cvnend" AS cvnend,
+     convenio."cvncde" AS cvncde,
+     convenio."cvnetd" AS cvnetd,
+     convenio."cvncep" AS cvncep,
+     convenio."cvnste" AS cvnste,
+     convenio."cvneml" AS cvneml,
+     convenio."cvnddd" AS cvnddd,
+     convenio."cvntel" AS cvntel,
+     convenio."cvncod" AS cvncod
+FROM
+     "convenio" convenio
+ORDER BY
+     convenio."cvnanscod" ASC]]>
+	</queryString>
+	<field name="cvnanscod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvndes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvncpj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvnend" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvncde" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvnetd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvncep" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvnste" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvneml" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvnddd" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvntel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cvncod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="79">
+			<frame>
+				<reportElement mode="Opaque" x="128" y="31" width="673" height="41" isPrintInFirstWholeBand="true" forecolor="#F4F8FB" backcolor="#F4F8FB"/>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="128" y="64" width="673" height="15" isPrintInFirstWholeBand="true" backcolor="#191970"/>
+				<staticText>
+					<reportElement x="529" y="-1" width="80" height="15" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data de Emissão:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="609" y="0" width="60" height="14" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="titulo" mode="Opaque" x="157" y="31" width="235" height="31" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
+				<textElement textAlignment="Justified">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Convênios Cadastrados]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="4" y="31" width="135" height="48" isPrintInFirstWholeBand="true"/>
+				<imageExpression class="java.lang.String"><![CDATA["../../componentes/img/simbolo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="45">
+			<rectangle>
+				<reportElement mode="Opaque" x="4" y="12" width="795" height="31" forecolor="#191970" backcolor="#191970"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="57" y="23" width="109" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Convênio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="23" width="41" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="23" width="69" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cód. ANS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="23" width="48" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="23" width="34" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DDD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="634" y="23" width="59" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="684" y="23" width="62" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Site]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="23" width="52" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="23" width="59" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="541" y="23" width="34" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEP]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36">
+			<frame>
+				<reportElement style="zebra" stretchType="RelativeToBandHeight" x="6" y="1" width="791" height="32"/>
+				<textField>
+					<reportElement x="2" y="10" width="100" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{cvnanscod}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="51" y="10" width="138" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvndes}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###.###.###/####-##">
+					<reportElement x="172" y="10" width="96" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[( $F{cvncpj}.length() == 14 ? ($F{cvncpj}.substring(0, 2) + "." + $F{cvncpj}.substring(2, 5) + "." + $F{cvncpj}.substring(5, 8) + "/" + $F{cvncpj}.substring(8, 12) + "-" + $F{cvncpj}.substring(12, 14)) : ($F{cvncpj}.substring(0, 3) + "." + $F{cvncpj}.substring(3, 6) + "." + $F{cvncpj}.substring(6, 9) + "-" + $F{cvncpj}.substring(9, 11)) )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="386" y="10" width="52" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvncde}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement x="594" y="12" width="44" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cvnddd}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="628" y="10" width="50" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cvntel}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="678" y="10" width="104" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvnste}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="469" y="10" width="40" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvnetd}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="268" y="10" width="149" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvnend}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="535" y="10" width="54" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cvncep}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54">
+			<textField>
+				<reportElement x="681" y="34" width="80" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="761" y="34" width="40" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="50">
+			<rectangle>
+				<reportElement mode="Opaque" x="3" y="16" width="798" height="20" forecolor="#191970" backcolor="#191970"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="14" y="16" width="115" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Registros:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="760" y="16" width="40" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="16" width="80" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="16" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="42"/>
+	</summary>
+</jasperReport>

@@ -26,36 +26,28 @@ public class Relatorio extends HttpServlet {
 		ServletOutputStream servletOutputStream = response.getOutputStream();
 
 		String caminho = "/WEB-INF/relatorios/";
-		String tipoRelatorio = request.getParameter("tipoRelatorio");
+		
 		String relatorio = null;
-		if(tipoRelatorio.equals("1")){
-			relatorio = caminho+"Relatorio_Convenio.jasper";
-		}else{
-			relatorio = caminho+"Relatorio_Convenio_Analitico.jasper";
-		}
+		
+		relatorio = caminho+emiteRelatorioConvenio(request, response).get("relatorio");;
+		
 		InputStream reportStream = getServletConfig().getServletContext().getResourceAsStream(relatorio);
 		
 
 		try {
 			ConexaoRelatorio conexaoRelatorio = new ConexaoRelatorio();
 			Connection connection = conexaoRelatorio.getConexao();
-			HashMap<Object, Object> map = 
-				new HashMap<Object, Object>();
+			HashMap<String, String> map = 
+				new HashMap<String, String>();
 
-			//para indicar o diretório onde
-			//se encontram as imagens
-			//			map.put("DIRETORIO", 
-			//					context.getRealPath(caminho)+File.separator+
-			//					"imagens"+
-			//					File.separator);
-			//
-			//			//transmitir o Locale novo
-			//			map.put(JRParameter.REPORT_LOCALE, 
-			//					new Locale("en"));
-
-
+			
+			//passa o map dependendo do relatorio			
+			map = emiteRelatorioConvenio(request, response);
+			
+			
 			//para gerar o relatório em PDF
 			// o método runReportToPdfStream foi usado
+					
 			JasperRunManager.runReportToPdfStream(reportStream, 
 					servletOutputStream, map,connection);
 
@@ -77,7 +69,40 @@ public class Relatorio extends HttpServlet {
 		}
 
 
-	} 	
+	} 
+	
+	protected HashMap<String, String> emiteRelatorioConvenio(HttpServletRequest request, HttpServletResponse response){
+		HashMap<String, String> parameterMap;
+		parameterMap = new HashMap<String, String>();
+		
+		String tipoRelatorio = request.getParameter("tipoRelatorio");
+		String filtro = request.getParameter("convenio.nome");
+		
+		parameterMap.put("TIPORELATORIO", tipoRelatorio);
+		parameterMap.put("NOME", filtro+"%");
+		
+		String relatorio = null;
+		try {
+		
+		if(parameterMap.get("TIPORELATORIO").equals("1") && parameterMap.get("NOME").isEmpty()){
+			relatorio = "RelatorioConvenioSemFiltroSintetico.jasper";
+			parameterMap.put("relatorio", relatorio);
+		}else if(parameterMap.get("TIPORELATORIO").equals("1") && !parameterMap.get("NOME").isEmpty()){
+			relatorio = "RelatorioConvenioComFiltroNomeSintetico.jasper";			
+			parameterMap.put("relatorio", relatorio);
+		}else if(parameterMap.get("TIPORELATORIO").equals("2") && parameterMap.get("NOME").isEmpty()){
+			relatorio = "RelatorioConvenioSemFiltroAnalitico.jasper";			
+			parameterMap.put("relatorio", relatorio);
+		}else if(parameterMap.get("TIPORELATORIO").equals("2") && !parameterMap.get("NOME").isEmpty()){
+			relatorio = "RelatorioConvenioComFiltroNomeAnalitico.jasper";			
+			parameterMap.put("relatorio", relatorio);
+		}	
+		
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return parameterMap;
+	}
 
 	/* (non-Java-doc)
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
