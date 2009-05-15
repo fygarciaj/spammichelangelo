@@ -108,8 +108,8 @@
 			</tr>
 			<tr>
 				<td><label class="label">Login:</label></td>
-				<td><s:textfield theme="simple" name="usuario.acesso" maxlength="25" size="25" />&nbsp;
-				<label class="label">Senha:</label><s:password theme="simple" name="usuario.senha"	maxlength="25" size="25" /></td>
+				<td><s:textfield theme="simple" name="usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="usuario.senha"	maxlength="8" size="6" /></td>
 				<td><label class="label">E-mail:</label></td>
 				<td><s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>
 				
@@ -193,7 +193,7 @@
 				<td><label class="label">Consultório:</label></td><td><s:textfield theme="simple" name="consultorioAux" maxlength="7" size="7" />&nbsp;&nbsp;&nbsp;
 				<label class="label">Hora início:&nbsp;&nbsp;</label><s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;&nbsp;&nbsp;
 				<label class="label">Hora Fim:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" /></td>
-<td><label class="label">CRM:</label></td>
+				<td><label class="label">CRM:</label></td>
 				<td><s:textfield theme="simple" name="crmAux" size="7" maxlength="7" />&nbsp;&nbsp; 
 				<label class="label">UF-CRM:</label>&nbsp;
 					<select name="medico.crmUf">	
