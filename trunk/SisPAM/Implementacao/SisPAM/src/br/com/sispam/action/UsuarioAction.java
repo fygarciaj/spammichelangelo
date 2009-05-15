@@ -17,6 +17,7 @@ import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.EspecialidadeFacade;
+import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.UsuarioFacade;
 
 public class UsuarioAction extends Action{
@@ -24,6 +25,7 @@ public class UsuarioAction extends Action{
 	private Usuario usuario;
 	private Medico medico;
 	private UsuarioFacade usuarioFacade;
+	private MedicoFacade medicoFacade;
 	private EspecialidadeFacade especialidadeFacade;
 	private Perfil[] perfils = Perfil.values();
 	private Integer codigoPerfilSelecionado;
@@ -32,6 +34,7 @@ public class UsuarioAction extends Action{
 	private char sexoSelecionado;
 	private Date dataEntrada;
 	private List<Usuario> usuariosCadastrados;
+	private List<Medico> medicosCadastrados;
 	private String telefoneAux;
 	private String cepAux;
 	private String rgAux;
@@ -134,9 +137,16 @@ public class UsuarioAction extends Action{
 	}
 
 	public String definirTelaConsulta(){
-		this.usuarioFacade = new UsuarioFacade();
+		
 		this.codigoPerfilSelecionado = Integer.parseInt(codigoPerfilString);
-		this.usuariosCadastrados = this.usuarioFacade.recuperarUltimosCadastrados(this.codigoPerfilSelecionado);
+		if(this.codigoPerfilSelecionado == Perfil.ADMINISTRADOR.getCodigo() || this.codigoPerfilSelecionado == Perfil.ATENDENTE.getCodigo()){
+			this.usuarioFacade = new UsuarioFacade();
+			this.usuariosCadastrados = this.usuarioFacade.recuperarUltimosCadastrados(this.codigoPerfilSelecionado);
+		}
+		else if(this.codigoPerfilSelecionado == Perfil.MEDICO.getCodigo()){
+			this.medicoFacade = new MedicoFacade();
+			this.medicosCadastrados = this.medicoFacade.recuperarUltimosCadastrados();
+		}
 		return SUCESSO_TELA_CONSULTA;
 	}
 
@@ -326,6 +336,14 @@ public class UsuarioAction extends Action{
 
 	public void setEspecialidades(List<EspecialidadeMedica> especialidades) {
 		this.especialidades = especialidades;
+	}
+
+	public List<Medico> getMedicosCadastrados() {
+		return medicosCadastrados;
+	}
+
+	public void setMedicosCadastrados(List<Medico> medicosCadastrados) {
+		this.medicosCadastrados = medicosCadastrados;
 	}
 	
 

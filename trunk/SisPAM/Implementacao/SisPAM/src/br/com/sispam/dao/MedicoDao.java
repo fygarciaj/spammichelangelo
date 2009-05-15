@@ -1,5 +1,7 @@
 package br.com.sispam.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -81,11 +83,29 @@ public class MedicoDao {
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
-		Query query = manager.createQuery("delete from Medico where id = :id");
-		query.setParameter("id", medico.getId());
-		query.executeUpdate();
+		medico = manager.merge(medico);
+		manager.remove(medico);
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
+	}
+	
+	/**
+	 * @descricao: Lista os últimos médicos cadastrados no sistema.
+	 * @return
+	 */
+	public List<Medico> recuperarUltimosCadastrados() {
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Medico> lista = null;
+		try{
+			Query query = manager.createQuery("from Medico order by id desc");
+			query.setMaxResults(8);
+			lista = query.getResultList();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		conexao.finalizaConexao();
+		return lista;
 	}
 
 	public void removerTodosTeste() {

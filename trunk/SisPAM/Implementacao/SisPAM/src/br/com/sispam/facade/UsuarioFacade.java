@@ -14,27 +14,21 @@ import br.com.sispam.util.Cripto;
 
 public class UsuarioFacade {
 	private UsuarioDao usuarioDao;
-	private MedicoDao medicoDao;
+
 
 	/**
 	 * @descricao: Salva o usuário de todos os tipos.
-	 * @param objeto
+	 * @param usuario
 	 * @throws CampoInvalidoException
 	 */
-	public void salvarUsuario(Object objeto) throws CampoInvalidoException{
-
-		if(objeto != null && objeto instanceof Usuario){
+	public void salvarUsuario(Usuario usuario) throws CampoInvalidoException{
+		if(usuario != null){
 			Cripto cripto = new Cripto();
-			Usuario usuario = (Usuario)objeto;
 			usuario.setSenha(cripto.criptografar(usuario.getSenha()));
 			this.usuarioDao = new UsuarioDao();
 			this.usuarioDao.salvarUsuario(usuario);
 		}
-		else if(objeto != null && objeto instanceof Medico){
-			Medico medico = (Medico)objeto;
-			this.medicoDao = new MedicoDao();
-			this.medicoDao.salvarMedico(medico);
-		}
+
 	}
 
 	/**

@@ -58,7 +58,7 @@ public class Medico {
 	public void setCrmUf(String crmUf) {
 		this.crmUf = crmUf;
 	}
-	@Transient
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "medico")
 	public AgendaMedica getAgendaMedica() {
 		return agendaMedica;
 	}
@@ -66,7 +66,7 @@ public class Medico {
 		this.agendaMedica = agendaMedica;
 	}
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	@JoinTable(name="medico_especialidade", joinColumns=  @JoinColumn( name = "mdccod"),  inverseJoinColumns= @JoinColumn(name = "emdcod"))
 	public List<EspecialidadeMedica> getEspecialidades() {
 		return especialidades;
