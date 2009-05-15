@@ -34,82 +34,71 @@ public class CompromissoDao {
 		conexao.finalizaConexao();
 	}
 	
-	public void excluirCompromisso(int codMedico, String data, int hora) throws EntityExistsException{
+	public void excluirCompromisso(int codMedico, String data, int hora){
 				
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
 			
-			Query query = manager.createQuery("delete from Compromisso where codMedico = :cnpj");
+			Query query = manager.createQuery("delete from Compromisso where Medico.id = :codMedico");
 			//seta o parametro
+<<<<<<< .mine
+			query.setParameter("codMedico", codMedico);
+=======
 			//query.setParameter("cnpj", cnpj);
+>>>>>>> .r169
 			query.executeUpdate();
 			manager.getTransaction().commit();
 		}catch(Exception e){
 			e.printStackTrace();
-			throw new EntityExistsException("Atenção! Pacientes vinculados a esse convênio, não permitindo a sua exclusao.");
+			
 		}
 		conexao.finalizaConexao();
 	}
 	
-	public Convenio recuperarPeloId(int id){
+	public Compromisso recuperarPeloId(int id){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		return manager.find(Convenio.class, id);
+		return manager.find(Compromisso.class, id);
 	}
 	
-	public Convenio consultarConvenioPorCnpj(String cnpj){
+	public Compromisso consultarCompromissoUnico(int idMedico, String data, int horaInicio, int horaFim){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		Convenio convenio = null;
+		Compromisso compromisso = null;
 		try{
 			//cria uma query para fazer a busca pelo cnpj
-			Query query = manager.createQuery("from Convenio where cnpj = :cnpj ");
+			Query query = manager.createQuery("from Compromisso where Medico.id = :idMedico and data = :data and horaInicio = :horaInicio and horaFim = :horaFim");
 			//seta o parametro
-			query.setParameter("cnpj", cnpj);
-			convenio = (Convenio) query.getSingleResult();						
+			query.setParameter("idMedico", idMedico);
+			query.setParameter("data", data);
+			query.setParameter("horaInicio", horaInicio);
+			query.setParameter("horaFim", horaFim);
+			compromisso = (Compromisso) query.getSingleResult();						
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
 		conexao.finalizaConexao();		
-		return convenio;
+		return compromisso;
 	}
 	
-	public List<Convenio> consultarConvenioPorDescricao(String nome){
+	public List<Compromisso> consultarCompromissos(int idMedico, String data){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		List<Convenio> convenios = null;
+		List<Compromisso> compromissos = null;
 		try{
 			//cria uma queri para fazer a busca pelo nome
-			Query query = manager.createQuery("from Convenio where nome like :nome ");
+			Query query = manager.createQuery("from Compromisso where idMedico = :idMedico and data = :data");
 			//seta o parametro
-			query.setParameter("nome", "%"+nome+"%");
-			convenios = query.getResultList();				
+			query.setParameter("idMedico", idMedico);
+			query.setParameter("data", data);
+			compromissos = query.getResultList();				
 		}catch (NoResultException e) {
 			e.printStackTrace();
 			e.getMessage();
 		}
 		conexao.finalizaConexao();		
-		return convenios;
+		return compromissos;
 	}	
-	
-	/**
-	 * @descricao: Lista os últimos convênios cadastrados no sistema.
-	 * @return
-	 */
-	public List<Convenio> recuperarUltimosCadastrados() {
-		conexao = new Conexao();
-		manager = conexao.getEntityManger();
-		List<Convenio> lista = null;
-		try{
-			Query query = manager.createQuery("from Convenio order by id desc");
-			query.setMaxResults(8);
-			lista = query.getResultList();
-		}catch (NoResultException e) {
-			e.printStackTrace();
-		}
-		conexao.finalizaConexao();
-		return lista;
-	}
 }

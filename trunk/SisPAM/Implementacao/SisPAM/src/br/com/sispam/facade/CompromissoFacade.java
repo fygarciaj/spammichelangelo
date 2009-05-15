@@ -90,10 +90,16 @@ public class CompromissoFacade {
 					&& compromisso.getTipo() == null || compromisso.getTipo().isEmpty()){
 				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" ou \"Tipo de Evento\" para efetuar a pesquisa!");
 			}//else if(){
-			
+				compromissosRetornados = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
+				
+<<<<<<< .mine
+			}else{
+				compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
+=======
 		//	}
 		else{
 			//	compromissoRetornado = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
+>>>>>>> .r169
 				compromissosRetornados.add(compromissoRetornado);
 			}
 
@@ -109,10 +115,18 @@ public class CompromissoFacade {
 	 * @descricao: Recupera os Compromissos por dia
 	 * @return
 	 */
+<<<<<<< .mine
+	public List<Compromisso> recuperarCompromissosDiaAtual(Compromisso compromisso) {
+		this.compromissoDao = new CompromissoDao();
+		
+		return this.compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
+	}
+=======
 //	public List<Compromisso> recuperarCompromissosDiaAtual() {
 //		this.compromissoDao = new CompromissoDao();
 //		//return this.compromissoDao.recuperarCompromissosHoje();
 //	}
+>>>>>>> .r169
 	/**
 	 * @descricao: Valida os campos que devem ser inteiros.
 	 * @param mapa
