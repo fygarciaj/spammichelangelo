@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Compromisso;
+import br.com.sispam.dominio.Convenio;
 
 public class CompromissoDao {
 	private Conexao conexao;
@@ -42,7 +43,7 @@ public class CompromissoDao {
 			
 			Query query = manager.createQuery("delete from Compromisso where codMedico = :cnpj");
 			//seta o parametro
-			query.setParameter("cnpj", cnpj);
+			//query.setParameter("cnpj", cnpj);
 			query.executeUpdate();
 			manager.getTransaction().commit();
 		}catch(Exception e){

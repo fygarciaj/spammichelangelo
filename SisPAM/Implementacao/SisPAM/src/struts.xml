@@ -46,9 +46,14 @@
 			<!-- Medico Action -->
 		<action name="medicoAction!*" method="{1}" class="br.com.sispam.action.MedicoAction">
 			<result name="falhaSalvarMedico">/usuario/inclui-usuario.jsp</result>
+			<result name="sucessoSalvarMedico">/usuario/inclui-usuario.jsp</result>
+			<result name="sucessoExcluirMedico" type="chain">
+				<param name="actionName">usuarioAction</param>
+				<param name="method">definirTelaConsulta</param>
+			</result>
 		</action>
 		
-		<!--Compromisso Action -->
+			<!--Compromisso Action -->
 		<action name="compromissoAction" method="{1}" class="br.com.sispam.action.CompromissoAction">
 			<result name="sucessoSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>
 			<result name="sucessoEdicaoCompromisso">/compromisso/inclui-compromisso.jsp</result>

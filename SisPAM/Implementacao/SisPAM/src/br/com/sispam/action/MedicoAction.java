@@ -32,6 +32,7 @@ public class MedicoAction extends Action{
 	private String rgAux;
 	private String dddAux;
 	private String crmAux;
+	private String consultorioAux;
 	private String horaIni;
 	private String horaFim;
 	private Integer codigoPerfilSelecionado;
@@ -40,10 +41,12 @@ public class MedicoAction extends Action{
 	private Sexo[] sexos = Sexo.values();
 	private List<Dia>dias;
 	private Usuario pessoaLogada;
+	private String codigoPerfilString;
 	
 
 	public String salvarMedico(){
 		limparMapas();
+		getParametros();
 		usuarioFacade = new UsuarioFacade();
 		medicoFacade = new MedicoFacade();
 		especialidadeFacade = new EspecialidadeFacade();
@@ -56,6 +59,7 @@ public class MedicoAction extends Action{
 		mapa.put("crm", crmAux);
 		mapa.put("Hora início", horaIni);
 		mapa.put("hora fim", horaFim);
+		mapa.put("Consultório", consultorioAux);
 
 		try {
 			//verifica se os campos são inteiros
@@ -68,9 +72,6 @@ public class MedicoAction extends Action{
 			String diasMarcados = getDiasMarcados().toString();
 			medicoFacade.validaCampoDias(diasMarcados);
 			
-			//verifica se o crm está sendo usado
-			medicoFacade.verificaCrmExistente(medico.getCrm(), medico.getId());
-			
 			//verifica se o login está sendo usado
 			usuarioFacade.verificaLoginJaExistente(medico.getUsuario().getAcesso(), medico.getUsuario().getId());
 
@@ -79,15 +80,22 @@ public class MedicoAction extends Action{
 			medico.getUsuario().setDdd(Integer.parseInt(dddAux));
 			medico.getUsuario().setRg(Long.parseLong(rgAux));
 			medico.getUsuario().setTelefone(Long.parseLong(telefoneAux));
+			medico.setCrm(Integer.parseInt(crmAux));
 			
+			//verifica se o crm está sendo usado
+			medicoFacade.verificaCrmExistente(medico.getCrm(), medico.getId());
+							
+			//salva a agenda do médico.
 			AgendaMedica agendaMedica = new AgendaMedica();
 			agendaMedica.setHoraInicio(Integer.parseInt(horaIni));
 			agendaMedica.setHoraFim(Integer.parseInt(horaFim));
 			agendaMedica.setDataAtendimento(diasMarcados);
+			agendaMedica.setConsultorio(Integer.parseInt(consultorioAux));
 			agendaMedica.setMedico(medico);
-			this.
+			medico.setAgendaMedica(agendaMedica);
 			
-			
+			this.medicoFacade.salvarMedico(medico);
+						
 
 			//usuarioFacade.salvarUsuario(usuario);
 			mensagens.put("salvo", "Médico cadastrado com sucesso!");
@@ -109,7 +117,25 @@ public class MedicoAction extends Action{
 	
 
 		apresentaMensagens();
-		return SUCESSO_SALVAR_USUARIO;
+		limparCampos(true);
+		return SUCESSO_SALVAR_MEDICO;
+	}
+	
+	/**
+	 * @descricao: Remove o médico do sistema.
+	 * @return
+	 */
+	public String excluirMedico(){
+		this.medicoFacade = new MedicoFacade();
+		this.medicoFacade.removerMedico(this.medico.getId());
+		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+		return SUCESSO_EXCLUIR_MEDICO;
+	}
+
+	
+	public void getParametros(){
+		System.out.println(ActionContext.getContext().getParameters().toString());
+		
 	}
 	
 	public List<Dia> getListaDias(){
@@ -151,6 +177,16 @@ public class MedicoAction extends Action{
 			}
 		}
 		return builder;
+	}
+
+	/*Utilitário*/
+	private void limparCampos(boolean limpaCodigoPerfilSelecionado){
+		this.medico = null;
+		if(limpaCodigoPerfilSelecionado == true){
+			this.codigoPerfilSelecionado = null;
+		}
+		this.codigoPerfilString = null;
+
 	}
 	
 	private void limparMapas(){
@@ -277,7 +313,20 @@ public class MedicoAction extends Action{
 		return getPessoaLogada();
 	}
 
+	public String getCodigoPerfilString() {
+		return codigoPerfilString;
+	}
 
-	
+	public void setCodigoPerfilString(String codigoPerfilString) {
+		this.codigoPerfilString = codigoPerfilString;
+	}
+
+	public String getConsultorioAux() {
+		return consultorioAux;
+	}
+
+	public void setConsultorioAux(String consultorioAux) {
+		this.consultorioAux = consultorioAux;
+	}
 
 }

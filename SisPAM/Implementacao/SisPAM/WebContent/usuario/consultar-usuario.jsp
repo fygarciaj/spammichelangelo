@@ -84,34 +84,74 @@
 		</table>
 	</s:form>
 </s:elseif>
-
-
-<!-- Lista dos últimos usuários cadastrados -->
-<s:if test="usuariosCadastrados != null && usuariosCadastrados.size() > 0 ">
-	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1"
-		cellpadding="2" align="left">
-		<tr>
+<br>
+<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2 && usuariosCadastrados != null && usuariosCadastrados.size() > 0">
+	<!-- Lista dos últimos usuários cadastrados -->
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+			<tr>
 				<th colspan="6" class="principal style2" scope="col">
 					<s:if test="codigoPerfilSelecionado == 1">
 						Últimos	Administradores cadastrados
 					</s:if>
 					<s:elseif test="codigoPerfilSelecionado == 2">
 						Últimos	Atendentes cadastrados
-					</s:elseif>
-					<s:elseif test="codigoPerfilSelecionado == 3">
-						Últimos	Médicos cadastrados
-					</s:elseif>
-					<s:elseif test="codigoPerfilSelecionado == 4">
-						Ùltimos	Pacientes cadastrados
-					</s:elseif>
-				</th>
-		</tr>
+				</s:elseif>
+			</th>
+		</tr>		
 		<tr>
 			<th width="40%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Nome</span></th>
 			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">CPF</span></th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Telefone</span></th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Consultório</span></th>
+			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Editar</span></th>
+			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Excluir</span></th>
+		</tr>
+		
+		<s:iterator value="usuariosCadastrados" status="status">
+			
+				<s:url id="excluirUsuario" action="usuarioAction!excluirUsuario.action">
+					<s:param name="usuario.id" value="id"/>
+					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
+				</s:url>
+				<s:url id="editarUsuario" action="usuarioAction!carregarEdicao.action">
+					<s:param name="usuario.id" value="id"/>
+					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
+				</s:url>
+			
+			<tr	class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
+				<td><s:property value="nome" /></td>
+				<td align="center"><s:property value="cpf" /></td>
+				<td align="center"><s:property value="telefone" /></td>
+				<td align="center"><s:property value="rg" /></td>
+				<td align="center"><s:a href="%{#editarUsuario}" ><img  src="img/editar.png" alt="Editar" /></s:a></td>
+				<td align="center"><s:a href="%{#excluirUsuario}" onclick="return confirmaExclusao()">
+					<img src="img/excluir.png" alt="Excluir" />
+				</s:a></td>
+
+			</tr>
+		</s:iterator>
+		</table>
+</s:if>
+		
+		
+<s:if test="codigoPerfilSelecionado == 3 && medicosCadastrados != null && medicosCadastrados.size() > 0">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+			<tr>
+				<th colspan="6" class="principal style2" scope="col">
+					Últimos	Médicos cadastrados
+				</th>
+		</tr>		
+		<tr>
+			<th width="40%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Nome</span></th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">CRM/UF</span></th>
 			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Telefone</span></th>
 			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
@@ -121,24 +161,25 @@
 			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Excluir</span></th>
 		</tr>
-		<s:iterator value="usuariosCadastrados" status="status">
-			<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
-				<s:url id="excluirUsuario" action="usuarioAction!excluirUsuario.action">
-					<s:param name="usuario.id" value="id"/>
+		
+		<s:iterator value="medicosCadastrados" status="status">
+			
+				<s:url id="excluirMedico" action="medicoAction!excluirMedico.action">
+					<s:param name="medico.id" value="id"/>
 					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
 				</s:url>
-				<s:url id="editarUsuario" action="usuarioAction!carregarEdicao.action">
-					<s:param name="usuario.id" value="id"/>
+				<s:url id="editarMedico" action="medicoAction!carregarEdicao.action">
+					<s:param name="medico.id" value="id"/>
 					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
 				</s:url>
-			</s:if>
+			
 			<tr	class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
-				<td><s:property value="nome" /></td>
-				<td align="center"><s:property value="cpf" /></td>
-				<td align="center"><s:property value="telefone" /></td>
-				<td align="center"><s:property value="rg" /></td>
-				<td align="center"><s:a href="%{#editarUsuario}" ><img  src="img/editar.png" alt="Excluir" /></s:a></td>
-				<td align="center"><s:a href="%{#excluirUsuario}" onclick="return confirmaExclusao()">
+				<td><s:property value="usuario.nome" /></td>
+				<td align="center"><s:property value="crm+'/'+crmUf" /></td>
+				<td align="center"><s:property value="usuario.telefone" /></td>
+				<td align="center"><s:property value="usuario.rg" /></td>
+				<td align="center"><s:a href="%{#editarMedico}" ><img  src="img/editar.png" alt="Editar" /></s:a></td>
+				<td align="center"><s:a href="%{#excluirMedico}" onclick="return confirmaExclusao()">
 					<img src="img/excluir.png" alt="Excluir" />
 				</s:a></td>
 

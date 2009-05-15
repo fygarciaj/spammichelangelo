@@ -31,6 +31,7 @@
 		</tr>
 	</table>
 </s:form>
+
 <div id="MensagensErro" >	
 	<s:fielderror theme="simple" cssClass="errorMessage" />
 	<s:actionmessage theme="simple" cssClass="sucessMessage" />
@@ -120,7 +121,7 @@
 </s:form>
 </s:if>	
 <s:elseif test="codigoPerfilSelecionado == 3">
-	<s:form action="medicoAction!salvarMedico.action">
+	<s:form action="medicoAction!salvarMedico.action" name="formMedico">
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
 	<s:hidden name="usuario.id" value="%{usuario.id}"/>
 		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
@@ -228,8 +229,16 @@
 						<option value="SP">São Paulo</option>
 						<option value="SE">Sergipe</option>
 						<option value="TO">Tocantins</option>
-					</select>
+					</select>&nbsp;&nbsp; 
+					<label class="label">Consultório:</label>&nbsp;<s:textfield theme="simple" name="consultorioAux" maxlength="7" size="7" />
 				</td>
+				<td><label class="label">Hora início:</label></td>
+				<td>
+					<s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;
+					<label class="label">Hora Fim:</label>&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" />&nbsp;
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2" ><label class="label">Dias de Atendimento:</label>&nbsp;
 				<s:iterator value="dias">
 					<s:checkbox value="false" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />
@@ -237,21 +246,16 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label class="label">Hora início:</label></td>
-				<td><s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;
-				<label class="label">Hora Fim:</label>&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" />&nbsp;
-				<label class="label">Codigo xx:</label>&nbsp;<s:textfield theme="simple" name="usuario.agendaMedica.codigoAlgumaCoisa" maxlength="7" size="7" />
-			</td>
 			<td colspan="3">
-			    <label class="label">Especialidades:</label>
-			    <s:doubleselect doubleList="especialidades" list="especialidades" doubleName="" doubleMultiple="true"/>
-			    				
+				 	<s:optiontransferselect cssStyle="height:100px" name="especialidades" theme="simple" leftTitle="Especialidades" allowUpDownOnLeft="false" allowUpDownOnRight="false" 
+				 	allowAddAllToLeft="false"  addToLeftLabel="<<" 	rightTitle="Especialidades do Medico" doubleList="medico.especialidades" 
+				 	 addToRightLabel=">>" allowAddAllToRight="false" allowSelectAll="false" listKey="id" listValue="descricao" buttonCssClass="button1" 
+				 	 list="especialidades"  doubleName="teste"  
+				 	 doubleListKey="id" doubleListValue="descricao" doubleCssStyle="height:100px"></s:optiontransferselect>
+				
 			</td>
-			<s:if test="pessoaLogada.perfil == 1">
-				Medico
-			</s:if>
-			
 			</tr>
+
 			<tr>
 				<td><s:submit value="Salvar" cssClass="button" /></td>
 			</tr>

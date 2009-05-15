@@ -51,7 +51,7 @@ public class CompromissoFacade {
 		this.compromissoDao = new CompromissoDao();
 		Compromisso compromisso = null;
 		if(id != 0){
-			compromisso = this.compromissoDao.recuperarPeloId(id);
+			//compromisso = this.compromissoDao.recuperarPeloId(id);
 		}
 		return compromisso;
 	}
@@ -64,13 +64,13 @@ public class CompromissoFacade {
 	 */
 	public void verificaExistencia(Compromisso compromisso) throws CampoInvalidoException{
 		compromissoDao = new CompromissoDao();				
-		Compromisso compromissoNew = compromissoDao.consultarCompromissoUnico(compromisso.getMedico().getUsuario().getId(),
-																			  compromisso.getData(),
-																			  compromisso.getHoraInicio(),
-																			  compromisso.getHoraFim());
-		if(compromissoNew != null){
-			throw new CampoInvalidoException("Compromisso já cadastrado!");
-		}
+	//	Compromisso compromissoNew = compromissoDao.consultarCompromissoUnico(compromisso.getMedico().getUsuario().getId(),
+//																			  compromisso.getData(),
+//																			  compromisso.getHoraInicio(),
+//																			  compromisso.getHoraFim());
+//		if(compromissoNew != null){
+//			throw new CampoInvalidoException("Compromisso já cadastrado!");
+//		}
 	}
 
 
@@ -89,10 +89,11 @@ public class CompromissoFacade {
 					&& (compromisso.getData() == null || compromisso.getData().isEmpty())
 					&& compromisso.getTipo() == null || compromisso.getTipo().isEmpty()){
 				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" ou \"Tipo de Evento\" para efetuar a pesquisa!");
-			}else if(){
+			}//else if(){
 			
-			}else{
-				compromissoRetornado = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
+		//	}
+		else{
+			//	compromissoRetornado = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
 				compromissosRetornados.add(compromissoRetornado);
 			}
 
@@ -108,10 +109,10 @@ public class CompromissoFacade {
 	 * @descricao: Recupera os Compromissos por dia
 	 * @return
 	 */
-	public List<Compromisso> recuperarCompromissosDiaAtual() {
-		this.compromissoDao = new CompromissoDao();
-		return this.compromissoDao.recuperarCompromissosHoje();
-	}
+//	public List<Compromisso> recuperarCompromissosDiaAtual() {
+//		this.compromissoDao = new CompromissoDao();
+//		//return this.compromissoDao.recuperarCompromissosHoje();
+//	}
 	/**
 	 * @descricao: Valida os campos que devem ser inteiros.
 	 * @param mapa
