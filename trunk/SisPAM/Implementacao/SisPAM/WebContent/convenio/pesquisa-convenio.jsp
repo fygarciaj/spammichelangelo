@@ -23,7 +23,7 @@
     </td>	
 	</tr>	
 	</table>
-	<h2>Pesquisa de Convênios</h2>
+	<h2>Consulta de Convênios</h2>
 	<s:form action="convenioAction!consultarConvenio.action" theme="simple">	
 		<table class="tabela_moldura" >
 			<tr>
