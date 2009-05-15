@@ -18,12 +18,17 @@ import br.com.sispam.dominio.Convenio;
 
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.validation.IValidation;
+import br.com.sispam.validation.ValidatorFactory;
+import br.com.sispam.validation.cnpjcpf.CNPJValidator;
+import br.com.sispam.validation.cnpjcpf.CPFValidator;
+
 
 
 
 public class ConvenioFacade {
 	private ConvenioDao convenioDao; 
-
+    private CNPJValidator validador;
 	/**
 	 * @descricao: Salva um convênio.
 	 * @param convenio
@@ -156,13 +161,15 @@ public class ConvenioFacade {
 	 * @throws CampoInvalidoException 
 	 */
 	public void validaCampos(Convenio convenio) throws CampoInvalidoException{
-
+		validador = (CNPJValidator) ValidatorFactory
+		.getInstance().getValidator(IValidation.VALIDATOR_CNPJ);
+		validador.setCnpj(convenio.getCnpj());
 		if(convenio != null){
 
 			if(convenio.getNome() == null || convenio.getNome().length() == 0){
 				throw new CampoInvalidoException("Campo Nome do Convênio inválido");
 			}						
-			if(convenio.getCnpj() == null || convenio.getCnpj().isEmpty()) {
+			if(convenio.getCnpj() == null || convenio.getCnpj().isEmpty() || convenio.getCnpj().length() < 14 || !validador.isValid()) {
 				throw new CampoInvalidoException("Campo CNPJ inválido");
 			}
 			if(convenio.getEndereco() == null || convenio.getEndereco().length() == 0){
@@ -182,5 +189,6 @@ public class ConvenioFacade {
 			}						
 
 		}
-	}	
+	}
+	
 }
