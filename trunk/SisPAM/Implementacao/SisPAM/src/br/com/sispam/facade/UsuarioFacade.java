@@ -11,10 +11,14 @@ import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
+import br.com.sispam.validation.IValidation;
+import br.com.sispam.validation.Validator;
+import br.com.sispam.validation.ValidatorFactory;
+import br.com.sispam.validation.cnpjcpf.CPFValidator;
 
 public class UsuarioFacade {
 	private UsuarioDao usuarioDao;
-
+	private CPFValidator validador;
 
 	/**
 	 * @descricao: Salva o usuário de todos os tipos.
@@ -127,14 +131,16 @@ public class UsuarioFacade {
 	 * @throws CampoInvalidoException 
 	 */
 	public void validaCampos(Object objeto) throws CampoInvalidoException{
-
+		validador = (CPFValidator) ValidatorFactory.getInstance()
+		.getValidator(IValidation.VALIDATOR_CPF);		
+			
 		if(objeto != null && objeto instanceof Usuario){
 			Usuario usuario = (Usuario)objeto;
-
+			validador.setCpf(usuario.getCpf());
 			if(usuario.getNome() == null || usuario.getNome().length() == 0){
 				throw new CampoInvalidoException("Campo nome inválido");
 			}
-			if(usuario.getCpf() == null || usuario.getCpf().isEmpty()) {
+			if(usuario.getCpf() == null || usuario.getCpf().isEmpty() || usuario.getCpf().length() < 11 || !validador.isValid()) {
 				throw new CampoInvalidoException("Campo cpf inválido");
 			}
 			if(usuario.getExpedidorRg() == null || usuario.getExpedidorRg().length() == 0){
