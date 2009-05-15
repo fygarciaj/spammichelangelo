@@ -190,14 +190,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label class="label">Login:</label></td>
-				<td><s:textfield theme="simple" name="medico.usuario.acesso" maxlength="25" size="25" />&nbsp;
-				<label class="label">Senha:</label><s:password theme="simple" name="medico.usuario.senha"	maxlength="25" size="25" /></td>
-				<td><label class="label">E-mail:</label></td>
-				<td><s:textfield theme="simple" name="medico.usuario.email" size="30" maxlength="30" /></td>
-			</tr>
-			<tr>
-				<td><label class="label">CRM:</label></td>
+				<td><label class="label">Consultório:</label></td><td><s:textfield theme="simple" name="consultorioAux" maxlength="7" size="7" />&nbsp;&nbsp;&nbsp;
+				<label class="label">Hora início:&nbsp;&nbsp;</label><s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;&nbsp;&nbsp;
+				<label class="label">Hora Fim:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" /></td>
+<td><label class="label">CRM:</label></td>
 				<td><s:textfield theme="simple" name="crmAux" size="7" maxlength="7" />&nbsp;&nbsp; 
 				<label class="label">UF-CRM:</label>&nbsp;
 					<select name="medico.crmUf">	
@@ -230,33 +226,31 @@
 						<option value="SE">Sergipe</option>
 						<option value="TO">Tocantins</option>
 					</select>&nbsp;&nbsp; 
-					<label class="label">Consultório:</label>&nbsp;<s:textfield theme="simple" name="consultorioAux" maxlength="7" size="7" />
-				</td>
-				<td><label class="label">Hora início:</label></td>
-				<td>
-					<s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;
-					<label class="label">Hora Fim:</label>&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" />&nbsp;
-				</td>
+
 			</tr>
 			<tr>
-				<td colspan="2" ><label class="label">Dias de Atendimento:</label>&nbsp;
-				<s:iterator value="dias">
-					<s:checkbox value="false" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />
-				</s:iterator>
-				</td>
+				<td><label class="label">Login:</label></td>
+				<td><s:textfield theme="simple" name="medico.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">Senha:</label>&nbsp;&nbsp;&nbsp;<s:password theme="simple" name="medico.usuario.senha"	maxlength="8" size="6" /></td>
+				<td><label class="label">E-mail:</label></td>
+				<td><s:textfield theme="simple" name="medico.usuario.email" size="30" maxlength="30" /></td>
 			</tr>
+			<tr>				
+			</tr>			
 			<tr>
 			<td colspan="3">
 				 	<s:optiontransferselect cssStyle="height:100px" name="especialidades" theme="simple" leftTitle="Especialidades" allowUpDownOnLeft="false" allowUpDownOnRight="false" 
 				 	allowAddAllToLeft="false"  addToLeftLabel="<<" 	rightTitle="Especialidades do Medico" doubleList="medico.especialidades" 
 				 	 addToRightLabel=">>" allowAddAllToRight="false" allowSelectAll="false" listKey="id" listValue="descricao" buttonCssClass="button1" 
 				 	 list="especialidades"  doubleName="teste"  
-				 	 doubleListKey="id" doubleListValue="descricao" doubleCssStyle="height:100px"></s:optiontransferselect>
-				
-			</td>
-			</tr>
-
-			<tr>
+				 	 doubleListKey="id" doubleListValue="descricao" doubleCssStyle="height:100px"></s:optiontransferselect>			
+			</td>							
+				<td ><label class="label">Dias de Atendimento</label>&nbsp;
+				<s:iterator value="dias">
+					<br>					
+					<s:checkbox value="false" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />					
+				</s:iterator>
+				</td>						
 				<td><s:submit value="Salvar" cssClass="button" /></td>
 			</tr>
 	</table>
