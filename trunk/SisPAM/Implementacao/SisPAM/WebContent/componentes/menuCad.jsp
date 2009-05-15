@@ -53,7 +53,7 @@
 		<div id="menuConvenio" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="../convenio/inclui-convenio.jsp" title = "Incluir" target="CENTRAL">Incluir</a></li>
-			<li ><a href="../convenio/pesquisa-convenio.jsp" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
+			<li ><a href="convenioAction!carregarConsulta.action" title = "Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 			</ul>
 		</div>
 	</li>

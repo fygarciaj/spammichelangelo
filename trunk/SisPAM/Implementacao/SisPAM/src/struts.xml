@@ -30,6 +30,8 @@
 			<result name="carregarConvenioExistente">/convenio/retorno-convenio.jsp</result>
 			<result name="falhaCarregarConvenio">/componentes/defaut.jsp</result>
 			<result name="listaConvenios">/convenio/pesquisa-convenio.jsp</result>
+			<result name="sucessoTelaConsulta">/convenio/pesquisa-convenio.jsp</result>
+			<result name="sucessoCarregarConsulta">/convenio/pesquisa-convenio.jsp</result>
 		</action>
 				
 		<!-- Receita Action -->

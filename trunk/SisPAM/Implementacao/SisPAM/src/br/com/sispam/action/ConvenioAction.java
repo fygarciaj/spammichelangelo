@@ -7,9 +7,12 @@ import java.util.Map;
 
 import br.com.sispam.dominio.Convenio;
 
+import br.com.sispam.enums.Perfil;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.ConvenioFacade;
+import br.com.sispam.facade.MedicoFacade;
+import br.com.sispam.facade.UsuarioFacade;
 
 
 public class ConvenioAction extends Action{
@@ -92,6 +95,21 @@ public class ConvenioAction extends Action{
 		limparCampos();
 		return LISTAR_CONVENIOS;
 
+	}
+	
+	/**
+	 * @descricao: Carrega a tela de consulta de usuários.
+	 * @return
+	 */
+	public String carregarConsulta(){
+		limparCampos();
+		return SUCESSO_CARREGAR_CONSULTA;
+	}
+	
+	public String definirTelaConsulta(){		
+			this.convenioFacade = new ConvenioFacade();
+			this.conveniosCadastrados = this.convenioFacade.recuperarUltimosCadastrados();
+		return SUCESSO_TELA_CONSULTA;
 	}
 
 	public String carregaEdicaoConvenio(){

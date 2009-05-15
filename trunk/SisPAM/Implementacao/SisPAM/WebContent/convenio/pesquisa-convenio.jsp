@@ -24,7 +24,7 @@
 	</tr>	
 	</table>
 	<h2>Consulta de Convênios</h2>
-	<s:form action="convenioAction!consultarConvenio.action" theme="simple">	
+	<s:form action="convenioAction!definirTelaConsulta.action" theme="simple">	
 		<table class="tabela_moldura" >
 			<tr>
 				<td><label>CNPJ</label></td><td><s:textfield name="convenio.cnpj" id="cnpj" theme="simple" size="17" maxlength="18"/></td>
