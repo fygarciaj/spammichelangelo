@@ -62,6 +62,7 @@ CREATE TABLE usuario (
   usrddd NUMERIC(3) NULL,
   usrtel NUMERIC(8) NULL,
   usreml VARCHAR(50) NULL,
+  usracs VARCHAR(20) NULL,
   usrsen VARCHAR(32) NULL,
   usrpfl NUMERIC(1) NOT NULL,
   usrdatnsc DATE NULL
@@ -71,7 +72,7 @@ ALTER TABLE usuario
    ADD CONSTRAINT usrA PRIMARY KEY(usrcod);
 
 CREATE INDEX usrB ON usuario (usrnom);
-
+CREATE INDEX usrC ON usuario (usracs);
 -- ------------------------------------------------------------
 -- Tabela de Parâmetro
 -- ------------------------------------------------------------
