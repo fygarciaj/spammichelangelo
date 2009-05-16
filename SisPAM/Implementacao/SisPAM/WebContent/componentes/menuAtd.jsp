@@ -41,7 +41,7 @@
 		target="CENTRAL">AGENDA MÉDICA</a>
 	<div id="menuAgendaMedica" style="display: none">
 	<ul id="subMenu">
-		<li><a href="../agendaMedica/inclui-compromisso.jsp" title="Incluir" target="CENTRAL">Incluir Compromisso</a></li>
+		<li><a href="compromissoAction!carregarInclusao.action" title="Incluir" target="CENTRAL">Incluir Compromisso</a></li>
 		<li><a href="../agendaMedica/consulta-compromisso.jsp" title="Alterar/Excluir" target="CENTRAL">Alterar/Excluir Compromisso</a></li>
 	</ul>
 	</div>

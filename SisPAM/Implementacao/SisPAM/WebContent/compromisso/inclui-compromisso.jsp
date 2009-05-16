@@ -9,6 +9,32 @@
 <script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
 <script type="text/javascript" src="componentes/js/sispam.js"></script>
+<script type="text/javascript" src="componentes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../componentes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/jquery/ui.core.js"></script>
+<script type="text/javascript" src="componentes/js/jquery/ui.datepicker.js"></script>
+<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker.js"></script>
+<script type="text/javascript" src="componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+<link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+<script type="text/javascript">
+		 $(document).ready(function(){
+			calendario('dataAux');
+	 });
+	 function calendario(idCampo){
+				var id = '#'+idCampo;
+				 $(id).datepicker({
+							 showMonthAfterYear: false,
+							 showOtherMonths: true,
+							 changeMonth: true,
+							 changeYear: true,
+							 gotoCurrent: true
+				 });
+			}
+	</script>
+	
+
 </head>
 <body>
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -27,8 +53,9 @@
 			<table border="0" width="90%" class="tabela_moldura" cellpadding="3"cellspacing="4">
 				<tr>
 					<td><label class="label">Médico:</label></td>
-					<td colspan="3"><s:textfield theme="simple" name="compromisso.medico"
-						size="35" maxlength="50"/>&nbsp;</td>
+					<td colspan="3">
+					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--selecione--" headerKey="0" listValue="usuario.nome" listKey="id" />
+					</td>
 				</tr>
 				<tr>
 					<td><label class="label">Tipo de Evento:</label></td>
@@ -43,8 +70,7 @@
 				</tr>
 				<tr>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple" name="compromisso.data"
-						size="10" maxlength="10"/>&nbsp;</td>
+					<td><s:textfield theme="simple" name="dataAux" id="dataAux"	size="10" maxlength="10"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td><label class="label">Hora Inicial:</label></td>

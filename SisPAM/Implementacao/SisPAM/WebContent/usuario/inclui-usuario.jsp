@@ -239,10 +239,10 @@
 			</tr>			
 			<tr>
 			<td colspan="3">
-				 	<s:optiontransferselect cssStyle="height:100px" name="especialidades" theme="simple" leftTitle="Especialidades" allowUpDownOnLeft="false" allowUpDownOnRight="false" 
+				 	<s:optiontransferselect cssStyle="height:100px" name="espececialidadesInt" theme="simple" leftTitle="Especialidades" allowUpDownOnLeft="false" allowUpDownOnRight="false" 
 				 	allowAddAllToLeft="false"  addToLeftLabel="<<" 	rightTitle="Especialidades do Medico" doubleList="medico.especialidades" 
 				 	 addToRightLabel=">>" allowAddAllToRight="false" allowSelectAll="false" listKey="id" listValue="descricao" buttonCssClass="button1" 
-				 	 list="especialidades"  doubleName="teste"  
+				 	 list="especialidades"  doubleName="medico.especialidades"  
 				 	 doubleListKey="id" doubleListValue="descricao" doubleCssStyle="height:100px"></s:optiontransferselect>			
 			</td>							
 				<td ><label class="label">Dias de Atendimento</label>&nbsp;

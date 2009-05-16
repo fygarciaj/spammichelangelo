@@ -5,18 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import br.com.sispam.dominio.Compromisso;
+import br.com.sispam.dominio.Medico;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.CompromissoFacade;
+import br.com.sispam.facade.MedicoFacade;
 
 
 public class CompromissoAction extends Action{
 	
 	private Compromisso compromisso;
 	private CompromissoFacade compromissoFacade;
+	private MedicoFacade medicoFacade;
 	private List<Compromisso> compromissosCadastrados;
+	private List<Medico> medicos;
 	private String horaInicioAux;
 	private String horaFimAux;
+	private String dataAux;
 	
 	public String incluirCompromisso(){
 		compromissoFacade = new CompromissoFacade();
@@ -56,6 +61,12 @@ public class CompromissoAction extends Action{
 		apresentaMensagens();
 		this.limparCampos();
 		return SUCESSO_INCLUIR_CONVENIO;
+	}
+	
+	public String carregarInclusao(){
+		this.medicoFacade = new MedicoFacade();
+		this.medicos = this.medicoFacade.recuperarTodos();
+		return CARREGAR_INCLUSAO_COMPROMISSO;
 	}
 
 	public String excluirCompromisso(){
@@ -131,5 +142,31 @@ public class CompromissoAction extends Action{
 	public void setHoraFimAux(String horaFimAux) {
 		this.horaFimAux = horaFimAux;
 	}
+
+	public MedicoFacade getMedicoFacade() {
+		return medicoFacade;
+	}
+
+	public void setMedicoFacade(MedicoFacade medicoFacade) {
+		this.medicoFacade = medicoFacade;
+	}
+
+	public List<Medico> getMedicos() {
+		return medicos;
+	}
+
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
+	}
+
+	public String getDataAux() {
+		return dataAux;
+	}
+
+	public void setDataAux(String dataAux) {
+		this.dataAux = dataAux;
+	}
+	
+	
 	
 }
