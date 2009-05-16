@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
-
-import br.com.sispam.dominio.AgendaMedica;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
@@ -16,7 +14,6 @@ import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
-import br.com.sispam.facade.AgendaMedicaFacade;
 import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.UsuarioFacade;
@@ -42,6 +39,7 @@ public class MedicoAction extends Action{
 	private List<Dia>dias;
 	private Usuario pessoaLogada;
 	private String codigoPerfilString;
+	private List<Integer> espececialidadesInt;
 	
 
 	public String salvarMedico(){
@@ -85,15 +83,11 @@ public class MedicoAction extends Action{
 			//verifica se o crm está sendo usado
 			medicoFacade.verificaCrmExistente(medico.getCrm(), medico.getId());
 							
-			//salva a agenda do médico.
-			AgendaMedica agendaMedica = new AgendaMedica();
-			agendaMedica.setHoraInicio(Integer.parseInt(horaIni));
-			agendaMedica.setHoraFim(Integer.parseInt(horaFim));
-			agendaMedica.setDataAtendimento(diasMarcados);
-			agendaMedica.setConsultorio(Integer.parseInt(consultorioAux));
-			agendaMedica.setMedico(medico);
-			medico.setAgendaMedica(agendaMedica);
-			
+			medico.setHoraInicio(Integer.parseInt(horaIni));
+			medico.setHoraFim(Integer.parseInt(horaFim));
+			medico.setConsultorio(Integer.parseInt(consultorioAux));
+			medico.setDataAtendimento(diasMarcados);
+						
 			this.medicoFacade.salvarMedico(medico);
 						
 
@@ -327,6 +321,14 @@ public class MedicoAction extends Action{
 
 	public void setConsultorioAux(String consultorioAux) {
 		this.consultorioAux = consultorioAux;
+	}
+
+	public List<Integer> getEspececialidadesInt() {
+		return espececialidadesInt;
+	}
+
+	public void setEspececialidadesInt(List<Integer> espececialidadesInt) {
+		this.espececialidadesInt = espececialidadesInt;
 	}
 
 }

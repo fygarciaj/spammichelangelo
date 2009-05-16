@@ -38,9 +38,7 @@ public class CompromissoFacade {
 		compromissoDao = new CompromissoDao();
 
 		try{			
-			compromissoDao.excluirCompromisso(compromisso.getMedico().getUsuario().getId(),
-											  compromisso.getData(), 
-											  compromisso.getHoraInicio()); 
+			compromissoDao.excluirCompromisso(compromisso); 
 											  							
 		}catch(Exception e){
 			e.getStackTrace();
@@ -86,21 +84,15 @@ public class CompromissoFacade {
 		List<Compromisso> compromissosRetornados = null;
 		try {
 			if((compromisso.getMedico().getUsuario().getNome() == null)  
-					&& (compromisso.getData() == null || compromisso.getData().isEmpty())
+					&& (compromisso.getData() == null)
 					&& compromisso.getTipo() == null || compromisso.getTipo().isEmpty()){
 				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" ou \"Tipo de Evento\" para efetuar a pesquisa!");
 			}//else if(){
-				compromissosRetornados = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
+				//compromissosRetornados = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
 				
-<<<<<<< .mine
-			}else{
-				compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
-=======
-		//	}
+		
 		else{
-			//	compromissoRetornado = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
->>>>>>> .r169
-				compromissosRetornados.add(compromissoRetornado);
+			compromissosRetornados.add(compromissoRetornado);
 			}
 
 		} catch (NoResultException e) {
@@ -115,18 +107,12 @@ public class CompromissoFacade {
 	 * @descricao: Recupera os Compromissos por dia
 	 * @return
 	 */
-<<<<<<< .mine
 	public List<Compromisso> recuperarCompromissosDiaAtual(Compromisso compromisso) {
 		this.compromissoDao = new CompromissoDao();
 		
 		return this.compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
 	}
-=======
-//	public List<Compromisso> recuperarCompromissosDiaAtual() {
-//		this.compromissoDao = new CompromissoDao();
-//		//return this.compromissoDao.recuperarCompromissosHoje();
-//	}
->>>>>>> .r169
+
 	/**
 	 * @descricao: Valida os campos que devem ser inteiros.
 	 * @param mapa
@@ -167,7 +153,7 @@ public class CompromissoFacade {
 			if(compromisso.getTipo() == null || compromisso.getTipo().isEmpty()) {
 				throw new CampoInvalidoException("Campo Tipo de Evento inválido");
 			}
-			if(compromisso.getData() == null || compromisso.getData().isEmpty()){
+			if(compromisso.getData() == null){
 				throw new CampoInvalidoException("Campo Data inválido");
 			}
 			if(compromisso.getDescricao()== null || compromisso.getDescricao().length() == 0){

@@ -1,5 +1,7 @@
 package br.com.sispam.dominio;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class Usuario {
 	private String senha;
 	private String acesso;
 	private String dtHoraAcesso;
+	private Date dataNascimento;
 
 
 	/*Get & Set*/
@@ -157,5 +160,14 @@ public class Usuario {
 		LoginFacade lf = new LoginFacade();
 		this.dtHoraAcesso = lf.dataHoraLogin();
 	}
+	
+	@Column(name="usrdatnsc")
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	
 
 }

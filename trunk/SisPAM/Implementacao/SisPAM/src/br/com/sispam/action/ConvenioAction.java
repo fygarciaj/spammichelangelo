@@ -102,7 +102,9 @@ public class ConvenioAction extends Action{
 	 * @return
 	 */
 	public String carregarConsulta(){
+		this.convenioFacade = new ConvenioFacade();
 		limparCampos();
+		this.conveniosCadastrados = this.convenioFacade.recuperarUltimosCadastrados();
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
 	

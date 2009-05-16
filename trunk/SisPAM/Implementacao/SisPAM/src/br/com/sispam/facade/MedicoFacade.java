@@ -72,6 +72,15 @@ public class MedicoFacade {
 		this.medicoDao.remover(medico);
 	}
 	
+	/**
+	 * @descricao: Recupera todos os médicos do banco.
+	 * @return
+	 */
+	public List<Medico> recuperarTodos(){
+		this.medicoDao = new MedicoDao();
+		return this.medicoDao.recuperarTodos();
+	}
+	
 
 }
 

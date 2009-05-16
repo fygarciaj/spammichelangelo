@@ -40,6 +40,7 @@ public class Action extends ActionSupport{
 	public final String FALHA_SALVAR_COMPROMISSO = "falhaSalvarCompromisso";
 	public final String FALHA_EXCLUIR_COMPROMISSO = "falhaExcluirCompromisso";
 	public final String LISTAR_COMPROMISSOS = "listarCompromissos";
+	public final String CARREGAR_INCLUSAO_COMPROMISSO = "carregarInclusaoCompromisso";
 
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();

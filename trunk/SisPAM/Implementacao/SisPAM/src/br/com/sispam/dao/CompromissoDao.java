@@ -1,5 +1,6 @@
 package br.com.sispam.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityExistsException;
@@ -34,20 +35,16 @@ public class CompromissoDao {
 		conexao.finalizaConexao();
 	}
 	
-	public void excluirCompromisso(int codMedico, String data, int hora){
+	public void excluirCompromisso(Compromisso compromisso){
 				
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
 			
-			Query query = manager.createQuery("delete from Compromisso where Medico.id = :codMedico");
+			Query query = manager.createQuery("delete from Compromisso where id = :id");
 			//seta o parametro
-<<<<<<< .mine
-			query.setParameter("codMedico", codMedico);
-=======
-			//query.setParameter("cnpj", cnpj);
->>>>>>> .r169
+			query.setParameter("id", compromisso.getId());
 			query.executeUpdate();
 			manager.getTransaction().commit();
 		}catch(Exception e){
@@ -83,7 +80,7 @@ public class CompromissoDao {
 		return compromisso;
 	}
 	
-	public List<Compromisso> consultarCompromissos(int idMedico, String data){
+	public List<Compromisso> consultarCompromissos(int idMedico, Date data){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Compromisso> compromissos = null;

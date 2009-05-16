@@ -1,6 +1,7 @@
 package br.com.sispam.teste.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -9,12 +10,12 @@ import org.junit.Test;
 import br.com.sispam.dao.EspecialidadeDao;
 import br.com.sispam.dao.MedicoDao;
 import br.com.sispam.dao.UsuarioDao;
-import br.com.sispam.dominio.AgendaMedica;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
+import br.com.sispam.util.Cripto;
 import static org.junit.Assert.*;
 
 public class TesteMedicoDao {
@@ -33,11 +34,15 @@ public class TesteMedicoDao {
 	public void salvarMedico(){
 		Usuario usuario = new Usuario();
 		EspecialidadeDao especialidadeDao = new EspecialidadeDao();
+		Cripto cripto =new Cripto();
 		usuario.setNome("Elizeu");
 		usuario.setEmail("ddd@iii");
 		usuario.setCpf("54454545");
 		usuario.setPerfil(Perfil.MEDICO.getCodigo());
 		usuario.setSexo(Sexo.MASCULINO.getSigla());
+		usuario.setAcesso("elizeu");
+		usuario.setSenha(cripto.criptografar("asdf"));
+		usuario.setDataNascimento(new Date());
 
 		EspecialidadeMedica especialidadeMedica = especialidadeDao.recuperarEspecialidade(1);
 		EspecialidadeMedica especialidadeMedica2 = especialidadeDao.recuperarEspecialidade(2);
@@ -52,6 +57,10 @@ public class TesteMedicoDao {
 		medico.setCrmUf("DF");
 		medico.setUsuario(usuario);
 		medico.setEspecialidades(especialidades);
+		medico.setHoraInicio(1200);
+		medico.setHoraFim(9888);
+		medico.setConsultorio(123);
+		medico.setDataAtendimento("1-2");
 		medicoDao.salvarMedico(medico);
 	}
 

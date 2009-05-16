@@ -107,6 +107,25 @@ public class MedicoDao {
 		conexao.finalizaConexao();
 		return lista;
 	}
+	
+	/**
+	 * @descricao: Recuperar todos os médicos.
+	 * @return
+	 */
+	public List<Medico> recuperarTodos(){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Medico> lista = null;
+		try{
+			Query query = manager.createQuery("from Medico order by usuario.nome");
+			lista = query.getResultList();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		conexao.finalizaConexao();
+		return lista;
+	}
+	
 
 	public void removerTodosTeste() {
 		conexao = new Conexao();

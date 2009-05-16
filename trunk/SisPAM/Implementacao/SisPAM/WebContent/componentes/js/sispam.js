@@ -119,4 +119,15 @@ function atualizaPaginaCentral(){
 	//TODO:
 }
 
+function calendario(idCampo){
+	var id = '#'+idCampo;
+	 $(id).datepicker({
+				 showMonthAfterYear: false,
+				 showOtherMonths: true,
+				 changeMonth: true,
+				 changeYear: true,
+				 gotoCurrent: true
+	 });
+}
+
  
