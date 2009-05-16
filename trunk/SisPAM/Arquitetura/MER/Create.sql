@@ -1,11 +1,12 @@
+
 -- ------------------------------------------------------------
 -- Tabela de Especialidade Médica
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE especialidademedica_emd_seq;
+CREATE SEQUENCE especialidademedica_emdcod_seq;
 
 CREATE TABLE especialidademedica (
-  emdcod INTEGER  NOT NULL DEFAULT NEXTVAL('especialidademedica_emd_seq'),
+  emdcod INTEGER  NOT NULL DEFAULT NEXTVAL('especialidademedica_emdcod_seq'),
   emddes VARCHAR(50) NULL
 );
 
@@ -18,10 +19,10 @@ CREATE INDEX emdB ON especialidademedica (emddes);
 -- Tabela de Convênio
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE convenio_cvn_seq;
+CREATE SEQUENCE convenio_cvncod_seq;
 
 CREATE TABLE convenio (
-  cvncod INTEGER  NOT NULL DEFAULT NEXTVAL('convenio_cvn_seq'),
+  cvncod INTEGER  NOT NULL DEFAULT NEXTVAL('convenio_cvncod_seq'),
   cvnanscod INTEGER  NULL,
   cvndes VARCHAR(50) NOT NULL,
   cvncpj VARCHAR(18) NOT NULL,
@@ -45,10 +46,10 @@ CREATE INDEX cvnC ON convenio (cvncpj);
 -- Tabela de Usuário
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE usuario_usr_seq;
+CREATE SEQUENCE usuario_usrcod_seq;
 
 CREATE TABLE usuario (
-  usrcod INTEGER  NOT NULL DEFAULT NEXTVAL('usuario_usr_seq'),
+  usrcod INTEGER  NOT NULL DEFAULT NEXTVAL('usuario_usrcod_seq'),
   usrnom VARCHAR(40) NULL,
   usrsex CHAR(1) NULL,
   usrcpf VARCHAR(15) NULL,
@@ -61,8 +62,9 @@ CREATE TABLE usuario (
   usrddd NUMERIC(3) NULL,
   usrtel NUMERIC(8) NULL,
   usreml VARCHAR(50) NULL,
-  usrsen VARCHAR(20) NULL,
-  usrpfl NUMERIC(1) NOT NULL
+  usrsen VARCHAR(32) NULL,
+  usrpfl NUMERIC(1) NOT NULL,
+  usrdatnsc DATE NULL
 );
 
 ALTER TABLE usuario
@@ -74,10 +76,10 @@ CREATE INDEX usrB ON usuario (usrnom);
 -- Tabela de Parâmetro
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE parametro_pmt_seq;
+CREATE SEQUENCE parametro_pmtcod_seq;
 
 CREATE TABLE parametro (
-  pmtcod INTEGER  NOT NULL DEFAULT NEXTVAL('parametro_pmt_seq'),
+  pmtcod INTEGER  NOT NULL DEFAULT NEXTVAL('parametro_pmtcod_seq'),
   pmtdes VARCHAR(30) NOT NULL,
   pmtval VARCHAR(100) NOT NULL,
   pmttip NUMERIC(1) NULL
@@ -93,10 +95,10 @@ CREATE INDEX pmtB ON parametro (pmtdes);
 -- Tabela de Codigos Internacionais de Doenças
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE codigodoenca_cid_seq;
+CREATE SEQUENCE codigodoenca_cidcod_seq;
 
 CREATE TABLE codigodoenca (
-  cidcod INTEGER  NOT NULL DEFAULT NEXTVAL('codigodoenca_cid_seq'),
+  cidcod INTEGER  NOT NULL DEFAULT NEXTVAL('codigodoenca_cidcod_seq'),
   ciddes VARCHAR(50) NULL 
 );
 
@@ -109,10 +111,10 @@ CREATE INDEX cidB ON codigodoenca (ciddes);
 -- Tabela de Log de Auditoria
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE auditoria_adt_seq;
+CREATE SEQUENCE auditoria_adtcod_seq;
 
 CREATE TABLE auditoria (
-  adtcod NUMERIC(12) NOT NULL DEFAULT NEXTVAL('auditoria_adt_seq'),
+  adtcod NUMERIC(12) NOT NULL DEFAULT NEXTVAL('auditoria_adtcod_seq'),
   adtdatref TIMESTAMP NULL,
   adtip VARCHAR(15) NULL
 );
@@ -124,13 +126,17 @@ ALTER TABLE auditoria
 -- Tabela de Médico
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE medico_mdc_seq;
+CREATE SEQUENCE medico_mdccod_seq;
 
 CREATE TABLE medico (
-  mdccod INTEGER  NOT NULL DEFAULT NEXTVAL('medico_mdc_seq'),
+  mdccod INTEGER  NOT NULL DEFAULT NEXTVAL('medico_mdccod_seq'),
   usrcod INTEGER  NOT NULL,
   mdccrm INTEGER  NULL,
-  mdccrmuf VARCHAR(2) NULL
+  mdccrmuf VARCHAR(2) NULL,
+  mdcdiaatd VARCHAR(14) NULL,
+  mdchorini NUMERIC(4) NULL,
+  mdchorfim NUMERIC(4) NULL,
+  mdccnsatd NUMERIC(4) NULL
 );
 
 ALTER TABLE medico
@@ -141,41 +147,19 @@ ALTER TABLE medico
                           REFERENCES USUARIO (usrcod);
 
 -- ------------------------------------------------------------
--- Tabela de Agenda Médica
--- ------------------------------------------------------------
-
-CREATE SEQUENCE agendamedica_agm_seq;
-
-CREATE TABLE agendamedica (
-  agmcod INTEGER  NOT NULL DEFAULT NEXTVAL('agendamedica_agm_seq'),
-  mdccod INTEGER  NOT NULL,
-  agmdtaatd VARCHAR(14) NULL,
-  agmhorini NUMERIC(4) NULL,
-  agmhorfim NUMERIC(4) NULL,
-  agmcnsatd NUMERIC(4) NULL
-);
-
-ALTER TABLE agendamedica
-   ADD CONSTRAINT agmA PRIMARY KEY(agmcod);  
-
-ALTER TABLE agendamedica
-   ADD CONSTRAINT FK_agendamedica_MEDICO FOREIGN KEY (mdccod)
-                          REFERENCES MEDICO (mdccod);    
-
--- ------------------------------------------------------------
 -- Tabela de Compromisso
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE compromisso_cpm_seq;
+CREATE SEQUENCE compromisso_cpmcod_seq;
 
 CREATE TABLE compromisso  (
-  cpmcod INTEGER  NOT NULL DEFAULT NEXTVAL('compromisso_cpm_seq'),
-  agmcod INTEGER  NOT NULL,
+  cpmcod INTEGER  NOT NULL DEFAULT NEXTVAL('compromisso_cpmcod_seq'),
+  mdccod INTEGER  NOT NULL,
   cpmdes VARCHAR(50) NULL,
   cpmtip VARCHAR(14) NULL,
-  cpmdta TIMESTAMP NULL,
+  cpmdta DATE NULL,
   cpmhorini NUMERIC(4) NULL,
-  cpmhorter NUMERIC(4) NULL  
+  cpmhorfim NUMERIC(4) NULL  
 );
 
 ALTER TABLE compromisso
@@ -184,8 +168,8 @@ ALTER TABLE compromisso
 CREATE INDEX cpmB ON compromisso (cpmdes);
 
 ALTER TABLE compromisso
-   ADD CONSTRAINT FK_compromisso_AGENDAMEDICA FOREIGN KEY (agmcod)
-                          REFERENCES AGENDAMEDICA (agmcod); 
+   ADD CONSTRAINT FK_compromisso_MEDICO FOREIGN KEY (mdccod)
+                          REFERENCES MEDICO (mdccod); 
 
 -- ------------------------------------------------------------
 -- Tabela de Relacionamento medico x especialidade
@@ -212,10 +196,10 @@ ALTER TABLE medico_especialidade
 -- Tabela de Paciente
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE paciente_pct_seq;
+CREATE SEQUENCE paciente_pctcod_seq;
 
 CREATE TABLE paciente (
-  pctidfseg NUMERIC(14) NOT NULL DEFAULT NEXTVAL('paciente_pct_seq'),
+  pctidfseg NUMERIC(14) NOT NULL DEFAULT NEXTVAL('paciente_pctcod_seq'),
   usrcod INTEGER NOT NULL,
   cvncod INTEGER NOT NULL,
   pctplnrde VARCHAR(25) NULL,
@@ -239,10 +223,10 @@ ALTER TABLE paciente
 -- Tabela de Agendamento
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE agendamento_agd_seq;
+CREATE SEQUENCE agendamento_agdcod_seq;
 
 CREATE TABLE agendamento (
-  agdcod INTEGER NOT NULL DEFAULT NEXTVAL('agendamento_agd_seq'),
+  agdcod INTEGER NOT NULL DEFAULT NEXTVAL('agendamento_agdcod_seq'),
   pctidfseg NUMERIC(14) NOT NULL,
   emdcod INTEGER  NOT NULL,
   mdccod INTEGER  NOT NULL,
@@ -269,10 +253,10 @@ ALTER TABLE agendamento
 -- Tabela de Historico de Prontuário
 -- ------------------------------------------------------------
 
-CREATE SEQUENCE historicoprontuario_htc_seq;
+CREATE SEQUENCE historicoprontuario_htccod_seq;
 
 CREATE TABLE historicoprontuario (
-  htccod INTEGER  NOT NULL DEFAULT NEXTVAL('historicoprontuario_htc_seq'),
+  htccod INTEGER  NOT NULL DEFAULT NEXTVAL('historicoprontuario_htccod_seq'),
   cidcod INTEGER  NOT NULL,
   pctidfseg NUMERIC(14) NOT NULL,
   htcstm VARCHAR(400) NULL,
@@ -292,6 +276,4 @@ ALTER TABLE historicoprontuario
 ALTER TABLE historicoprontuario
    ADD CONSTRAINT FK_historicoprontuario_PACIENTE FOREIGN KEY (pctidfseg)
                           REFERENCES PACIENTE (pctidfseg);
-
-
 
