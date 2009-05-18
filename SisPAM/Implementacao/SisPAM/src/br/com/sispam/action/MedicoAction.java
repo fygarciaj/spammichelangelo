@@ -19,7 +19,7 @@ import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.UsuarioFacade;
 
 public class MedicoAction extends Action{
-	
+
 	private Medico medico;
 	private UsuarioFacade usuarioFacade;
 	private MedicoFacade medicoFacade;
@@ -37,14 +37,13 @@ public class MedicoAction extends Action{
 	private Perfil[] perfils = Perfil.values();
 	private Sexo[] sexos = Sexo.values();
 	private List<Dia>dias;
-	private Usuario pessoaLogada;
 	private String codigoPerfilString;
 	private List<Integer> espececialidadesInt;
-	
+	private String teste;
+
 
 	public String salvarMedico(){
 		limparMapas();
-		getParametros();
 		usuarioFacade = new UsuarioFacade();
 		medicoFacade = new MedicoFacade();
 		especialidadeFacade = new EspecialidadeFacade();
@@ -62,14 +61,14 @@ public class MedicoAction extends Action{
 		try {
 			//verifica se os campos são inteiros
 			usuarioFacade.verificaCampoInteiro(mapa);
-			
+
 			//valida os campos de médico e do objeto usuario.
 			medicoFacade.validaCampos(medico);
-			
+
 			//verifica se o campo dias de trabalho foi preenchido.
 			String diasMarcados = getDiasMarcados().toString();
 			medicoFacade.validaCampoDias(diasMarcados);
-			
+
 			//verifica se o login está sendo usado
 			usuarioFacade.verificaLoginJaExistente(medico.getUsuario().getAcesso(), medico.getUsuario().getId());
 
@@ -79,17 +78,17 @@ public class MedicoAction extends Action{
 			medico.getUsuario().setRg(Long.parseLong(rgAux));
 			medico.getUsuario().setTelefone(Long.parseLong(telefoneAux));
 			medico.setCrm(Integer.parseInt(crmAux));
-			
+
 			//verifica se o crm está sendo usado
 			medicoFacade.verificaCrmExistente(medico.getCrm(), medico.getId());
-							
+
 			medico.setHoraInicio(Integer.parseInt(horaIni));
 			medico.setHoraFim(Integer.parseInt(horaFim));
 			medico.setConsultorio(Integer.parseInt(consultorioAux));
 			medico.setDataAtendimento(diasMarcados);
-						
+
 			this.medicoFacade.salvarMedico(medico);
-						
+
 
 			//usuarioFacade.salvarUsuario(usuario);
 			mensagens.put("salvo", "Médico cadastrado com sucesso!");
@@ -108,13 +107,44 @@ public class MedicoAction extends Action{
 			apresentaErrors();
 			return FALHA_SALVAR_USUARIO;
 		}
-	
+
 
 		apresentaMensagens();
 		limparCampos(true);
 		return SUCESSO_SALVAR_MEDICO;
 	}
-	
+
+	/**
+	 * @descricao: Carrega a edição do médico selecionado.
+	 * @return
+	 */
+	public String carregarEdicao(){
+		this.medicoFacade = new MedicoFacade();
+		this.especialidadeFacade = new EspecialidadeFacade();
+		//Recupera o médico
+		this.medico = this.medicoFacade.recuperar(this.medico.getId());
+		//monta os atributos da tela.
+		this.cepAux = String.valueOf(this.medico.getUsuario().getCep());
+		this.consultorioAux = String.valueOf(this.medico.getConsultorio());
+		this.crmAux = String.valueOf(this.medico.getCrm());
+		this.dddAux = String.valueOf(this.medico.getUsuario().getDdd());
+		this.horaFim = String.valueOf(this.medico.getHoraFim());
+		this.horaIni = String.valueOf(this.medico.getHoraInicio());
+		this.telefoneAux = String.valueOf(this.medico.getUsuario().getTelefone());
+		this.rgAux = String.valueOf(this.medico.getUsuario().getRg());
+
+		//prepara a lista de especialidades cadastradas.
+		this.especialidades = this.especialidadeFacade.recuperarTodas();
+
+		//carrega a lista de dias para exibir na tela.
+		getListaDias();
+
+		//prepara a lista de dias do médico cadastrado.
+		this.medicoFacade.montaMedico(medico);
+
+		return SUCESSO_CARREGAR_EDICAO;
+	}
+
 	/**
 	 * @descricao: Remove o médico do sistema.
 	 * @return
@@ -126,12 +156,6 @@ public class MedicoAction extends Action{
 		return SUCESSO_EXCLUIR_MEDICO;
 	}
 
-	
-	public void getParametros(){
-		System.out.println(ActionContext.getContext().getParameters().toString());
-		
-	}
-	
 	public List<Dia> getListaDias(){
 		//monta a lista de dias para o cadastro dos dias de trabalho do médico.
 		if(this.codigoPerfilSelecionado == Perfil.MEDICO.getCodigo()){
@@ -143,18 +167,18 @@ public class MedicoAction extends Action{
 		}
 		return this.dias;
 	}
-	
+
 	public StringBuilder getDiasMarcados(){
 		StringBuilder builder = new StringBuilder();
 		for(Object obj: ActionContext.getContext().getParameters().keySet()){
-			
+
 			if(String.valueOf(obj).startsWith("dia-")){
 				String idDia = String.valueOf(obj).split("-")[1];
-				
+
 				Object valor = ActionContext.getContext().getParameters().get("dia-"+idDia);
-				
+
 				String[] opcao = null;
-				
+
 				if(valor instanceof String[]){
 					opcao = (String[])valor;
 				}
@@ -167,7 +191,7 @@ public class MedicoAction extends Action{
 						builder.append(idDia);
 					}
 				}
-				
+
 			}
 		}
 		return builder;
@@ -182,16 +206,12 @@ public class MedicoAction extends Action{
 		this.codigoPerfilString = null;
 
 	}
-	
+
 	private void limparMapas(){
 		erros.clear();
 		mensagens.clear();
 	}
-	
-	public String carregarEdicaoMedico(){
-		return null;
-	}
-		
+
 	public Medico getMedico() {
 		return medico;
 	}
@@ -331,4 +351,13 @@ public class MedicoAction extends Action{
 		this.espececialidadesInt = espececialidadesInt;
 	}
 
+	public String getTeste() {
+		return teste;
+	}
+
+	public void setTeste(String teste) {
+		this.teste = teste;
+	}
+	
+	
 }

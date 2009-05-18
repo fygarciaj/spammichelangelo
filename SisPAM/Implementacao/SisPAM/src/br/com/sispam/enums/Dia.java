@@ -50,6 +50,27 @@ public enum Dia {
 			return null;
 		}
 	}
+	
+	public static Dia newInstance(char dia){
+		switch (dia) {
+		case '1':
+			return SEGUNDA;
+		case '2':
+			return TERÇA;
+		case '3':
+			return QUARTA;
+		case '4':
+			return QUINTA;
+		case '5':
+			return SEXTA;
+		case '6':
+			return SABADO;
+		case '7':
+			return DOMINGO;
+		default:
+			return null;
+		}
+	}
 
 	public String getDescricao() {
 		return descricao;

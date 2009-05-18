@@ -1,11 +1,13 @@
 package br.com.sispam.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.sispam.dao.MedicoDao;
 import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
+import br.com.sispam.enums.Dia;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
 
@@ -59,8 +61,45 @@ public class MedicoFacade {
 	 */
 	public List<Medico> recuperarUltimosCadastrados() {
 		this.medicoDao = new MedicoDao();
-		return this.medicoDao.recuperarUltimosCadastrados();
+		List<Medico> lista = this.medicoDao.recuperarUltimosCadastrados();
+		return montaDiasMedico(lista);
 	}
+
+/**
+ * @descricao: Monta os dias em enums da lista de médicos passada.
+ * @param lista
+ * @return
+ */
+public List<Medico> montaDiasMedico(List<Medico> lista){
+	
+	if(lista!= null && lista.size() > 0){
+		for (Medico medico : lista) {
+			montaMedico(medico);
+		}
+	}
+	return lista;
+	
+}
+
+/**
+ * @descricao: Monta as enums dos dias dos médicos.
+ * @param medico
+ * @return
+ */
+public Medico montaMedico(Medico medico){
+	if(medico != null){
+		List<Dia> listaDias = new ArrayList<Dia>();
+		String diasMedico = medico.getDataAtendimento();
+		char[] dias = diasMedico.toCharArray();
+		for(char dia: dias){
+			if(dia != '-'){
+				listaDias.add(Dia.newInstance(dia));	
+			}
+		}
+		medico.setDias(listaDias);
+	}
+	return medico;
+}
 	
 	/**
 	 * @descricao: Remove o médico do sistema.
@@ -79,6 +118,16 @@ public class MedicoFacade {
 	public List<Medico> recuperarTodos(){
 		this.medicoDao = new MedicoDao();
 		return this.medicoDao.recuperarTodos();
+	}
+	
+	/**
+	 * @descricao: Recupera o Médico pelo ID.
+	 * @param id
+	 * @return
+	 */
+	public Medico recuperar(int id){
+		this.medicoDao = new MedicoDao();
+		return this.medicoDao.recuperaPeloId(id);
 	}
 	
 

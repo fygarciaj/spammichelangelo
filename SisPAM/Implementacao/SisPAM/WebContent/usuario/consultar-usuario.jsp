@@ -148,14 +148,18 @@
 				</th>
 		</tr>		
 		<tr>
-			<th width="40%" bgcolor="#A7C2DA" scope="col"><span
+			<th width="30%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Nome</span></th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+			<th width="10%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">CRM/UF</span></th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+			<th width="20%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Dias de Atendimento</span></th>
+			<th width="10%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Horário</span></th>
+			<th width="10%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Consultório</span></th>
+			<th width="10%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Telefone</span></th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">RG</span></th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Editar</span></th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
@@ -176,8 +180,16 @@
 			<tr	class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
 				<td><s:property value="usuario.nome" /></td>
 				<td align="center"><s:property value="crm+'/'+crmUf" /></td>
-				<td align="center"><s:property value="usuario.telefone" /></td>
-				<td align="center"><s:property value="usuario.rg" /></td>
+				<td align="center">
+					<s:if test="dias != null && dias.size > 0">
+						<s:iterator value="dias">
+							<s:property value="sigla"/>
+						</s:iterator>			
+					</s:if>
+				</td>
+				<td align="center"><s:property value="horaInicio"/>&nbsp;às&nbsp;<s:property value="horaFim"/></td>
+				<td align="center"><s:property value="consultorio" /></td>
+				<td align="center"><s:property value="usuario.telefone"/></td>
 				<td align="center"><s:a href="%{#editarMedico}" ><img  src="img/editar.png" alt="Editar" /></s:a></td>
 				<td align="center"><s:a href="%{#excluirMedico}" onclick="return confirmaExclusao()">
 					<img src="img/excluir.png" alt="Excluir" />
