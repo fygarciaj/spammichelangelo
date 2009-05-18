@@ -20,7 +20,7 @@
 </table>
 
 <center> 
-<s:form action="loginAction!logar.action">
+<s:form id="formLogin" action="loginAction!logar.action" method="post">
 	<table width="235" border="0"cellpadding="3" height="123" class="tabela_login" >
 		<tr>
 			<td colspan="6" height="13">

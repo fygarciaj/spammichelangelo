@@ -22,7 +22,7 @@ public class TesteCompromissoDao {
 		Usuario usuario = new Usuario();
 		Cripto cripto = new Cripto();
 		usuario.setEmail("ddd@iii");
-		usuario.setCpf("54454545");
+		usuario.setCpf("71600833187");
 		usuario.setPerfil(Perfil.MEDICO.getCodigo());
 		usuario.setSexo(Sexo.MASCULINO.getSigla());
 		usuario.setAcesso("harry");
@@ -41,8 +41,8 @@ public class TesteCompromissoDao {
 		
 		//salva o medico com um compromisso
 		Compromisso compromisso = new Compromisso();
-		compromisso.setData(new Date());
-		compromisso.setDescricao("Exame de prostata");
+//		compromisso.setData(new Date());
+		compromisso.setDescricao("Exame");
 		compromisso.setTipo("Exame");
 		compromisso.setMedico(medico);
 		

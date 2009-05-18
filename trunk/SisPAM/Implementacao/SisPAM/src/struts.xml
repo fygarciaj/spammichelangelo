@@ -67,6 +67,7 @@
 			<result name="falhaExcluirCompromisso">/compromisso/consulta-compromisso.jsp</result>
 			<result name="listarCompromissos">/compromisso/consulta-compromisso.jsp</result>
 			<result name="carregarInclusaoCompromisso">/compromisso/inclui-compromisso.jsp</result>
+			<result name="carregarConsultaCompromisso">/compromisso/consulta-compromisso.jsp</result>
 		</action>
 		
 	</package>

@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
 <script type="text/javascript">
 		 $(document).ready(function(){
-			calendario('dataAux');
+			calendario('data');
 	 });
 	 function calendario(idCampo){
 				var id = '#'+idCampo;
@@ -46,7 +46,19 @@
 	</tr>
 </table>
 <h2>Cadastro de Compromissos</h2>
-<s:form action="">
+	<table width="89%" id="AreaMsg" class="AreaMsg">			
+	<tr>	
+	<td>	
+		<div id="MensagensErro" >						
+			<s:fielderror theme="simple" cssClass="errorMessage" />
+			<s:actionmessage theme="simple" cssClass="sucessMessage" />
+		</div>
+	</td>
+	</tr>
+	</table>
+
+<s:form id="formConvenio" action="compromissoAction!incluirCompromisso.action">
+<s:hidden name="compromisso.id" value="%{compromisso.id}"/>
 	<table class="tabela_moldura">
 		<tr>
 			<td>
@@ -54,13 +66,13 @@
 				<tr>
 					<td><label class="label">Médico:</label></td>
 					<td colspan="3">
-					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--selecione--" headerKey="0" listValue="usuario.nome" listKey="id" />
+					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--Selecione--" headerKey="0" listValue="usuario.nome" listKey="id" />
 					</td>
 				</tr>
 				<tr>
 					<td><label class="label">Tipo de Evento:</label></td>
 					<td><select name="compromisso.tipo">
-						<option value="0">Selecione</option>
+						<option value="0">--Selecione--</option>
 						<option value="1">Consulta</option>
 						<option value="2">Cirurgia</option>
 						<option value="3">Reunião</option>
@@ -70,14 +82,14 @@
 				</tr>
 				<tr>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple" name="dataAux" id="dataAux"	size="10" maxlength="10"/>&nbsp;</td>
+					<td><s:textfield theme="simple" name="compromisso.data" id="data" size="10" maxlength="10"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td><label class="label">Hora Inicial:</label></td>
-					<td><s:textfield theme="simple" name="compromisso.horaInicial"
-						size="4" maxlength="5" />&nbsp;&nbsp;&nbsp;&nbsp; <label
+					<td><s:textfield theme="simple" name="horaInicialAux"
+						size="4" maxlength="4" />&nbsp;&nbsp;&nbsp;&nbsp; <label
 						class="label">Hora Final:</label>&nbsp; <s:textfield
-						theme="simple" name="compromisso.horaFinal" size="4" maxlength="5" />&nbsp;</td>
+						theme="simple" name="horaFinalAux" size="4" maxlength="4" />&nbsp;</td>
 
 				</tr>
 				<tr>
@@ -87,7 +99,7 @@
 			</table>
 		<table border="0" align="center">
 		<tr>
-			<td align="center"><br><input type="submit" value="Salvar" class="button"><br></td>		
+			<td align="center"><br><input type="submit" value="Incluir" class="button"><br></td>		
 		</tr>
 		</table>
 			</td>

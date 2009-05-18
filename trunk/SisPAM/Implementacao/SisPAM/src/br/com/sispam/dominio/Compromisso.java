@@ -1,5 +1,8 @@
 package br.com.sispam.dominio;
 
+
+
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,15 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Compromisso {
 	private int id;
 	private Medico medico;
-	private Date data;
+	private String data;
 	private String descricao;
-	private int horaInicio;
-	private int horaFim;
+	private int horaInicial;
+	private int horaFinal;
 	private String tipo;
 	
 	@Id
@@ -32,25 +34,25 @@ public class Compromisso {
 		this.id = id;
 	}
 	@Column(name = "cpmdta")
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(String data){
 		this.data = data;
 	}
 	@Column(name="cpmhorini")
-	public int getHoraInicio() {
-		return horaInicio;
+	public int getHoraInicial() {
+		return horaInicial;
 	}
-	public void setHoraInicio(int horaInicio) {
-		this.horaInicio = horaInicio;
+	public void setHoraInicial(int horaInicial) {
+		this.horaInicial = horaInicial;
 	}
 	@Column(name="cpmhorfim")
-	public int getHoraFim() {
-		return horaFim;
+	public int getHoraFinal() {
+		return horaFinal;
 	}
-	public void setHoraFim(int horaFim) {
-		this.horaFim = horaFim;
+	public void setHoraFinal(int horaFinal) {
+		this.horaFinal = horaFinal;
 	}
 	@Column(name="cpmdes")
 	public String getDescricao() {

@@ -36,13 +36,12 @@
 <body>
 <div id="menu">
 <ul>
-	<li><a href="javaScript:void(0)"
-		onclick="selecionaMenu('agendaMedica')" title="Mantem Compromissos Médicos"
+	<li><a href="javaScript:void(0)" onclick="selecionaMenu('agendaMedica')" title="Mantem Compromissos Médicos"
 		target="CENTRAL">AGENDA MÉDICA</a>
 	<div id="menuAgendaMedica" style="display: none">
 	<ul id="subMenu">
 		<li><a href="compromissoAction!carregarInclusao.action" title="Incluir" target="CENTRAL">Incluir Compromisso</a></li>
-		<li><a href="../agendaMedica/consulta-compromisso.jsp" title="Alterar/Excluir" target="CENTRAL">Alterar/Excluir Compromisso</a></li>
+		<li><a href="compromissoAction!carregarConsulta.action" title="Alterar/Excluir" target="CENTRAL">Alterar/Excluir Compromisso</a></li>
 	</ul>
 	</div>
 	</li>
