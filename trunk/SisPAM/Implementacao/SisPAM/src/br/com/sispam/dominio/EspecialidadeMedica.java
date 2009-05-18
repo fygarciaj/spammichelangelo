@@ -40,7 +40,7 @@ public class EspecialidadeMedica {
 		this.descricao = descricao;
 	}
 	
-	@ManyToMany(mappedBy = "especialidades", cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "especialidades", cascade = CascadeType.ALL)
 	@JoinTable(name="medico_especialidade", joinColumns=  @JoinColumn( name = "emdcod"),  inverseJoinColumns= @JoinColumn(name = "mdccod"))
 	public List<Medico> getMedicos() {
 		return medicos;

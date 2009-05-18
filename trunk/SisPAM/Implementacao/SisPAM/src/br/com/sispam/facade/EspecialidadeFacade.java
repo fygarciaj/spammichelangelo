@@ -1,5 +1,6 @@
 package br.com.sispam.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.sispam.dao.EspecialidadeDao;
@@ -28,6 +29,30 @@ public class EspecialidadeFacade {
 	 */
 	public EspecialidadeMedica recuperarPeloId(int id){
 		return especialidadeDao.recuperarEspecialidade(id);
+	}
+	
+	/**
+	 * @descricao: Recupera uma lista de especialidades apartir dos caracteres passados.
+	 * @param esp
+	 * @return
+	 */
+	public List<EspecialidadeMedica> recuperaEspecialidades(String esp){
+		this.especialidadeDao = new EspecialidadeDao();
+		List<String> listaString = new ArrayList<String>();
+		List<Integer> especialidades = new ArrayList<Integer>();
+		char[] espCharacter = esp.toCharArray();
+		
+		for(char caracter: espCharacter){
+			if(caracter != ',' && caracter != ' '){
+				listaString.add(String.valueOf(caracter));
+			}
+		}
+		
+		for(String string: listaString){
+			especialidades.add(Integer.parseInt(string));
+		}
+				
+		return this.especialidadeDao.recuperarEspecialidades(especialidades);
 	}
 	
 	

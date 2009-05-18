@@ -36,5 +36,18 @@ public class EspecialidadeDao {
 		Query query = manager.createQuery("from EspecialidadeMedica");
 		return query.getResultList();
 	}
+	
+	/**
+	 * @descricao: Recupera uma lista de especialidades apartir dos ids passados.
+	 * @param lista
+	 * @return
+	 */
+	public List<EspecialidadeMedica> recuperarEspecialidades(List<Integer> lista){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Query query = manager.createQuery("from EspecialidadeMedica where id in (:lista)");
+		query.setParameter("lista", lista);
+		return query.getResultList();
+	}
 
 }
