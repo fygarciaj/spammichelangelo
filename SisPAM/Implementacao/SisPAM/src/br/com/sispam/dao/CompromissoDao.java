@@ -80,16 +80,16 @@ public class CompromissoDao {
 		return compromisso;
 	}
 	
-	public List<Compromisso> consultarCompromissos(int idMedico, Date data){
+	public List<Compromisso> consultarCompromissos(Compromisso compromisso){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Compromisso> compromissos = null;
 		try{
 			//cria uma queri para fazer a busca pelo nome
-			Query query = manager.createQuery("from Compromisso where idMedico = :idMedico and data = :data");
+			Query query = manager.createQuery("from Compromisso where medico = :medico and data = :data");
 			//seta o parametro
-			query.setParameter("idMedico", idMedico);
-			query.setParameter("data", data);
+			query.setParameter("medico", compromisso.getMedico().getId());
+			query.setParameter("data", compromisso.getData());
 			compromissos = query.getResultList();				
 		}catch (NoResultException e) {
 			e.printStackTrace();
@@ -98,4 +98,5 @@ public class CompromissoDao {
 		conexao.finalizaConexao();		
 		return compromissos;
 	}	
+	
 }

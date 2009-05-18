@@ -1,5 +1,6 @@
 package br.com.sispam.facade;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class CompromissoFacade {
 			compromissoDao = new CompromissoDao();		
 			compromissoDao.incluirCompromisso(compromisso);
 		}catch(Exception e){
-			e.getStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -41,7 +42,7 @@ public class CompromissoFacade {
 			compromissoDao.excluirCompromisso(compromisso); 
 											  							
 		}catch(Exception e){
-			e.getStackTrace();
+			e.printStackTrace();
 		}					
 	}
 	
@@ -49,7 +50,7 @@ public class CompromissoFacade {
 		this.compromissoDao = new CompromissoDao();
 		Compromisso compromisso = null;
 		if(id != 0){
-			//compromisso = this.compromissoDao.recuperarPeloId(id);
+			compromisso = this.compromissoDao.recuperarPeloId(id);
 		}
 		return compromisso;
 	}
@@ -62,13 +63,18 @@ public class CompromissoFacade {
 	 */
 	public void verificaExistencia(Compromisso compromisso) throws CampoInvalidoException{
 		compromissoDao = new CompromissoDao();				
-	//	Compromisso compromissoNew = compromissoDao.consultarCompromissoUnico(compromisso.getMedico().getUsuario().getId(),
-//																			  compromisso.getData(),
-//																			  compromisso.getHoraInicio(),
-//																			  compromisso.getHoraFim());
-//		if(compromissoNew != null){
-//			throw new CampoInvalidoException("Compromisso já cadastrado!");
-//		}
+		Compromisso compromissoNew = compromissoDao.consultarCompromissoUnico(compromisso.getMedico().getId(),
+																			  compromisso.getData(),
+																			  compromisso.getHoraInicial(),
+																			  compromisso.getHoraFinal());
+		if(compromissoNew != null){
+			if(compromisso.getHoraInicial()>=compromissoNew.getHoraInicial()
+					&& compromisso.getHoraInicial()<compromissoNew.getHoraFinal()
+					&& compromisso.getHoraFinal()>compromissoNew.getHoraInicial()
+					&& compromisso.getHoraFinal()>compromissoNew.getHoraFinal()){
+				throw new CampoInvalidoException("Já existe Compromisso no período informado!");
+			}
+		}
 	}
 
 
@@ -83,18 +89,12 @@ public class CompromissoFacade {
 		Compromisso compromissoRetornado = null;
 		List<Compromisso> compromissosRetornados = null;
 		try {
-			if((compromisso.getMedico().getUsuario().getNome() == null)  
-					&& (compromisso.getData() == null)
-					&& compromisso.getTipo() == null || compromisso.getTipo().isEmpty()){
-				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" ou \"Tipo de Evento\" para efetuar a pesquisa!");
-			}//else if(){
-				//compromissosRetornados = compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
-				
-		
-		else{
-			compromissosRetornados.add(compromissoRetornado);
+			if((compromisso.getMedico().getId() == 0)  
+					&& (compromisso.getData() == null)){
+				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" para efetuar a pesquisa!");
+			}else if((compromisso.getMedico().getId() != 0) && (compromisso.getData() != null)){
+				compromissosRetornados = compromissoDao.consultarCompromissos(compromisso);
 			}
-
 		} catch (NoResultException e) {
 			throw new CampoInvalidoException("Nenhum registro encontrado");
 		}
@@ -109,8 +109,8 @@ public class CompromissoFacade {
 	 */
 	public List<Compromisso> recuperarCompromissosDiaAtual(Compromisso compromisso) {
 		this.compromissoDao = new CompromissoDao();
-		
-		return this.compromissoDao.consultarCompromissos(compromisso.getMedico().getUsuario().getId(), compromisso.getData());
+		compromisso.setData(String.valueOf(new Date()));
+		return this.compromissoDao.consultarCompromissos(compromisso);
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class CompromissoFacade {
 
 		if(compromisso != null){
 
-			if(compromisso.getMedico().getUsuario().getNome()== null || compromisso.getMedico().getUsuario().getNome().isEmpty()){
+			if(compromisso.getMedico()== null){
 				throw new CampoInvalidoException("Campo Nome do Médico inválido");
 			}						
 			if(compromisso.getTipo() == null || compromisso.getTipo().isEmpty()) {
@@ -156,8 +156,9 @@ public class CompromissoFacade {
 			if(compromisso.getData() == null){
 				throw new CampoInvalidoException("Campo Data inválido");
 			}
+			
 			if(compromisso.getDescricao()== null || compromisso.getDescricao().length() == 0){
-				throw new CampoInvalidoException("Campo E-mail inválido");
+				throw new CampoInvalidoException("Campo Descrição inválido");
 			}						
 
 		}

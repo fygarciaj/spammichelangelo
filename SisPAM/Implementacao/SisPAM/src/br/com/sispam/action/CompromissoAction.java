@@ -1,9 +1,12 @@
 package br.com.sispam.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import br.com.sispam.dao.MedicoDao;
 import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.excecao.CampoInteiroException;
@@ -19,34 +22,38 @@ public class CompromissoAction extends Action{
 	private MedicoFacade medicoFacade;
 	private List<Compromisso> compromissosCadastrados;
 	private List<Medico> medicos;
-	private String horaInicioAux;
-	private String horaFimAux;
-	private String dataAux;
-	
+	private String horaInicialAux;
+	private String horaFinalAux;
+
 	public String incluirCompromisso(){
 		compromissoFacade = new CompromissoFacade();
-		
-		//monta um mapa com todos os campos que devem ser inteiros.	
-		Map<String, String> mapa = new HashMap<String, String>();
-		mapa.put("horaInicio", horaInicioAux);
-		mapa.put("horaFim", horaFimAux);
+		medicoFacade =  new MedicoFacade();
 	
 		try {
+			Map<String, String> mapa = new HashMap<String, String>();
+			mapa.put("horaInicial", horaInicialAux);
+			mapa.put("horaFinal", horaFinalAux);
+			this.medicoFacade.recuperaPeloId(compromisso.getMedico().getId());
+			
 			//verifica se os campos são inteiros
 			compromissoFacade.verificaCampoInteiro(mapa);
 
 			//verifica se os campo obrigatorios foram preenchidos
 			compromissoFacade.validaCampos(compromisso);
-
-			//seta os valores das variváveis auxiliares.
-			compromisso.setHoraInicio(Integer.parseInt(horaInicioAux));
-			compromisso.setHoraFim(Integer.parseInt(horaFimAux));
-
-
+			
+			
+			
 			//verifica se já existe compromisso cadastrado com esses dados.
 			compromissoFacade.verificaExistencia(compromisso);
+			
+			//seta os valores das variváveis auxiliares.
+			compromisso.setHoraInicial(Integer.parseInt(horaInicialAux));
+			compromisso.setHoraFinal(Integer.parseInt(horaFinalAux));
+					
+			
+			
 			compromissoFacade.salvaCompromisso(compromisso);
-			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
+ 			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
 
 		}catch (CampoInvalidoException e) {
 			e.printStackTrace();
@@ -59,8 +66,8 @@ public class CompromissoAction extends Action{
 			return FALHA_SALVAR_COMPROMISSO;
 		}
 		apresentaMensagens();
-		this.limparCampos();
-		return SUCESSO_INCLUIR_CONVENIO;
+	//	limparCampos();
+		return SUCESSO_SALVAR_COMPROMISSO;
 	}
 	
 	public String carregarInclusao(){
@@ -68,6 +75,14 @@ public class CompromissoAction extends Action{
 		this.medicos = this.medicoFacade.recuperarTodos();
 		return CARREGAR_INCLUSAO_COMPROMISSO;
 	}
+	
+	public String carregarConsulta(){
+		this.medicoFacade = new MedicoFacade();
+		this.medicos = this.medicoFacade.recuperarTodos();
+		this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
+		return CARREGAR_CONSULTA_COMPROMISSO;
+	}
+	
 
 	public String excluirCompromisso(){
 		 
@@ -99,8 +114,6 @@ public class CompromissoAction extends Action{
 	public String carregaEdicaoCompromisso(){
 		this.compromissoFacade = new CompromissoFacade();
 		this.compromisso = this.compromissoFacade.recuperarPeloId(compromisso.getId());
-		this.horaInicioAux = String.valueOf(compromisso.getHoraInicio());
-		this.horaFimAux = String.valueOf(compromisso.getHoraFim());
 		return SUCESSO_EDICAO_COMPROMISSO;
 	}
 
@@ -108,8 +121,8 @@ public class CompromissoAction extends Action{
 	/*Utilitário*/
 	private void limparCampos(){
 		this.compromisso = null;
-		this.horaInicioAux = null;
-		this.horaFimAux = null;
+		horaFinalAux = null;
+		horaInicialAux = null;
 	}
 	
 	public Compromisso getCompromisso() {
@@ -130,19 +143,7 @@ public class CompromissoAction extends Action{
 	public void setCompromissosCadastrados(List<Compromisso> compromissosCadastrados) {
 		this.compromissosCadastrados = compromissosCadastrados;
 	}
-	public String getHoraInicioAux() {
-		return horaInicioAux;
-	}
-	public void setHoraInicioAux(String horaInicioAux) {
-		this.horaInicioAux = horaInicioAux;
-	}
-	public String getHoraFimAux() {
-		return horaFimAux;
-	}
-	public void setHoraFimAux(String horaFimAux) {
-		this.horaFimAux = horaFimAux;
-	}
-
+	
 	public MedicoFacade getMedicoFacade() {
 		return medicoFacade;
 	}
@@ -159,14 +160,20 @@ public class CompromissoAction extends Action{
 		this.medicos = medicos;
 	}
 
-	public String getDataAux() {
-		return dataAux;
+	public String getHoraInicialAux() {
+		return horaInicialAux;
 	}
 
-	public void setDataAux(String dataAux) {
-		this.dataAux = dataAux;
+	public void setHoraInicialAux(String horaInicialAux) {
+		this.horaInicialAux = horaInicialAux;
 	}
-	
-	
-	
+
+	public String getHoraFinalAux() {
+		return horaFinalAux;
+	}
+
+	public void setHoraFinalAux(String horaFinalAux) {
+		this.horaFinalAux = horaFinalAux;
+	}
+
 }

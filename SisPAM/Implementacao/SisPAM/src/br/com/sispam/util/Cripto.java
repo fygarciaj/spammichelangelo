@@ -33,9 +33,9 @@ public class Cripto{
 	}
 	
 	public static void main(String[] args){
-    //    static String senha = "carlos";
-        
-    //    System.out.println(String.valueOf(Cripto.criptografar(senha)));
+     //   String senha = "carlos";
+  
+ //       System.out.println(criptografar());
 
 }
 
