@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import br.com.sispam.enums.Dia;
+
 
 @Entity
 public class Medico {
@@ -30,6 +32,7 @@ public class Medico {
 	private int horaFim;
 	private int consultorio;
 	private List<Compromisso> compromissos;
+	private List<Dia> dias;
 
 	@Id
 	@Column(name = "mdccod")
@@ -111,4 +114,13 @@ public class Medico {
 	public void setCompromissos(List<Compromisso> compromissos) {
 		this.compromissos = compromissos;
 	}
+	@Transient
+	public List<Dia> getDias() {
+		return dias;
+	}
+	public void setDias(List<Dia> dias) {
+		this.dias = dias;
+	}
+	
+	
 }

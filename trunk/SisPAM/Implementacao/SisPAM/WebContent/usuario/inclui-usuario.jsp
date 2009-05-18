@@ -65,36 +65,12 @@
 			<tr>
 				<td><label class="label">Estado:</label></td>
 				<td>
-					<select name="usuario.uf">
-						<option value="">Selecione</option>
-						<option value="AC">Acre</option>
-						<option value="AL">Alagoas</option>
-						<option value="AP">Amapá</option>
-						<option value="AM">Amazonas</option>
-						<option value="BA">Bahia</option>
-						<option value="CE">Ceará</option>
-						<option value="DF">Distrito Federal</option>
-						<option value="ES">Espírito Santo</option>
-						<option value="GO">Goiás</option>
-						<option value="MA">Maranhão</option>
-						<option value="MT">Mato Grosso</option>
-						<option value="MS">Mato Grosso do Sul</option>
-						<option value="MG">Minas Gerais</option>
-						<option value="PA">Pará</option>
-						<option value="PB">Paraíba</option>
-						<option value="PR">Paraná</option>
-						<option value="PE">Pernambuco</option>
-						<option value="PI">Piauí</option>
-						<option value="RJ">Rio de Janeiro</option>
-						<option value="RN">Rio Grande do Norte</option>
-						<option value="RS">Rio Grande do Sul</option>
-						<option value="RO">Rondônia</option>
-						<option value="RR">Roraima</option>
-						<option value="SC">Santa Catarina</option>
-						<option value="SP">São Paulo</option>
-						<option value="SE">Sergipe</option>
-						<option value="TO">Tocantins</option>
-					</select>
+				<s:select name="usuario.uf" theme="simple"  list="#{'':'Selecione','AC':'Acre', 'AL':'Alagoas', 'AP': 'Amapá', 
+					'AM':'Amazônas', 'BA': 'Bahia', 'CE':'Ceará', 'DF':'Distrito Federal', 'ES':'Espírito Santo', 'GO':'Goiás', 
+					'MA': 'Maranhão', 'MT':'Mato Grosso', 'MS':'Mato Grosso do Sul', 'MG':'Minas Gerais', 'PA':'Pará', 
+					'PB':'Paraíba', 'PR':'Paraná', 'PE':'Pernambuco', 'PI':'Piauí', 'RJ':'Rio de Janeiro', 'RN':'Rio Grande do Norte', 
+					'RS':'Rio Grande do Sul', 'RO':'Rondônia', 'RR':'Roraima', 'SC':'Santa Catariana', 'SP':'São Paulo', 
+					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="label">CEP:&nbsp;&nbsp;</label>
 					<s:textfield theme="simple" name="cepAux" size="15" maxlength="8" />
@@ -148,36 +124,12 @@
 			<tr>
 				<td><label class="label">Estado:</label></td>
 				<td>
-					<select name="medico.usuario.uf">
-						<option value="">Selecione</option>
-						<option value="AC">Acre</option>
-						<option value="AL">Alagoas</option>
-						<option value="AP">Amapá</option>
-						<option value="AM">Amazonas</option>
-						<option value="BA">Bahia</option>
-						<option value="CE">Ceará</option>
-						<option value="DF">Distrito Federal</option>
-						<option value="ES">Espírito Santo</option>
-						<option value="GO">Goiás</option>
-						<option value="MA">Maranhão</option>
-						<option value="MT">Mato Grosso</option>
-						<option value="MS">Mato Grosso do Sul</option>
-						<option value="MG">Minas Gerais</option>
-						<option value="PA">Pará</option>
-						<option value="PB">Paraíba</option>
-						<option value="PR">Paraná</option>
-						<option value="PE">Pernambuco</option>
-						<option value="PI">Piauí</option>
-						<option value="RJ">Rio de Janeiro</option>
-						<option value="RN">Rio Grande do Norte</option>
-						<option value="RS">Rio Grande do Sul</option>
-						<option value="RO">Rondônia</option>
-						<option value="RR">Roraima</option>
-						<option value="SC">Santa Catarina</option>
-						<option value="SP">São Paulo</option>
-						<option value="SE">Sergipe</option>
-						<option value="TO">Tocantins</option>
-					</select>
+				<s:select name="medico.usuario.uf" theme="simple"  list="#{'':'Selecione','AC':'Acre', 'AL':'Alagoas', 'AP': 'Amapá', 
+					'AM':'Amazônas', 'BA': 'Bahia', 'CE':'Ceará', 'DF':'Distrito Federal', 'ES':'Espírito Santo', 'GO':'Goiás', 
+					'MA': 'Maranhão', 'MT':'Mato Grosso', 'MS':'Mato Grosso do Sul', 'MG':'Minas Gerais', 'PA':'Pará', 
+					'PB':'Paraíba', 'PR':'Paraná', 'PE':'Pernambuco', 'PI':'Piauí', 'RJ':'Rio de Janeiro', 'RN':'Rio Grande do Norte', 
+					'RS':'Rio Grande do Sul', 'RO':'Rondônia', 'RR':'Roraima', 'SC':'Santa Catariana', 'SP':'São Paulo', 
+					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="label">CEP:&nbsp;&nbsp;</label>
 					<s:textfield theme="simple" name="cepAux" size="15" maxlength="8" />
@@ -196,36 +148,13 @@
 				<td><label class="label">CRM:</label></td>
 				<td><s:textfield theme="simple" name="crmAux" size="7" maxlength="7" />&nbsp;&nbsp; 
 				<label class="label">UF-CRM:</label>&nbsp;
-					<select name="medico.crmUf">	
-						<option value="">Selecione</option>
-						<option value="AC">Acre</option>
-						<option value="AL">Alagoas</option>
-						<option value="AP">Amapá</option>
-						<option value="AM">Amazonas</option>
-						<option value="BA">Bahia</option>
-						<option value="CE">Ceará</option>
-						<option value="DF">Distrito Federal</option>
-						<option value="ES">Espírito Santo</option>
-						<option value="GO">Goiás</option>
-						<option value="MA">Maranhão</option>
-						<option value="MT">Mato Grosso</option>
-						<option value="MS">Mato Grosso do Sul</option>
-						<option value="MG">Minas Gerais</option>
-						<option value="PA">Pará</option>
-						<option value="PB">Paraíba</option>
-						<option value="PR">Paraná</option>
-						<option value="PE">Pernambuco</option>
-						<option value="PI">Piauí</option>
-						<option value="RJ">Rio de Janeiro</option>
-						<option value="RN">Rio Grande do Norte</option>
-						<option value="RS">Rio Grande do Sul</option>
-						<option value="RO">Rondônia</option>
-						<option value="RR">Roraima</option>
-						<option value="SC">Santa Catarina</option>
-						<option value="SP">São Paulo</option>
-						<option value="SE">Sergipe</option>
-						<option value="TO">Tocantins</option>
-					</select>&nbsp;&nbsp; 
+					<s:select name="medico.crmUf" theme="simple"  list="#{'':'Selecione','AC':'Acre', 'AL':'Alagoas', 'AP': 'Amapá', 
+					'AM':'Amazônas', 'BA': 'Bahia', 'CE':'Ceará', 'DF':'Distrito Federal', 'ES':'Espírito Santo', 'GO':'Goiás', 
+					'MA': 'Maranhão', 'MT':'Mato Grosso', 'MS':'Mato Grosso do Sul', 'MG':'Minas Gerais', 'PA':'Pará', 
+					'PB':'Paraíba', 'PR':'Paraná', 'PE':'Pernambuco', 'PI':'Piauí', 'RJ':'Rio de Janeiro', 'RN':'Rio Grande do Norte', 
+					'RS':'Rio Grande do Sul', 'RO':'Rondônia', 'RR':'Roraima', 'SC':'Santa Catariana', 'SP':'São Paulo', 
+					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
+			 </td>
 
 			</tr>
 			<tr>
@@ -239,16 +168,22 @@
 			</tr>			
 			<tr>
 			<td colspan="3">
-				 	<s:optiontransferselect cssStyle="height:100px" name="espececialidadesInt" theme="simple" leftTitle="Especialidades" allowUpDownOnLeft="false" allowUpDownOnRight="false" 
-				 	allowAddAllToLeft="false"  addToLeftLabel="<<" 	rightTitle="Especialidades do Medico" doubleList="medico.especialidades" 
-				 	 addToRightLabel=">>" allowAddAllToRight="false" allowSelectAll="false" listKey="id" listValue="descricao" buttonCssClass="button1" 
-				 	 list="especialidades"  doubleName="medico.especialidades"  
-				 	 doubleListKey="id" doubleListValue="descricao" doubleCssStyle="height:100px"></s:optiontransferselect>			
+				 	<s:optiontransferselect theme="simple"
+				 		list="%{especialidades}"
+				 		listKey="id" listValue="descricao"
+				 		doubleName="teste" 
+				 		doubleList="%{medico.especialidades}"
+				 		doubleListKey="id" doubleListValue="descricao"></s:optiontransferselect>			
 			</td>							
 				<td ><label class="label">Dias de Atendimento</label>&nbsp;
 				<s:iterator value="dias">
-					<br>					
-					<s:checkbox value="false" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />					
+					<br>
+					<s:if test="medico.dias.contains('QUARTA')">					
+						<s:checkbox value="true" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />
+					</s:if>
+					<s:else>
+						<s:checkbox value="false" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />
+					</s:else>					
 				</s:iterator>
 				</td>						
 				<td><s:submit value="Salvar" cssClass="button" /></td>
@@ -256,6 +191,5 @@
 	</table>
 	</s:form>		
 </s:elseif>
-
 </body>
 </html>
