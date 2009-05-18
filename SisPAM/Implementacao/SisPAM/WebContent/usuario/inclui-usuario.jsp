@@ -10,6 +10,18 @@
 <link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
 <script type="text/javascript" src="componentes/js/sispam.js"></script>
 <title>Insert title here</title>
+
+<SCRIPT language="javaScript">
+	function marcaEspecialidades(){
+		var elemento = document.getElementById("idDouble");
+		for(var i=0; i < elemento.size; i++){
+			elemento.options[i].selected = true;
+			}
+		return false;
+		}
+</script>
+
+
 </head>
 <body>
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -38,7 +50,7 @@
 </div>
 
 <s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
-	<s:form id="formPerfil" action="usuarioAction!salvarUsuario.action">
+	<s:form id="formPerfil" action="usuarioAction!salvarUsuario.action" method="post">
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
 	<s:hidden name="usuario.id" value="%{usuario.id}"/>
 		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
@@ -97,9 +109,10 @@
 </s:form>
 </s:if>	
 <s:elseif test="codigoPerfilSelecionado == 3">
-	<s:form action="medicoAction!salvarMedico.action" name="formMedico">
+	<s:form action="medicoAction!salvarMedico.action" name="formMedico" method="post" >
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
-	<s:hidden name="usuario.id" value="%{usuario.id}"/>
+	<s:hidden name="medico.id" value="%{medico.id}"/>
+	<s:hidden name="medico.usuario.id" value="%{medico.usuario.id}"/>
 		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
 				<td><label class="label">Nome:</label></td>
@@ -168,12 +181,14 @@
 			</tr>			
 			<tr>
 			<td colspan="3">
-				 	<s:optiontransferselect theme="simple"
-				 		list="%{especialidades}"
-				 		listKey="id" listValue="descricao"
-				 		doubleName="teste" 
-				 		doubleList="%{medico.especialidades}"
-				 		doubleListKey="id" doubleListValue="descricao"></s:optiontransferselect>			
+				 	<s:optiontransferselect cssStyle="height:100px" 
+				 	theme="simple" 	leftTitle="Especialidades" allowUpDownOnLeft="false" 
+				 	allowUpDownOnRight="false" allowAddAllToLeft="false"  addToLeftLabel="<<" 	
+				 	rightTitle="Especialidades do Medico" doubleList="medico.especialidades" 
+				 	 addToRightLabel=">>" allowAddAllToRight="false" allowSelectAll="false" 
+				 	 listKey="id" listValue="descricao" 
+				 	 list="especialidades"  doubleName="especialidadesSelecionadas"  
+				  	 doubleCssStyle="height:100px" doubleId="idDouble" doubleListKey="id" doubleListValue="descricao"></s:optiontransferselect>			
 			</td>							
 				<td ><label class="label">Dias de Atendimento</label>&nbsp;
 				<s:iterator value="dias">
@@ -186,10 +201,11 @@
 					</s:else>					
 				</s:iterator>
 				</td>						
-				<td><s:submit value="Salvar" cssClass="button" /></td>
+				<td><s:submit value="Salvar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
 			</tr>
 	</table>
 	</s:form>		
 </s:elseif>
+
 </body>
 </html>

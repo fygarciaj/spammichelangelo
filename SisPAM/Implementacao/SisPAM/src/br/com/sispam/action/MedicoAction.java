@@ -38,8 +38,7 @@ public class MedicoAction extends Action{
 	private Sexo[] sexos = Sexo.values();
 	private List<Dia>dias;
 	private String codigoPerfilString;
-	private List<Integer> espececialidadesInt;
-	private String teste;
+	private String especialidadesSelecionadas;
 
 
 	public String salvarMedico(){
@@ -63,7 +62,7 @@ public class MedicoAction extends Action{
 			usuarioFacade.verificaCampoInteiro(mapa);
 
 			//valida os campos de médico e do objeto usuario.
-			medicoFacade.validaCampos(medico);
+			medicoFacade.validaCampos(medico, especialidadesSelecionadas);
 
 			//verifica se o campo dias de trabalho foi preenchido.
 			String diasMarcados = getDiasMarcados().toString();
@@ -82,6 +81,9 @@ public class MedicoAction extends Action{
 			//verifica se o crm está sendo usado
 			medicoFacade.verificaCrmExistente(medico.getCrm(), medico.getId());
 
+			//monta a lista de especialidades
+			this.medicoFacade.validaEspecialidadesSalvas(medico, especialidadesSelecionadas);
+
 			medico.setHoraInicio(Integer.parseInt(horaIni));
 			medico.setHoraFim(Integer.parseInt(horaFim));
 			medico.setConsultorio(Integer.parseInt(consultorioAux));
@@ -96,6 +98,11 @@ public class MedicoAction extends Action{
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
 			this.especialidades = this.especialidadeFacade.recuperarTodas();
+			if(this.medico != null && this.medico.getId() > 0){
+				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
+				this.medico.setEspecialidades(medico2.getEspecialidades());
+				preparaListaDeExibicao(this.especialidades, medico2.getEspecialidades());
+			}
 			getListaDias();
 			apresentaErrors();
 			return FALHA_SALVAR_MEDICO;
@@ -103,6 +110,11 @@ public class MedicoAction extends Action{
 		catch (CampoInteiroException e) {
 			erros.put("campoInvalido", e.getMessage());
 			this.especialidades = this.especialidadeFacade.recuperarTodas();
+			if(this.medico != null && this.medico.getId() > 0){
+				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
+				this.medico.setEspecialidades(medico2.getEspecialidades());
+				preparaListaDeExibicao(this.especialidades, medico2.getEspecialidades());
+			}
 			getListaDias();
 			apresentaErrors();
 			return FALHA_SALVAR_USUARIO;
@@ -135,6 +147,10 @@ public class MedicoAction extends Action{
 
 		//prepara a lista de especialidades cadastradas.
 		this.especialidades = this.especialidadeFacade.recuperarTodas();
+
+		if(medico.getEspecialidades() != null && this.medico.getEspecialidades().size() > 0){
+			preparaListaDeExibicao(this.especialidades, this.medico.getEspecialidades());
+		}
 
 		//carrega a lista de dias para exibir na tela.
 		getListaDias();
@@ -204,6 +220,22 @@ public class MedicoAction extends Action{
 			this.codigoPerfilSelecionado = null;
 		}
 		this.codigoPerfilString = null;
+
+	}
+
+	private void preparaListaDeExibicao(List<EspecialidadeMedica> especialidades, List<EspecialidadeMedica> espMedica){
+
+		if(espMedica != null && espMedica.size() > 0){
+
+			for(EspecialidadeMedica espMedico: espMedica){
+				for(EspecialidadeMedica esp: especialidades){
+					if(espMedico.getId() == esp.getId()){
+						this.especialidades.remove(esp);
+					}
+				}
+
+			}
+		}
 
 	}
 
@@ -343,21 +375,12 @@ public class MedicoAction extends Action{
 		this.consultorioAux = consultorioAux;
 	}
 
-	public List<Integer> getEspececialidadesInt() {
-		return espececialidadesInt;
+	public String getEspecialidadesSelecionadas() {
+		return especialidadesSelecionadas;
 	}
 
-	public void setEspececialidadesInt(List<Integer> espececialidadesInt) {
-		this.espececialidadesInt = espececialidadesInt;
+	public void setEspecialidadesSelecionadas(String especialidadesSelecionadas) {
+		this.especialidadesSelecionadas = especialidadesSelecionadas;
 	}
 
-	public String getTeste() {
-		return teste;
-	}
-
-	public void setTeste(String teste) {
-		this.teste = teste;
-	}
-	
-	
 }

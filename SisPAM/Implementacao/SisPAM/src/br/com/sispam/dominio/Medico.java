@@ -66,7 +66,7 @@ public class Medico {
 	public void setCrmUf(String crmUf) {
 		this.crmUf = crmUf;
 	}
-	@ManyToMany(cascade = CascadeType.REMOVE)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="medico_especialidade", joinColumns=  @JoinColumn( name = "mdccod"),  inverseJoinColumns= @JoinColumn(name = "emdcod"))
 	public List<EspecialidadeMedica> getEspecialidades() {
 		return especialidades;
