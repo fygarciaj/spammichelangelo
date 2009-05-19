@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 
 import br.com.sispam.dao.CompromissoDao;
 import br.com.sispam.dominio.Compromisso;
+import br.com.sispam.dominio.Medico;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 
@@ -40,12 +41,12 @@ public class CompromissoFacade {
 
 		try{			
 			compromissoDao.excluirCompromisso(compromisso); 
-											  							
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}					
 	}
-	
+
 	public Compromisso recuperarPeloId(int id){
 		this.compromissoDao = new CompromissoDao();
 		Compromisso compromisso = null;
@@ -64,9 +65,9 @@ public class CompromissoFacade {
 	public void verificaExistencia(Compromisso compromisso) throws CampoInvalidoException{
 		compromissoDao = new CompromissoDao();				
 		Compromisso compromissoNew = compromissoDao.consultarCompromissoUnico(compromisso.getMedico().getId(),
-																			  compromisso.getData(),
-																			  compromisso.getHoraInicial(),
-																			  compromisso.getHoraFinal());
+				compromisso.getData(),
+				compromisso.getHoraInicial(),
+				compromisso.getHoraFinal());
 		if(compromissoNew != null){
 			if(compromisso.getHoraInicial()>=compromissoNew.getHoraInicial()
 					&& compromisso.getHoraInicial()<compromissoNew.getHoraFinal()
@@ -100,18 +101,17 @@ public class CompromissoFacade {
 		}
 		return compromissosRetornados;
 	}
-	
-	
 
 	/**
-	 * @descricao: Recupera os Compromissos por dia
+	 * @descricao: Recupera os últimos compromissos do médico.
+	 * @param compromisso
 	 * @return
 	 */
-	public List<Compromisso> recuperarCompromissosDiaAtual(Compromisso compromisso) {
+	public List<Compromisso> recuperarCompromissosDiaAtual(Compromisso compromisso){
 		this.compromissoDao = new CompromissoDao();
-		compromisso.setData(String.valueOf(new Date()));
 		return this.compromissoDao.consultarCompromissos(compromisso);
 	}
+
 
 	/**
 	 * @descricao: Valida os campos que devem ser inteiros.
@@ -156,7 +156,7 @@ public class CompromissoFacade {
 			if(compromisso.getData() == null){
 				throw new CampoInvalidoException("Campo Data inválido");
 			}
-			
+
 			if(compromisso.getDescricao()== null || compromisso.getDescricao().length() == 0){
 				throw new CampoInvalidoException("Campo Descrição inválido");
 			}						

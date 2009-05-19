@@ -126,6 +126,25 @@ public class MedicoDao {
 		return lista;
 	}
 	
+	/**
+	 * @descricao: Recupera o médico apartir do usuário.
+	 * @param usuario
+	 * @return
+	 */
+	public Medico recuperar(Usuario usuario){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Medico medico =  null;
+		try{
+			Query query = manager.createQuery("from Medico where usuario.id = :idUsuario");
+			query.setParameter("idUsuario", usuario.getId());
+			medico = (Medico) query.getSingleResult();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		return medico;
+	}
+	
 
 	public void removerTodosTeste() {
 		conexao = new Conexao();

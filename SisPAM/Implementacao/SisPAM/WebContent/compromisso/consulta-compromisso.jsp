@@ -120,6 +120,7 @@
 					<s:param name="compromisso.id" value="%{id}"/>
 				</s:url>
 				<td>
+					<s:date value="compromisso.data" format="dd/MM/yyyy"/>
 					<s:property value="horaInicial" />
 				</td>
 				<td>

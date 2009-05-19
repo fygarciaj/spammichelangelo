@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class Compromisso {
 	private int id;
 	private Medico medico;
-	private String data;
+	private Date data;
 	private String descricao;
 	private int horaInicial;
 	private int horaFinal;
@@ -34,10 +34,10 @@ public class Compromisso {
 		this.id = id;
 	}
 	@Column(name = "cpmdta")
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
-	public void setData(String data){
+	public void setData(Date data){
 		this.data = data;
 	}
 	@Column(name="cpmhorini")

@@ -61,7 +61,10 @@
 		
 			<!--Compromisso Action -->
 		<action name="compromissoAction!*" method="{1}" class="br.com.sispam.action.CompromissoAction">
-			<result name="sucessoSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>
+			<result name="sucessoSalvarCompromisso" type="chain">
+				<param name="actionName">compromissoAction</param>
+				<param name="method">carregarInclusao</param>
+			</result>
 			<result name="sucessoEdicaoCompromisso">/compromisso/inclui-compromisso.jsp</result>
 			<result name="falhaSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>
 			<result name="falhaExcluirCompromisso">/compromisso/consulta-compromisso.jsp</result>
