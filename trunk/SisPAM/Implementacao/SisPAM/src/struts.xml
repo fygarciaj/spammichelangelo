@@ -73,6 +73,10 @@
 			<result name="carregarConsultaCompromisso">/compromisso/consulta-compromisso.jsp</result>
 		</action>
 		
+		<!--HistoricoProntuario Action-->
+		<action name="historicoProntuarioAction!*" method="{1}" class="br.com.sispam.action.HistoricoProntuarioAction">
+			<result name="carregarConsultaAgendamento">/historicoProntuario/atualiza-historicoProntuario.jsp</result>		
+		</action>	
 	</package>
 
 </struts>
