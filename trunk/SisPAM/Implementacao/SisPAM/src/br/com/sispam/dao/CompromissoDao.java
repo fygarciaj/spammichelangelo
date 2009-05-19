@@ -60,13 +60,13 @@ public class CompromissoDao {
 		return manager.find(Compromisso.class, id);
 	}
 	
-	public Compromisso consultarCompromissoUnico(int idMedico, String data, int horaInicio, int horaFim){
+	public Compromisso consultarCompromissoUnico(int idMedico, Date data, int horaInicio, int horaFim){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Compromisso compromisso = null;
 		try{
 			//cria uma query para fazer a busca pelo cnpj
-			Query query = manager.createQuery("from Compromisso where Medico.id = :idMedico and data = :data and horaInicio = :horaInicio and horaFim = :horaFim");
+			Query query = manager.createQuery("from Compromisso where medico.id = :idMedico and data = :data and horaInicial = :horaInicio and horaFinal = :horaFim");
 			//seta o parametro
 			query.setParameter("idMedico", idMedico);
 			query.setParameter("data", data);
@@ -86,7 +86,7 @@ public class CompromissoDao {
 		List<Compromisso> compromissos = null;
 		try{
 			//cria uma queri para fazer a busca pelo nome
-			Query query = manager.createQuery("from Compromisso where medico = :medico and data = :data");
+			Query query = manager.createQuery("from Compromisso where medico.id = :medico and data = :data");
 			//seta o parametro
 			query.setParameter("medico", compromisso.getMedico().getId());
 			query.setParameter("data", compromisso.getData());

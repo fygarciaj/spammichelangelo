@@ -153,5 +153,19 @@ public class MedicoFacade {
 		this.medicoDao = new MedicoDao();
 		return this.medicoDao.recuperaPeloId(id);
 	}
+	
+	/**
+	 * @descricao: Recupera o médico apartir do Usuário.
+	 * @param usuario
+	 * @return
+	 */
+	public Medico recuperar(Usuario usuario){
+		if(usuario!= null){
+			this.medicoDao = new MedicoDao();
+			return this.medicoDao.recuperar(usuario);
+		}else{
+			return null;
+		}
+	}
 }
 

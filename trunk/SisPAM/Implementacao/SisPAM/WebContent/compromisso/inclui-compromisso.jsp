@@ -82,7 +82,7 @@
 				</tr>
 				<tr>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple" name="compromisso.data" id="data" size="10" maxlength="10"/>&nbsp;</td>
+					<td><s:textfield theme="simple" name="dataAux" id="data" size="10" maxlength="10"/>&nbsp;</td>
 				</tr>
 				<tr>
 					<td><label class="label">Hora Inicial:</label></td>

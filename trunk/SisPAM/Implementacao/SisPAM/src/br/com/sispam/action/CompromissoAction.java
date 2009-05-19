@@ -1,5 +1,6 @@
 package br.com.sispam.action;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,14 +10,16 @@ import java.util.Map;
 import br.com.sispam.dao.MedicoDao;
 import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.Medico;
+import br.com.sispam.enums.Perfil;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.CompromissoFacade;
 import br.com.sispam.facade.MedicoFacade;
+import br.com.sispam.util.DataUtil;
 
 
 public class CompromissoAction extends Action{
-	
+
 	private Compromisso compromisso;
 	private CompromissoFacade compromissoFacade;
 	private MedicoFacade medicoFacade;
@@ -24,36 +27,42 @@ public class CompromissoAction extends Action{
 	private List<Medico> medicos;
 	private String horaInicialAux;
 	private String horaFinalAux;
+	private String dataAux;
 
 	public String incluirCompromisso(){
 		compromissoFacade = new CompromissoFacade();
 		medicoFacade =  new MedicoFacade();
-	
+
 		try {
 			Map<String, String> mapa = new HashMap<String, String>();
 			mapa.put("horaInicial", horaInicialAux);
 			mapa.put("horaFinal", horaFinalAux);
-			this.medicoFacade.recuperaPeloId(compromisso.getMedico().getId());
-			
+			this.compromisso.setMedico(this.medicoFacade.recuperar(compromisso.getMedico().getId()));
+
 			//verifica se os campos são inteiros
 			compromissoFacade.verificaCampoInteiro(mapa);
 
-			//verifica se os campo obrigatorios foram preenchidos
-			compromissoFacade.validaCampos(compromisso);
-			
-			
-			
-			//verifica se já existe compromisso cadastrado com esses dados.
-			compromissoFacade.verificaExistencia(compromisso);
-			
 			//seta os valores das variváveis auxiliares.
 			compromisso.setHoraInicial(Integer.parseInt(horaInicialAux));
 			compromisso.setHoraFinal(Integer.parseInt(horaFinalAux));
-					
-			
-			
+			try {
+				compromisso.setData(DataUtil.stringToDate(dataAux));
+			} catch (ParseException e) {
+				erros.put("campoInvalido", "Data inválida!");
+				apresentaErrors();
+				return FALHA_SALVAR_COMPROMISSO;
+			}
+
+			//verifica se os campo obrigatorios foram preenchidos
+			compromissoFacade.validaCampos(compromisso);
+
+
+
+			//verifica se já existe compromisso cadastrado com esses dados.
+			compromissoFacade.verificaExistencia(compromisso);
+
 			compromissoFacade.salvaCompromisso(compromisso);
- 			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
+			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
 
 		}catch (CampoInvalidoException e) {
 			e.printStackTrace();
@@ -66,26 +75,33 @@ public class CompromissoAction extends Action{
 			return FALHA_SALVAR_COMPROMISSO;
 		}
 		apresentaMensagens();
-	//	limparCampos();
 		return SUCESSO_SALVAR_COMPROMISSO;
 	}
-	
+
 	public String carregarInclusao(){
 		this.medicoFacade = new MedicoFacade();
 		this.medicos = this.medicoFacade.recuperarTodos();
+		limparCampos();
 		return CARREGAR_INCLUSAO_COMPROMISSO;
 	}
-	
+
 	public String carregarConsulta(){
 		this.medicoFacade = new MedicoFacade();
+		this.compromissoFacade = new CompromissoFacade();
 		this.medicos = this.medicoFacade.recuperarTodos();
-		this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
+		this.compromisso = new Compromisso();
+		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
+			this.compromisso.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
+			this.compromisso.setData(new Date());
+			this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
+		}
+		
 		return CARREGAR_CONSULTA_COMPROMISSO;
 	}
-	
+
 
 	public String excluirCompromisso(){
-		 
+
 		this.compromissoFacade = new CompromissoFacade();		
 		try {
 			this.compromissoFacade.excluiCompromisso(this.compromisso);
@@ -110,7 +126,7 @@ public class CompromissoAction extends Action{
 		return LISTAR_COMPROMISSOS;
 
 	}
-	
+
 	public String carregaEdicaoCompromisso(){
 		this.compromissoFacade = new CompromissoFacade();
 		this.compromisso = this.compromissoFacade.recuperarPeloId(compromisso.getId());
@@ -123,8 +139,9 @@ public class CompromissoAction extends Action{
 		this.compromisso = null;
 		horaFinalAux = null;
 		horaInicialAux = null;
+		this.dataAux = null;
 	}
-	
+
 	public Compromisso getCompromisso() {
 		return compromisso;
 	}
@@ -142,14 +159,6 @@ public class CompromissoAction extends Action{
 	}
 	public void setCompromissosCadastrados(List<Compromisso> compromissosCadastrados) {
 		this.compromissosCadastrados = compromissosCadastrados;
-	}
-	
-	public MedicoFacade getMedicoFacade() {
-		return medicoFacade;
-	}
-
-	public void setMedicoFacade(MedicoFacade medicoFacade) {
-		this.medicoFacade = medicoFacade;
 	}
 
 	public List<Medico> getMedicos() {
@@ -175,5 +184,14 @@ public class CompromissoAction extends Action{
 	public void setHoraFinalAux(String horaFinalAux) {
 		this.horaFinalAux = horaFinalAux;
 	}
+
+	public String getDataAux() {
+		return dataAux;
+	}
+
+	public void setDataAux(String dataAux) {
+		this.dataAux = dataAux;
+	}
+
 
 }
