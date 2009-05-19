@@ -25,23 +25,76 @@
 	</table>
 	<h2>Atualiza Histórico de Prontuário</h2>
 	<s:form action="historicoProntuarioAction!carregarAgendamentos.action" theme="simple">	
-		<table class="tabela_moldura" >
-			<tr>
-				<td><label>Sintoma</label></td><td><s:textarea name="historicoProntuario.sintoma" id="sintoma" theme="simple"/></td>
-			</tr>
-			<tr>	
-				<td><label>Laudo</label></td><td><s:textarea name="historicoProntuario.laudo" id="sintoma" theme="simple"/></td>
-			</tr>
 
-			<tr>	
-				<td><label>Prescrição</label></td><td><s:textarea name="historicoProntuario.prescricao" id="sintoma" theme="simple"/></td>
-			</tr>
-	
-			<tr>	
-				<td><label>Observação</label></td><td><s:textarea name="historicoProntuario.observacao" id="sintoma" theme="simple"/></td>
+	<s:hidden name="paciente.id" value="%{paciente.id}"/>
+		<table border="0" class="tabela_moldura" cellpadding="3" cellspacing="4" >
+			<tr>
+				<td width="271px"><label class="label">Nome:</label></td>
+				<td><s:label value="%{nome}" theme="simple" name="agendamento.paciente.nome"/></td>
+				<td width="271px"><label class="label">CPF:</label></td>
+				<td><s:label  value="%{usuario.cpf}" theme="simple" name="usuario.cpf"/></td>
 			</tr>
 			<tr>
-				<td><s:submit value="Atualizar" cssClass="button" theme="simple"/></td>
+				<td><label class="label">RG:</label></td>
+				<td><s:label value="%{rgAux}" theme="simple" name="rgAux"/>
+				<td><label class="label">Expedidor:</label></td>
+				<td><s:label value="%{usuario.expedidorRg}" theme="simple" name="usuario.expedidorRg"/></td>				
+			</tr>
+			<tr>
+				<td><label class="label">Endereço:</label></td>
+				<td><s:label value="%{usuario.endereco}" theme="simple" name="usuario.endereco"/></td>
+				<td><label class="label">Cidade:</label></td>
+				<td><s:label value="%{usuario.cidade}" theme="simple" name="usuario.cidade"/></td>
+			</tr>
+			<tr>
+				<td><label class="label">Estado:</label></td>
+				<td>
+				<s:label value="%{usuario.uf}" name="usuario.uf" theme="simple"/></td>						
+					<td><label class="label">CEP:</label></td>
+					<td><s:label value="%{cepAux}" theme="simple" name="cepAux"/></td>				
+			</tr>
+			<tr>
+				<td><label class="label">DDD:</label></td>
+				<td>
+					<s:label value="%{dddAux}" theme="simple" name="dddAux"/></td>
+					<td><label class="label">Telefone:</label></td><td>
+					<s:label value="%{telefoneAux}" theme="simple" name="telefoneAux"/>
+				</td>
+			</tr>
+			<tr>				
+				<td><label class="label">E-mail:</label></td>
+				<td><s:label  value="%{usuario.email}" theme="simple" name="usuario.email"/></td>
+				<td><label class="label">Sexo:</label></td>
+				<td><s:label value="%{usuario.sexo}" theme="simple" name="usuario.sexo"/></td>				
+			</tr>			
+		</table>
+		<table class="tabela_moldura">
+			<tr>
+				<td><label>Sintoma</label>
+			</tr>
+			<tr>
+				<td><s:textarea name="historicoProntuario.sintoma" id="sintoma" theme="simple" cols="70" rows="5"/></td>
+			</tr>
+			<tr>	
+				<td><label>Laudo</label></td>
+			</tr>
+			<tr>
+				<td><s:textarea name="historicoProntuario.laudo" id="sintoma" theme="simple" cols="70" rows="5"/></td>
+			</tr>
+			<tr>	
+				<td><label>Prescrição</label>
+			</tr>
+			<tr>
+				<td><s:textarea name="historicoProntuario.prescricao" id="sintoma" theme="simple" cols="70" rows="5"/></td>
+			</tr>
+			<tr>	
+				<td><label>Observação</label></td>
+			</tr>
+			<tr>
+				<td><s:textarea name="historicoProntuario.observacao" id="sintoma" theme="simple" cols="70" rows="5"/></td>
+			</tr>
+			<tr>				
+				<td align="center"><s:submit value="Atualizar" cssClass="button" theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>
@@ -82,19 +135,19 @@
 				</s:url>
 					<!-- Monta a url para carregar a exclusão do convênio -->
 				<s:url id="excluirConvenio" action="historicoProntuarioAction!carregarAgendamentos.action">
-					<s:param name="agendamento.id" value="%{cnpj}"/>
+					<s:param name="agendamento.id" value="%{id}"/>
 				</s:url>
 				<td>
-					<s:property value="usuario.nome" />
+					<s:property value="agendamento.paciente.usuario.nome" />
 				</td>
 				<td>
-					<s:property value="usuario.cpf"/>
+					<s:property value="agendamento.paciente.usuario.cpf"/>
 				</td>
 				<td>
-					<s:property value="usuario.telefone"/>
+					<s:property value="agendamento.paciente.usuario.telefone"/>
 				</td>
 				<td>
-					<s:property value="data"/>
+					<s:property value="agendamento.data"/>
 				</td>
 				<td align="center">
 					<s:a href="%{#editarConvenio}">
