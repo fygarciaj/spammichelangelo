@@ -26,10 +26,16 @@
 <s:form action="receitaAction!emitirReceita.action">
 		<table class="tabela_moldura" >
 			<tr>
-				<td><label>Paciente</label></td><td><s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Data de Atendimento</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="10" maxlength="10"/></td>
-				<td><label>Hora de Atendimento</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="6" maxlength="5"/></td>
-				<td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
+				<td><label>Paciente:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="40" maxlength="40"/></td>
+			</tr>
+			<tr>				
+				<td><label>Data de Atendimento:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="10" maxlength="10"/></td>
+			</tr>
+			<tr>	
+				<td><label>Hora de Atendimento:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="6" maxlength="5"/></td>
+			</tr>
+			<tr>	
+				<td colspan="1"></td><td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>

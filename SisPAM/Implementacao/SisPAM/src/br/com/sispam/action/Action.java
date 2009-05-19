@@ -44,6 +44,8 @@ public class Action extends ActionSupport{
 	public final String CARREGAR_INCLUSAO_COMPROMISSO = "carregarInclusaoCompromisso";
 	public final String CARREGAR_CONSULTA_COMPROMISSO = "carregarConsultaCompromisso";
 
+	public final String CARREGAR_CONSULTA_AGENDAMENTO = "carregarConsultaAgendamento";
+	
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();
 
