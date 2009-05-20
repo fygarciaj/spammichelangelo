@@ -8,6 +8,8 @@ import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.Convenio;
+import br.com.sispam.dominio.HistoricoProntuario;
 
 
 public class HistoricoProntuarioDao {
@@ -39,4 +41,27 @@ public class HistoricoProntuarioDao {
 		return agendamentos;
 	}	
 	
+	
+	/**
+	 * @descricao: insere o historico de prontuario
+	 * @param historicoProntuario
+	 */
+	public void atualizarHistorioProntuario(HistoricoProntuario historicoProntuario){		
+		
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		manager.getTransaction().begin();
+		
+		//verifica se possui id caso possua apenas atualiza os dados no banco
+		if(historicoProntuario != null && historicoProntuario.getId() > 0){
+			manager.merge(historicoProntuario);
+		}
+		//caso não, salva um novo historico
+		else{
+			manager.persist(historicoProntuario);
+		}
+		
+		manager.getTransaction().commit();
+		conexao.finalizaConexao();
+	}
 }

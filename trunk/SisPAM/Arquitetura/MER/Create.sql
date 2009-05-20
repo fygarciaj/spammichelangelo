@@ -100,13 +100,17 @@ CREATE SEQUENCE codigodoenca_cidcod_seq;
 
 CREATE TABLE codigodoenca (
   cidcod INTEGER  NOT NULL DEFAULT NEXTVAL('codigodoenca_cidcod_seq'),
-  ciddes VARCHAR(50) NULL 
+  cidctgini VARCHAR(3) NULL,
+  cidctgfim VARCHAR(3) NULL,
+  ciddes VARCHAR(250) NULL, 
+  ciddesabr VARCHAR(100) NULL
 );
 
 ALTER TABLE codigodoenca
    ADD CONSTRAINT cidA PRIMARY KEY(cidcod);  
 
 CREATE INDEX cidB ON codigodoenca (ciddes);
+CREATE INDEX cidC ON codigodoenca (ciddesabr);
 
 -- ------------------------------------------------------------
 -- Tabela de Log de Auditoria
@@ -232,9 +236,10 @@ CREATE TABLE agendamento (
   emdcod INTEGER  NOT NULL,
   mdccod INTEGER  NOT NULL,
   agdtip INTEGER  NULL,
-  agddat TIMESTAMP NULL,
+  agddat DATE NULL,
   agdhor INTEGER  NULL,
-  agdobs VARCHAR(200) NULL
+  agdobs VARCHAR(200) NULL,
+  agdsta INTEGER NOT NULL
 );
 
 ALTER TABLE agendamento
