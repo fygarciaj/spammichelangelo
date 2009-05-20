@@ -56,10 +56,8 @@ public class CompromissoAction extends Action{
 			//verifica se os campo obrigatorios foram preenchidos
 			compromissoFacade.validaCampos(compromisso);
 
-
-
 			//verifica se já existe compromisso cadastrado com esses dados.
-			compromissoFacade.verificaExistencia(compromisso);
+	//		compromissoFacade.verificaExistencia(compromisso);
 
 			compromissoFacade.salvaCompromisso(compromisso);
 			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
@@ -98,7 +96,6 @@ public class CompromissoAction extends Action{
 		
 		return CARREGAR_CONSULTA_COMPROMISSO;
 	}
-
 
 	public String excluirCompromisso(){
 

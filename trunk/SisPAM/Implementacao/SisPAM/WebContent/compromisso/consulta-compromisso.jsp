@@ -46,47 +46,25 @@
 <h2>Consulta de Compromissos</h2>
 
 <s:form id="formConsultaCompromisso" action="compromissoAction!consultarCompromisso.action">
-	<table class="tabela_moldura">
-		<tr>
-			<td>
 			<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 				<tr>
 					<td><label class="label">Médico:</label></td>
 					<td colspan="3">
-					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--Selecione--" headerKey="0" listValue="usuario.nome" listKey="id" />
+					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--Selecione--" headerKey="0" listValue="usuario.nome" listKey="id"/>
 					</td>
-				</tr>
-				<tr>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple" name="compromisso.data" id="data"
-						size="10" maxlength="10"/>&nbsp;</td>
-			
-					<td><label class="label">Tipo de Evento:</label></td>
-					<td><select name="compromisso.tipo">
-						<option value="0">Selecione</option>
-						<option value="1">Consulta</option>
-						<option value="2">Cirurgia</option>
-						<option value="3">Reunião</option>
-						<option value="4">Palestra</option>
-						<option value="5">Seminário</option>
-					</select></td>
+					<td><s:textfield theme="simple" name="compromisso.data" id="data" size="10" maxlength="10"/>&nbsp;</td>
+					<td><input type="submit" value="Consultar" class="button"></td>
 				</tr>
 			</table>
-		<table border="0" align="center">
-		<tr>
-			<td align="center"><br><input type="submit" value="Consultar" class="button"><br></td>		
-		</tr>
-		</table>
-			</td>
-		</tr>
-	</table>
 </s:form>
 	<!-- Lista os compromissos do dia-->
 	<s:if test="compromissosCadastrados != null && compromissosCadastrados.size() > 0">
 	<br>
 	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
 		<tr>
-			<th colspan="6" class="principal style2" scope="col">Compromissos do Dia</th>
+			<th colspan="6" class="principal style2" scope="col">Compromissos do Dia:</th>
+			
 		</tr>
 		<tr>		
 			<th width="40%" bgcolor="#A7C2DA" scope="col">
@@ -108,9 +86,10 @@
 				<span class="style5">Excluir</span>
 			</th>
 		</tr>
+
+		
 		<s:iterator value="compromissosCadastrados" status="status">
 			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
-			
 				<!-- Monta a url para carregar a edição do compromisso -->
 				<s:url id="editarCompromisso" action="compromissoAction!carregaEdicaoCompromisso.action">
 					<s:param name="compromisso.id" value="%{id}"/>
@@ -120,7 +99,6 @@
 					<s:param name="compromisso.id" value="%{id}"/>
 				</s:url>
 				<td>
-					<s:date name="compromisso.data" value="compromisso.data" format="dd/MM/yyyy"/>
 					<s:property value="horaInicial" />
 				</td>
 				<td>

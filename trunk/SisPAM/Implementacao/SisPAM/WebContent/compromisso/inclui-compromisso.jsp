@@ -72,12 +72,12 @@
 				<tr>
 					<td><label class="label">Tipo de Evento:</label></td>
 					<td><select name="compromisso.tipo">
-						<option value="0">--Selecione--</option>
-						<option value="1">Consulta</option>
-						<option value="2">Cirurgia</option>
-						<option value="3">Reunião</option>
-						<option value="4">Palestra</option>
-						<option value="5">Seminário</option>
+						<option value="--Selecione--">Selecione</option>
+						<option value="Consulta">Consulta</option>
+						<option value="Cirurgia">Cirurgia</option>
+						<option value="Reunião">Reunião</option>
+						<option value="Palestra">Palestra</option>
+						<option value="Seminário">Seminário</option>
 					</select></td>
 				</tr>
 				<tr>
