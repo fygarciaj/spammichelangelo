@@ -64,17 +64,13 @@ public class CompromissoFacade {
 	 */
 	public void verificaExistencia(Compromisso compromisso) throws CampoInvalidoException{
 		compromissoDao = new CompromissoDao();				
-		Compromisso compromissoNew = compromissoDao.consultarCompromissoUnico(compromisso.getMedico().getId(),
-				compromisso.getData(),
-				compromisso.getHoraInicial(),
-				compromisso.getHoraFinal());
+		List<Compromisso> compromissoNew = null;
+		compromissoNew = (compromissoDao.consultarCompromissoUnico(compromisso.getMedico().getId(),
+					compromisso.getData(),
+					compromisso.getHoraInicial(),
+					compromisso.getHoraFinal()));
 		if(compromissoNew != null){
-			if(compromisso.getHoraInicial()>=compromissoNew.getHoraInicial()
-					&& compromisso.getHoraInicial()<compromissoNew.getHoraFinal()
-					&& compromisso.getHoraFinal()>compromissoNew.getHoraInicial()
-					&& compromisso.getHoraFinal()>compromissoNew.getHoraFinal()){
-				throw new CampoInvalidoException("Já existe Compromisso no período informado!");
-			}
+			throw new CampoInvalidoException("Já existe Compromisso no período informado!");
 		}
 	}
 
