@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import br.com.sispam.dao.HistoricoProntuarioDao;
 import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.HistoricoProntuario;
 
 public class TesteHistoricoProntuarioDao {
 
@@ -22,7 +23,15 @@ public class TesteHistoricoProntuarioDao {
 		
 		agendamentos = historicoProntuarioDao.consultarAgendamento(agendamento);
 		
-		System.out.println(agendamentos.indexOf(agendamento));
+		System.out.println(agendamentos.indexOf(agendamento));		
+	}
+	
+	@Test
+	public void atualizaHistoricoProntuario(){
+		HistoricoProntuario historicoProntuario = new HistoricoProntuario();
+		HistoricoProntuarioDao historicoProntuarioDao = new HistoricoProntuarioDao();
+		
+		historicoProntuario.set
 		
 		
 	}
