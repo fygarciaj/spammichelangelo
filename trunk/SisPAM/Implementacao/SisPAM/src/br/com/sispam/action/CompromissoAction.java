@@ -57,13 +57,12 @@ public class CompromissoAction extends Action{
 			compromissoFacade.validaCampos(compromisso);
 
 			//verifica se já existe compromisso cadastrado com esses dados.
-	//		compromissoFacade.verificaExistencia(compromisso);
+			compromissoFacade.verificaExistencia(compromisso);
 
 			compromissoFacade.salvaCompromisso(compromisso);
 			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
 
 		}catch (CampoInvalidoException e) {
-			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
 			apresentaErrors();
 			return FALHA_SALVAR_COMPROMISSO;
@@ -119,7 +118,6 @@ public class CompromissoAction extends Action{
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 		}
-
 		return LISTAR_COMPROMISSOS;
 
 	}

@@ -69,7 +69,7 @@ public class CompromissoFacade {
 					compromisso.getData(),
 					compromisso.getHoraInicial(),
 					compromisso.getHoraFinal()));
-		if(compromissoNew != null){
+		if(compromissoNew != null && compromissoNew.get(0) != null){
 			throw new CampoInvalidoException("Já existe Compromisso no período informado!");
 		}
 	}

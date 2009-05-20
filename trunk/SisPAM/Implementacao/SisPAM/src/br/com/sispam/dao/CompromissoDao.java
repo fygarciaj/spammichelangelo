@@ -75,8 +75,8 @@ public class CompromissoDao {
 			query.setParameter("horaInicio", horaInicio);
 			query.setParameter("horaFim", horaFim);
 			compromisso = query.getResultList();						
-		}catch (Exception e) {
-			e.printStackTrace();
+		}catch (NoResultException e) {
+			compromisso = null;
 		}
 		conexao.finalizaConexao();		
 		return compromisso;
