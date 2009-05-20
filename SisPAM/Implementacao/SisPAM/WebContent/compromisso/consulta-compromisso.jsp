@@ -61,26 +61,26 @@
 	<!-- Lista os compromissos do dia-->
 	<s:if test="compromissosCadastrados != null && compromissosCadastrados.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
 			<th colspan="6" class="principal style2" scope="col">Compromissos do Dia:</th>
 			
 		</tr>
 		<tr>		
-			<th width="40%" bgcolor="#A7C2DA" scope="col">
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Hora Inicial</span>
 			</th>
-			<th width="40%" bgcolor="#A7C2DA" scope="col">
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Hora Final</span>
 			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
+			<th width="15%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Tipo</span>
 			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
+			<th width="50%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Descrição</span>
 			</th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Editar</span>
+				<span class="style5">Alterar</span>
 			</th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Excluir</span>
@@ -98,10 +98,10 @@
 				<s:url id="excluirCompromisso" action="compromissoAction!excluirCompromisso.action">
 					<s:param name="compromisso.id" value="%{id}"/>
 				</s:url>
-				<td>
+				<td align="center">
 					<s:property value="horaInicial" />
 				</td>
-				<td>
+				<td align="center">
 					<s:property value="horaFinal"/>
 				</td>
 				<td>

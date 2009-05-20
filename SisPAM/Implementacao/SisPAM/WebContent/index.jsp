@@ -7,7 +7,6 @@
 <title>SisPAM</title>
 <link rel="stylesheet" href="../resources/styles.css" type="text/css" />
 </head>
-	<frameset name="FULL" id="FULL">
 	<FRAMESET ROWS="127px,*" framespacing="1" frameborder="yes" bordercolor="#BCD2E6">
    		<FRAME SRC="componentes/cabecalho.jsp" NAME=CABECALHO scrolling=no noresize="noresize" frameborder="0">
 	 <FRAMESET COLS="272px,*" frameborder="no" framespacing="0">
@@ -16,6 +15,4 @@
      </FRAMESET>
 	</FRAMESET>
 
-<body>
-</body>
 </html>
