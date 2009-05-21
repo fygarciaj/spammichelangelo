@@ -1,13 +1,27 @@
 package br.com.sispam.teste.dao;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 
+
+
+import br.com.sispam.dao.AgendamentoDao;
+import br.com.sispam.dao.CodigoDoencaDao;
+
 import br.com.sispam.dao.HistoricoProntuarioDao;
+import br.com.sispam.dao.PacienteDao;
+import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.CodigoDoenca;
+
 import br.com.sispam.dominio.HistoricoProntuario;
+import br.com.sispam.dominio.Paciente;
+import br.com.sispam.dominio.Usuario;
+
+import br.com.sispam.util.DataUtil;
 
 public class TesteHistoricoProntuarioDao {
 
@@ -28,10 +42,30 @@ public class TesteHistoricoProntuarioDao {
 	
 	@Test
 	public void atualizaHistoricoProntuario(){
+				
+		PacienteDao pacienteDao = new PacienteDao();
+		Paciente paciente = pacienteDao.recuperarPeloId(2);				
+		
 		HistoricoProntuario historicoProntuario = new HistoricoProntuario();
 		HistoricoProntuarioDao historicoProntuarioDao = new HistoricoProntuarioDao();
 		
-		//historicoProntuario.set
+		CodigoDoencaDao codigoDoencaDao = new CodigoDoencaDao();		
+		CodigoDoenca codigoDoenca = codigoDoencaDao.recuperarCodigoDoenca(46);
+		
+		AgendamentoDao agendamentoDao = new AgendamentoDao();
+		Agendamento agendamentoRecuperado = agendamentoDao.recuperarAgendamento(2);
+				
+		agendamentoRecuperado.setStatus(2);
+		agendamentoDao.incluirAgendamento(agendamentoRecuperado);
+
+		historicoProntuario.setCodigoDoenca(codigoDoenca);
+		historicoProntuario.setPaciente(paciente);
+		historicoProntuario.setLaudo("LAUDO");
+		historicoProntuario.setPrescricao("PRESCRICAO");
+		historicoProntuario.setSintoma("SINTOMA");
+		historicoProntuario.setObservacao("OBSERVACAO");
+		
+		historicoProntuarioDao.atualizarHistorioProntuario(historicoProntuario);
 		
 		
 	}

@@ -63,7 +63,7 @@
 		target="CENTRAL">HISTÓRICO PRONTUÁRIO</a>
 	<div id="menuHistoricoProntuario" style="display: none">
 	<ul id="subMenu">
-		<li><a href="historicoProntuarioAction!carregarAgendamentos.action" title="Alterar/Excluir" target="CENTRAL">Atualizar</a></li>
+		<li><a href="historicoProntuarioAction!carregarAgendamentos.action" title="Atualizar" target="CENTRAL">Atualizar</a></li>
 	</ul>
 	</div>
 	</li>
