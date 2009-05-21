@@ -8,7 +8,7 @@ import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Agendamento;
-import br.com.sispam.dominio.Convenio;
+
 import br.com.sispam.dominio.HistoricoProntuario;
 
 

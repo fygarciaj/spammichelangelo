@@ -1,5 +1,6 @@
 package br.com.sispam.dominio;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ public class Agendamento {
 	private Paciente paciente;
 	private Medico medico;
 	private EspecialidadeMedica especialidadeMedica;
-	private String tipo;
+	private int tipo;
 	private int hora;
 	private String observacao;
 	private int status;
@@ -63,10 +64,10 @@ public class Agendamento {
 		this.especialidadeMedica = especialidadeMedica;
 	}
 	@Column(name = "agdtip")
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 	@Column(name = "agdhor")

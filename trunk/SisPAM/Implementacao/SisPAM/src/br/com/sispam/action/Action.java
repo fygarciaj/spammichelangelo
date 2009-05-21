@@ -49,6 +49,9 @@ public class Action extends ActionSupport{
 	public final String CARREGAR_CONSULTA_COMPROMISSO = "carregarConsultaCompromisso";
 
 	public final String CARREGAR_CONSULTA_AGENDAMENTO = "carregarConsultaAgendamento";
+	public final String	ATUALIZAR_HISTORICO_PRONTUARIO = "atualizarHistoricoProntuario";
+	public final String SUCESSO_ATUALIZACAO_HISTORICO_PRONTUARIO = "sucessoAtualizacaoHistoricoProntuario";
+	public final String FALHA_ATUALIZAR_HISTORICO_PRONTUARIO = "falhaAtualizarHistoricoProntuario";
 	
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();

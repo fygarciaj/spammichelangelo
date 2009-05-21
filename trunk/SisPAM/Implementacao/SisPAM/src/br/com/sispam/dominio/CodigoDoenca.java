@@ -10,7 +10,10 @@ import javax.persistence.Id;
 public class CodigoDoenca {
 
 	private int id;
+	private String categoriaInicial;
+	private String categoriaFinal;	
 	private String descricao;
+	private String abreviatura;
 	
 	@Id
 	@Column(name="cidcod")
@@ -28,6 +31,28 @@ public class CodigoDoenca {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	@Column(name="cidctgini")
+	public String getCategoriaInicial() {
+		return categoriaInicial;
+	}
+	public void setCategoriaInicial(String categoriaInicial) {
+		this.categoriaInicial = categoriaInicial;
+	}
+	@Column(name="cidctgfim")
+	public String getCategoriaFinal() {
+		return categoriaFinal;
+	}
+	public void setCategoriaFinal(String categoriaFinal) {
+		this.categoriaFinal = categoriaFinal;
+	}
+	@Column(name="ciddesabr")
+	public String getAbreviatura() {
+		return abreviatura;
+	}
+	public void setAbreviatura(String abreviatura) {
+		this.abreviatura = abreviatura;
+	}
+	
 	
 	
 }

@@ -85,7 +85,10 @@
 		
 		<!--HistoricoProntuario Action-->
 		<action name="historicoProntuarioAction!*" method="{1}" class="br.com.sispam.action.HistoricoProntuarioAction">
-			<result name="carregarConsultaAgendamento">/historicoProntuario/atualiza-historicoProntuario.jsp</result>		
+			<result name="carregarConsultaAgendamento">/historicoProntuario/consulta-agendamentosParaAtender.jsp</result>
+			<result name="atualizarHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>
+			<result name="sucessoAtualizacaoHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>
+			<result name="falhaAtualizarHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>		
 		</action>	
 	</package>
 

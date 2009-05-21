@@ -36,7 +36,7 @@ public class DataUtil {
 		}
 		return dataFormatada;
 	}
-	
+		
 	/**
 	 * descrição: converte uma data em string para um objeto do tipo Date
 	 * @param data
@@ -54,4 +54,5 @@ public class DataUtil {
 				return null;
 			}
 		}
+	
 }
