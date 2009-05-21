@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="componentes/js/sispam.js"></script>
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
@@ -37,8 +37,8 @@
 			<tr>
 				<td><label class="label">RG:</label></td>
 				<td><s:label value="%{rgAux}" theme="simple" name="rgAux"/>
-				<td><label class="label">Expedidor:</label></td>
-				<td><s:label value="%{usuario.expedidorRg}" theme="simple" name="usuario.expedidorRg"/></td>				
+				<td><label class="label">Data de Nascimento:</label></td>
+				<td><s:label value="%{usuario.dataNascimento}" theme="simple" name="usuario.dataNascimento"/></td>				
 			</tr>
 			<tr>
 				<td><label class="label">Endereço:</label></td>
@@ -138,16 +138,16 @@
 					<s:param name="agendamento.id" value="%{id}"/>
 				</s:url>
 				<td>
-					<s:property value="agendamento.paciente.usuario.nome" />
+					<s:property value="usuario.nome" />
 				</td>
 				<td>
-					<s:property value="agendamento.paciente.usuario.cpf"/>
+					<s:property value="usuario.cpf"/>
 				</td>
 				<td>
-					<s:property value="agendamento.paciente.usuario.telefone"/>
+					<s:property value="usuario.telefone"/>
 				</td>
 				<td>
-					<s:property value="agendamento.data"/>
+					<s:property value="data"/>
 				</td>
 				<td align="center">
 					<s:a href="%{#editarConvenio}">
