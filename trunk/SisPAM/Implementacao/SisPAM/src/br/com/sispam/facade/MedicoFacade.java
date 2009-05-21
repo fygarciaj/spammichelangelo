@@ -19,6 +19,12 @@ public class MedicoFacade {
 	private UsuarioFacade usuarioFacade;
 	private MedicoDao medicoDao;
 	private EspecialidadeFacade especialidadeFacade;
+	
+	
+	public MedicoFacade(){
+		this.medicoDao = new MedicoDao();
+	}
+	
 
 	/**
 	 * @descricao: valida os campos do medico da tela passado.
@@ -45,7 +51,6 @@ public class MedicoFacade {
 	}
 
 	public void verificaCrmExistente(int crm, int id) throws CampoInvalidoException {
-		this.medicoDao = new MedicoDao();
 		Medico medico = this.medicoDao.recuperaPeloCrm(crm);
 		if(medico != null && id != medico.getId()){
 			throw new CampoInvalidoException("Este CRM está em uso!");
@@ -70,13 +75,9 @@ public class MedicoFacade {
 	 */
 	public Medico validaEspecialidadesSalvas(Medico medico, String esp){
 		this.especialidadeFacade = new EspecialidadeFacade();
-		//recupera o médico caso seja edição de cadastro
-		Medico medico2 = recuperar(medico.getId());
 		List<EspecialidadeMedica> lista = this.especialidadeFacade.recuperaEspecialidades(esp);
 		medico.setEspecialidades(lista);
-
 		return medico;
-
 	}
 
 	/**
@@ -84,7 +85,6 @@ public class MedicoFacade {
 	 * @return
 	 */
 	public List<Medico> recuperarUltimosCadastrados() {
-		this.medicoDao = new MedicoDao();
 		List<Medico> lista = this.medicoDao.recuperarUltimosCadastrados();
 		return montaDiasMedico(lista);
 	}
@@ -110,19 +110,24 @@ public class MedicoFacade {
 	 * @param medico
 	 * @return
 	 */
-	public Medico montaMedico(Medico medico){
+	public List<String> montaMedico(Medico medico){
+		List<String> diaString = new ArrayList<String>();
+		List<Dia> diasList = new ArrayList<Dia>();
 		if(medico != null){
-			List<Dia> listaDias = new ArrayList<Dia>();
 			String diasMedico = medico.getDataAtendimento();
+			diaString = new ArrayList<String>();
+			
 			char[] dias = diasMedico.toCharArray();
 			for(char dia: dias){
 				if(dia != '-'){
-					listaDias.add(Dia.newInstance(dia));	
+					diaString.add(Dia.newInstance(dia).getDescricao());	
+					diasList.add(Dia.newInstance(dia));
 				}
 			}
-			medico.setDias(listaDias);
+			medico.setDias(diasList);
+
 		}
-		return medico;
+		return diaString;
 	}
 
 	/**
@@ -130,7 +135,6 @@ public class MedicoFacade {
 	 * @param id
 	 */
 	public void removerMedico(int id){
-		this.medicoDao = new MedicoDao();
 		Medico medico = this.medicoDao.recuperaPeloId(id);
 		this.medicoDao.remover(medico);
 	}
@@ -140,7 +144,6 @@ public class MedicoFacade {
 	 * @return
 	 */
 	public List<Medico> recuperarTodos(){
-		this.medicoDao = new MedicoDao();
 		return this.medicoDao.recuperarTodos();
 	}
 
@@ -150,10 +153,9 @@ public class MedicoFacade {
 	 * @return
 	 */
 	public Medico recuperar(int id){
-		this.medicoDao = new MedicoDao();
 		return this.medicoDao.recuperaPeloId(id);
 	}
-	
+
 	/**
 	 * @descricao: Recupera o médico apartir do Usuário.
 	 * @param usuario
@@ -161,7 +163,6 @@ public class MedicoFacade {
 	 */
 	public Medico recuperar(Usuario usuario){
 		if(usuario!= null){
-			this.medicoDao = new MedicoDao();
 			return this.medicoDao.recuperar(usuario);
 		}else{
 			return null;

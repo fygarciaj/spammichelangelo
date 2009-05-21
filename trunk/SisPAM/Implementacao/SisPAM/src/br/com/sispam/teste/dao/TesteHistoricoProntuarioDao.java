@@ -31,7 +31,7 @@ public class TesteHistoricoProntuarioDao {
 		HistoricoProntuario historicoProntuario = new HistoricoProntuario();
 		HistoricoProntuarioDao historicoProntuarioDao = new HistoricoProntuarioDao();
 		
-		historicoProntuario.set
+		//historicoProntuario.set
 		
 		
 	}

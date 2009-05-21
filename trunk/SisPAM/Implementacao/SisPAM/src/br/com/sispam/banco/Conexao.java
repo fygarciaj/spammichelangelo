@@ -5,10 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Conexao {
-	
+
 	private EntityManagerFactory factory;
 	private EntityManager manager;
-	
+
 	/**
 	 * @descricao: cria a conexão com o banco de dados
 	 * @return
@@ -18,13 +18,17 @@ public class Conexao {
 		this.manager = factory.createEntityManager();
 		return this.manager;
 	}
-	
+
 	/**
 	 * @descricao: Finaliza a conexão com o banco de dados.
 	 */
 	public void finalizaConexao(){
-		this.factory.close();
-		this.manager.close();
+		if(this.factory != null){
+			this.factory.close();
+		}
+		if(this.manager != null){
+			this.manager.close();
+		}
 	}
-		
+
 }

@@ -9,6 +9,15 @@
 <script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
 <script type="text/javascript" src="componentes/js/sispam.js"></script>
+<script type="text/javascript" src="componentes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="../componentes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/jquery/ui.core.js"></script>
+<script type="text/javascript" src="componentes/js/jquery/ui.datepicker.js"></script>
+<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker.js"></script>
+<script type="text/javascript" src="componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+<link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
 <title>Insert title here</title>
 
 <SCRIPT language="javaScript">
@@ -19,7 +28,24 @@
 			}
 		return false;
 		}
+	
 </script>
+<script type="text/javascript">
+		 $(document).ready(function(){
+			calendario('data');
+			calendario('data1');
+	 });
+	 function calendario(idCampo){
+				var id = '#'+idCampo;
+				 $(id).datepicker({
+							 showMonthAfterYear: false,
+							 showOtherMonths: true,
+							 changeMonth: true,
+							 changeYear: true,
+							 gotoCurrent: true
+				 });
+			}
+	</script>
 
 
 </head>
@@ -103,7 +129,12 @@
 				
 			</tr>
 			<tr>
-				<td><s:submit value="Salvar" cssClass="button" /></td>
+				<s:if test="usuario.id != 0">
+					<td><s:submit value="Alterar" cssClass="button" /></td>
+				</s:if>
+				<s:else>
+					<td><s:submit value="Salvar" cssClass="button" /></td>
+				</s:else>
 			</tr>
 	</table>
 </s:form>
@@ -193,19 +224,108 @@
 				<td ><label class="label">Dias de Atendimento</label>&nbsp;
 				<s:iterator value="dias">
 					<br>
-					<s:if test="medico.dias.contains('QUARTA')">					
+					<s:if test="diasString.contains(descricao)">					
 						<s:checkbox value="true" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />
 					</s:if>
 					<s:else>
 						<s:checkbox value="false" name="dia-%{codigo}" theme="simple"/><s:property value="descricao" />
 					</s:else>					
 				</s:iterator>
-				</td>						
-				<td><s:submit value="Salvar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
+				</td>
+				<s:if test="medico.id != 0">						
+					<td><s:submit value="Salvar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
+				</s:if>
+				<s:else>
+					<td><s:submit value="Alterar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
+				</s:else>
 			</tr>
 	</table>
 	</s:form>		
 </s:elseif>
+
+<s:elseif test="codigoPerfilSelecionado == 4">
+	<s:form id="formPerfil" action="pacienteAction!salvarPaciente.action" method="post">
+	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
+	<s:hidden name="paciente.id" value="%{paciente.id}"/>
+		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
+			<tr>
+				<td><label class="label">Nome:</label></td>
+				<td><s:textfield theme="simple" name="paciente.usuario.nome" size="60" maxlength="60" /></td>
+				<td><label class="label">CPF:</label></td>
+				<td><s:textfield theme="simple" name="paciente.usuario.cpf" size="12" maxlength="11" /></td>
+			</tr>
+			<tr>
+				<td><label class="label">RG:</label></td>
+				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">Expedidor:&nbsp;&nbsp;</label>
+				<s:textfield theme="simple" name="paciente.usuario.expedidorRg" size="15" maxlength="15" /></td>
+				<td><label class="label">Sexo:</label></td>
+				<td><s:select list="sexos" theme="simple" name="paciente.usuario.sexo" headerKey="0" headerValue="" listKey="sigla" /></td>
+			</tr>
+			<tr>
+				<td><label class="label">Endereço:</label></td>
+				<td><s:textfield theme="simple" name="paciente.usuario.endereco"	size="60" maxlength="60" /></td>
+				<td><label class="label">Cidade:</label></td>
+				<td><s:textfield theme="simple" name="paciente.usuario.cidade" size="12" maxlength="11" /></td>
+			</tr>
+			<tr>
+				<td><label class="label">Estado:</label></td>
+				<td>
+				<s:select name="paciente.usuario.uf" theme="simple"  list="#{'':'Selecione','AC':'Acre', 'AL':'Alagoas', 'AP': 'Amapá', 
+					'AM':'Amazônas', 'BA': 'Bahia', 'CE':'Ceará', 'DF':'Distrito Federal', 'ES':'Espírito Santo', 'GO':'Goiás', 
+					'MA': 'Maranhão', 'MT':'Mato Grosso', 'MS':'Mato Grosso do Sul', 'MG':'Minas Gerais', 'PA':'Pará', 
+					'PB':'Paraíba', 'PR':'Paraná', 'PE':'Pernambuco', 'PI':'Piauí', 'RJ':'Rio de Janeiro', 'RN':'Rio Grande do Norte', 
+					'RS':'Rio Grande do Sul', 'RO':'Rondônia', 'RR':'Roraima', 'SC':'Santa Catariana', 'SP':'São Paulo', 
+					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label class="label">CEP:&nbsp;&nbsp;</label>
+					<s:textfield theme="simple" name="cepAux" size="15" maxlength="8" />
+				</td>
+				<td><label class="label">DDD:</label></td>
+				<td>
+					<s:textfield theme="simple" name="dddAux" size="2"	maxlength="2" />&nbsp;&nbsp; 
+					<label class="label">Tel:&nbsp;&nbsp;</label>
+					<s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8" />
+				</td>
+				
+			</tr>
+			<tr>
+				<td><label class="label">E-mail:</label></td>
+				<td colspan="5">
+					<s:textfield theme="simple" name="paciente.usuario.email" size="30" maxlength="30" />&nbsp;&nbsp;
+					<label class="label">Data de Nascimento:&nbsp;&nbsp;</label>
+					<s:textfield name="dataNascimentoAux" id="data" size="12" theme="simple"/>
+				</td>
+				
+			</tr>
+			
+			<tr>
+				<td><label class="label">Login:</label></td>
+				<td ><s:textfield theme="simple" name="paciente.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="paciente.usuario.senha"	maxlength="8" size="6" /></td>
+				
+				
+			</tr>
+			<tr>
+				<td><label class="label">Convênio:</label></td>
+				<td colspan="5">
+					<s:select theme="simple" name="paciente.convenio.id" list="convenios" listKey="id" listValue="nome" headerKey="0" headerValue="--Selecione--"/>&nbsp;&nbsp;
+					<label class="label">Plano:&nbsp;&nbsp;</label><s:textfield name="paciente.plano" size="20" maxlength="25" theme="simple"/>&nbsp;&nbsp;
+					<label class="label">Acomodação:&nbsp;&nbsp;</label><s:textfield name="paciente.descricaoAcomodacao" size="20" maxlength="30" theme="simple"/>&nbsp;&nbsp;
+					<label class="label">Validade:&nbsp;&nbsp;</label><s:textfield name="validaPlanoAux" size="12" id="data1" maxlength="30" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<s:if test="paciente.id != 0">
+					<td><s:submit value="Alterar" cssClass="button" /></td>
+				</s:if>
+				<s:else>
+					<td><s:submit value="Salvar" cssClass="button" /></td>
+				</s:else>
+			</tr>
+	</table>
+</s:form>
+</s:elseif>	
 
 </body>
 </html>

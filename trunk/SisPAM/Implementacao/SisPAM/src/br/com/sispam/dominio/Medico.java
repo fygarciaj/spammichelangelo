@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +67,7 @@ public class Medico {
 	public void setCrmUf(String crmUf) {
 		this.crmUf = crmUf;
 	}
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name="medico_especialidade", joinColumns=  @JoinColumn( name = "mdccod"),  inverseJoinColumns= @JoinColumn(name = "emdcod"))
 	public List<EspecialidadeMedica> getEspecialidades() {
 		return especialidades;

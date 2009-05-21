@@ -191,4 +191,13 @@ public class ConvenioFacade {
 		}
 	}
 	
+	/**
+	 * @descricao: Recupera todos os convênios cadastrados.
+	 * @return
+	 */
+	public List<Convenio> recuperarTodos(){
+		this.convenioDao = new ConvenioDao();
+		return this.convenioDao.recuperarTodos();
+	}
+	
 }

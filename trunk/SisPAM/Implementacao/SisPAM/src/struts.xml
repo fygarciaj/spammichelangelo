@@ -59,6 +59,16 @@
 			<result name="sucessoCarregarEdicao">/usuario/inclui-usuario.jsp</result>
 		</action>
 		
+				<!-- Paciente Action -->
+		<action name="pacienteAction!*" method="{1}" class="br.com.sispam.action.PacienteAction">
+			<result name="sucessoSalvarPaciente">/usuario/inclui-usuario.jsp</result>
+			<result name="falhaSalvarPaciente">/usuario/inclui-usuario.jsp</result>
+			<result name="sucessoRemoverPaciente" type="chain">
+				<param name="actionName">usuarioAction</param>
+				<param name="method">definirTelaConsulta</param>
+			</result>
+		</action>
+		
 			<!--Compromisso Action -->
 		<action name="compromissoAction!*" method="{1}" class="br.com.sispam.action.CompromissoAction">
 			<result name="sucessoSalvarCompromisso" type="chain">

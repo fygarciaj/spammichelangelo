@@ -44,8 +44,8 @@ public class TesteMedicoDao {
 		usuario.setSenha(cripto.criptografar("asdf"));
 		usuario.setDataNascimento(new Date());
 
-		EspecialidadeMedica especialidadeMedica = especialidadeDao.recuperarEspecialidade(1);
-		EspecialidadeMedica especialidadeMedica2 = especialidadeDao.recuperarEspecialidade(2);
+		EspecialidadeMedica especialidadeMedica = especialidadeDao.recuperarEspecialidade(3);
+		EspecialidadeMedica especialidadeMedica2 = especialidadeDao.recuperarEspecialidade(4);
 
 		List<EspecialidadeMedica> especialidades = new ArrayList<EspecialidadeMedica>();
 		especialidades.add(especialidadeMedica);
@@ -115,6 +115,86 @@ public class TesteMedicoDao {
 		//verifica se objeto está nulo (médico excluído)
 		assertNull(medicoRecuperado);
 
+	}
+	
+	@Test
+	public void alterarMedicoComEspecialidade(){
+		Usuario usuario = new Usuario();
+		EspecialidadeDao especialidadeDao = new EspecialidadeDao();
+		Cripto cripto =new Cripto();
+		usuario.setNome("Elizeu");
+		usuario.setEmail("ddd@iii");
+		usuario.setCpf("54454545");
+		usuario.setPerfil(Perfil.MEDICO.getCodigo());
+		usuario.setSexo(Sexo.MASCULINO.getSigla());
+		usuario.setAcesso("elizeu");
+		usuario.setSenha(cripto.criptografar("asdf"));
+		usuario.setDataNascimento(new Date());
+
+		EspecialidadeMedica especialidadeMedica = especialidadeDao.recuperarEspecialidade(3);
+		EspecialidadeMedica especialidadeMedica2 = especialidadeDao.recuperarEspecialidade(4);
+
+		List<EspecialidadeMedica> especialidades = new ArrayList<EspecialidadeMedica>();
+		especialidades.add(especialidadeMedica);
+		especialidades.add(especialidadeMedica2);
+
+		Medico medico = new Medico();
+		medicoDao = new MedicoDao();
+		medico.setCrm(12345);
+		medico.setCrmUf("DF");
+		medico.setUsuario(usuario);
+		medico.setEspecialidades(especialidades);
+		medico.setHoraInicio(1200);
+		medico.setHoraFim(9888);
+		medico.setConsultorio(123);
+		medico.setDataAtendimento("1-2");
+		medicoDao.salvarMedico(medico);
+		
+		Medico medico2 = medicoDao.recuperaPeloId(medico.getId());
+		assertNotNull(medico2);
+		
+		medico2.getEspecialidades().remove(0);
+		medicoDao.salvarMedico(medico2);
+		
+	}
+	
+	@Test
+	public void excluirMedicoComEspecialidade(){
+		Usuario usuario = new Usuario();
+		EspecialidadeDao especialidadeDao = new EspecialidadeDao();
+		Cripto cripto =new Cripto();
+		usuario.setNome("Elizeu");
+		usuario.setEmail("ddd@iii");
+		usuario.setCpf("54454545");
+		usuario.setPerfil(Perfil.MEDICO.getCodigo());
+		usuario.setSexo(Sexo.MASCULINO.getSigla());
+		usuario.setAcesso("elizeu");
+		usuario.setSenha(cripto.criptografar("asdf"));
+		usuario.setDataNascimento(new Date());
+
+		EspecialidadeMedica especialidadeMedica = especialidadeDao.recuperarEspecialidade(3);
+		EspecialidadeMedica especialidadeMedica2 = especialidadeDao.recuperarEspecialidade(4);
+
+		List<EspecialidadeMedica> especialidades = new ArrayList<EspecialidadeMedica>();
+		especialidades.add(especialidadeMedica);
+		especialidades.add(especialidadeMedica2);
+
+		Medico medico = new Medico();
+		medicoDao = new MedicoDao();
+		medico.setCrm(12345);
+		medico.setCrmUf("DF");
+		medico.setUsuario(usuario);
+		medico.setEspecialidades(especialidades);
+		medico.setHoraInicio(1200);
+		medico.setHoraFim(9888);
+		medico.setConsultorio(123);
+		medico.setDataAtendimento("1-2");
+		medicoDao.salvarMedico(medico);
+		
+		Medico medico2 = medicoDao.recuperaPeloId(medico.getId());
+		
+		this.medicoDao.remover(medico2);
+		
 	}
 
 }
