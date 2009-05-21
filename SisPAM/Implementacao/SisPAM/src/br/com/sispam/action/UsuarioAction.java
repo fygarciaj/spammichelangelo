@@ -8,16 +8,21 @@ import java.util.Map;
 
 import org.postgresql.jdbc2.EscapedFunctions;
 
+import br.com.sispam.dominio.Convenio;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
+import br.com.sispam.dominio.Paciente;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Dia;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.CompromissoFacade;
+import br.com.sispam.facade.ConvenioFacade;
 import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
+import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
 
 public class UsuarioAction extends Action{
@@ -26,6 +31,8 @@ public class UsuarioAction extends Action{
 	private Medico medico;
 	private UsuarioFacade usuarioFacade;
 	private MedicoFacade medicoFacade;
+	private PacienteFacade pacienteFacade;
+	private ConvenioFacade convenioFacade;
 	private EspecialidadeFacade especialidadeFacade;
 	private Perfil[] perfils = Perfil.values();
 	private Integer codigoPerfilSelecionado;
@@ -35,12 +42,14 @@ public class UsuarioAction extends Action{
 	private Date dataEntrada;
 	private List<Usuario> usuariosCadastrados;
 	private List<Medico> medicosCadastrados;
+	private List<Paciente> pacientesCadastrados;
 	private String telefoneAux;
 	private String cepAux;
 	private String rgAux;
 	private String dddAux;
 	private List<Dia>dias;
 	private List<EspecialidadeMedica> especialidades;
+	private List<Convenio> convenios;
 
 
 
@@ -60,7 +69,7 @@ public class UsuarioAction extends Action{
 	 */
 	public String definirTelaUsuario(){
 		this.codigoPerfilSelecionado = Integer.parseInt(this.codigoPerfilString);
-		
+
 		//monta a lista de dias para o cadastro dos dias de trabalho do médico.
 		if(this.codigoPerfilSelecionado == Perfil.MEDICO.getCodigo()){
 			Dia[] diasVetor = Dia.values();
@@ -68,10 +77,13 @@ public class UsuarioAction extends Action{
 			for(Dia dia: diasVetor){
 				dias.add(dia);
 			}
-			
+			this.especialidadeFacade = new EspecialidadeFacade();
+			this.especialidades = this.especialidadeFacade.recuperarTodas();
 		}
-		this.especialidadeFacade = new EspecialidadeFacade();
-		this.especialidades = this.especialidadeFacade.recuperarTodas();
+		else if(this.codigoPerfilSelecionado == Perfil.PACIENTE.getCodigo()){
+			this.convenioFacade = new ConvenioFacade();
+			this.convenios = this.convenioFacade.recuperarTodos();
+		}
 		limparCampos(false);
 		return TELA_SELECIONADA;
 	}
@@ -98,7 +110,7 @@ public class UsuarioAction extends Action{
 
 			//verifica se o cpf está sendo usado
 			usuarioFacade.verificaCpfJaExistente(usuario.getCpf(), usuario.getId());
-			
+
 			//verifica se o login está sendo usado
 			usuarioFacade.verificaLoginJaExistente(usuario.getAcesso(), usuario.getId());
 
@@ -137,7 +149,7 @@ public class UsuarioAction extends Action{
 	}
 
 	public String definirTelaConsulta(){
-		
+
 		this.codigoPerfilSelecionado = Integer.parseInt(codigoPerfilString);
 		if(this.codigoPerfilSelecionado == Perfil.ADMINISTRADOR.getCodigo() || this.codigoPerfilSelecionado == Perfil.ATENDENTE.getCodigo()){
 			this.usuarioFacade = new UsuarioFacade();
@@ -146,6 +158,11 @@ public class UsuarioAction extends Action{
 		else if(this.codigoPerfilSelecionado == Perfil.MEDICO.getCodigo()){
 			this.medicoFacade = new MedicoFacade();
 			this.medicosCadastrados = this.medicoFacade.recuperarUltimosCadastrados();
+		}
+		else if(this.codigoPerfilSelecionado == Perfil.PACIENTE.getCodigo()){
+			this.pacienteFacade = new PacienteFacade();
+			this.pacientesCadastrados = this.pacienteFacade.recuperaUltimosCadastrados();
+			
 		}
 		return SUCESSO_TELA_CONSULTA;
 	}
@@ -157,7 +174,7 @@ public class UsuarioAction extends Action{
 	public String consultarUsuario(){
 		this.usuarioFacade = new UsuarioFacade();
 		try{
-		this.usuariosCadastrados = this.usuarioFacade.recuperarUsuario(usuario.getCpf(), usuario.getNome(), this.codigoPerfilSelecionado);
+			this.usuariosCadastrados = this.usuarioFacade.recuperarUsuario(usuario.getCpf(), usuario.getNome(), this.codigoPerfilSelecionado);
 		}catch (CampoInvalidoException e) {
 			erros.put("campoInvalido", e.getMessage());
 			apresentaErrors();
@@ -178,7 +195,7 @@ public class UsuarioAction extends Action{
 		this.rgAux = String.valueOf(this.usuario.getRg());
 		return TELA_SELECIONADA;
 	}
-	
+
 
 
 	/**
@@ -201,6 +218,11 @@ public class UsuarioAction extends Action{
 			this.codigoPerfilSelecionado = null;
 		}
 		this.codigoPerfilString = null;
+		this.cepAux = null;
+		this.dddAux = null;
+		this.rgAux = null;
+		this.telefoneAux = null;
+	
 
 	}
 
@@ -345,6 +367,19 @@ public class UsuarioAction extends Action{
 	public void setMedicosCadastrados(List<Medico> medicosCadastrados) {
 		this.medicosCadastrados = medicosCadastrados;
 	}
-	
+
+	public List<Convenio> getConvenios() {
+		return convenios;
+	}
+
+	public void setConvenios(List<Convenio> convenios) {
+		this.convenios = convenios;
+	}
+	public List<Paciente> getPacientesCadastrados() {
+		return pacientesCadastrados;
+	}
+	public void setPacientesCadastrados(List<Paciente> pacientesCadastrados) {
+		this.pacientesCadastrados = pacientesCadastrados;
+	}
 
 }

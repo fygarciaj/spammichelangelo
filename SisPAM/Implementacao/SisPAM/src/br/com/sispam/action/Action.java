@@ -25,6 +25,10 @@ public class Action extends ActionSupport{
 	public final String SUCESSO_SALVAR_MEDICO = "sucessoSalvarMedico";
 	public final String FALHA_SALVAR_MEDICO = "falhaSalvarMedico";
 	public final String SUCESSO_CARREGAR_EDICAO = "sucessoCarregarEdicao";
+	
+	public final String FALHA_SALVAR__PACIENTE = "falhaSalvarPaciente";
+	public final String SUCESSO_SALVAR_PACIENTE = "sucessoSalvarPaciente";
+	public final String SUCESSO_EXCLUIR_PACIENTE = "sucessoRemoverPaciente";
 
 	public final String SUCESSO_INCLUIR_CONVENIO = "sucessoIncluirConvenio";
 	public final String CARREGAR_CONVENIO_EXISTENTE = "carregarConvenioExistente";	

@@ -39,6 +39,7 @@ public class MedicoAction extends Action{
 	private List<Dia>dias;
 	private String codigoPerfilString;
 	private String especialidadesSelecionadas;
+	private List<String> diasString;
 
 
 	public String salvarMedico(){
@@ -97,11 +98,13 @@ public class MedicoAction extends Action{
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
-			this.especialidades = this.especialidadeFacade.recuperarTodas();
 			if(this.medico != null && this.medico.getId() > 0){
 				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
-				this.medico.setEspecialidades(medico2.getEspecialidades());
-				preparaListaDeExibicao(this.especialidades, medico2.getEspecialidades());
+				preparaListaDeExibicao(medico2);
+				medico.setEspecialidades(medico2.getEspecialidades());
+			}
+			else{
+				this.especialidades = this.especialidadeFacade.recuperarTodas();
 			}
 			getListaDias();
 			apresentaErrors();
@@ -109,11 +112,14 @@ public class MedicoAction extends Action{
 		}
 		catch (CampoInteiroException e) {
 			erros.put("campoInvalido", e.getMessage());
-			this.especialidades = this.especialidadeFacade.recuperarTodas();
+			
 			if(this.medico != null && this.medico.getId() > 0){
 				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
-				this.medico.setEspecialidades(medico2.getEspecialidades());
-				preparaListaDeExibicao(this.especialidades, medico2.getEspecialidades());
+				preparaListaDeExibicao(medico2);
+				medico.setEspecialidades(medico2.getEspecialidades());
+			}
+			else{
+				this.especialidades = this.especialidadeFacade.recuperarTodas();
 			}
 			getListaDias();
 			apresentaErrors();
@@ -135,6 +141,7 @@ public class MedicoAction extends Action{
 		this.especialidadeFacade = new EspecialidadeFacade();
 		//Recupera o médico
 		this.medico = this.medicoFacade.recuperar(this.medico.getId());
+
 		//monta os atributos da tela.
 		this.cepAux = String.valueOf(this.medico.getUsuario().getCep());
 		this.consultorioAux = String.valueOf(this.medico.getConsultorio());
@@ -144,19 +151,14 @@ public class MedicoAction extends Action{
 		this.horaIni = String.valueOf(this.medico.getHoraInicio());
 		this.telefoneAux = String.valueOf(this.medico.getUsuario().getTelefone());
 		this.rgAux = String.valueOf(this.medico.getUsuario().getRg());
-
-		//prepara a lista de especialidades cadastradas.
-		this.especialidades = this.especialidadeFacade.recuperarTodas();
-
-		if(medico.getEspecialidades() != null && this.medico.getEspecialidades().size() > 0){
-			preparaListaDeExibicao(this.especialidades, this.medico.getEspecialidades());
-		}
+		
+		preparaListaDeExibicao(this.medico);
 
 		//carrega a lista de dias para exibir na tela.
 		getListaDias();
 
 		//prepara a lista de dias do médico cadastrado.
-		this.medicoFacade.montaMedico(medico);
+		this.diasString = this.medicoFacade.montaMedico(medico);
 
 		return SUCESSO_CARREGAR_EDICAO;
 	}
@@ -223,20 +225,19 @@ public class MedicoAction extends Action{
 
 	}
 
-	private void preparaListaDeExibicao(List<EspecialidadeMedica> especialidades, List<EspecialidadeMedica> espMedica){
-
-		if(espMedica != null && espMedica.size() > 0){
-
-			for(EspecialidadeMedica espMedico: espMedica){
-				for(EspecialidadeMedica esp: especialidades){
-					if(espMedico.getId() == esp.getId()){
-						this.especialidades.remove(esp);
-					}
-				}
-
+	private void preparaListaDeExibicao(Medico medico){
+		if(medico != null && medico.getEspecialidades() != null){
+			List<EspecialidadeMedica> especialidades = medico.getEspecialidades();
+		
+			List<Integer> lista = new ArrayList<Integer>();
+			for(EspecialidadeMedica esp: especialidades){
+				lista.add(esp.getId());
 			}
+			this.especialidades = this.especialidadeFacade.recuperarTodas(lista);
+		}else{
+			this.especialidades = this.especialidadeFacade.recuperarTodas();
 		}
-
+	
 	}
 
 	private void limparMapas(){
@@ -383,4 +384,13 @@ public class MedicoAction extends Action{
 		this.especialidadesSelecionadas = especialidadesSelecionadas;
 	}
 
+	public List<String> getDiasString() {
+		return diasString;
+	}
+
+	public void setDiasString(List<String> diasString) {
+		this.diasString = diasString;
+	}
+
+	
 }

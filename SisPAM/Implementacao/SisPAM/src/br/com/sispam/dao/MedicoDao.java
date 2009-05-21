@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
+import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
 
@@ -22,7 +23,14 @@ public class MedicoDao {
 	public void salvarMedico(Medico medico){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-
+				
+		if(medico != null && medico.getId() > 0){
+			excluirEspecialidades(medico);
+		}
+		if(medico != null && medico.getId() > 0 && medico.getEspecialidades() != null && medico.getEspecialidades().size() > 0){
+			inseriEspecialidades(medico);
+		}
+		
 		manager.getTransaction().begin();
 		//verifica se possui id caso possua apenas atualiza os dados no banco
 		if(medico != null && medico.getId() > 0){
@@ -88,7 +96,7 @@ public class MedicoDao {
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
 	}
-	
+
 	/**
 	 * @descricao: Lista os últimos médicos cadastrados no sistema.
 	 * @return
@@ -107,7 +115,7 @@ public class MedicoDao {
 		conexao.finalizaConexao();
 		return lista;
 	}
-	
+
 	/**
 	 * @descricao: Recuperar todos os médicos.
 	 * @return
@@ -125,7 +133,7 @@ public class MedicoDao {
 		conexao.finalizaConexao();
 		return lista;
 	}
-	
+
 	/**
 	 * @descricao: Recupera o médico apartir do usuário.
 	 * @param usuario
@@ -144,7 +152,31 @@ public class MedicoDao {
 		}
 		return medico;
 	}
+
+
+	public void excluirEspecialidades(Medico medico){
+		conexao = new Conexao();
+		manager.getTransaction().begin();
+		Query query = manager.createNativeQuery("delete from medico_especialidade where mdccod = :id");
+		query.setParameter("id", medico.getId());
+		query.executeUpdate();
+		manager.getTransaction().commit();
+	}
 	
+	public void inseriEspecialidades(Medico medico){
+		conexao = new Conexao();
+		manager.getTransaction().begin();
+		
+		for(EspecialidadeMedica esp: medico.getEspecialidades()){
+			Query query = manager.createNativeQuery("insert into medico_especialidade (mdccod, emdcod) " +
+					"values (:idMedico, :idEsp)");
+			query.setParameter("idMedico", medico.getId());
+			query.setParameter("idEsp", esp.getId());
+			query.executeUpdate();
+		}
+		manager.getTransaction().commit();
+		
+	}
 
 	public void removerTodosTeste() {
 		conexao = new Conexao();

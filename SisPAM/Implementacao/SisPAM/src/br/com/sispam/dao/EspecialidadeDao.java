@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.EspecialidadeMedica;
+import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
 
 public class EspecialidadeDao {
@@ -34,6 +35,18 @@ public class EspecialidadeDao {
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Query query = manager.createQuery("from EspecialidadeMedica");
+		return query.getResultList();
+	}
+	
+	/**
+	 * @descricao: Recupera todas as especialidades cadastradas menos a do medico.
+	 * @return
+	 */
+	public List<EspecialidadeMedica> recuperarTodas(List<Integer> lista){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Query query = manager.createQuery("from EspecialidadeMedica where id not in (:lista)");
+		query.setParameter("lista", lista);
 		return query.getResultList();
 	}
 	

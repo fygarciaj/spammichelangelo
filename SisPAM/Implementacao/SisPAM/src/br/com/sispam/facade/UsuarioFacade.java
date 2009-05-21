@@ -19,6 +19,10 @@ import br.com.sispam.validation.cnpjcpf.CPFValidator;
 public class UsuarioFacade {
 	private UsuarioDao usuarioDao;
 	private CPFValidator validador;
+	
+	public UsuarioFacade(){
+		this.usuarioDao = new UsuarioDao();
+	}
 
 	/**
 	 * @descricao: Salva o usuário de todos os tipos.
@@ -29,7 +33,6 @@ public class UsuarioFacade {
 		if(usuario != null){
 			Cripto cripto = new Cripto();
 			usuario.setSenha(cripto.criptografar(usuario.getSenha()));
-			this.usuarioDao = new UsuarioDao();
 			this.usuarioDao.salvarUsuario(usuario);
 		}
 
@@ -40,7 +43,6 @@ public class UsuarioFacade {
 	 * @param id
 	 */
 	public Usuario recuperarPeloId(int id){
-		this.usuarioDao = new UsuarioDao();
 		Usuario usuario = this.usuarioDao.recuperarPeloId(id);
 		return usuario;
 	}
@@ -75,7 +77,6 @@ public class UsuarioFacade {
 	 * @param cpf
 	 */
 	public void verificaCpfJaExistente(String cpf, int id)throws CampoInvalidoException{
-		this.usuarioDao = new UsuarioDao();
 		Usuario usuario = this.usuarioDao.recupera(cpf);
 		if(usuario != null && id != usuario.getId()){
 			throw new CampoInvalidoException("Este CPF já está sendo usado!");
@@ -111,7 +112,6 @@ public class UsuarioFacade {
 	 * @return
 	 */
 	public List<Usuario> recuperarUltimosCadastrados(int codigoPerfilSelecionado) {
-		this.usuarioDao = new UsuarioDao();
 		return this.usuarioDao.recuperarUltimosCadastrados(codigoPerfilSelecionado);
 	}
 
@@ -120,7 +120,6 @@ public class UsuarioFacade {
 	 * @param id
 	 */
 	public void removerUsuario(int id){
-		this.usuarioDao = new UsuarioDao();
 		Usuario usuario = this.usuarioDao.recuperarPeloId(id);
 		this.usuarioDao.removerUsuario(usuario);
 	}
@@ -172,8 +171,6 @@ public class UsuarioFacade {
 	}
 
 	public void verificaLoginJaExistente(String acesso, int id) throws CampoInvalidoException {
-		this.usuarioDao = new UsuarioDao();
-
 		Usuario usuario = this.usuarioDao.recuperaPeloLogin(acesso);
 
 		if(usuario != null && id != usuario.getId()){

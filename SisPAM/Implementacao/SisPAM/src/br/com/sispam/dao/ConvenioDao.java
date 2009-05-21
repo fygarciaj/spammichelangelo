@@ -115,4 +115,22 @@ public class ConvenioDao {
 		conexao.finalizaConexao();
 		return lista;
 	}
+	
+	/**
+	 * @descricao: Recupera todos os convênios cadastrados.
+	 * @return
+	 */
+	public List<Convenio> recuperarTodos(){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Convenio> convenios = null;
+		try{
+			Query query = manager.createQuery("from Convenio order by nome asc");
+			convenios = query.getResultList();
+		}catch (NoResultException e) {
+			convenios = null;
+		}
+		conexao.finalizaConexao();
+		return convenios;
+	}
 }

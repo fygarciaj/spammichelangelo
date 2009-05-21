@@ -5,15 +5,16 @@ import java.util.List;
 
 import br.com.sispam.dao.EspecialidadeDao;
 import br.com.sispam.dominio.EspecialidadeMedica;
+import br.com.sispam.dominio.Medico;
 
 public class EspecialidadeFacade {
-	
+
 	private EspecialidadeDao especialidadeDao;
-	
+
 	public EspecialidadeFacade(){
 		this.especialidadeDao = new EspecialidadeDao();
 	}
-	
+
 	/**
 	 * @descricao: Recupera todas especialidades.
 	 * @return
@@ -21,7 +22,21 @@ public class EspecialidadeFacade {
 	public List<EspecialidadeMedica>recuperarTodas(){
 		return especialidadeDao.recuperarTodas();
 	}
-	
+
+	/**
+	 * @descricao: Recupera todas especialidades.
+	 * @return
+	 */
+	public List<EspecialidadeMedica>recuperarTodas(List<Integer> lista){
+		if(lista != null && lista.size() > 0){
+			return especialidadeDao.recuperarTodas(lista);
+		}else{
+			return null;
+		}
+	}
+
+
+
 	/**
 	 * @descricao: Recuperar a especialidade pelo id.
 	 * @param id
@@ -30,7 +45,8 @@ public class EspecialidadeFacade {
 	public EspecialidadeMedica recuperarPeloId(int id){
 		return especialidadeDao.recuperarEspecialidade(id);
 	}
-	
+
+
 	/**
 	 * @descricao: Recupera uma lista de especialidades apartir dos caracteres passados.
 	 * @param esp
@@ -41,19 +57,19 @@ public class EspecialidadeFacade {
 		List<String> listaString = new ArrayList<String>();
 		List<Integer> especialidades = new ArrayList<Integer>();
 		char[] espCharacter = esp.toCharArray();
-		
+
 		for(char caracter: espCharacter){
 			if(caracter != ',' && caracter != ' '){
 				listaString.add(String.valueOf(caracter));
 			}
 		}
-		
+
 		for(String string: listaString){
 			especialidades.add(Integer.parseInt(string));
 		}
-				
+
 		return this.especialidadeDao.recuperarEspecialidades(especialidades);
 	}
-	
-	
+
+
 }

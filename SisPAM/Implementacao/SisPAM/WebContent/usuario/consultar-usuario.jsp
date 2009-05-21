@@ -30,6 +30,9 @@
 	<s:elseif test="codigoPerfilSelecionado == 4">
 	<h2>Consulta de Pacientes</h2>
 	</s:elseif>
+	<s:else>
+	<h2>Consulta</h2>
+	</s:else>
 	
 	<table>
 		<tr>
@@ -61,12 +64,12 @@
 
 <s:elseif test="codigoPerfilSelecionado == 3">
 	<br>
-	<s:form action="usuarioAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()" theme="simple">
-		<table class="tabela" >
+	<s:form action="medicoAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()" theme="simple">
+		<table class="tabela_moldura" >
 			<tr>
 				<td><label>CRM</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><s:submit value="Consultar" cssClass="botao_pesquisar" theme="simple"/></td>
+				<td align="right" width="60px"><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
+				<td><s:submit value="Consultar" cssClass="button"  theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>
@@ -74,18 +77,18 @@
 
 <s:elseif test="codigoPerfilSelecionado == 4">
 	<br>
-	<s:form action="usuarioAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()">
-		<table class="tabela" >
+	<s:form action="pacienteAction!consultarUsuario.action" onsubmit="return verificaCamposPesquisa()">
+		<table class="tabela_moldura" >
 			<tr>
 				<td><label>Prontuário</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
-				<td><s:submit value="Consultar" cssClass="botao_pesquisar" theme="simple"/></td>
+				<td ><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
+				<td><s:submit value="Consultar" cssClass="button"  theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>
 </s:elseif>
 <br>
-<s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2 && usuariosCadastrados != null && usuariosCadastrados.size() > 0">
+<s:if test="(codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2) && usuariosCadastrados != null && usuariosCadastrados.size() > 0">
 	<!-- Lista dos últimos usuários cadastrados -->
 	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
 			<tr>
@@ -106,7 +109,7 @@
 			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Telefone</span></th>
 			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
-				class="style5">Consultório</span></th>
+				class="style5">RG</span></th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Editar</span></th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
@@ -138,6 +141,7 @@
 		</s:iterator>
 		</table>
 </s:if>
+
 		
 		
 <s:if test="codigoPerfilSelecionado == 3 && medicosCadastrados != null && medicosCadastrados.size() > 0">
@@ -199,6 +203,67 @@
 		</s:iterator>
 	</table>
 </s:if>
+
+
+<s:if test="codigoPerfilSelecionado == 4 && pacientesCadastrados != null && pacientesCadastrados.size() > 0">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+			<tr>
+				<th colspan="6" class="principal style2" scope="col">
+					Últimos	Pacientes cadastrados
+				</th>
+		</tr>		
+		<tr>
+			<th width="6%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Prontuário</span></th>
+			<th width="34%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Nome</span></th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">CPF</span></th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Telefone</span></th>
+			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Convênio</span></th>
+			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Editar</span></th>
+			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
+				class="style5">Excluir</span></th>
+		</tr>
+		
+		<s:iterator value="pacientesCadastrados" status="status">
+			
+				<s:url id="excluirPaciente" action="pacienteAction!excluirPaciente.action">
+					<s:param name="paciente.id" value="id"/>
+					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
+				</s:url>
+				<s:url id="editarPaciente" action="pacienteAction!carregarEdicao.action">
+					<s:param name="paciente.id" value="id"/>
+					<s:param name="codigoPerfilSelecionado" value="codigoPerfilSelecionado"/>
+				</s:url>
+			
+			<tr	class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
+				<td><s:property value="id" /></td>
+				<td><s:property value="usuario.nome" /></td>
+				<td align="center"><s:property value="usuario.cpf" /></td>
+				<td align="center"><s:property value="usuario.telefone" /></td>
+				<td align="center">
+					<s:if test="convenio != null">
+						<s:property value="convenio.nome"/>
+					</s:if>
+					<s:else>
+						Não possui
+					</s:else>
+				
+				</td>
+				<td align="center"><s:a href="%{#editarPaciente}" ><img  src="img/editar.png" alt="Editar" /></s:a></td>
+				<td align="center"><s:a href="%{#excluirPaciente}" onclick="return confirmaExclusao()">
+					<img src="img/excluir.png" alt="Excluir" />
+				</s:a></td>
+
+			</tr>
+		</s:iterator>
+	</table>
+</s:if>
+
 
 </body>
 </html>
