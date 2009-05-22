@@ -121,12 +121,16 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label class="label">Login:</label></td>
-				<td><s:textfield theme="simple" name="usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="usuario.senha"	maxlength="8" size="6" /></td>
 				<td><label class="label">E-mail:</label></td>
-				<td><s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>
-				
+				<td colspan="3">
+					<s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" />&nbsp;&nbsp;
+					<label class="label">Data de Nascimento:</label>&nbsp;&nbsp;<s:textfield id="data" name="dataNascimentoAux" theme="simple" size="12"/>
+				</td>
+			</tr>
+			<tr>
+				<td><label class="label">Login:</label></td>
+				<td colspan="2"><s:textfield theme="simple" name="usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="usuario.senha"	maxlength="8" size="6" /></td>
 			</tr>
 			<tr>
 				<s:if test="usuario.id != 0">

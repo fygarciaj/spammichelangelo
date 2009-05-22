@@ -1,6 +1,7 @@
 package br.com.sispam.teste.dao;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -12,6 +13,7 @@ import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
+import br.com.sispam.util.DataUtil;
 
 public class TesteUsuarioDao {
 	private UsuarioDao usuarioDao;
@@ -34,10 +36,14 @@ public class TesteUsuarioDao {
 		usuario.setCpf("9876554");
 		usuario.setEndereco("rua xx casa yy");
 		usuario.setNome("João cunha");
+		usuario.setDataNascimento(new Date());
 		usuario.setRg(123);
 		usuario.setSexo(Sexo.MASCULINO.getSigla());
 		usuario.setPerfil(Perfil.ATENDENTE.getCodigo());
-		usuarioDao.salvarUsuario(usuario);
+		usuario = usuarioDao.salvarUsuario(usuario);
+		
+		Usuario usuario2 = usuarioDao.recuperarPeloId(usuario.getId());
+		System.out.println(DataUtil.dateToString(usuario2.getDataNascimento()));
 	}
 	
 	@Test

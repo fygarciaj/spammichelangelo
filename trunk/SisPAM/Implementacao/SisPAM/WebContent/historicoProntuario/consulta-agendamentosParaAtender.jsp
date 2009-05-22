@@ -27,7 +27,10 @@
 	<s:form action="historicoProntuarioAction!carregaAtualizacaoHistorico.action" theme="simple">	
 	<s:hidden name="paciente.id" value="%{paciente.id}"/>
 	</s:form>
-
+	<div id="MensagensErro" >	
+		<s:fielderror theme="simple" cssClass="errorMessage" />
+		<s:actionmessage theme="simple" cssClass="sucessMessage" />
+	</div>
 	<!-- Lista agendamentos do dia -->
 	<s:if test="agendamentosCadastrados != null && agendamentosCadastrados.size() > 0">
 	<br>

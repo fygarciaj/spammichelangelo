@@ -64,21 +64,23 @@ public class CompromissoAction extends Action{
 
 		}catch (CampoInvalidoException e) {
 			erros.put("campoInvalido", e.getMessage());
-			apresentaErrors();
 			return FALHA_SALVAR_COMPROMISSO;
 		}catch (CampoInteiroException e) {
 			erros.put("campoInvalido", e.getMessage());
-			apresentaErrors();
 			return FALHA_SALVAR_COMPROMISSO;
 		}
-		apresentaMensagens();
 		return SUCESSO_SALVAR_COMPROMISSO;
 	}
 
 	public String carregarInclusao(){
+		
+		if(erros.size() == 0 ){
+			limparCampos();
+		}
+		apresentaErrors();
+		apresentaMensagens();
 		this.medicoFacade = new MedicoFacade();
 		this.medicos = this.medicoFacade.recuperarTodos();
-		limparCampos();
 		return CARREGAR_INCLUSAO_COMPROMISSO;
 	}
 
@@ -112,9 +114,11 @@ public class CompromissoAction extends Action{
 
 	public String consultarCompromisso(){
 		compromissoFacade= new CompromissoFacade();
+		this.medicoFacade = new MedicoFacade();
 		try {
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
+			this.medicos = this.medicoFacade.recuperarTodos();
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 		}
@@ -124,7 +128,12 @@ public class CompromissoAction extends Action{
 
 	public String carregaEdicaoCompromisso(){
 		this.compromissoFacade = new CompromissoFacade();
+		this.medicoFacade = new MedicoFacade();
 		this.compromisso = this.compromissoFacade.recuperarPeloId(compromisso.getId());
+		this.dataAux = DataUtil.dateToString(this.compromisso.getData());
+		this.horaInicialAux = String.valueOf(this.compromisso.getHoraInicial());
+		this.horaFinalAux = String.valueOf(this.compromisso.getHoraFinal());
+		this.medicos = this.medicoFacade.recuperarTodos();
 		return SUCESSO_EDICAO_COMPROMISSO;
 	}
 

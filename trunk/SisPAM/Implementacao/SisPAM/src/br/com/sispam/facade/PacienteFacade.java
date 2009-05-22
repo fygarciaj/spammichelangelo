@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.sispam.dao.PacienteDao;
 import br.com.sispam.dominio.Paciente;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.util.Cripto;
 import br.com.sispam.util.DataUtil;
 
 public class PacienteFacade {
@@ -22,6 +23,9 @@ public class PacienteFacade {
 	 * @return
 	 */
 	public Paciente salvar(Paciente paciente){
+		Cripto cripto = new Cripto();
+		String senha = paciente.getUsuario().getSenha();
+		paciente.getUsuario().setSenha(cripto.criptografar(senha));
 		return this.pacienteDao.salvar(paciente);
 	}
 	
