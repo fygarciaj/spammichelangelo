@@ -100,6 +100,24 @@ a:hover{
 	padding-left: 5px;
 	color: #515151;	
 }
+
+.tabela_listagem {
+	
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-right: 0px;
+	margin-left: 0px;
+	position: relative;
+	padding: 0px;
+	clear: left;
+	cursor: text;
+	width: 750px;
+	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
+	background-color: #F2F7FE;
+	border: 1px solid #7f9db9;
+	padding-left: 5px;
+	color: #515151;	
+}
  .botao_logar {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 5px 0px 20px;
