@@ -37,7 +37,7 @@
 	<!-- Lista dos últimos convênios cadastrados -->
 	<s:if test="conveniosCadastrados != null && conveniosCadastrados.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
 			<th colspan="6" class="principal style2" scope="col">Ùltimos Convênios Cadastrados</th>
 		</tr>

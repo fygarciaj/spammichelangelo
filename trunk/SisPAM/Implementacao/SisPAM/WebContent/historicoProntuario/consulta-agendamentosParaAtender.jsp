@@ -34,24 +34,30 @@
 	<!-- Lista agendamentos do dia -->
 	<s:if test="agendamentosCadastrados != null && agendamentosCadastrados.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+	<table class="tabela_listagem"  cellspacing="1" cellpadding="2" align="left">
 		<tr>
 			<th colspan="6" class="principal style2" scope="col">Agendamentos do Dia</th>
 		</tr>
 		<tr>		
-			<th width="40%" bgcolor="#A7C2DA" scope="col">
+			<th width="250px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Paciente</span>
 			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">CPF</span>
+			<th width="140px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Data de Nascimento</span>
 			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Telefone</span>
+			<th width="60px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Convênio</span>
 			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
+			<th width="140px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Data Agendamento</span>
 			</th>
-			<th width="5%" bgcolor="#A7C2DA" scope="col">
+			<th width="100px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Hora Agendada</span>
+			</th>
+			<th width="100px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Especialidade</span>
+			</th>		
+			<th width="25px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Atender</span>
 			</th>			
 		</tr>
@@ -66,15 +72,21 @@
 					<s:property value="paciente.usuario.nome" />
 				</td>
 				<td>
-					<s:property value="paciente.usuario.cpf"/>
+					<s:property value="paciente.usuario.dataNascimento"/>
 				</td>
 				<td>
-					<s:property value="paciente.usuario.telefone"/>
+					<s:property value="paciente.usuario.convenio.nome"/>
 				</td>
 				<td>
 					<s:property value="data"/>
 				</td>
-				<td align="center">
+				<td>
+					<s:property value="hora"/>
+				</td>				
+				<td>
+					<s:property value="especialidadeMedica.descricao"/>
+				</td>
+					<td align="center">
 					<s:a href="%{#atualizarProntuario}">
 						<img src="../componentes/img/editar.png" alt="Alterar" />
 					</s:a>

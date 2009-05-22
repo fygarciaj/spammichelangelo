@@ -32,12 +32,12 @@
 	</div>
 	<s:hidden name="historicoProntuario.paciente.id" value="%{agendamento.paciente.id}"/>
 	<s:hidden name="agendamento.id" value="%{agendamento.id}"/>
-		<table border="0" class="tabela_moldura" cellpadding="3" cellspacing="4" >
+		<table class="tabela_listagem">
 			<tr>
-				<td width="271px"><label class="label">Nome:</label></td>
+				<td><label class="label">Nome:</label></td>
 				<td><s:property value="agendamento.paciente.usuario.nome"></s:property></td>
 				
-				<td width="271px"><label class="label">CPF:</label></td>
+				<td ><label class="label">CPF:</label></td>
 				<td><s:property  value="agendamento.paciente.usuario.cpf" /></td>
 			</tr>
 			<tr>
@@ -74,7 +74,7 @@
 				<td><s:property value="agendamento.paciente.usuario.sexo"/></td>				
 			</tr>			
 		</table>
-		<table class="tabela_moldura">
+		<table class="tabela_listagem">
 			<tr>
 				<td><label>Sintoma</label>
 			</tr>

@@ -68,7 +68,7 @@
 		<table class="tabela_moldura" >
 			<tr>
 				<td><label>CRM</label>&nbsp;<s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
-				<td align="right" width="60px"><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
+				<td><label>Nome</label>&nbsp;<s:textfield name="usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
 				<td><s:submit value="Consultar" cssClass="button"  theme="simple"/></td>
 			</tr>
 		</table>
@@ -90,7 +90,7 @@
 <br>
 <s:if test="(codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2) && usuariosCadastrados != null && usuariosCadastrados.size() > 0">
 	<!-- Lista dos últimos usuários cadastrados -->
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 			<tr>
 				<th colspan="6" class="principal style2" scope="col">
 					<s:if test="codigoPerfilSelecionado == 1">
@@ -145,7 +145,7 @@
 		
 		
 <s:if test="codigoPerfilSelecionado == 3 && medicosCadastrados != null && medicosCadastrados.size() > 0">
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 			<tr>
 				<th colspan="6" class="principal style2" scope="col">
 					Últimos	Médicos cadastrados
@@ -206,7 +206,7 @@
 
 
 <s:if test="codigoPerfilSelecionado == 4 && pacientesCadastrados != null && pacientesCadastrados.size() > 0">
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 			<tr>
 				<th colspan="6" class="principal style2" scope="col">
 					Últimos	Pacientes cadastrados
