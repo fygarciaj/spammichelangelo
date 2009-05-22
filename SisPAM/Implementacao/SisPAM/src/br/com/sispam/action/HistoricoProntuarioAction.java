@@ -33,6 +33,7 @@ public class HistoricoProntuarioAction extends Action{
 			this.agendamentosCadastrados = this.historicoProntuarioFacade.recuperarAgendamentosDiaAtual(agendamento);
 			
 		}
+		apresentaMensagens();
 		return CARREGAR_CONSULTA_AGENDAMENTO;
 	}
 	
@@ -40,6 +41,7 @@ public class HistoricoProntuarioAction extends Action{
 		
 		
 		try {
+			this.historicoProntuarioFacade = new HistoricoProntuarioFacade();
 			//verifica campos obrigatorios
 			historicoProntuarioFacade.validaCampos(historicoProntuario);
 			
@@ -51,7 +53,7 @@ public class HistoricoProntuarioAction extends Action{
 			return FALHA_ATUALIZAR_HISTORICO_PRONTUARIO;
 		}
 		
-		apresentaMensagens();
+	
 		limparCampos();
 		return ATUALIZAR_HISTORICO_PRONTUARIO;
 	}

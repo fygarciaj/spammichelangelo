@@ -31,7 +31,7 @@ public class DataUtil {
 	public static String dateToString(Date date){
 		String dataFormatada = null;
 		if(date != null){
-			SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat formata = new SimpleDateFormat("yyyy-MM-dd");
 			dataFormatada = formata.format(date);
 		}
 		return dataFormatada;

@@ -76,7 +76,10 @@
 				<param name="method">carregarInclusao</param>
 			</result>
 			<result name="sucessoEdicaoCompromisso">/compromisso/inclui-compromisso.jsp</result>
-			<result name="falhaSalvarCompromisso">/compromisso/inclui-compromisso.jsp</result>
+			<result name="falhaSalvarCompromisso" type="chain">
+				<param name="actionName">compromissoAction</param>
+				<param name="method">carregarInclusao</param>
+			</result>
 			<result name="falhaExcluirCompromisso">/compromisso/consulta-compromisso.jsp</result>
 			<result name="listarCompromissos">/compromisso/consulta-compromisso.jsp</result>
 			<result name="carregarInclusaoCompromisso">/compromisso/inclui-compromisso.jsp</result>
@@ -86,9 +89,13 @@
 		<!--HistoricoProntuario Action-->
 		<action name="historicoProntuarioAction!*" method="{1}" class="br.com.sispam.action.HistoricoProntuarioAction">
 			<result name="carregarConsultaAgendamento">/historicoProntuario/consulta-agendamentosParaAtender.jsp</result>
-			<result name="atualizarHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>
+			<result name="atualizarHistoricoProntuario" type="chain">
+				<param name="actionName">historicoProntuarioAction</param>
+				<param name="method">carregarAgendamentos</param>
+			</result>
 			<result name="sucessoAtualizacaoHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>
-			<result name="falhaAtualizarHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>		
+			<result name="falhaAtualizarHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>	
+		
 		</action>	
 	</package>
 

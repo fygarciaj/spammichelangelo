@@ -31,14 +31,6 @@ public class Cripto{
 		}
 		return null;
 	}
-	
-	public static void main(String[] args){
-     //   String senha = "carlos";
-  
- //       System.out.println(criptografar());
-
-}
-
 
 }
 

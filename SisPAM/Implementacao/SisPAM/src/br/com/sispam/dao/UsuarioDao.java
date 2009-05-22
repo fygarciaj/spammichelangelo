@@ -20,7 +20,7 @@ public class UsuarioDao {
 	 * @descricao: Salva e atualiza o usuário passado.
 	 * @param usuario
 	 */
-	public void salvarUsuario(Usuario usuario){
+	public Usuario salvarUsuario(Usuario usuario){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 
@@ -36,6 +36,7 @@ public class UsuarioDao {
 
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
+		return usuario;
 	}
 
 	/**

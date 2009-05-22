@@ -23,50 +23,55 @@
     </td>	
 	</tr>	
 	</table>
+	
 	<h2>Atualiza Histórico de Prontuário</h2>
 	<s:form action="historicoProntuarioAction!atualizarHistoricoProntuario.action" theme="simple">	
-
-	<s:hidden name="paciente.id" value="%{paciente.id}"/>
+	<div id="MensagensErro" >	
+		<s:fielderror theme="simple" cssClass="errorMessage" />
+		<s:actionmessage theme="simple" cssClass="sucessMessage" />
+	</div>
+	<s:hidden name="historicoProntuario.paciente.id" value="%{agendamento.paciente.id}"/>
+	<s:hidden name="agendamento.id" value="%{agendamento.id}"/>
 		<table border="0" class="tabela_moldura" cellpadding="3" cellspacing="4" >
 			<tr>
 				<td width="271px"><label class="label">Nome:</label></td>
-				<td><s:property value="paciente.usuario.nome"></s:property></td>
+				<td><s:property value="agendamento.paciente.usuario.nome"></s:property></td>
 				
 				<td width="271px"><label class="label">CPF:</label></td>
-				<td><s:label  value="%{usuario.cpf}" theme="simple" name="usuario.cpf"/></td>
+				<td><s:property  value="agendamento.paciente.usuario.cpf" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
-				<td><s:label value="%{rgAux}" theme="simple" name="rgAux"/></td>
+				<td><s:property value="agendamento.paciente.usuario.rg" /></td>
 				<td><label class="label">Data de Nascimento:</label></td>
-				<td><s:label value="%{usuario.dataNascimento}" theme="simple" name="usuario.dataNascimento"/></td>				
+				<td><s:date name="agendamento.paciente.usuario.dataNascimento" format="dd/MM/yyyy"/></td>				
 			</tr>
 			<tr>
 				<td><label class="label">Endereço:</label></td>
-				<td><s:label value="%{usuario.endereco}" theme="simple" name="usuario.endereco"/></td>
+				<td><s:property value="agendamento.paciente.usuario.endereco"/></td>
 				<td><label class="label">Cidade:</label></td>
-				<td><s:label value="%{usuario.cidade}" theme="simple" name="usuario.cidade"/></td>
+				<td><s:property value="agendamento.paciente.usuario.cidade"/></td>
 			</tr>
 			<tr>
 				<td><label class="label">Estado:</label></td>
 				<td>
-				<s:label value="%{usuario.uf}" name="usuario.uf" theme="simple"/></td>						
+				<s:property value="agendamento.paciente.usuario.uf"/></td>						
 					<td><label class="label">CEP:</label></td>
-					<td><s:label value="%{cepAux}" theme="simple" name="cepAux"/></td>				
+					<td><s:property value="agendamento.paciente.usuario.cep"/></td>				
 			</tr>
 			<tr>
 				<td><label class="label">DDD:</label></td>
 				<td>
-					<s:label value="%{dddAux}" theme="simple" name="dddAux"/></td>
+					<s:property value="agendamento.paciente.usuario.ddd"/></td>
 					<td><label class="label">Telefone:</label></td><td>
-					<s:label value="%{telefoneAux}" theme="simple" name="telefoneAux"/>
+					<s:property value="agendamento.paciente.usuario.telefone"/>
 				</td>
 			</tr>
 			<tr>				
 				<td><label class="label">E-mail:</label></td>
-				<td><s:label  value="%{usuario.email}" theme="simple" name="usuario.email"/></td>
+				<td><s:property  value="agendamento.paciente.usuario.email"/></td>
 				<td><label class="label">Sexo:</label></td>
-				<td><s:label value="%{usuario.sexo}" theme="simple" name="usuario.sexo"/></td>				
+				<td><s:property value="agendamento.paciente.usuario.sexo"/></td>				
 			</tr>			
 		</table>
 		<table class="tabela_moldura">

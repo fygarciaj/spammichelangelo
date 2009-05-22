@@ -1,5 +1,6 @@
 package br.com.sispam.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -15,13 +16,13 @@ import br.com.sispam.dominio.Convenio;
 public class CompromissoDao {
 	private Conexao conexao;
 	private EntityManager manager;
-	
+
 	public void incluirCompromisso(Compromisso compromisso){		
-		
+
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
-		
+
 		//verifica se possui id caso possua apenas atualiza os dados no banco
 		if(compromisso != null && compromisso.getId() > 0){
 			manager.merge(compromisso);
@@ -30,18 +31,18 @@ public class CompromissoDao {
 		else{
 			manager.persist(compromisso);
 		}
-		
+
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
 	}
-	
+
 	public void excluirCompromisso(Compromisso compromisso){
-				
+
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
-			
+
 			Query query = manager.createQuery("delete from Compromisso where id = :id");
 			//seta o parametro
 			query.setParameter("id", compromisso.getId());
@@ -49,39 +50,39 @@ public class CompromissoDao {
 			manager.getTransaction().commit();
 		}catch(Exception e){
 			e.printStackTrace();
-			
+
 		}
 		conexao.finalizaConexao();
 	}
-	
+
 	public Compromisso recuperarPeloId(int id){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Compromisso.class, id);
 	}
-	
-	public List<Compromisso> consultarCompromissoUnico(int idMedico, Date data, int horaInicio, int horaFim){
+
+	public List<Compromisso> consultarCompromissoUnico(Compromisso compromisso){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		List<Compromisso> compromisso = null;
-		try{
+		List<Compromisso> compromissos = null;
+	try{
 			//cria uma query para fazer a busca pelo cnpj
-			Query query = manager.createQuery("from Compromisso where medico.id = :idMedico and data = :data " +
-											  "and horaInicial >= :horaInicio and horaInicial < :horaFim " +
-											  "or horaFinal > :horaInicio and horaFinal <= :horaFim");
+			Query query = manager.createQuery("from Compromisso where " +
+					"((horaInicial >= :horaInicio and horaFinal < :horaFim) or (horaFinal > :horaInicio and horaInicial <= :horaFim)) " +
+					"and medico.id = :idMedico and data = :data ");
 			//seta o parametro
-			query.setParameter("idMedico", idMedico);
-			query.setParameter("data", data);
-			query.setParameter("horaInicio", horaInicio);
-			query.setParameter("horaFim", horaFim);
-			compromisso = query.getResultList();						
+			query.setParameter("idMedico", compromisso.getMedico().getId());
+			query.setParameter("data", compromisso.getData());
+			query.setParameter("horaInicio", compromisso.getHoraInicial());
+			query.setParameter("horaFim", compromisso.getHoraFinal());
+			compromissos = query.getResultList();						
 		}catch (NoResultException e) {
 			compromisso = null;
 		}
 		conexao.finalizaConexao();		
-		return compromisso;
+		return compromissos;
 	}
-	
+
 	public List<Compromisso> consultarCompromissos(Compromisso compromisso){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
@@ -100,5 +101,5 @@ public class CompromissoDao {
 		conexao.finalizaConexao();		
 		return compromissos;
 	}	
-	
+
 }
