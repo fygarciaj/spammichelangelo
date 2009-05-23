@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioUsuarioSemFiltroSintetico" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="titulo" isDefault="false" fontName="tahoma, verdana, arial, helvetica, sans-serif;" fontSize="11"/>
+	<style name="zebra" isDefault="false" forecolor="#DCDCDC">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean( $V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style isDefault="false" style="zebra" mode="Opaque" backcolor="#DCDCDC"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     usuario."usrcod" AS usuario_usrcod,
+     usuario."usrnom" AS usuario_usrnom,
+     usuario."usrsex" AS usuario_usrsex,
+     usuario."usrcpf" AS usuario_usrcpf,
+     usuario."usrrg" AS usuario_usrrg,
+     usuario."usrorgexp" AS usuario_usrorgexp,
+     usuario."usrend" AS usuario_usrend,
+     usuario."usrcep" AS usuario_usrcep,
+     usuario."usrcde" AS usuario_usrcde,
+     usuario."usruf" AS usuario_usruf,
+     usuario."usrddd" AS usuario_usrddd,
+     usuario."usrtel" AS usuario_usrtel,
+     usuario."usreml" AS usuario_usreml,
+     usuario."usracs" AS usuario_usracs,
+     usuario."usrsen" AS usuario_usrsen,
+     usuario."usrpfl" AS usuario_usrpfl,
+     usuario."usrdatnsc" AS usuario_usrdatnsc,
+     medico."mdccod" AS medico_mdccod,
+     medico."usrcod" AS medico_usrcod,
+     medico."mdccrm" AS medico_mdccrm,
+     medico."mdccrmuf" AS medico_mdccrmuf,
+     medico."mdcdiaatd" AS medico_mdcdiaatd,
+     medico."mdchorini" AS medico_mdchorini,
+     medico."mdchorfim" AS medico_mdchorfim,
+     medico."mdccnsatd" AS medico_mdccnsatd,
+     paciente."pctidfseg" AS paciente_pctidfseg,
+     paciente."usrcod" AS paciente_usrcod,
+     paciente."cvncod" AS paciente_cvncod,
+     paciente."pctplnrde" AS paciente_pctplnrde,
+     paciente."pctacm" AS paciente_pctacm,
+     paciente."pctplnvld" AS paciente_pctplnvld
+FROM
+     "usuario" usuario,
+     "medico" medico,
+     "paciente" paciente
+ORDER BY
+     usuario."usrnom" ASC]]>
+	</queryString>
+	<field name="usuario_usrcod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrnom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrsex" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrcpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrrg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrorgexp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrend" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrcep" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrcde" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usruf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrddd" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrtel" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usreml" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usracs" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrsen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrpfl" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usuario_usrdatnsc" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_mdccod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_usrcod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_mdccrm" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_mdccrmuf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_mdcdiaatd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_mdchorini" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_mdchorfim" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico_mdccnsatd" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente_pctidfseg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente_usrcod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente_cvncod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente_pctplnrde" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente_pctacm" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente_pctplnvld" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="PERFIL" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="79">
+			<frame>
+				<reportElement mode="Opaque" x="129" y="31" width="423" height="41" isPrintInFirstWholeBand="true" forecolor="#F4F8FB" backcolor="#F4F8FB"/>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="129" y="64" width="423" height="15" isPrintInFirstWholeBand="true" backcolor="#191970"/>
+				<staticText>
+					<reportElement x="284" y="0" width="80" height="15" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data de Emissão:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="363" y="0" width="60" height="14" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="titulo" mode="Opaque" x="157" y="31" width="235" height="31" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
+				<textElement textAlignment="Justified">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Convênios Cadastrados]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="4" y="31" width="135" height="48" isPrintInFirstWholeBand="true"/>
+				<imageExpression class="java.lang.String"><![CDATA["../../componentes/img/simbolo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="43">
+			<rectangle>
+				<reportElement mode="Opaque" x="2" y="12" width="550" height="31" forecolor="#191970" backcolor="#191970"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="76" y="23" width="109" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Convênio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="23" width="41" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="23" width="46" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="23" width="34" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DDD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="23" width="59" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="23" width="62" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-mail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="23" width="44" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<frame>
+				<reportElement style="zebra" stretchType="RelativeToBandHeight" x="3" y="0" width="549" height="20"/>
+				<textField>
+					<reportElement x="0" y="0" width="100" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{usuario_usrcod}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="76" y="0" width="100" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario_usrnom}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###.###.###/####-##">
+					<reportElement x="226" y="0" width="96" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[( $F{usuario_usrcpf}.length() == 14 ? ($F{usuario_usrcpf}.substring(0, 2) + "." + $F{usuario_usrcpf}.substring(2, 5) + "." + $F{usuario_usrcpf}.substring(5, 8) + "/" + $F{usuario_usrcpf}.substring(8, 12) + "-" + $F{usuario_usrcpf}.substring(12, 14)) : ($F{usuario_usrcpf}.substring(0, 3) + "." + $F{usuario_usrcpf}.substring(3, 6) + "." + $F{usuario_usrcpf}.substring(6, 9) + "-" + $F{usuario_usrcpf}.substring(9, 11)) )]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement x="370" y="0" width="59" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrddd}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="414" y="0" width="47" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrtel}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="472" y="0" width="77" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario_usreml}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="176" y="0" width="50" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrpfl}
+]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54">
+			<textField>
+				<reportElement x="432" y="32" width="80" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="512" y="32" width="40" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="50">
+			<rectangle>
+				<reportElement mode="Opaque" x="4" y="16" width="548" height="20" forecolor="#191970" backcolor="#191970"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="14" y="16" width="115" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Registros:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="512" y="16" width="40" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="16" width="80" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="16" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="42"/>
+	</summary>
+</jasperReport>
