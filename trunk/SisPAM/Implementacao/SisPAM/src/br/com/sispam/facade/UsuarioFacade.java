@@ -88,7 +88,7 @@ public class UsuarioFacade {
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = null;
 
-		if((cpf == null && cpf.trim().length() == 0) || (nome == null && nome.trim().length() == 0)){
+		if((cpf == null || cpf.isEmpty()) && (nome == null || nome.isEmpty())){
 			throw new CampoInvalidoException("Preencha um dos campos para realizar a pesquisa!");
 		}
 		else if(cpf != null && cpf.trim().length() > 0){
@@ -129,7 +129,7 @@ public class UsuarioFacade {
 	 * @param objeto
 	 * @throws CampoInvalidoException 
 	 */
-	public void validaCampos(Object objeto) throws CampoInvalidoException{
+	public void validaCampos(Object objeto, String dataNascimento) throws CampoInvalidoException{
 		validador = (CPFValidator) ValidatorFactory.getInstance()
 		.getValidator(IValidation.VALIDATOR_CPF);		
 			
@@ -163,8 +163,8 @@ public class UsuarioFacade {
 			if(usuario.getSenha() == null || usuario.getSenha().length() == 0){
 				throw new CampoInvalidoException("Campo senha inválido");
 			}
-			if(usuario.getEmail() == null || usuario.getEmail().length() == 0){
-				throw new CampoInvalidoException("Campo e-mail inválido");
+			if(dataNascimento == null || dataNascimento.length() == 0){
+				throw new CampoInvalidoException("Data de Nascimento inválida");
 			}
 		}
 

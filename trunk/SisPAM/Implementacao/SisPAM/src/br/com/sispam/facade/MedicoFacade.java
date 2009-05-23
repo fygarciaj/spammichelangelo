@@ -19,22 +19,22 @@ public class MedicoFacade {
 	private UsuarioFacade usuarioFacade;
 	private MedicoDao medicoDao;
 	private EspecialidadeFacade especialidadeFacade;
-	
-	
+
+
 	public MedicoFacade(){
 		this.medicoDao = new MedicoDao();
 	}
-	
+
 
 	/**
 	 * @descricao: valida os campos do medico da tela passado.
 	 * @param Medico
 	 * @throws CampoInvalidoException 
 	 */
-	public void validaCampos(Medico medico, String esp) throws CampoInvalidoException{
+	public void validaCampos(Medico medico, String esp, String dataNascimento) throws CampoInvalidoException{
 		if(medico != null){
 			this.usuarioFacade = new UsuarioFacade();
-			this.usuarioFacade.validaCampos(medico.getUsuario());
+			this.usuarioFacade.validaCampos(medico.getUsuario(), dataNascimento);
 			if(medico.getCrmUf() == null || medico.getCrmUf().length() == 0){
 				throw new CampoInvalidoException("Campo UF-CRM inválido");
 			}
@@ -42,14 +42,28 @@ public class MedicoFacade {
 		if(esp == null || esp.isEmpty()){
 			throw new CampoInvalidoException("Adicione a especialidade do médico!");
 		}
+
+		//verifica se o cpf está sendo usado
+		usuarioFacade.verificaCpfJaExistente(medico.getUsuario().getCpf(), medico.getUsuario().getId());
 	}
 
+	/**
+	 * @descricao: Valida os campos dias de trabalho do medico.
+	 * @param builder
+	 * @throws CampoInvalidoException
+	 */
 	public void validaCampoDias(String builder) throws CampoInvalidoException{
 		if(builder== null || builder.length() == 0){
 			throw new CampoInvalidoException("Preencha os dias de Trabalho!");
 		}
 	}
 
+	/**
+	 * @descricao: Verifica se existe o crm passado cadastrado no banco de dados.
+	 * @param crm
+	 * @param id
+	 * @throws CampoInvalidoException
+	 */
 	public void verificaCrmExistente(int crm, int id) throws CampoInvalidoException {
 		Medico medico = this.medicoDao.recuperaPeloCrm(crm);
 		if(medico != null && id != medico.getId()){
@@ -116,7 +130,7 @@ public class MedicoFacade {
 		if(medico != null){
 			String diasMedico = medico.getDataAtendimento();
 			diaString = new ArrayList<String>();
-			
+
 			char[] dias = diasMedico.toCharArray();
 			for(char dia: dias){
 				if(dia != '-'){
@@ -167,6 +181,45 @@ public class MedicoFacade {
 		}else{
 			return null;
 		}
+	}
+
+	/**
+	 * @descricao: Verifica campo inteiro.
+	 * @param campo
+	 * @throws CampoInvalidoException
+	 */
+	public void validaCampoInteiro(String campo) throws CampoInvalidoException{
+		try{
+			int valor = Integer.parseInt(campo);
+		}catch (NumberFormatException e) {
+			throw new CampoInvalidoException("CRM é campo numérico!");
+		}
+	}
+	/**
+	 * @descricao: Faz a consulta ou filtro de acordo com os campos preenchidos.
+	 * @param medico
+	 * @return
+	 * @throws CampoInvalidoException 
+	 */
+	public List<Medico> consultar(String crm, String nome) throws CampoInvalidoException{
+		List<Medico>lista = null;
+		Medico medicoRecuperado = null;
+		
+		if((crm == null || crm.isEmpty()) && (nome == null || nome.isEmpty())){
+			throw new CampoInvalidoException("Preencha um dos campos para realizar a pesquisa!");
+		}
+		else if(crm != null && crm.trim().length() > 0){
+			validaCampoInteiro(crm);
+			int crmNumero = Integer.parseInt(crm);
+			lista = new ArrayList<Medico>();
+			medicoRecuperado = this.medicoDao.recuperaPeloCrm(crmNumero);
+			if(medicoRecuperado != null){
+				lista.add(medicoRecuperado);
+			}
+		}else{
+			lista = medicoDao.recuperaPeloNome(nome);
+		}
+		return lista;
 	}
 }
 

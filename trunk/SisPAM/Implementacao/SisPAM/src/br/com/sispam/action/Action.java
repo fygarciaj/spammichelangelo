@@ -25,10 +25,15 @@ public class Action extends ActionSupport{
 	public final String SUCESSO_SALVAR_MEDICO = "sucessoSalvarMedico";
 	public final String FALHA_SALVAR_MEDICO = "falhaSalvarMedico";
 	public final String SUCESSO_CARREGAR_EDICAO = "sucessoCarregarEdicao";
+	public final String FALHA_CONSULTAR_MEDICO = "falhaConsultarMedico";
+	public final String SUCESSO_CONSULTAR_MEDICO = "sucessoConsultarMedico";
 	
 	public final String FALHA_SALVAR__PACIENTE = "falhaSalvarPaciente";
 	public final String SUCESSO_SALVAR_PACIENTE = "sucessoSalvarPaciente";
 	public final String SUCESSO_EXCLUIR_PACIENTE = "sucessoRemoverPaciente";
+	public final String SUCESSO_CARREGAR_EDICAO_PACIENTE = "sucessoCarregarEdicaoPaciente";
+	public final String FALHA_CONSULTAR_PACIENTE = "falhaConsultarPaciente";
+	public final String SUCESSO_CONSULTAR_PACIENTE = "sucessoConsultarPaciente";
 
 	public final String SUCESSO_INCLUIR_CONVENIO = "sucessoIncluirConvenio";
 	public final String CARREGAR_CONVENIO_EXISTENTE = "carregarConvenioExistente";	
@@ -39,6 +44,7 @@ public class Action extends ActionSupport{
 	public final String SUCESSO_EXCLUIR_CONVENIO = "sucessoExcluirConvenio";	
 	public final String USUARIO_LOGADO = "usuarioLogado";
 	public final String DATA_HORA_ACESSO = "dtHrAcess";
+	public final String SUSCESSO_DESLOGAR = "sucessoDeslogar";
 	
 	public final String SUCESSO_SALVAR_COMPROMISSO = "sucessoSalvarCompromisso";
 	public final String SUCESSO_EDICAO_COMPROMISSO = "sucessoEdicaoCompromisso";

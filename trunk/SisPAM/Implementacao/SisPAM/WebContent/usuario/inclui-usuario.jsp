@@ -70,10 +70,10 @@
 	</table>
 </s:form>
 
-<div id="MensagensErro" >	
-	<s:fielderror theme="simple" cssClass="errorMessage" />
+
+	<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
 	<s:actionmessage theme="simple" cssClass="sucessMessage" />
-</div>
+
 
 <s:if test="codigoPerfilSelecionado == 1 || codigoPerfilSelecionado == 2">
 	<s:form id="formPerfil" action="usuarioAction!salvarUsuario.action" method="post">
@@ -133,11 +133,11 @@
 				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="usuario.senha"	maxlength="8" size="6" /></td>
 			</tr>
 			<tr>
-				<s:if test="usuario.id != 0">
+				<s:if test="usuario.id > 0">
 					<td><s:submit value="Alterar" cssClass="button" /></td>
 				</s:if>
 				<s:else>
-					<td><s:submit value="Salvar" cssClass="button" /></td>
+					<td><s:submit value="Incluir" cssClass="button" /></td>
 				</s:else>
 			</tr>
 	</table>
@@ -208,9 +208,10 @@
 			<tr>
 				<td><label class="label">Login:</label></td>
 				<td><s:textfield theme="simple" name="medico.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="label">Senha:</label>&nbsp;&nbsp;&nbsp;<s:password theme="simple" name="medico.usuario.senha"	maxlength="8" size="6" /></td>
-				<td><label class="label">E-mail:</label></td>
-				<td><s:textfield theme="simple" name="medico.usuario.email" size="30" maxlength="30" /></td>
+				<label class="label">Senha:</label>&nbsp;&nbsp;<s:password theme="simple" name="medico.usuario.senha"	maxlength="8" size="6" /></td>
+				<td colspan="4"><label class="label">E-mail:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="medico.usuario.email" size="30" maxlength="30" />&nbsp;&nbsp;
+				<label class="label">Data de Nascimento:</label>&nbsp;&nbsp;<s:textfield theme="simple" id="data" name="dataNascimentoAux" size="12" maxlength="12" /></td>
+				
 			</tr>
 			<tr>				
 			</tr>			
@@ -236,11 +237,11 @@
 					</s:else>					
 				</s:iterator>
 				</td>
-				<s:if test="medico.id != 0">						
-					<td><s:submit value="Salvar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
+				<s:if test="medico.id > 0">						
+					<td><s:submit value="Alterar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
 				</s:if>
 				<s:else>
-					<td><s:submit value="Alterar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
+					<td><s:submit value="Incluir" onclick="return marcaEspecialidades();" cssClass="button" /></td>
 				</s:else>
 			</tr>
 	</table>
@@ -251,6 +252,7 @@
 	<s:form id="formPerfil" action="pacienteAction!salvarPaciente.action" method="post">
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
 	<s:hidden name="paciente.id" value="%{paciente.id}"/>
+	<s:hidden name="paciente.usuario.id" value="%{paciente.usuario.id}"/>
 		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
 				<td><label class="label">Nome:</label></td>
@@ -320,11 +322,11 @@
 				</td>
 			</tr>
 			<tr>
-				<s:if test="paciente.id != 0">
+				<s:if test="paciente.id > 0">
 					<td><s:submit value="Alterar" cssClass="button" /></td>
 				</s:if>
 				<s:else>
-					<td><s:submit value="Salvar" cssClass="button" /></td>
+					<td><s:submit value="Incluir" cssClass="button" /></td>
 				</s:else>
 			</tr>
 	</table>

@@ -17,7 +17,10 @@
 			<result name="listaUsuarios">/usuario/consultar-usuario.jsp</result>
 			<result name="sucessoCarregarConsulta">/usuario/consultar-usuario.jsp</result>
 			<result name="sucessoTelaConsulta">/usuario/consultar-usuario.jsp</result>
-			<result name="falhaConsultarUsuario">/usuario/consultar-usuario.jsp</result>
+			<result name="falhaConsultarUsuario" type="chain">
+				<param name="actionName">usuarioAction</param>
+				<param name="method">definirTelaConsulta</param>
+			</result>
 			
 		</action>
 
@@ -46,6 +49,7 @@
 		<action name="loginAction!*" method="{1}" class="br.com.sispam.action.LoginAction">
 			<result name="sucesso">index.jsp</result>
 			<result name="falha">login.jsp</result>
+			<result name="sucessoDeslogar">../remote.jsp</result>
 		</action>
 		
 			<!-- Medico Action -->
@@ -56,7 +60,12 @@
 				<param name="actionName">usuarioAction</param>
 				<param name="method">definirTelaConsulta</param>
 			</result>
+			<result name="falhaConsultarMedico" type="chain">
+				<param name="actionName">usuarioAction</param>
+				<param name="method">definirTelaConsulta</param>
+			</result>
 			<result name="sucessoCarregarEdicao">/usuario/inclui-usuario.jsp</result>
+			<result name="sucessoConsultarMedico">/usuario/consultar-usuario.jsp</result>
 		</action>
 		
 				<!-- Paciente Action -->
@@ -67,6 +76,12 @@
 				<param name="actionName">usuarioAction</param>
 				<param name="method">definirTelaConsulta</param>
 			</result>
+			<result name="falhaConsultarPaciente" type="chain">
+				<param name="actionName">usuarioAction</param>
+				<param name="method">definirTelaConsulta</param>
+			</result>
+			<result name="sucessoCarregarEdicaoPaciente">/usuario/inclui-usuario.jsp</result>
+			<result name="sucessoConsultarPaciente">/usuario/consultar-usuario.jsp</result>
 		</action>
 		
 			<!--Compromisso Action -->

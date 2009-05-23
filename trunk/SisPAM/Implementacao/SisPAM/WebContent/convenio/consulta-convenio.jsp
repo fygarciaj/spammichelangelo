@@ -127,14 +127,10 @@
 					<s:property value="codigoANS"/>
 				</td>
 				<td align="center">
-					<s:a href="%{#editarConvenio}">
-						<img src="../componentes/img/editar.png" alt="Alterar" />
-					</s:a>
+					<s:a href="%{#editarConvenio}" cssClass="linkEditar" cssStyle="linkEditar"></s:a>
 				</td>
 				<td align="center">
-					<s:a href="%{#excluirConvenio}">
-						<img src="../componentes/img/excluir.png" alt="Excluir" />
-					</s:a>
+					<s:a href="%{#excluirConvenio}" cssClass="linkExcluir" cssStyle="linkExcluir"></s:a>
 				</td>
 			
 			</tr>

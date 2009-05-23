@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="componentes/css/estilo.css" type="text/css"/>
 <script type="text/javascript" src="componentes/js/sispam.js"></script>
+
+<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css"/>
+<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <title>Login SisPAM</title>
 </HEAD>
 <BODY >

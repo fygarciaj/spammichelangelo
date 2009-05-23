@@ -11,6 +11,7 @@ import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.ConvenioFacade;
+import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
 import br.com.sispam.util.DataUtil;
@@ -29,6 +30,7 @@ public class PacienteAction extends Action {
 	private String codigoPerfilString;
 	private String validaPlanoAux;
 	private String dataNascimentoAux;
+	private List<Paciente> pacientesCadastrados;
 
 	private UsuarioFacade usuarioFacade;
 	private PacienteFacade pacienteFacade;
@@ -40,7 +42,10 @@ public class PacienteAction extends Action {
 	 * @return
 	 */
 	public String salvarPaciente(){
-
+		boolean isEdicao = false;
+		if(this.paciente.getId() > 0){
+			isEdicao = true;
+		}
 		this.usuarioFacade = new UsuarioFacade();
 		this.pacienteFacade = new PacienteFacade();
 		//monta um mapa com todos os campos que devem ser inteiros.	
@@ -58,6 +63,7 @@ public class PacienteAction extends Action {
 			this.usuarioFacade.verificaCampoInteiro(mapa);
 			//valida os campos do paciente e usuarios.
 			this.pacienteFacade.validaCampos(paciente, dataNascimentoAux);
+			this.paciente.getUsuario().setDataNascimento(DataUtil.stringToDate(dataNascimentoAux));
 
 			paciente.getUsuario().setCep(Integer.parseInt(this.cepAux));
 			paciente.getUsuario().setDdd(Integer.parseInt(this.dddAux));
@@ -67,12 +73,13 @@ public class PacienteAction extends Action {
 			if(validaPlanoAux != null && !validaPlanoAux.isEmpty()){
 				this.paciente.setValidadePlano(DataUtil.stringToDate(validaPlanoAux));
 			}
-			if(paciente.getConvenio() != null && paciente.getConvenio().getId() == 0){
-				paciente.setConvenio(null);
-			}
-
+			
 			this.pacienteFacade.salvar(paciente);
-			mensagens.put("salvo", "Paciente cadastrado com sucesso!");
+			if(isEdicao){
+				mensagens.put("salvo", "Paciente alterado com sucesso!");
+			}else{
+				mensagens.put("salvo", "Paciente cadastrado com sucesso!");
+			}
 		} catch (CampoInvalidoException e) {
 			erros.put("erros", e.getMessage());
 			apresentaErrors();
@@ -89,6 +96,44 @@ public class PacienteAction extends Action {
 	}
 	
 	/**
+	 * @descricao: Carrega o paciente para ser editado.
+	 * @return
+	 */
+	public String carregarEdicao(){
+		this.pacienteFacade = new PacienteFacade();
+		this.convenioFacade = new ConvenioFacade();
+		this.convenios = this.convenioFacade.recuperarTodos();
+		this.paciente = this.pacienteFacade.recuperarPeloId(this.paciente.getId());
+		this.cepAux = String.valueOf(this.paciente.getUsuario().getCep());
+		this.dataNascimentoAux = DataUtil.dateToString(this.paciente.getUsuario().getDataNascimento());
+		this.dddAux = String.valueOf(this.paciente.getUsuario().getDdd());
+		this.rgAux = String.valueOf(this.paciente.getUsuario().getRg());
+		this.telefoneAux = String.valueOf(this.paciente.getUsuario().getTelefone());
+		this.validaPlanoAux = DataUtil.dateToString(this.paciente.getValidadePlano());
+		return SUCESSO_CARREGAR_EDICAO_PACIENTE;
+	}
+	
+	public String consultarPaciente(){
+		this.pacienteFacade = new PacienteFacade();
+		
+		try{
+			this.pacientesCadastrados = this.pacienteFacade.consultar(paciente);
+		}catch (CampoInvalidoException e) {
+			erros.put("erro", e.getMessage());
+			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+			return FALHA_CONSULTAR_PACIENTE;
+		}
+		
+		if(this.pacientesCadastrados == null || this.pacientesCadastrados.size() < 1){
+			mensagens.put("consulta", "Nenhum paciente encontrado com esses dados!");
+		}
+		limparCampos(false);
+		apresentaMensagens();
+		return SUCESSO_CONSULTAR_PACIENTE;
+	}
+
+	
+	/**
 	 * @descricao: Remove o paciente do sistema.
 	 * @return
 	 */
@@ -96,6 +141,7 @@ public class PacienteAction extends Action {
 		this.pacienteFacade = new PacienteFacade();
 		this.pacienteFacade.removerPaciente(this.paciente.getId());
 		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+		mensagens.put("salvo", "Paciente excluído com sucesso!");
 		return SUCESSO_EXCLUIR_PACIENTE;
 	}
 
@@ -191,4 +237,11 @@ public class PacienteAction extends Action {
 	public void setDataNascimentoAux(String dataNascimentoAux) {
 		this.dataNascimentoAux = dataNascimentoAux;
 	}
+	public List<Paciente> getPacientesCadastrados() {
+		return pacientesCadastrados;
+	}
+	public void setPacientesCadastrados(List<Paciente> pacientesCadastrados) {
+		this.pacientesCadastrados = pacientesCadastrados;
+	}
+	
 }

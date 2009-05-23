@@ -82,6 +82,47 @@ public class PacienteDao {
 	}
 	
 	/**
+	 * @descricao: Recupera o paciente pelo seu CPF.
+	 * @param cpf
+	 * @return
+	 */
+	public Paciente recuperarPeloCpf(String cpf){
+		this.conexao = new Conexao();
+		this.manager = conexao.getEntityManger();
+		Paciente paciente = null;
+		try{
+		Query query = this.manager.createQuery("from Paciente where usuario.cpf = :cpf");
+		query.setParameter("cpf", cpf);
+		paciente = (Paciente) query.getSingleResult();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			paciente = null;
+		}
+		return paciente;
+	}
+	
+	/**
+	 * @descricao: Recupera os pacientes pelo seu NOME.
+	 * @param nome
+	 * @return
+	 */
+	public List<Paciente> recuperarPeloNome(String nome){
+		this.conexao = new Conexao();
+		this.manager = conexao.getEntityManger();
+		List<Paciente> pacientes = null;
+		try{
+		Query query = this.manager.createQuery("from Paciente where usuario.nome like :nome");
+		query.setParameter("nome", "%"+nome+"%");
+		pacientes = query.getResultList();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			pacientes = null;
+		}
+		return pacientes;
+	}
+	
+	
+	/**
 	 * @descricao: Remove o paciente do sistema.
 	 * @param paciente
 	 */

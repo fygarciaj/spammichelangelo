@@ -79,8 +79,7 @@
 				</td>
 				<td>
 					<s:property value="data"/>
-				</td>
-				<td>
+					<td>
 					<s:property value="hora"/>
 				</td>				
 				<td>
