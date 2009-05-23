@@ -1,5 +1,6 @@
 package br.com.sispam.action;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
+import br.com.sispam.util.DataUtil;
 
 public class UsuarioAction extends Action{
 
@@ -50,6 +52,7 @@ public class UsuarioAction extends Action{
 	private List<Dia>dias;
 	private List<EspecialidadeMedica> especialidades;
 	private List<Convenio> convenios;
+	private String dataNascimentoAux;
 
 
 
@@ -64,8 +67,8 @@ public class UsuarioAction extends Action{
 	}
 
 	/**
-	 * @descricao: define qual usuario será cadastrado
-	 * @return
+	 * @descricao: define qual usuario será cadastrado no sistema.
+	 * @return {@link String}
 	 */
 	public String definirTelaUsuario(){
 		this.codigoPerfilSelecionado = Integer.parseInt(this.codigoPerfilString);
@@ -89,10 +92,14 @@ public class UsuarioAction extends Action{
 	}
 
 	/**
-	 * @descricao: salva um objeto usuário
-	 * @return
+	 * @descricao: salva um objeto usuário no banco de dados.
+	 * @return {@link String}
 	 */
 	public String salvarUsuario(){
+		boolean isEdicao = false;
+		if(this.usuario.getId() > 0){
+			isEdicao = true;
+		}
 		usuarioFacade = new UsuarioFacade();
 		//monta um mapa com todos os campos que devem ser inteiros.	
 		Map<String, String> mapa = new HashMap<String, String>();
@@ -106,8 +113,9 @@ public class UsuarioAction extends Action{
 			usuarioFacade.verificaCampoInteiro(mapa);
 
 			//verifica se os campo obrigatorios foram preenchidos
-			usuarioFacade.validaCampos(usuario);
-
+			usuarioFacade.validaCampos(usuario, dataNascimentoAux);
+			usuario.setDataNascimento(DataUtil.stringToDate(dataNascimentoAux));
+		
 			//verifica se o cpf está sendo usado
 			usuarioFacade.verificaCpfJaExistente(usuario.getCpf(), usuario.getId());
 
@@ -121,7 +129,11 @@ public class UsuarioAction extends Action{
 			usuario.setTelefone(Long.parseLong(telefoneAux));
 
 			usuarioFacade.salvarUsuario(usuario);
-			mensagens.put("salvo", "Dados cadastrados com sucesso!");
+			if(isEdicao){
+				mensagens.put("salvo", Perfil.getPerfil(usuario.getPerfil())+" alterado com sucesso!");
+			}else{
+				mensagens.put("salvo", Perfil.getPerfil(usuario.getPerfil())+" cadastrado com sucesso!");
+			}
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
@@ -132,7 +144,12 @@ public class UsuarioAction extends Action{
 			erros.put("campoInvalido", e.getMessage());
 			apresentaErrors();
 			return FALHA_SALVAR_USUARIO;
+		}catch (ParseException e) {
+			erros.put("dataInvalida", e.getMessage());
+			apresentaErrors();
+			return FALHA_SALVAR_USUARIO;
 		}
+
 
 		apresentaMensagens();
 		limparCampos(true);
@@ -141,7 +158,7 @@ public class UsuarioAction extends Action{
 
 	/**
 	 * @descricao: Carrega a tela de consulta de usuários.
-	 * @return
+	 * @return {@link String}
 	 */
 	public String carregarConsulta(){
 		limparCampos(true);
@@ -162,14 +179,16 @@ public class UsuarioAction extends Action{
 		else if(this.codigoPerfilSelecionado == Perfil.PACIENTE.getCodigo()){
 			this.pacienteFacade = new PacienteFacade();
 			this.pacientesCadastrados = this.pacienteFacade.recuperaUltimosCadastrados();
-			
+
 		}
+		apresentaMensagens();
+		apresentaErrors();
 		return SUCESSO_TELA_CONSULTA;
 	}
 
 	/**
 	 * @descricao: Consulta o usuário apartir dos dados informados.
-	 * @return
+	 * @return {@link String}
 	 */
 	public String consultarUsuario(){
 		this.usuarioFacade = new UsuarioFacade();
@@ -177,11 +196,16 @@ public class UsuarioAction extends Action{
 			this.usuariosCadastrados = this.usuarioFacade.recuperarUsuario(usuario.getCpf(), usuario.getNome(), this.codigoPerfilSelecionado);
 		}catch (CampoInvalidoException e) {
 			erros.put("campoInvalido", e.getMessage());
-			apresentaErrors();
+			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
 			return FALHA_CONSULTAR_USUARIO;
 		}
-
+		
+		if(this.usuariosCadastrados == null || this.usuariosCadastrados.size() < 1){
+			mensagens.put("consulta", "Nenhum "+Perfil.getPerfil(this.codigoPerfilSelecionado)+" encontrado com esses dados!");
+		}
+		
 		limparCampos(false);
+		apresentaMensagens();
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
 
@@ -193,6 +217,7 @@ public class UsuarioAction extends Action{
 		this.dddAux = String.valueOf(this.usuario.getDdd());
 		this.telefoneAux = String.valueOf(this.usuario.getTelefone());
 		this.rgAux = String.valueOf(this.usuario.getRg());
+		this.dataNascimentoAux = DataUtil.dateToString(this.usuario.getDataNascimento());
 		return TELA_SELECIONADA;
 	}
 
@@ -200,12 +225,13 @@ public class UsuarioAction extends Action{
 
 	/**
 	 * @descricao: Remove o usuário do sistema.
-	 * @return
+	 * @return {@link String}
 	 */
 	public String excluirUsuario(){
 		this.usuarioFacade = new UsuarioFacade();
 		this.usuarioFacade.removerUsuario(this.usuario.getId());
 		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+		mensagens.put("exclusao", Perfil.getPerfil(this.codigoPerfilSelecionado)+" excluído com sucesso!");
 		return definirTelaConsulta();
 	}
 
@@ -222,7 +248,7 @@ public class UsuarioAction extends Action{
 		this.dddAux = null;
 		this.rgAux = null;
 		this.telefoneAux = null;
-	
+
 
 	}
 
@@ -381,5 +407,10 @@ public class UsuarioAction extends Action{
 	public void setPacientesCadastrados(List<Paciente> pacientesCadastrados) {
 		this.pacientesCadastrados = pacientesCadastrados;
 	}
-
+	public String getDataNascimentoAux() {
+		return dataNascimentoAux;
+	}
+	public void setDataNascimentoAux(String dataNascimentoAux) {
+		this.dataNascimentoAux = dataNascimentoAux;
+	}
 }

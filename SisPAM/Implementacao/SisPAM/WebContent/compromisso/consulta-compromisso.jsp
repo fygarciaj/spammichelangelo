@@ -111,14 +111,10 @@
 					<s:property value="descricao"/>
 				</td>
 				<td align="center">
-					<s:a href="%{#editarCompromisso}">
-						<img src="../componentes/img/editar.png" alt="Alterar" />
-					</s:a>
+					<s:a href="%{#editarCompromisso}" cssClass="linkEditar" cssStyle="linkEditar"></s:a>
 				</td>
 				<td align="center">
-					<s:a href="%{#excluirCompromisso}">
-						<img src="../componentes/img/excluir.png" alt="Excluir" />
-					</s:a>
+					<s:a href="%{#excluirCompromisso}" cssClass="linkExcluir" cssStyle="linkExcluir"></s:a>
 				</td>
 			
 			</tr>

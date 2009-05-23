@@ -86,14 +86,10 @@
 				</td>
 				
 				<td align="center">
-					<s:a href="%{#editarUsuario}">
-						<img src="img/editar.png" alt="Alterar" />
-					</s:a>
+					<s:a href="%{#editarUsuario}" cssClass="linkEditar" cssStyle="linkEditar"></s:a>
 				</td>
 				<td align="center">
-					<s:a href="%{#excluirUsuario}">
-						<img src="img/excluir.png" alt="Alterar" />
-					</s:a>
+					<s:a href="%{#excluirUsuario}" cssClass="linkExcluir" cssStyle="linkExcluir"></s:a>
 				</td>			
 			</tr>
 		</s:iterator>	

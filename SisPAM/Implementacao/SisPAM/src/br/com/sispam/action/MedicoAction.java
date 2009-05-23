@@ -1,5 +1,6 @@
 package br.com.sispam.action;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.UsuarioFacade;
+import br.com.sispam.util.DataUtil;
 
 public class MedicoAction extends Action{
 
@@ -40,10 +42,16 @@ public class MedicoAction extends Action{
 	private String codigoPerfilString;
 	private String especialidadesSelecionadas;
 	private List<String> diasString;
+	private String dataNascimentoAux;
+	private List<Medico> medicosCadastrados;
 
 
-	public String salvarMedico(){
+	public String salvarMedico() throws ParseException{
 		limparMapas();
+		boolean isEdicao = false;
+		if(medico.getId() > 0){
+			isEdicao = true;
+		}
 		usuarioFacade = new UsuarioFacade();
 		medicoFacade = new MedicoFacade();
 		especialidadeFacade = new EspecialidadeFacade();
@@ -63,7 +71,8 @@ public class MedicoAction extends Action{
 			usuarioFacade.verificaCampoInteiro(mapa);
 
 			//valida os campos de médico e do objeto usuario.
-			medicoFacade.validaCampos(medico, especialidadesSelecionadas);
+			medicoFacade.validaCampos(medico, especialidadesSelecionadas, this.dataNascimentoAux);
+			medico.getUsuario().setDataNascimento(DataUtil.stringToDate(dataNascimentoAux));
 
 			//verifica se o campo dias de trabalho foi preenchido.
 			String diasMarcados = getDiasMarcados().toString();
@@ -92,9 +101,12 @@ public class MedicoAction extends Action{
 
 			this.medicoFacade.salvarMedico(medico);
 
+			if(isEdicao){
+				mensagens.put("salvo", "Médico alterado com sucesso!");
+			}else{
+				mensagens.put("salvo", "Médico cadastrado com sucesso!");
+			}
 
-			//usuarioFacade.salvarUsuario(usuario);
-			mensagens.put("salvo", "Médico cadastrado com sucesso!");
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
@@ -112,7 +124,7 @@ public class MedicoAction extends Action{
 		}
 		catch (CampoInteiroException e) {
 			erros.put("campoInvalido", e.getMessage());
-			
+
 			if(this.medico != null && this.medico.getId() > 0){
 				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
 				preparaListaDeExibicao(medico2);
@@ -132,9 +144,28 @@ public class MedicoAction extends Action{
 		return SUCESSO_SALVAR_MEDICO;
 	}
 
+	public String consultarMedico(){
+		this.medicoFacade = new MedicoFacade();
+		
+		try{
+			this.medicosCadastrados = this.medicoFacade.consultar(crmAux, medico.getUsuario().getNome());
+		}catch (CampoInvalidoException e) {
+			erros.put("erro", e.getMessage());
+			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+			return FALHA_CONSULTAR_MEDICO;
+		}
+		
+		if(this.medicosCadastrados == null || this.medicosCadastrados.size() < 1){
+			mensagens.put("consulta", "Nenhum médico encontrado com esses dados!");
+		}
+		limparCampos(false);
+		apresentaMensagens();
+		return SUCESSO_CONSULTAR_MEDICO;
+	}
+
 	/**
 	 * @descricao: Carrega a edição do médico selecionado.
-	 * @return
+	 * @return {@link String}
 	 */
 	public String carregarEdicao(){
 		this.medicoFacade = new MedicoFacade();
@@ -151,7 +182,8 @@ public class MedicoAction extends Action{
 		this.horaIni = String.valueOf(this.medico.getHoraInicio());
 		this.telefoneAux = String.valueOf(this.medico.getUsuario().getTelefone());
 		this.rgAux = String.valueOf(this.medico.getUsuario().getRg());
-		
+		this.dataNascimentoAux = DataUtil.dateToString(this.medico.getUsuario().getDataNascimento());
+
 		preparaListaDeExibicao(this.medico);
 
 		//carrega a lista de dias para exibir na tela.
@@ -160,6 +192,7 @@ public class MedicoAction extends Action{
 		//prepara a lista de dias do médico cadastrado.
 		this.diasString = this.medicoFacade.montaMedico(medico);
 
+		apresentaErrors();
 		return SUCESSO_CARREGAR_EDICAO;
 	}
 
@@ -171,6 +204,7 @@ public class MedicoAction extends Action{
 		this.medicoFacade = new MedicoFacade();
 		this.medicoFacade.removerMedico(this.medico.getId());
 		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+		mensagens.put("salvo", "Médico excluído com sucesso!");
 		return SUCESSO_EXCLUIR_MEDICO;
 	}
 
@@ -228,7 +262,7 @@ public class MedicoAction extends Action{
 	private void preparaListaDeExibicao(Medico medico){
 		if(medico != null && medico.getEspecialidades() != null){
 			List<EspecialidadeMedica> especialidades = medico.getEspecialidades();
-		
+
 			List<Integer> lista = new ArrayList<Integer>();
 			for(EspecialidadeMedica esp: especialidades){
 				lista.add(esp.getId());
@@ -237,7 +271,7 @@ public class MedicoAction extends Action{
 		}else{
 			this.especialidades = this.especialidadeFacade.recuperarTodas();
 		}
-	
+
 	}
 
 	private void limparMapas(){
@@ -391,6 +425,17 @@ public class MedicoAction extends Action{
 	public void setDiasString(List<String> diasString) {
 		this.diasString = diasString;
 	}
-
+	public String getDataNascimentoAux() {
+		return dataNascimentoAux;
+	}
+	public void setDataNascimentoAux(String dataNascimentoAux) {
+		this.dataNascimentoAux = dataNascimentoAux;
+	}
+	public List<Medico> getMedicosCadastrados() {
+		return medicosCadastrados;
+	}
+	public void setMedicosCadastrados(List<Medico> medicosCadastrados) {
+		this.medicosCadastrados = medicosCadastrados;
+	}
 	
 }

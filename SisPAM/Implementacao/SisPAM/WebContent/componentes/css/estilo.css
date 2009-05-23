@@ -160,11 +160,41 @@ a:hover{
 .botao_pesquisar {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 5px 0px 20px;
+	background: #F4F7FB url(../img/exit.png) no-repeat 2px 1px;
+	font-size:12px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.deslogar {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 5px 0px 20px;
 	background: #F4F7FB url(../img/pesquisar.png) no-repeat 2px 1px;
 	font-size:12px;
 	height: 20px;
 	cursor: pointer;
 }
+
+.linkEditar {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 17px 0px 0px;
+	background: #F4F7FB url(../img/editar.png) no-repeat 2px 1px;
+	font-size:12px;
+}
+
+.linkExcluir {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 15px 0px 0px;
+	background: #F4F7FB url(../img/excluir.png) no-repeat 2px 1px;
+	font-size:12px;
+}
+.linkAtualizar{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 15px 0px 0px;
+	background: #F4F7FB url(../img/up.png) no-repeat 2px 1px;
+	font-size:12px;
+}
+
  .botao_salvar {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 5px 0px 20px;
@@ -215,6 +245,3 @@ a:hover{
 	background-color: #dcdcdc;
 }
 
-.linkEditar{
-	background: #FFf4f1 url(../img/editar.png) no-repeat 5px 1px ;
-}

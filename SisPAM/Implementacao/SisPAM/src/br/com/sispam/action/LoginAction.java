@@ -46,6 +46,15 @@ public class LoginAction extends Action{
 			return FALHA;
 		}
 	}
+	
+	/**
+	 * @descricao: Retira o usuário logado da sessão.
+	 * @return
+	 */
+	public String deslogar(){
+		ActionContext.getContext().getSession().remove(USUARIO_LOGADO);
+		return SUSCESSO_DESLOGAR;
+	}
 
 	/*Get & Set*/
 	public String getAcesso() {

@@ -13,11 +13,16 @@
 <div id="tabs">
 <img src="img/simbolo.jpg" width="248px" align="left">
 <br>
+<s:url id="deslogar" action="loginAction!deslogar.action"/>
 <table width="750px">
-	<tr >
+	<tr>
 		<td class="nomeSistema" width="500px">Sistema de Pronto Atendimento Médico</td>
 		<td class="userLogado" width="240">Usuário logado: <%=((Usuario) session.getAttribute("usuarioLogado")).getAcesso().toUpperCase()%>
-		<br>Login em: <%=((Usuario) session.getAttribute("dtHrAcess")).getDtHoraAcesso()%>
+		<br>Login em: <%=((Usuario) session.getAttribute("dtHrAcess")).getDtHoraAcesso()%></td>
+		<td>
+			<s:form action="loginAction!deslogar.action">
+				<s:submit theme="simple" cssClass="deslogar" value="Sair"/>
+			</s:form>
 		</td>
 	</tr>
 </table>

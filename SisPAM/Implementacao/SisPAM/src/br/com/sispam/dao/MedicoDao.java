@@ -82,6 +82,31 @@ public class MedicoDao {
 		conexao.finalizaConexao();
 		return medico;
 	}
+	
+	
+	/**
+	 * @descricao: Recupera uma lista de médicos pelo nome.
+	 * @param nome
+	 * @return
+	 */
+	public List<Medico> recuperaPeloNome(String nome){
+		conexao = new Conexao();
+		List<Medico> lista = null;
+		manager = conexao.getEntityManger();
+		Medico medico = null;
+		try{
+			//cria uma queri para fazer a busca pelo perfil
+			Query query = manager.createQuery("from Medico where usuario.nome like :nome ");
+			//seta o parametro
+			query.setParameter("nome", "%"+nome+"%");
+			lista =query.getResultList();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			lista = null;
+		}
+		conexao.finalizaConexao();
+		return lista;
+	}
 
 	/**
 	 * @descricao: Remove o médico cadastrado
