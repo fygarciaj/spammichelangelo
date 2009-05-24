@@ -53,7 +53,7 @@ public class LoginAction extends Action{
 	 */
 	public String deslogar(){
 		ActionContext.getContext().getSession().remove(USUARIO_LOGADO);
-		return SUSCESSO_DESLOGAR;
+		return SUCESSO_DESLOGAR;
 	}
 
 	/*Get & Set*/
