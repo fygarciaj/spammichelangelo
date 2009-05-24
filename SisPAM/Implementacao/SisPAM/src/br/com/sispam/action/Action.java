@@ -44,7 +44,7 @@ public class Action extends ActionSupport{
 	public final String SUCESSO_EXCLUIR_CONVENIO = "sucessoExcluirConvenio";	
 	public final String USUARIO_LOGADO = "usuarioLogado";
 	public final String DATA_HORA_ACESSO = "dtHrAcess";
-	public final String SUSCESSO_DESLOGAR = "sucessoDeslogar";
+	public final String SUCESSO_DESLOGAR = "sucessoDeslogar";
 	
 	public final String SUCESSO_SALVAR_COMPROMISSO = "sucessoSalvarCompromisso";
 	public final String SUCESSO_EDICAO_COMPROMISSO = "sucessoEdicaoCompromisso";

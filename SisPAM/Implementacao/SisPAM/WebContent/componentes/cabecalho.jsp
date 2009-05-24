@@ -27,10 +27,9 @@
 	</tr>
 </table>
 
-<br>
 <ul>
 	
-    <li><a href="menuAdm.jsp" target="MENU" onclick="CENTRAL"><span>ADMINISTRATIVO</span></a></li>
+    <li><a href="menuAdm.jsp" target="MENU"><span>ADMINISTRATIVO</span></a></li>
 	<li><a href="menuAtd.jsp" target="MENU"><span>ATENDIMENTO</span></a></li>
     <li><a href="menuCad.jsp" target="MENU"><span>CADASTRO</span></a></li>
     <li><a href="menuRel.jsp" target="MENU"><span>RELATÓRIOS</span></a></li>
