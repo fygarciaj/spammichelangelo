@@ -50,19 +50,19 @@ CREATE SEQUENCE usuario_usrcod_seq;
 
 CREATE TABLE usuario (
   usrcod INTEGER  NOT NULL DEFAULT NEXTVAL('usuario_usrcod_seq'),
-  usrnom VARCHAR(40) NULL,
+  usrnom VARCHAR(60) NULL,
   usrsex CHAR(1) NULL,
   usrcpf VARCHAR(15) NULL,
-  usrrg NUMERIC(10) NULL,
-  usrorgexp VARCHAR(5) NULL,
-  usrend VARCHAR(50) NULL,
+  usrrg NUMERIC(15) NULL,
+  usrorgexp VARCHAR(15) NULL,
+  usrend VARCHAR(60) NULL,
   usrcep NUMERIC(8) NULL,
-  usrcde VARCHAR(30) NULL,
+  usrcde VARCHAR(25) NULL,
   usruf VARCHAR(2) NULL,
   usrddd NUMERIC(3) NULL,
   usrtel NUMERIC(8) NULL,
-  usreml VARCHAR(50) NULL,
-  usracs VARCHAR(20) NULL,
+  usreml VARCHAR(30) NULL,
+  usracs VARCHAR(25) NULL,
   usrsen VARCHAR(32) NULL,
   usrpfl NUMERIC(1) NOT NULL,
   usrdatnsc DATE NULL
@@ -206,9 +206,9 @@ CREATE SEQUENCE paciente_pctcod_seq;
 CREATE TABLE paciente (
   pctidfseg NUMERIC(14) NOT NULL DEFAULT NEXTVAL('paciente_pctcod_seq'),
   usrcod INTEGER NOT NULL,
-  cvncod INTEGER NOT NULL,
+  cvncod INTEGER NULL,
   pctplnrde VARCHAR(25) NULL,
-  pctacm VARCHAR(30) NULL,
+  pctacm VARCHAR(20) NULL,
   pctplnvld TIMESTAMP NULL
 );
 

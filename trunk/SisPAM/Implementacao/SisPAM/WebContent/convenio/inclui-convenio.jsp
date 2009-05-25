@@ -54,7 +54,7 @@
 								<td><label class="label" >Código ANS:</label></td><td><s:textfield theme="simple" name="codigoANSAux" size="17" maxlength="14"/></td>
 							</tr>							
 							<tr>
-								<td><label class="label" >Cidade:</label></td><td><s:textfield theme="simple" name="convenio.cidade" size="20" maxlength="20"/>&nbsp;									
+								<td><label class="label" >Cidade:</label></td><td><s:textfield theme="simple" name="convenio.cidade" size="30" maxlength="30"/>&nbsp;									
 								</td>
 							</tr>
 							<tr>
