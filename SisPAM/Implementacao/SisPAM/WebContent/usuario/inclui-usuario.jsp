@@ -98,7 +98,7 @@
 				<td><label class="label">Endereço:</label></td>
 				<td><s:textfield theme="simple" name="usuario.endereco"	size="60" maxlength="60" /></td>
 				<td><label class="label">Cidade:</label></td>
-				<td><s:textfield theme="simple" name="usuario.cidade" size="12" maxlength="11" /></td>
+				<td><s:textfield theme="simple" name="usuario.cidade" size="25" maxlength="25" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">Estado:</label></td>
@@ -130,7 +130,7 @@
 			<tr>
 				<td><label class="label">Login:</label></td>
 				<td colspan="2"><s:textfield theme="simple" name="usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="usuario.senha"	maxlength="8" size="6" /></td>
+				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="usuario.senha"	maxlength="6" size="6" /></td>
 			</tr>
 			<tr>
 				<s:if test="usuario.id > 0">
@@ -167,7 +167,7 @@
 				<td><label class="label">Endereço:</label></td>
 				<td><s:textfield theme="simple" name="medico.usuario.endereco"	size="60" maxlength="60" /></td>
 				<td><label class="label">Cidade:</label></td>
-				<td><s:textfield theme="simple" name="medico.usuario.cidade" size="12" maxlength="11" /></td>
+				<td><s:textfield theme="simple" name="medico.usuario.cidade" size="25" maxlength="25" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">Estado:</label></td>
@@ -190,7 +190,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label class="label">Consultório:</label></td><td><s:textfield theme="simple" name="consultorioAux" maxlength="7" size="7" />&nbsp;&nbsp;&nbsp;
+				<td><label class="label">Consultório:</label></td><td><s:textfield theme="simple" name="consultorioAux" maxlength="4" size="7" />&nbsp;&nbsp;&nbsp;
 				<label class="label">Hora início:&nbsp;&nbsp;</label><s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;&nbsp;&nbsp;
 				<label class="label">Hora Fim:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" /></td>
 				<td><label class="label">CRM:</label></td>
@@ -208,7 +208,7 @@
 			<tr>
 				<td><label class="label">Login:</label></td>
 				<td><s:textfield theme="simple" name="medico.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="label">Senha:</label>&nbsp;&nbsp;<s:password theme="simple" name="medico.usuario.senha"	maxlength="8" size="6" /></td>
+				<label class="label">Senha:</label>&nbsp;&nbsp;<s:password theme="simple" name="medico.usuario.senha"	maxlength="6" size="6" /></td>
 				<td colspan="4"><label class="label">E-mail:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="medico.usuario.email" size="30" maxlength="30" />&nbsp;&nbsp;
 				<label class="label">Data de Nascimento:</label>&nbsp;&nbsp;<s:textfield theme="simple" id="data" name="dataNascimentoAux" size="12" maxlength="12" /></td>
 				
@@ -272,7 +272,7 @@
 				<td><label class="label">Endereço:</label></td>
 				<td><s:textfield theme="simple" name="paciente.usuario.endereco"	size="60" maxlength="60" /></td>
 				<td><label class="label">Cidade:</label></td>
-				<td><s:textfield theme="simple" name="paciente.usuario.cidade" size="12" maxlength="11" /></td>
+				<td><s:textfield theme="simple" name="paciente.usuario.cidade" size="25" maxlength="25" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">Estado:</label></td>
@@ -308,7 +308,7 @@
 			<tr>
 				<td><label class="label">Login:</label></td>
 				<td ><s:textfield theme="simple" name="paciente.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="paciente.usuario.senha"	maxlength="8" size="6" /></td>
+				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="paciente.usuario.senha"	maxlength="6" size="6" /></td>
 				
 				
 			</tr>
@@ -316,8 +316,8 @@
 				<td><label class="label">Convênio:</label></td>
 				<td colspan="5">
 					<s:select theme="simple" name="paciente.convenio.id" list="convenios" listKey="id" listValue="nome" headerKey="0" headerValue="--Selecione--"/>&nbsp;&nbsp;
-					<label class="label">Plano:&nbsp;&nbsp;</label><s:textfield name="paciente.plano" size="20" maxlength="25" theme="simple"/>&nbsp;&nbsp;
-					<label class="label">Acomodação:&nbsp;&nbsp;</label><s:textfield name="paciente.descricaoAcomodacao" size="20" maxlength="30" theme="simple"/>&nbsp;&nbsp;
+					<label class="label">Plano:&nbsp;&nbsp;</label><s:textfield name="paciente.plano" size="25" maxlength="25" theme="simple"/>&nbsp;&nbsp;
+					<label class="label">Acomodação:&nbsp;&nbsp;</label><s:textfield name="paciente.descricaoAcomodacao" size="20" maxlength="20" theme="simple"/>&nbsp;&nbsp;
 					<label class="label">Validade:&nbsp;&nbsp;</label><s:textfield name="validaPlanoAux" size="12" id="data1" maxlength="30" theme="simple"/>
 				</td>
 			</tr>
