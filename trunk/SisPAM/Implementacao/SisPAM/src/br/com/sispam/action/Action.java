@@ -9,7 +9,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Action extends ActionSupport{
-
+	
+	//USUÁRIO
 	public final String SUCESSO = "sucesso";	
 	public final String FALHA = "falha";
 	public final String SUCESSO_SALVAR_USUARIO = "sucessoSalvarUsuario";
@@ -21,6 +22,7 @@ public class Action extends ActionSupport{
 	public final String FALHA_CONSULTAR_USUARIO = "falhaConsultarUsuario";
 	public final String SUCESSO_TELA_CONSULTA = "sucessoTelaConsulta";
 	
+	//MÉDICO
 	public final String SUCESSO_EXCLUIR_MEDICO = "sucessoExcluirMedico";
 	public final String SUCESSO_SALVAR_MEDICO = "sucessoSalvarMedico";
 	public final String FALHA_SALVAR_MEDICO = "falhaSalvarMedico";
@@ -28,13 +30,15 @@ public class Action extends ActionSupport{
 	public final String FALHA_CONSULTAR_MEDICO = "falhaConsultarMedico";
 	public final String SUCESSO_CONSULTAR_MEDICO = "sucessoConsultarMedico";
 	
+	//PACIENTE
 	public final String FALHA_SALVAR__PACIENTE = "falhaSalvarPaciente";
 	public final String SUCESSO_SALVAR_PACIENTE = "sucessoSalvarPaciente";
 	public final String SUCESSO_EXCLUIR_PACIENTE = "sucessoRemoverPaciente";
 	public final String SUCESSO_CARREGAR_EDICAO_PACIENTE = "sucessoCarregarEdicaoPaciente";
 	public final String FALHA_CONSULTAR_PACIENTE = "falhaConsultarPaciente";
 	public final String SUCESSO_CONSULTAR_PACIENTE = "sucessoConsultarPaciente";
-
+	
+	//CONVÊNIO
 	public final String SUCESSO_INCLUIR_CONVENIO = "sucessoIncluirConvenio";
 	public final String CARREGAR_CONVENIO_EXISTENTE = "carregarConvenioExistente";	
 	public final String FALHA_CARREGAR_CONVENIO = "falhaCarregarConvenio";
@@ -42,10 +46,13 @@ public class Action extends ActionSupport{
 	public final String FALHA_SALVAR_CONVENIO = "falhaSalvarConvenio";
 	public final String FALHA_EXCLUIR_CONVENIO = "falhaExcluirConvenio";
 	public final String SUCESSO_EXCLUIR_CONVENIO = "sucessoExcluirConvenio";	
+	
+	//LOGIN
 	public final String USUARIO_LOGADO = "usuarioLogado";
 	public final String DATA_HORA_ACESSO = "dtHrAcess";
 	public final String SUCESSO_DESLOGAR = "sucessoDeslogar";
 	
+	//COMPROMISSO 
 	public final String SUCESSO_SALVAR_COMPROMISSO = "sucessoSalvarCompromisso";
 	public final String SUCESSO_EDICAO_COMPROMISSO = "sucessoEdicaoCompromisso";
 	public final String FALHA_SALVAR_COMPROMISSO = "falhaSalvarCompromisso";
@@ -53,11 +60,15 @@ public class Action extends ActionSupport{
 	public final String LISTAR_COMPROMISSOS = "listarCompromissos";
 	public final String CARREGAR_INCLUSAO_COMPROMISSO = "carregarInclusaoCompromisso";
 	public final String CARREGAR_CONSULTA_COMPROMISSO = "carregarConsultaCompromisso";
-
+	
+	//PRONTUÁRIO
 	public final String CARREGAR_CONSULTA_AGENDAMENTO = "carregarConsultaAgendamento";
 	public final String	ATUALIZAR_HISTORICO_PRONTUARIO = "atualizarHistoricoProntuario";
 	public final String SUCESSO_ATUALIZACAO_HISTORICO_PRONTUARIO = "sucessoAtualizacaoHistoricoProntuario";
 	public final String FALHA_ATUALIZAR_HISTORICO_PRONTUARIO = "falhaAtualizarHistoricoProntuario";
+	
+	//AGENDAMENTO
+	public final String SUCESSO_CARREGAR_INCLUSAO_AGENDAMENTO = "sucessoCarregarInclusaoAgendamento";
 	
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();
