@@ -111,7 +111,14 @@
 			<result name="sucessoAtualizacaoHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>
 			<result name="falhaAtualizarHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>	
 		
-		</action>	
+		</action>
+		
+				<!--Agendamento Action-->
+		<action name="agendamentoAction!*" method="{1}" class="br.com.sispam.action.AgendamentoAction">
+			<result name="sucessoCarregarInclusaoAgendamento">/agendamento/inclui-agendamento.jsp</result>
+		</action>
+		
+			
 	</package>
 
 </struts>
