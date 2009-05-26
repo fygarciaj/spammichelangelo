@@ -176,16 +176,30 @@ a:hover{
 }
 
 .linkEditar {
+	
+	
+	#float:left;
+	#background:url("../../componentes/img/editar.gif") no-repeat 2px 1px;
+	#padding-left:15px;
+	#text-decoration:none;
 	margin: 0px 0px 0px 0px;
-	padding: 0px 17px 0px 0px;
-	background: #F4F7FB url(../img/editar.png) no-repeat 2px 1px;
+	padding: 0px 15px 0px 0px;
+	background: url(../img/editar.png) no-repeat 2px 1px;
 	font-size:12px;
+	
 }
 
 .linkExcluir {
+	
+	#float:left;
+	#background:url("../../componentes/img/excluir.png") no-repeat 2px 1px;
+	#margin:0px;
+	#padding:0 15px 0 0px;
+	#text-decoration:none;
+	#font-size:12px;
 	margin: 0px 0px 0px 0px;
 	padding: 0px 15px 0px 0px;
-	background: #F4F7FB url(../img/excluir.png) no-repeat 2px 1px;
+	background: url(../img/excluir.png) no-repeat 2px 1px;
 	font-size:12px;
 }
 .linkAtualizar{
