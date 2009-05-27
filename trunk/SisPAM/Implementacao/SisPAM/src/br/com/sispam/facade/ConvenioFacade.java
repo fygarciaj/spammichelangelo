@@ -1,4 +1,4 @@
-﻿package br.com.sispam.facade;
+package br.com.sispam.facade;
 
 
 

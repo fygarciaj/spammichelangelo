@@ -1,4 +1,4 @@
-﻿package br.com.sispam.dao;
+package br.com.sispam.dao;
 
 import java.util.List;
 
