@@ -1,7 +1,7 @@
 package br.com.sispam.enums;
 
 public enum Dia {
-	SEGUNDA(1, "SEG", "Segunda"), TERÇA(2, "TER", "Terça"), QUARTA(3, "QUA", "Quarta"), QUINTA(4, "QUI", "Quinta"), SEXTA(5, "SEX", "Sexta"),
+	SEGUNDA(1, "SEG", "Segunda"), TERÇA(2,"TER", "Terça"), QUARTA(3, "QUA", "Quarta"), QUINTA(4, "QUI", "Quinta"), SEXTA(5, "SEX", "Sexta"),
 	SABADO(6, "SAB", "Sábado"), DOMINGO(7, "DOM", "Domingo");
 	
 	private int codigo;
