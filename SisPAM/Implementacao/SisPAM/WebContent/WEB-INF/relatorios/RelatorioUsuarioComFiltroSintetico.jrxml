@@ -7,6 +7,7 @@
 			<style isDefault="false" style="zebra" mode="Opaque" backcolor="#DCDCDC"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="PERFIL" class="java.math.BigDecimal"/>
 	<queryString>
 		<![CDATA[SELECT
      usuario."usrcod" AS usuario_usrcod,
@@ -28,8 +29,9 @@
      usuario."usrdatnsc" AS usuario_usrdatnsc
 FROM
      "usuario" usuario
+WHERE
+     usuario."usrpfl" = $P{PERFIL}
 ORDER BY
-     usuario."usrcod" ASC,
      usuario."usrnom" ASC]]>
 	</queryString>
 	<field name="usuario_usrcod" class="java.lang.Integer">
@@ -136,7 +138,7 @@ ORDER BY
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nome do Convênio]]></text>
+				<text><![CDATA[Nome do Usuário]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="229" y="23" width="41" height="20" forecolor="#FFFFFF"/>
@@ -181,7 +183,7 @@ ORDER BY
 				<text><![CDATA[Perfil]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="303" y="23" width="70" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="306" y="23" width="67" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -204,7 +206,7 @@ ORDER BY
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario_usrnom}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###.###.###/####-##">
-					<reportElement x="226" y="0" width="74" height="20"/>
+					<reportElement x="226" y="0" width="77" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[( $F{usuario_usrcpf}.length() == 14 ? ($F{usuario_usrcpf}.substring(0, 2) + "." + $F{usuario_usrcpf}.substring(2, 5) + "." + $F{usuario_usrcpf}.substring(5, 8) + "/" + $F{usuario_usrcpf}.substring(8, 12) + "-" + $F{usuario_usrcpf}.substring(12, 14)) : ($F{usuario_usrcpf}.substring(0, 3) + "." + $F{usuario_usrcpf}.substring(3, 6) + "." + $F{usuario_usrcpf}.substring(6, 9) + "-" + $F{usuario_usrcpf}.substring(9, 11)) )]]></textFieldExpression>
 				</textField>
@@ -229,7 +231,7 @@ ORDER BY
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrpfl}]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yyyy">
-					<reportElement x="300" y="0" width="70" height="20"/>
+					<reportElement x="303" y="0" width="67" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.util.Date"><![CDATA[$F{usuario_usrdatnsc}]]></textFieldExpression>
 				</textField>

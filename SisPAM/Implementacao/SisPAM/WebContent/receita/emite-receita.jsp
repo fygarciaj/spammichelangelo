@@ -20,10 +20,8 @@
 		</td>
 </table>
 <h2>Emissão de Receita</h2>
-<s:fielderror cssErrorClass="errorMessage" />
-<s:actionmessage />
 
-<s:form action="receitaAction!emitirReceita.action">
+<s:form action="receitaAction!carregaEmissaoReceita.action" theme="simple">
 		<table class="tabela_moldura" >
 			<tr>
 				<td><label>Paciente:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="40" maxlength="40"/></td>
@@ -32,68 +30,78 @@
 				<td><label>Data de Atendimento:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="10" maxlength="10"/></td>
 			</tr>
 			<tr>	
-				<td><label>Hora de Atendimento:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="6" maxlength="5"/></td>
-			</tr>
-			<tr>	
 				<td colspan="1"></td><td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
 			</tr>
 		</table>
 	</s:form>
 	
-	<!-- Lista dos últimos Pacientes atendidos -->
-	<s:if test="usuariosCadastrados != null && usuariosCadastrados.size() > 0">
+	<s:hidden name="paciente.id" value="%{paciente.id}"/>
+	<div id="MensagensErro" >	
+		<s:fielderror theme="simple" cssClass="errorMessage" />
+		<s:actionmessage theme="simple" cssClass="sucessMessage" />
+	</div>
+	<!-- Lista agendamentos realizados -->
+	<s:if test="agendamentosCadastrados != null && agendamentosCadastrados.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+	<table class="tabela_listagem"  cellspacing="1" cellpadding="2" align="left">
 		<tr>
-			<th colspan="6" class="principal style2" scope="col">Ùltimos pacientes atendidos</th>
+			<th colspan="6" class="principal style2" scope="col">Agendamentos Atendidos do Dia</th>
 		</tr>
 		<tr>		
-			<th width="40%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Nome</span>
+			<th width="250px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Paciente</span>
 			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">CPF</span>
+			<th width="140px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Data de Nascimento</span>
 			</th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Telefone</span>
+			<th width="60px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Convênio</span>
 			</th>
-			<th width="5%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Editar</span>
+			<th width="140px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Data Agendamento</span>
 			</th>
-			<th width="5%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Excluir</span>
+			<th width="100px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Hora Agendada</span>
 			</th>
+			<th width="100px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Especialidade</span>
+			</th>		
+			<th width="25px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Emitir Receita</span>
+			</th>			
 		</tr>
-		<s:iterator value="usuariosCadastrados" status="status">
+		<s:iterator value="agendamentosCadastrados" status="status">
 			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
 			
-				<!-- Monta a url para carregar a edição do usuário -->
-				<s:url id="editarUsuario" action="usuarioAction!carregarEdicao.action">
-					<s:param name="usuario.id" value="%{id}"/>
-				</s:url>
-					<!-- Monta a url para carregar a exclusão do usuário -->
-				<s:url id="excluirUsuario" action="usuarioAction!carregarEdicao.action">
-					<s:param name="usuario.id" value="%{id}"/>
-				</s:url>
+				<!-- Monta a url para carregar a atualizacao de prontuario -->
+				<s:url id="emitirReceita" action="../relatorioConvenio.sispam" method="post">
+					<s:param name="agendamento.id" value="%{id}"/>
+				</s:url>					
 				<td>
-					<s:property value="nome" />
+					<s:property value="paciente.usuario.nome" />
 				</td>
 				<td>
-					<s:property value="cpf"/>
+					<s:property value="paciente.usuario.dataNascimento"/>
 				</td>
 				<td>
-					<s:property value="telefone"/>
+					<s:property value="paciente.usuario.convenio.nome"/>
 				</td>
-				
-				<td align="center">
-					<s:a href="%{#editarUsuario}" cssClass="linkEditar" cssStyle="linkEditar"></s:a>
+				<td>
+					<s:property value="data"/>
+					<td>
+					<s:property value="hora"/>
+				</td>				
+				<td>
+					<s:property value="especialidadeMedica.descricao"/>
 				</td>
-				<td align="center">
-					<s:a href="%{#excluirUsuario}" cssClass="linkExcluir" cssStyle="linkExcluir"></s:a>
+					<td align="center">
+					<s:a href="%{#emitirReceita}">
+						<img src="../componentes/img/editar.png" alt="emitir receita" />
+					</s:a>
 				</td>			
 			</tr>
 		</s:iterator>	
 	</table>
-	</s:if>
+	</s:if>		
 </body>
 </html>
