@@ -128,7 +128,15 @@
 			</result>
 		</action>
 		
+			<!--Receita Action-->
+		<action name="receitaAction!*" method="{1}" class="br.com.sispam.action.ReceitaAction">
+			<result name="sucessoCarregarAtendimentos">/receita/emite-receita.jsp</result>
+			<result name="sucessoEmissaoReceita" type="chain">
+				<param name="actionName">receitaAction</param>
+				<param name="method">carregarAgendamentos</param>
+			</result>
 			
+		</action>
 	</package>
 
 </struts>

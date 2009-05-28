@@ -97,7 +97,7 @@
 		<a href="javaScript:void(0)" onclick="selecionaMenu('receita')" title = "Emitir Receita" target="CENTRAL">RECEITA</a>
 		<div id="menuReceita" style="display:none">
 			<ul id="subMenu">
-			<li ><a href="../receita/emite-receita.jsp" title = "Emitir" target="CENTRAL">Emitir</a></li>
+			<li ><a href="receitaAction!carregarAgendamentos.action" title = "Emitir" target="CENTRAL">Emitir</a></li>
 			</ul>
 		</div>
 	</li>

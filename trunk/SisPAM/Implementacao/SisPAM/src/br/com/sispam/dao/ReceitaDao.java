@@ -1,8 +1,13 @@
 package br.com.sispam.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
+import br.com.sispam.dominio.Agendamento;
 
 public class ReceitaDao {
 
@@ -10,19 +15,29 @@ public class ReceitaDao {
 	private EntityManager manager;
 	
 	/**
-	 * @descricao: Emite a receita.
-	 * @param id
+	 * @descricao: Consulta os agendamentos com status = concluido
+	 * @param agendamento
+	 * @return agendamentos
 	 */
-	public void emitirReceita(String id){		
-		
+	public List<Agendamento> consultarAgendamento(Agendamento agendamento){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		manager.getTransaction().begin();
-		
-		
-		
-		manager.getTransaction().commit();
-		conexao.finalizaConexao();
-	}
+		List<Agendamento> agendamentos = null;
+		try{
+			//cria uma queri para fazer a busca por data e status
+			Query query = manager.createQuery("from Agendamento where status = :status and data = :data and medico.id = :medico");
+			//seta o parametro
+			query.setParameter("medico", agendamento.getMedico().getId());
+			query.setParameter("status", agendamento.getStatus());
+			query.setParameter("data", agendamento.getData());
+			agendamentos = query.getResultList();				
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		conexao.finalizaConexao();		
+		return agendamentos;
+	}	
+	
 	
 }
