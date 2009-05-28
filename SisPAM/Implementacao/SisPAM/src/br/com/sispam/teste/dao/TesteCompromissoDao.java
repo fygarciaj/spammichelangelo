@@ -1,9 +1,6 @@
 package br.com.sispam.teste.dao;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import org.junit.Test;
 
 import br.com.sispam.dao.CompromissoDao;
