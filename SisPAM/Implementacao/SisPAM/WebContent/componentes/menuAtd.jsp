@@ -80,8 +80,8 @@
 		target="CENTRAL">AGENDAMENTO</a>
 	<div id="menuAgendamento" style="display: none">
 	<ul id="subMenu">
-		<li><a href="agendamentoAction!carregarInclusao.action" title="Incluir" target="CENTRAL">Incluir Agendamento</a></li>
-		<li><a href="compromissoAction!carregarConsulta.action" title="Alterar/Excluir" target="CENTRAL">Novo Exame</a></li>
+		<li><a href="../agendamento/inclui-agendamento.jsp" title="Incluir" target="CENTRAL">Incluir Agendamento</a></li>
+		<li><a href="agendamentoAction!carregarAgendamentos.action" title="Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 	</ul>
 	</div>
 	</li>
