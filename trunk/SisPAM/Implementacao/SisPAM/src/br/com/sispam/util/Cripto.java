@@ -12,7 +12,12 @@ public class Cripto{
 			ex.printStackTrace();
 		}
 	}
-	//Chave criptografica
+	
+	/**
+	 * @descricao: Método de criptografia.
+	 * @param text
+	 * @return
+	 */
 	private char[] hexCodes(byte[] text) {
 		char[] hexOutput = new char[text.length * 2];
 		String hexString;
@@ -24,7 +29,12 @@ public class Cripto{
 		}
 		return hexOutput;
 	}
-
+	
+	/**
+	 * @descricao: Recebe a senha para ser criptografada.
+	 * @param senha
+	 * @return
+	 */
 	public String criptografar(String senha) {
 		if (md != null) {
 			return new String(hexCodes(md.digest(senha.getBytes())));

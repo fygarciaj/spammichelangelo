@@ -8,7 +8,13 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 
 public class DataUtil {
-
+	
+	/**
+	 * @descricao: converte date para string de acordo com o formato desejado.
+	 * @param date
+	 * @param formato
+	 * @return
+	 */
 	public static String dateToString(Date date, String formato){
 		SimpleDateFormat simpleDateFormat;
 		String retorno = null;
@@ -47,7 +53,7 @@ public class DataUtil {
 	public static Date stringToDate(String data) throws java.text.ParseException {
 		SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
 			try {
-				Date date = (Date)formata.parse(data);
+				Date date = formata.parse(data);
 				return date;
 			} catch (ParseException e) {
 				e.printStackTrace();
