@@ -45,7 +45,12 @@ public class MedicoAction extends Action{
 	private String dataNascimentoAux;
 	private List<Medico> medicosCadastrados;
 
-
+	
+	/**
+	 * @descricao: Recebe os dados do médico para ser incluído.
+	 * @return
+	 * @throws ParseException
+	 */
 	public String salvarMedico() throws ParseException{
 		limparMapas();
 		boolean isEdicao = false;
@@ -143,7 +148,11 @@ public class MedicoAction extends Action{
 		limparCampos(true);
 		return SUCESSO_SALVAR_MEDICO;
 	}
-
+	
+	/**
+	 * @descricao: Realiza a consulta do médico.
+	 * @return
+	 */
 	public String consultarMedico(){
 		this.medicoFacade = new MedicoFacade();
 		
@@ -207,7 +216,10 @@ public class MedicoAction extends Action{
 		mensagens.put("salvo", "Médico excluído com sucesso!");
 		return SUCESSO_EXCLUIR_MEDICO;
 	}
-
+	/**
+	 * @descricao: Monta uma lista de dias da enum.
+	 * @return
+	 */
 	public List<Dia> getListaDias(){
 		//monta a lista de dias para o cadastro dos dias de trabalho do médico.
 		if(this.codigoPerfilSelecionado == Perfil.MEDICO.getCodigo()){
@@ -219,7 +231,11 @@ public class MedicoAction extends Action{
 		}
 		return this.dias;
 	}
-
+	
+	/**
+	 * @descricao: Recupera os dias marcados da tela.
+	 * @return
+	 */
 	public StringBuilder getDiasMarcados(){
 		StringBuilder builder = new StringBuilder();
 		for(Object obj: ActionContext.getContext().getParameters().keySet()){
@@ -250,6 +266,9 @@ public class MedicoAction extends Action{
 	}
 
 	/*Utilitário*/
+	/**
+	 * @descricao: Limpa os campos da tela.
+	 */
 	private void limparCampos(boolean limpaCodigoPerfilSelecionado){
 		this.medico = null;
 		if(limpaCodigoPerfilSelecionado == true){
@@ -258,7 +277,11 @@ public class MedicoAction extends Action{
 		this.codigoPerfilString = null;
 
 	}
-
+	
+	/**
+	 * @descricao: Prepara a lista de dias de trabalho do médico.
+	 * @param medico
+	 */
 	private void preparaListaDeExibicao(Medico medico){
 		if(medico != null && medico.getEspecialidades() != null){
 			List<EspecialidadeMedica> especialidades = medico.getEspecialidades();
@@ -273,7 +296,10 @@ public class MedicoAction extends Action{
 		}
 
 	}
-
+	
+	/**
+	 * @descricao: Limpa os mapas de mesnagem e erro.
+	 */
 	private void limparMapas(){
 		erros.clear();
 		mensagens.clear();

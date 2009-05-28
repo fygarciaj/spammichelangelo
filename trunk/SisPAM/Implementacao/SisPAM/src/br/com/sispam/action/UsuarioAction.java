@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.postgresql.jdbc2.EscapedFunctions;
-
 import br.com.sispam.dominio.Convenio;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
@@ -19,7 +17,6 @@ import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
-import br.com.sispam.facade.CompromissoFacade;
 import br.com.sispam.facade.ConvenioFacade;
 import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
@@ -208,7 +205,11 @@ public class UsuarioAction extends Action{
 		apresentaMensagens();
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
-
+	
+	/**
+	 * @descricao: Carrea o usuário a ser alterado.
+	 * @return
+	 */
 	public String carregarEdicao(){
 		this.usuarioFacade = new UsuarioFacade();
 		this.usuario = this.usuarioFacade.recuperarPeloId(this.usuario.getId());
@@ -237,6 +238,9 @@ public class UsuarioAction extends Action{
 
 
 	/*Utilitário*/
+	/**
+	 * @descricao: Limpa os campos da tela.
+	 */
 	private void limparCampos(boolean limpaCodigoPerfilSelecionado){
 		this.usuario = null;
 		this.medico = null;

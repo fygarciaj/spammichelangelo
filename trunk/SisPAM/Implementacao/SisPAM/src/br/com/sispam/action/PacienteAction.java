@@ -11,7 +11,6 @@ import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.ConvenioFacade;
-import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
 import br.com.sispam.util.DataUtil;
@@ -113,6 +112,10 @@ public class PacienteAction extends Action {
 		return SUCESSO_CARREGAR_EDICAO_PACIENTE;
 	}
 	
+	/**
+	 * @descricao: Efetua a consulta do paciente.
+	 * @return
+	 */
 	public String consultarPaciente(){
 		this.pacienteFacade = new PacienteFacade();
 		
@@ -148,7 +151,10 @@ public class PacienteAction extends Action {
 
 
 	/*Utilitarios*/
-
+	
+	/**
+	 * @descricao: Limpa os campos da tela.
+	 */
 	public void limparCampos(boolean codigoPerfil){
 
 		if(codigoPerfil){

@@ -3,7 +3,6 @@ package br.com.sispam.action;
 import java.util.Date;
 
 import br.com.sispam.excecao.CampoInvalidoException;
-import br.com.sispam.facade.ConvenioFacade;
 import br.com.sispam.facade.ReceitaFacade;
 
 public class ReceitaAction extends Action{
@@ -13,6 +12,13 @@ public class ReceitaAction extends Action{
 	private int horaAtendimentoAux;
 	private ReceitaFacade receitaFacade;
 	
+	/**
+	 * @Descricao: Emite a receita 
+	 * @param id
+	 * @param dataAtendimentoAux
+	 * @param horaAtendimentoAux
+	 * @return
+	 */
 	public String emitirReceita(String id, Date dataAtendimentoAux, int horaAtendimentoAux){
 		receitaFacade = new ReceitaFacade();
 		try {
