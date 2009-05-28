@@ -7,12 +7,9 @@ import java.util.Map;
 
 import br.com.sispam.dominio.Convenio;
 
-import br.com.sispam.enums.Perfil;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.ConvenioFacade;
-import br.com.sispam.facade.MedicoFacade;
-import br.com.sispam.facade.UsuarioFacade;
 
 
 public class ConvenioAction extends Action{
@@ -27,7 +24,11 @@ public class ConvenioAction extends Action{
 	private String cnpjAux;
 	private String dddAux;
 
-
+	
+	/**
+	 * @descricao: Recebe os dados da tela para efetuar a inclusão do convênio.
+	 * @return
+	 */
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
 		//monta um mapa com todos os campos que devem ser inteiros.	
@@ -69,7 +70,11 @@ public class ConvenioAction extends Action{
 		this.limparCampos();
 		return SUCESSO_INCLUIR_CONVENIO;
 	}
-
+	
+	/**
+	 * @descricao: Recebe o convênio a ser excluído.
+	 * @return
+	 */
 	public String excluirConvenio(){
 
 		this.convenioFacade = new ConvenioFacade();		
@@ -83,7 +88,10 @@ public class ConvenioAction extends Action{
 		apresentaMensagens();		
 		return SUCESSO_EXCLUIR_CONVENIO;
 	}
-
+	/**
+	 * @descricao: Realiza a consulta de convênios.
+	 * @return
+	 */
 	public String consultarConvenio(){
 		convenioFacade = new ConvenioFacade();
 		try {
@@ -98,7 +106,7 @@ public class ConvenioAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Carrega a tela de consulta de usuários.
+	 * @descricao: Carrega a tela de consulta de convênios.
 	 * @return
 	 */
 	public String carregarConsulta(){
@@ -108,12 +116,20 @@ public class ConvenioAction extends Action{
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
 	
+	/**
+	 * @descricao: Carrega os últimos convênios cadastrados e define a tela para realizar consultas.
+	 * @return
+	 */
 	public String definirTelaConsulta(){		
 			this.convenioFacade = new ConvenioFacade();
 			this.conveniosCadastrados = this.convenioFacade.recuperarUltimosCadastrados();
 		return SUCESSO_TELA_CONSULTA;
 	}
-
+	
+	/**
+	 * @descricao: Carrega o convênio a ser alterado.
+	 * @return
+	 */
 	public String carregaEdicaoConvenio(){
 		this.convenioFacade = new ConvenioFacade();
 		this.convenio = this.convenioFacade.recuperarPeloId(convenio.getId());
@@ -126,6 +142,9 @@ public class ConvenioAction extends Action{
 
 
 	/*Utilitário*/
+	/**
+	 * @descricao: Limpa os campos da tela.
+	 */
 	private void limparCampos(){
 		this.convenio = null;
 		this.cepAux = null;

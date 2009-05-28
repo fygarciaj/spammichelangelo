@@ -14,7 +14,10 @@ public class LoginAction extends Action{
 	private String usrLogado;
 	private String dataHoraAcesso;
 
-
+	/**
+	 * @descricao: Efetua o login no sistema.
+	 * @return
+	 */
 	public String logar(){
 		usr = new Usuario();
 		loginFacade = new LoginFacade();

@@ -8,7 +8,6 @@ import br.com.sispam.dominio.HistoricoProntuario;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
-import br.com.sispam.facade.CompromissoFacade;
 import br.com.sispam.facade.HistoricoProntuarioFacade;
 import br.com.sispam.facade.MedicoFacade;
 
@@ -19,6 +18,10 @@ public class HistoricoProntuarioAction extends Action{
 	private List<Agendamento> agendamentosCadastrados;
 	private MedicoFacade medicoFacade;
 	
+	/**
+	 * @descricao: Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
+	 * @return
+	 */
 	public String carregarAgendamentos(){
 		this.historicoProntuarioFacade = new HistoricoProntuarioFacade();
 		this.agendamento = new Agendamento();
@@ -37,6 +40,10 @@ public class HistoricoProntuarioAction extends Action{
 		return CARREGAR_CONSULTA_AGENDAMENTO;
 	}
 	
+	/**
+	 * @descriao: Atualiza o prontuário do paciente.
+	 * @return
+	 */
 	public String atualizarHistoricoProntuario(){
 		
 		
@@ -58,7 +65,10 @@ public class HistoricoProntuarioAction extends Action{
 		return ATUALIZAR_HISTORICO_PRONTUARIO;
 	}
 	
-
+	/**
+	 * @descricao: carrega os dados necessário para a atualização do prontuário do paciente.
+	 * @return
+	 */
 	public String carregaAtualizacaoHistorico(){
 		this.historicoProntuarioFacade = new HistoricoProntuarioFacade();
 		this.agendamento = this.historicoProntuarioFacade.recuperarAgendamento(agendamento.getId());
@@ -66,6 +76,9 @@ public class HistoricoProntuarioAction extends Action{
 	}
 
 	/*Utilitário*/
+	/**
+	 * @descricao: Limpa os campos.
+	 */
 	private void limparCampos(){
 		this.historicoProntuario = null;
 		
