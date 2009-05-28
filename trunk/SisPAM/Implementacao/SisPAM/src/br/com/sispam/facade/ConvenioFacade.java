@@ -1,4 +1,4 @@
-package br.com.sispam.facade;
+﻿package br.com.sispam.facade;
 
 
 
@@ -21,7 +21,6 @@ import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.validation.IValidation;
 import br.com.sispam.validation.ValidatorFactory;
 import br.com.sispam.validation.cnpjcpf.CNPJValidator;
-import br.com.sispam.validation.cnpjcpf.CPFValidator;
 
 
 
@@ -59,7 +58,12 @@ public class ConvenioFacade {
 			e.getStackTrace();
 		}					
 	}
-
+	
+	/**
+	 * @descricao: Recupera o convênio pelo ID.
+	 * @param id
+	 * @return
+	 */
 	public Convenio recuperarPeloId(int id){
 		this.convenioDao = new ConvenioDao();
 		Convenio convenio = null;

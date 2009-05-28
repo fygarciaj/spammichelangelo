@@ -4,12 +4,9 @@ import java.util.List;
 
 
 import br.com.sispam.dao.AgendamentoDao;
-import br.com.sispam.dao.CompromissoDao;
 import br.com.sispam.dao.HistoricoProntuarioDao;
 import br.com.sispam.dominio.Agendamento;
-import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.HistoricoProntuario;
-import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
 

@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import br.com.sispam.dao.MedicoDao;
 import br.com.sispam.dao.UsuarioDao;
-import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
 import br.com.sispam.validation.IValidation;
-import br.com.sispam.validation.Validator;
 import br.com.sispam.validation.ValidatorFactory;
 import br.com.sispam.validation.cnpjcpf.CPFValidator;
 
@@ -82,7 +79,14 @@ public class UsuarioFacade {
 			throw new CampoInvalidoException("Este CPF já está sendo usado!");
 		}
 	}
-
+	/**
+	 * @descricao: Método genérico para recuperar usuários.
+	 * @param cpf
+	 * @param nome
+	 * @param codigoPerfil
+	 * @return
+	 * @throws CampoInvalidoException
+	 */
 	public List<Usuario> recuperarUsuario(String cpf, String nome, int codigoPerfil) throws CampoInvalidoException{
 		List<Usuario> lista = null;
 		UsuarioDao usuarioDao = new UsuarioDao();
@@ -169,7 +173,13 @@ public class UsuarioFacade {
 		}
 
 	}
-
+	
+	/**
+	 * @descricao: Verifica se já existe o login no banco de dados. 
+	 * @param acesso
+	 * @param id
+	 * @throws CampoInvalidoException
+	 */
 	public void verificaLoginJaExistente(String acesso, int id) throws CampoInvalidoException {
 		Usuario usuario = this.usuarioDao.recuperaPeloLogin(acesso);
 

@@ -1,6 +1,5 @@
 package br.com.sispam.facade;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +7,6 @@ import javax.persistence.NoResultException;
 
 import br.com.sispam.dao.CompromissoDao;
 import br.com.sispam.dominio.Compromisso;
-import br.com.sispam.dominio.Medico;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 
