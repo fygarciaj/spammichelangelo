@@ -1,22 +1,22 @@
 package br.com.sispam.dao;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Compromisso;
-import br.com.sispam.dominio.Convenio;
 
 public class CompromissoDao {
 	private Conexao conexao;
 	private EntityManager manager;
-
+	
+	/**
+	 * @descricao: Incluir o compromisso no banco de dados.
+	 * @param compromisso
+	 */
 	public void incluirCompromisso(Compromisso compromisso){		
 
 		conexao = new Conexao();
@@ -35,7 +35,11 @@ public class CompromissoDao {
 		manager.getTransaction().commit();
 		conexao.finalizaConexao();
 	}
-
+	
+	/**
+	 * @descricao: Efetua a exclusão do compromisso do banco de dados.
+	 * @param compromisso
+	 */
 	public void excluirCompromisso(Compromisso compromisso){
 
 		conexao = new Conexao();
@@ -54,13 +58,23 @@ public class CompromissoDao {
 		}
 		conexao.finalizaConexao();
 	}
-
+	
+	/**
+	 * @descricao: Recupera o compromisso pelo seu id.
+	 * @param id
+	 * @return
+	 */
 	public Compromisso recuperarPeloId(int id){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Compromisso.class, id);
 	}
-
+	
+	/**
+	 * @descricao: Verifica se a colisão de compromisso pela data.
+	 * @param compromisso
+	 * @return
+	 */
 	public List<Compromisso> consultarCompromissoUnico(Compromisso compromisso){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
@@ -82,7 +96,12 @@ public class CompromissoDao {
 		conexao.finalizaConexao();		
 		return compromissos;
 	}
-
+	
+	/**
+	 * @descricao: Consulta compromisso.
+	 * @param compromisso
+	 * @return
+	 */
 	public List<Compromisso> consultarCompromissos(Compromisso compromisso){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();

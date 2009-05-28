@@ -121,6 +121,24 @@ public class PacienteDao {
 		return pacientes;
 	}
 	
+	/**
+	 * @descricao: Recupera todos os pacientes cadastrados.
+	 * @return
+	 */
+	public List<Paciente> recuperarTodos(){
+		this.conexao = new Conexao();
+		this.manager = conexao.getEntityManger();
+		List<Paciente> pacientes = null;
+		try{
+		Query query = this.manager.createQuery("from Paciente");
+		pacientes = query.getResultList();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			pacientes = null;
+		}
+		return pacientes;
+	}
+	
 	
 	/**
 	 * @descricao: Remove o paciente do sistema.

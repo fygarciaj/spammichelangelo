@@ -7,7 +7,10 @@ import java.sql.SQLException;
 public class ConexaoRelatorio {
 
 	private Connection connection;
-
+	/**
+	 * @descricao: Cria uma conexão para gerar os relatórios em pdf.
+	 * @return
+	 */
 	public Connection getConexao(){
 		String url = "jdbc:postgresql://localhost:5432/sispam";
 		try {

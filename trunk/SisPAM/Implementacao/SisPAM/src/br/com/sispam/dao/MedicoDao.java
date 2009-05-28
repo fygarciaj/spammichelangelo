@@ -178,7 +178,10 @@ public class MedicoDao {
 		return medico;
 	}
 
-
+	/**
+	 * @descricao: Exclui as especialidades do médico.
+	 * @param medico
+	 */
 	public void excluirEspecialidades(Medico medico){
 		conexao = new Conexao();
 		manager.getTransaction().begin();
@@ -188,6 +191,10 @@ public class MedicoDao {
 		manager.getTransaction().commit();
 	}
 	
+	/**
+	 * @descricao: inseri especialidades no médico.
+	 * @param medico
+	 */
 	public void inseriEspecialidades(Medico medico){
 		conexao = new Conexao();
 		manager.getTransaction().begin();
@@ -202,7 +209,10 @@ public class MedicoDao {
 		manager.getTransaction().commit();
 		
 	}
-
+	
+	/**
+	 * @descricao: Limpa as tabelas para testes.
+	 */
 	public void removerTodosTeste() {
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();

@@ -5,12 +5,10 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Convenio;
-import br.com.sispam.dominio.Usuario;
 
 
 public class ConvenioDao {
@@ -18,6 +16,10 @@ public class ConvenioDao {
 	private Conexao conexao;
 	private EntityManager manager;
 	
+	/**
+	 * @descricao: Incluir o convênio no banco de dados.
+	 * @param convenio
+	 */
 	public void incluirConvenio(Convenio convenio){		
 		
 		conexao = new Conexao();
@@ -37,6 +39,11 @@ public class ConvenioDao {
 		conexao.finalizaConexao();
 	}
 	
+	/**
+	 * @descricao: excluir o convênio do banco de dados.
+	 * @param cnpj
+	 * @throws EntityExistsException
+	 */
 	public void excluirConvenio(String cnpj) throws EntityExistsException{
 				
 		conexao = new Conexao();
@@ -56,12 +63,22 @@ public class ConvenioDao {
 		conexao.finalizaConexao();
 	}
 	
+	/**
+	 * @descricao: Recupera o convênio pelo ID.
+	 * @param id
+	 * @return
+	 */
 	public Convenio recuperarPeloId(int id){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Convenio.class, id);
 	}
 	
+	/**
+	 * @descricao: Recupera o convênio pelo CNPJ.
+	 * @param cnpj
+	 * @return
+	 */
 	public Convenio consultarConvenioPorCnpj(String cnpj){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
@@ -79,6 +96,11 @@ public class ConvenioDao {
 		return convenio;
 	}
 	
+	/**
+	 * @descricao: Consulta o convênio pelo nome.
+	 * @param nome
+	 * @return
+	 */
 	public List<Convenio> consultarConvenioPorDescricao(String nome){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
