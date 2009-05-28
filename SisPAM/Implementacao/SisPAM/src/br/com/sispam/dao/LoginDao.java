@@ -15,6 +15,13 @@ public class LoginDao {
 	private Conexao conexao;
 	private EntityManager manager;
 	
+	/**
+	 * @descricao: Recupera o usuário pelo seu login.
+	 * @param acesso
+	 * @return
+	 * @throws CampoInvalidoException
+	 * @throws PersistenceException
+	 */
 	public Usuario recuperaSenha(String acesso)throws CampoInvalidoException, PersistenceException{
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();

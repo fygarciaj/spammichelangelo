@@ -7,8 +7,6 @@ import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.EspecialidadeMedica;
-import br.com.sispam.dominio.Medico;
-import br.com.sispam.dominio.Usuario;
 
 public class EspecialidadeDao {
 	

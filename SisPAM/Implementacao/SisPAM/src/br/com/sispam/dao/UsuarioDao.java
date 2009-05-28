@@ -1,4 +1,4 @@
-package br.com.sispam.dao;
+﻿package br.com.sispam.dao;
 
 import java.util.List;
 
@@ -145,7 +145,10 @@ public class UsuarioDao {
 		conexao.finalizaConexao();
 		return lista;
 	}
-
+	
+	/**
+	 * @descricao: remove todos usuários para testes.
+	 */
 	public void removerTodosTeste() {
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
