@@ -1,6 +1,5 @@
 package br.com.sispam.teste.dao;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -13,15 +12,11 @@ import br.com.sispam.dao.CodigoDoencaDao;
 
 import br.com.sispam.dao.HistoricoProntuarioDao;
 import br.com.sispam.dao.PacienteDao;
-import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.CodigoDoenca;
 
 import br.com.sispam.dominio.HistoricoProntuario;
 import br.com.sispam.dominio.Paciente;
-import br.com.sispam.dominio.Usuario;
-
-import br.com.sispam.util.DataUtil;
 
 public class TesteHistoricoProntuarioDao {
 
