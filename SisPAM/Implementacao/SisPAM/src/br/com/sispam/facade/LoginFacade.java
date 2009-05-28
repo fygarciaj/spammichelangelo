@@ -15,7 +15,15 @@ import br.com.sispam.util.Cripto;
 public class LoginFacade {
 	private LoginDao loginDao;
 	private Usuario usuarioNew;
-
+	
+	/**
+	 * @descricao: Efetua a pesquisa do usuário, apartir do login e senha.
+	 * @param acesso
+	 * @param senha
+	 * @return
+	 * @throws CampoInvalidoException
+	 * @throws PersistenceException
+	 */
 	public Usuario pesquisaUsuario(String acesso, String senha) throws CampoInvalidoException, PersistenceException{
 
 		loginDao = new LoginDao();
@@ -34,12 +42,21 @@ public class LoginFacade {
 		}
 		return usuarioNew;
 	}
-
+	
+	/**
+	 * @descricao: Método para cripitografar a senha.
+	 * @param senha
+	 * @return
+	 */
 	public String criptografaSenha(String senha){
 		Cripto cripto = new Cripto();
 		return cripto.criptografar(senha);
 	}
 	
+	/**
+	 * @descricao: Método para formatar a data do acesso ao sistema.
+	 * @return
+	 */
 	public String dataHoraLogin(){
 		Locale locale = new Locale("pt","BR"); 
 		GregorianCalendar calendar = new GregorianCalendar(); 

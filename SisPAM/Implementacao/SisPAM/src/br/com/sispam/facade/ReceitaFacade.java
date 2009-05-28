@@ -1,9 +1,6 @@
 package br.com.sispam.facade;
 
-import br.com.sispam.dao.ConvenioDao;
 import br.com.sispam.dao.ReceitaDao;
-import br.com.sispam.dao.UsuarioDao;
-import br.com.sispam.dominio.Convenio;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInvalidoException;
 

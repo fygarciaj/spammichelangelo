@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.sispam.dao.EspecialidadeDao;
 import br.com.sispam.dominio.EspecialidadeMedica;
-import br.com.sispam.dominio.Medico;
 
 public class EspecialidadeFacade {
 

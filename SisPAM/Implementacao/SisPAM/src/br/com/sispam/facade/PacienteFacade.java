@@ -6,10 +6,8 @@ import java.util.List;
 
 import br.com.sispam.dao.PacienteDao;
 import br.com.sispam.dominio.Paciente;
-import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
-import br.com.sispam.util.DataUtil;
 
 public class PacienteFacade {
 
@@ -100,6 +98,14 @@ public class PacienteFacade {
 	 */
 	public List<Paciente> recuperaUltimosCadastrados(){
 		return this.pacienteDao.recuperaUltimosCadastrados();
+	}
+	
+	/**
+	 * @descricao: Recupera todos os pacientes do banco de dados.
+	 * @return
+	 */
+	public List<Paciente> recuperarTodos(){
+		return this.pacienteDao.recuperarTodos();
 	}
 
 	/**

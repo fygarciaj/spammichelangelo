@@ -1,12 +1,8 @@
 package br.com.sispam.facade;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import br.com.sispam.dao.MedicoDao;
-import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
