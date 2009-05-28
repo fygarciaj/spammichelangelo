@@ -1,5 +1,5 @@
--- Database: postgres
+-- Database: sispam
 
--- DROP DATABASE postgres;
+-- DROP DATABASE sispam;
 
-CREATE DATABASE sispam WITH OWNER = postgres ENCODING = 'LATIN1';
+CREATE DATABASE sispam WITH OWNER = postgres ENCODING = 'UTF-8';
