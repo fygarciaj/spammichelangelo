@@ -1,6 +1,5 @@
 package br.com.sispam.dominio;
 
-import java.text.DateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import br.com.sispam.enums.StatusAgendamento;
+import br.com.sispam.enums.TipoAgendamento;
 
 @Entity
 public class Agendamento {
@@ -22,6 +25,9 @@ public class Agendamento {
 	private int hora;
 	private String observacao;
 	private int status;
+	
+	private StatusAgendamento statusAgendamento;
+	private TipoAgendamento tipoAgendamento;
 	
 	@Id
 	@Column(name="agdcod")
@@ -90,6 +96,20 @@ public class Agendamento {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	@Transient
+	public StatusAgendamento getStatusAgendamento() {
+		return statusAgendamento;
+	}
+	public void setStatusAgendamento(StatusAgendamento statusAgendamento) {
+		this.statusAgendamento = statusAgendamento;
+	}
+	@Transient
+	public TipoAgendamento getTipoAgendamento() {
+		return tipoAgendamento;
+	}
+	public void setTipoAgendamento(TipoAgendamento tipoAgendamento) {
+		this.tipoAgendamento = tipoAgendamento;
 	}
 	
 	

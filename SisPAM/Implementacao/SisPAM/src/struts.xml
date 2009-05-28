@@ -116,6 +116,16 @@
 				<!--Agendamento Action-->
 		<action name="agendamentoAction!*" method="{1}" class="br.com.sispam.action.AgendamentoAction">
 			<result name="sucessoCarregarInclusaoAgendamento">/agendamento/inclui-agendamento.jsp</result>
+			<result name="sucessoSalvarAgendamento">/agendamento/inclui-agendamento.jsp</result>
+			<result name="falharSalvarAgendamento" type="chain">
+				<param name="actionName">agendamentoAction</param>
+				<param name="method">preparaInclusao</param>
+			</result>
+			<result name="sucessoCarregarAgendamentos">/agendamento/consulta-agendamento.jsp</result>
+			<result name="sucessoExcluirAgendamento" type="chain">
+				<param name="actionName">agendamentoAction</param>
+				<param name="method">carregarAgendamentos</param>
+			</result>
 		</action>
 		
 			
