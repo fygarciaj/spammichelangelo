@@ -10,25 +10,27 @@ public class Conexao {
 	private EntityManager manager;
 
 	/**
-	 * @descricao: cria a conexão com o banco de dados
-	 * @return
+	 * Cria a conexão com o banco de dados
+	 * @return 
 	 */
 	public EntityManager getEntityManger(){
-		this.factory = Persistence.createEntityManagerFactory("sispam");
-		this.manager = factory.createEntityManager();
+		if(manager == null){
+			this.factory = Persistence.createEntityManagerFactory("sispam");
+			this.manager = factory.createEntityManager();
+		}
 		return this.manager;
 	}
 
 	/**
-	 * @descricao: Finaliza a conexão com o banco de dados.
+	 * Finaliza a conexão com o banco de dados.
 	 */
 	public void finalizaConexao(){
-		if(this.factory != null){
-			this.factory.close();
-		}
-		if(this.manager != null){
-			this.manager.close();
-		}
+//		if(this.factory != null){
+//			this.factory.close();
+//		}
+//		if(this.manager != null){
+//			this.manager.close();
+//		}
 	}
 
 }

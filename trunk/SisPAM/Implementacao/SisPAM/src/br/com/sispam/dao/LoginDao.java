@@ -16,7 +16,7 @@ public class LoginDao {
 	private EntityManager manager;
 	
 	/**
-	 * @descricao: Recupera o usuário pelo seu login.
+	 * : Recupera o usuário pelo seu login.
 	 * @param acesso
 	 * @return
 	 * @throws CampoInvalidoException

@@ -8,7 +8,7 @@ public class ConexaoRelatorio {
 
 	private Connection connection;
 	/**
-	 * @descricao: Cria uma conexão para gerar os relatórios em pdf.
+	 * : Cria uma conexão para gerar os relatórios em pdf.
 	 * @return
 	 */
 	public Connection getConexao(){

@@ -14,7 +14,7 @@ public class CompromissoDao {
 	private EntityManager manager;
 	
 	/**
-	 * @descricao: Incluir o compromisso no banco de dados.
+	 * : Incluir o compromisso no banco de dados.
 	 * @param compromisso
 	 */
 	public void incluirCompromisso(Compromisso compromisso){		
@@ -37,7 +37,7 @@ public class CompromissoDao {
 	}
 	
 	/**
-	 * @descricao: Efetua a exclusão do compromisso do banco de dados.
+	 * : Efetua a exclusão do compromisso do banco de dados.
 	 * @param compromisso
 	 */
 	public void excluirCompromisso(Compromisso compromisso){
@@ -60,7 +60,7 @@ public class CompromissoDao {
 	}
 	
 	/**
-	 * @descricao: Recupera o compromisso pelo seu id.
+	 * : Recupera o compromisso pelo seu id.
 	 * @param id
 	 * @return
 	 */
@@ -71,7 +71,7 @@ public class CompromissoDao {
 	}
 	
 	/**
-	 * @descricao: Verifica se a colisão de compromisso pela data.
+	 * : Verifica se a colisão de compromisso pela data.
 	 * @param compromisso
 	 * @return
 	 */
@@ -98,7 +98,7 @@ public class CompromissoDao {
 	}
 	
 	/**
-	 * @descricao: Consulta compromisso.
+	 * : Consulta compromisso.
 	 * @param compromisso
 	 * @return
 	 */

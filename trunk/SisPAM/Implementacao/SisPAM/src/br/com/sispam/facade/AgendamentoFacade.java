@@ -18,7 +18,7 @@ public class AgendamentoFacade {
 	}
 	
 	/**
-	 * @descricao: Salva o agendamento.
+	 * : Salva o agendamento.
 	 * @param agendamento
 	 */
 	public void salvarAgendamento(Agendamento agendamento){
@@ -26,7 +26,16 @@ public class AgendamentoFacade {
 	}
 	
 	/**
-	 * @descricao: Retorna todos os agendamentos do dia.
+	 * : Recupera o {@link Agendamento} pelo seu Id.
+	 * @param id
+	 * @return
+	 */
+	public Agendamento recuperarPeloId(int id){
+		return this.agendamentoDao.recuperarAgendamento(id);
+	}
+	
+	/**
+	 * : Retorna todos os agendamentos do dia.
 	 * @return
 	 */
 	public List<Agendamento>recuperarAgendamentosDoDia(){
@@ -36,7 +45,7 @@ public class AgendamentoFacade {
 	}
 	
 	/**
-	 * @descricao: retorna a consulta realizada pelo usuário.
+	 * : retorna a consulta realizada pelo usuário.
 	 * @param agendamento
 	 * @param data
 	 * @return
@@ -58,7 +67,7 @@ public class AgendamentoFacade {
 	}
 	
 	/**
-	 * @descricao: preenche os objetos da lista de agendamento.
+	 * : preenche os objetos da lista de agendamento.
 	 * @param agendamentos
 	 */
 	public void montarAgendamentos(List<Agendamento> agendamentos){
@@ -78,7 +87,7 @@ public class AgendamentoFacade {
 	}
 	
 	/**
-	 * @descricao: Valida os dados do agendamento passado.
+	 * : Valida os dados do agendamento passado.
 	 * @param agendamento
 	 * @param data
 	 * @throws CampoInvalidoException 

@@ -23,7 +23,7 @@ public class MedicoFacade {
 
 
 	/**
-	 * @descricao: valida os campos do medico da tela passado.
+	 * : valida os campos do medico da tela passado.
 	 * @param Medico
 	 * @throws CampoInvalidoException 
 	 */
@@ -44,7 +44,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Valida os campos dias de trabalho do medico.
+	 * : Valida os campos dias de trabalho do medico.
 	 * @param builder
 	 * @throws CampoInvalidoException
 	 */
@@ -55,7 +55,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Verifica se existe o crm passado cadastrado no banco de dados.
+	 * : Verifica se existe o crm passado cadastrado no banco de dados.
 	 * @param crm
 	 * @param id
 	 * @throws CampoInvalidoException
@@ -68,7 +68,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Salva o médico no banco de dados.
+	 * : Salva o médico no banco de dados.
 	 * @param medico
 	 */
 	public void salvarMedico(Medico medico){
@@ -78,7 +78,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Adiciona as especialidades no médico, caso seja edição apenas não deixa repetir os dados.
+	 * : Adiciona as especialidades no médico, caso seja edição apenas não deixa repetir os dados.
 	 * @param medico
 	 * @param esp
 	 * @return
@@ -91,7 +91,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Recupera os últimos médicos cadastrados.
+	 * : Recupera os últimos médicos cadastrados.
 	 * @return
 	 */
 	public List<Medico> recuperarUltimosCadastrados() {
@@ -100,7 +100,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Monta os dias em enums da lista de médicos passada.
+	 * : Monta os dias em enums da lista de médicos passada.
 	 * @param lista
 	 * @return
 	 */
@@ -116,7 +116,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Monta as enums dos dias dos médicos.
+	 * : Monta as enums dos dias dos médicos.
 	 * @param medico
 	 * @return
 	 */
@@ -141,7 +141,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Remove o médico do sistema.
+	 * : Remove o médico do sistema.
 	 * @param id
 	 */
 	public void removerMedico(int id){
@@ -150,7 +150,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Recupera todos os médicos do banco.
+	 * : Recupera todos os médicos do banco.
 	 * @return
 	 */
 	public List<Medico> recuperarTodos(){
@@ -158,7 +158,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Recupera o Médico pelo ID.
+	 * : Recupera o Médico pelo ID.
 	 * @param id
 	 * @return
 	 */
@@ -167,7 +167,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Recupera o médico apartir do Usuário.
+	 * : Recupera o médico apartir do Usuário.
 	 * @param usuario
 	 * @return
 	 */
@@ -180,7 +180,7 @@ public class MedicoFacade {
 	}
 
 	/**
-	 * @descricao: Verifica campo inteiro.
+	 * : Verifica campo inteiro.
 	 * @param campo
 	 * @throws CampoInvalidoException
 	 */
@@ -192,7 +192,7 @@ public class MedicoFacade {
 		}
 	}
 	/**
-	 * @descricao: Faz a consulta ou filtro de acordo com os campos preenchidos.
+	 * : Faz a consulta ou filtro de acordo com os campos preenchidos.
 	 * @param medico
 	 * @return
 	 * @throws CampoInvalidoException 

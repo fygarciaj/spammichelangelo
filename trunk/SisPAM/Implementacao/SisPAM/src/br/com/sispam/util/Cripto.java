@@ -14,7 +14,7 @@ public class Cripto{
 	}
 	
 	/**
-	 * @descricao: Método de criptografia.
+	 * : Método de criptografia.
 	 * @param text
 	 * @return
 	 */
@@ -31,7 +31,7 @@ public class Cripto{
 	}
 	
 	/**
-	 * @descricao: Recebe a senha para ser criptografada.
+	 * : Recebe a senha para ser criptografada.
 	 * @param senha
 	 * @return
 	 */

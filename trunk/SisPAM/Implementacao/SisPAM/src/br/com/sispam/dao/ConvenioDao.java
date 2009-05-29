@@ -17,7 +17,7 @@ public class ConvenioDao {
 	private EntityManager manager;
 	
 	/**
-	 * @descricao: Incluir o convênio no banco de dados.
+	 * : Incluir o convênio no banco de dados.
 	 * @param convenio
 	 */
 	public void incluirConvenio(Convenio convenio){		
@@ -40,7 +40,7 @@ public class ConvenioDao {
 	}
 	
 	/**
-	 * @descricao: excluir o convênio do banco de dados.
+	 * : excluir o convênio do banco de dados.
 	 * @param cnpj
 	 * @throws EntityExistsException
 	 */
@@ -64,7 +64,7 @@ public class ConvenioDao {
 	}
 	
 	/**
-	 * @descricao: Recupera o convênio pelo ID.
+	 * : Recupera o convênio pelo ID.
 	 * @param id
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class ConvenioDao {
 	}
 	
 	/**
-	 * @descricao: Recupera o convênio pelo CNPJ.
+	 * : Recupera o convênio pelo CNPJ.
 	 * @param cnpj
 	 * @return
 	 */
@@ -97,7 +97,7 @@ public class ConvenioDao {
 	}
 	
 	/**
-	 * @descricao: Consulta o convênio pelo nome.
+	 * : Consulta o convênio pelo nome.
 	 * @param nome
 	 * @return
 	 */
@@ -120,7 +120,7 @@ public class ConvenioDao {
 	}	
 	
 	/**
-	 * @descricao: Lista os últimos convênios cadastrados no sistema.
+	 * : Lista os últimos convênios cadastrados no sistema.
 	 * @return
 	 */
 	public List<Convenio> recuperarUltimosCadastrados() {
@@ -139,7 +139,7 @@ public class ConvenioDao {
 	}
 	
 	/**
-	 * @descricao: Recupera todos os convênios cadastrados.
+	 * : Recupera todos os convênios cadastrados.
 	 * @return
 	 */
 	public List<Convenio> recuperarTodos(){

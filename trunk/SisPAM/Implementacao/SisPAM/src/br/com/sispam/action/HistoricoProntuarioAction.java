@@ -23,7 +23,7 @@ public class HistoricoProntuarioAction extends Action{
 	private CodigoDoencaFacade codigoDoencaFacade;
 	
 	/**
-	 * @descricao: Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
+	 * : Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
 	 * @return
 	 */
 	public String carregarAgendamentos(){
@@ -72,7 +72,7 @@ public class HistoricoProntuarioAction extends Action{
 	}
 	
 	/**
-	 * @descricao: carrega os dados necessário para a atualização do prontuário do paciente.
+	 * : carrega os dados necessário para a atualização do prontuário do paciente.
 	 * @return
 	 */
 	public String carregaAtualizacaoHistorico(){
@@ -84,7 +84,7 @@ public class HistoricoProntuarioAction extends Action{
 
 	/*Utilitário*/
 	/**
-	 * @descricao: Limpa os campos.
+	 * : Limpa os campos.
 	 */
 	private void limparCampos(){
 		this.historicoProntuario = null;

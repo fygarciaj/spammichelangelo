@@ -1,7 +1,6 @@
 ﻿package br.com.sispam.dao;
 
 import java.util.List;
-
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -17,7 +16,7 @@ public class UsuarioDao {
 	private EntityManager manager;
 
 	/**
-	 * @descricao: Salva e atualiza o usuário passado.
+	 * Salva e atualiza o usuário passado.
 	 * @param usuario
 	 */
 	public Usuario salvarUsuario(Usuario usuario){
@@ -40,7 +39,7 @@ public class UsuarioDao {
 	}
 
 	/**
-	 * @descricao: Lista todos usuários apartir do perfil passado.
+	 * Lista todos usuários apartir do perfil passado.
 	 * @param perfil
 	 */
 	public List<Usuario> recuperaLista(Perfil perfil){
@@ -56,7 +55,7 @@ public class UsuarioDao {
 	}
 
 	/**
-	 * @descricao: Remove o usuario do sistema.
+	 * Remove o usuario do sistema.
 	 * @param usuario
 	 */
 	public void removerUsuario(Usuario usuario){
@@ -70,7 +69,7 @@ public class UsuarioDao {
 	}
 
 	/**
-	 * @descricao: Recupera o usuário pelo Id.
+	 * Recupera o usuário pelo Id.
 	 * @param id
 	 * @return
 	 */
@@ -81,7 +80,7 @@ public class UsuarioDao {
 	}
 
 	/**
-	 * @descricao: recupera o usuário pelo seu cpf.
+	 * recupera o usuário pelo seu cpf.
 	 * @param cpf
 	 * @return
 	 */
@@ -104,7 +103,7 @@ public class UsuarioDao {
 
 
 	/**
-	 * @descricao: recupera o usuário pelo seu nome.
+	 * recupera o usuário pelo seu nome.
 	 * @param nome, codigoPerfil
 	 * @return
 	 */
@@ -127,7 +126,7 @@ public class UsuarioDao {
 	}
 
 	/**
-	 * @descricao: Lista os últimos usuários cadastrados no sistema.
+	 * Lista os últimos usuários cadastrados no sistema.
 	 * @return
 	 */
 	public List<Usuario> recuperarUltimosCadastrados(int codigoPerfil) {
@@ -147,7 +146,7 @@ public class UsuarioDao {
 	}
 	
 	/**
-	 * @descricao: remove todos usuários para testes.
+	 * remove todos usuários para testes.
 	 */
 	public void removerTodosTeste() {
 		conexao = new Conexao();
@@ -163,7 +162,7 @@ public class UsuarioDao {
 	}
 
 	/**
-	 * @descricao: Recupera o usuário pelo Login.
+	 * Recupera o usuário pelo Login.
 	 * @param acesso
 	 * @return
 	 */

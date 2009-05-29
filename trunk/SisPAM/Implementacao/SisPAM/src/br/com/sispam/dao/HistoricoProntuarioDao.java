@@ -17,7 +17,7 @@ public class HistoricoProntuarioDao {
 	private EntityManager manager;
 	
 	/**
-	 * @descricao: Consulta os agendamentos com status = solicitado
+	 * : Consulta os agendamentos com status = solicitado
 	 * @param agendamento
 	 * @return agendamentos
 	 */
@@ -43,7 +43,7 @@ public class HistoricoProntuarioDao {
 	
 	
 	/**
-	 * @descricao: insere o historico de prontuario
+	 * : insere o historico de prontuario
 	 * @param historicoProntuario
 	 */
 	public void atualizarHistorioProntuario(HistoricoProntuario historicoProntuario){		

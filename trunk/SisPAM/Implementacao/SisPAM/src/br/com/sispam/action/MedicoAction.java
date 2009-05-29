@@ -47,7 +47,7 @@ public class MedicoAction extends Action{
 
 	
 	/**
-	 * @descricao: Recebe os dados do médico para ser incluído.
+	 * : Recebe os dados do médico para ser incluído.
 	 * @return
 	 * @throws ParseException
 	 */
@@ -150,7 +150,7 @@ public class MedicoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Realiza a consulta do médico.
+	 * : Realiza a consulta do médico.
 	 * @return
 	 */
 	public String consultarMedico(){
@@ -173,7 +173,7 @@ public class MedicoAction extends Action{
 	}
 
 	/**
-	 * @descricao: Carrega a edição do médico selecionado.
+	 * : Carrega a edição do médico selecionado.
 	 * @return {@link String}
 	 */
 	public String carregarEdicao(){
@@ -206,7 +206,7 @@ public class MedicoAction extends Action{
 	}
 
 	/**
-	 * @descricao: Remove o médico do sistema.
+	 * : Remove o médico do sistema.
 	 * @return
 	 */
 	public String excluirMedico(){
@@ -217,7 +217,7 @@ public class MedicoAction extends Action{
 		return SUCESSO_EXCLUIR_MEDICO;
 	}
 	/**
-	 * @descricao: Monta uma lista de dias da enum.
+	 * : Monta uma lista de dias da enum.
 	 * @return
 	 */
 	public List<Dia> getListaDias(){
@@ -233,7 +233,7 @@ public class MedicoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Recupera os dias marcados da tela.
+	 * : Recupera os dias marcados da tela.
 	 * @return
 	 */
 	public StringBuilder getDiasMarcados(){
@@ -267,7 +267,7 @@ public class MedicoAction extends Action{
 
 	/*Utilitário*/
 	/**
-	 * @descricao: Limpa os campos da tela.
+	 * : Limpa os campos da tela.
 	 */
 	private void limparCampos(boolean limpaCodigoPerfilSelecionado){
 		this.medico = null;
@@ -279,7 +279,7 @@ public class MedicoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Prepara a lista de dias de trabalho do médico.
+	 * : Prepara a lista de dias de trabalho do médico.
 	 * @param medico
 	 */
 	private void preparaListaDeExibicao(Medico medico){
@@ -298,7 +298,7 @@ public class MedicoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Limpa os mapas de mesnagem e erro.
+	 * : Limpa os mapas de mesnagem e erro.
 	 */
 	private void limparMapas(){
 		erros.clear();

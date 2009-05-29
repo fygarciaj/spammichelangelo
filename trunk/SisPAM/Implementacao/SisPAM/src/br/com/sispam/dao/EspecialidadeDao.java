@@ -15,7 +15,7 @@ public class EspecialidadeDao {
 
 	
 	/**
-	 * @descricao: Recupera a especialidade apartir do id passado.
+	 * : Recupera a especialidade apartir do id passado.
 	 * @param id
 	 * @return
 	 */
@@ -26,7 +26,7 @@ public class EspecialidadeDao {
 	}
 	
 	/**
-	 * @descricao: Recupera todas as especialidades cadastradas.
+	 * : Recupera todas as especialidades cadastradas.
 	 * @return
 	 */
 	public List<EspecialidadeMedica> recuperarTodas(){
@@ -37,7 +37,7 @@ public class EspecialidadeDao {
 	}
 	
 	/**
-	 * @descricao: Recupera todas as especialidades cadastradas menos a do medico.
+	 * : Recupera todas as especialidades cadastradas menos a do medico.
 	 * @return
 	 */
 	public List<EspecialidadeMedica> recuperarTodas(List<Integer> lista){
@@ -49,7 +49,7 @@ public class EspecialidadeDao {
 	}
 	
 	/**
-	 * @descricao: Recupera uma lista de especialidades apartir dos ids passados.
+	 * : Recupera uma lista de especialidades apartir dos ids passados.
 	 * @param lista
 	 * @return
 	 */
