@@ -44,7 +44,16 @@
 		</tr>
 	</table>
 <h2>Consulta de Compromissos</h2>
-
+	<table width="89%" id="AreaMsg" class="AreaMsg">			
+	<tr>	
+	<td>	
+		<div id="MensagensErro" >						
+			<s:fielderror theme="simple" cssClass="errorMessage" />
+			<s:actionmessage theme="simple" cssClass="sucessMessage" />
+		</div>
+	</td>
+	</tr>
+	</table>
 <s:form id="formConsultaCompromisso" action="compromissoAction!consultarCompromisso.action">
 			<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
 				<tr>
@@ -53,7 +62,7 @@
 					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--Selecione--" headerKey="0" listValue="usuario.nome" listKey="id"/>
 					</td>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple" name="compromisso.data" id="data" size="10" maxlength="10"/>&nbsp;</td>
+					<td><s:textfield theme="simple"  name="compromisso.data" id="data" size="10" maxlength="10"/>&nbsp;</td>
 					<td><input type="submit" value="Consultar" class="button"></td>
 				</tr>
 			</table>
@@ -63,7 +72,7 @@
 	<br>
 	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
-			<th colspan="6" class="principal style2" scope="col">Compromissos do Dia:</th>
+			<th colspan="6" class="principal style2" scope="col">Compromissos do Dia: <s:date name="compromisso.data" format="dd/MM/yyyy"/></th>
 			
 		</tr>
 		<tr>		

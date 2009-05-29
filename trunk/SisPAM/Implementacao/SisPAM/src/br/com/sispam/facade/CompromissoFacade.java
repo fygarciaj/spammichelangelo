@@ -139,19 +139,27 @@ public class CompromissoFacade {
 		if(compromisso != null){
 
 			if(compromisso.getMedico()== null){
-				throw new CampoInvalidoException("Campo Nome do Médico inválido");
+				throw new CampoInvalidoException("Campo Nome do Médico inválido!");
 			}						
-			if(compromisso.getTipo() == null || compromisso.getTipo().isEmpty()) {
-				throw new CampoInvalidoException("Campo Tipo de Evento inválido");
+			if(compromisso.getTipo().contains("0") || compromisso.getTipo().isEmpty()) {
+				throw new CampoInvalidoException("Campo Tipo de Evento inválido!");
 			}
-			if(compromisso.getData() == null){
-				throw new CampoInvalidoException("Campo Data inválido");
+			if(compromisso.getData() == null ){
+				throw new CampoInvalidoException("Campo Data inválido!");
 			}
-
 			if(compromisso.getDescricao()== null || compromisso.getDescricao().length() == 0){
-				throw new CampoInvalidoException("Campo Descrição inválido");
+				throw new CampoInvalidoException("Campo Descrição inválido!");
 			}						
 
 		}
-	}	
+	}
+	
+	public void validaHora(Compromisso compromisso) throws CampoInvalidoException{
+
+		if(compromisso != null){
+			if(compromisso.getHoraInicial() >= compromisso.getHoraFinal()){
+				throw new CampoInvalidoException("Hora Inicial deve ser menor que Hora Final!");
+			}
+		}
+	}
 }
