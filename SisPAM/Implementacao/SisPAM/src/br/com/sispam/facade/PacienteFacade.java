@@ -18,7 +18,7 @@ public class PacienteFacade {
 	}
 
 	/**
-	 * @descricao: Salva o paciente.
+	 * : Salva o paciente.
 	 * @param paciente
 	 * @return
 	 */
@@ -30,7 +30,7 @@ public class PacienteFacade {
 	}
 
 	/**
-	 * @descricao: Remove o paciente do sistema.
+	 * : Remove o paciente do sistema.
 	 * @param id
 	 */
 	public void removerPaciente(int id){
@@ -39,7 +39,7 @@ public class PacienteFacade {
 	}
 
 	/**
-	 * @descricao: Recupera vários pacientes pelo nome se existir..
+	 * : Recupera vários pacientes pelo nome se existir..
 	 * @param paciente
 	 * @return
 	 * @throws CampoInvalidoException
@@ -68,7 +68,7 @@ public class PacienteFacade {
 	}
 
 	/**
-	 * @descricao: Valida os campos do paciente.
+	 * : Valida os campos do paciente.
 	 * @param paciente
 	 * @param dataNascimento
 	 * @throws CampoInvalidoException
@@ -93,7 +93,7 @@ public class PacienteFacade {
 	}
 
 	/**
-	 * @descricao: Recupera os últimos pacientes cadastrados no sistema.
+	 * : Recupera os últimos pacientes cadastrados no sistema.
 	 * @return
 	 */
 	public List<Paciente> recuperaUltimosCadastrados(){
@@ -101,7 +101,7 @@ public class PacienteFacade {
 	}
 	
 	/**
-	 * @descricao: Recupera todos os pacientes do banco de dados.
+	 * : Recupera todos os pacientes do banco de dados.
 	 * @return
 	 */
 	public List<Paciente> recuperarTodos(){
@@ -109,7 +109,7 @@ public class PacienteFacade {
 	}
 
 	/**
-	 * @descricao: Recupera o paciente pelo seu ID.
+	 * : Recupera o paciente pelo seu ID.
 	 * @param id
 	 * @return
 	 */

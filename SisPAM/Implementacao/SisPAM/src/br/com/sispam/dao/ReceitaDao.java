@@ -15,7 +15,7 @@ public class ReceitaDao {
 	private EntityManager manager;
 	
 	/**
-	 * @descricao: Consulta os agendamentos com status = concluido
+	 * : Consulta os agendamentos com status = concluido
 	 * @param agendamento
 	 * @return agendamentos
 	 */

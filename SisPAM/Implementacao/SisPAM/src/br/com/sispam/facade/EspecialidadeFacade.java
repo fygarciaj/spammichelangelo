@@ -15,7 +15,7 @@ public class EspecialidadeFacade {
 	}
 
 	/**
-	 * @descricao: Recupera todas especialidades.
+	 * : Recupera todas especialidades.
 	 * @return
 	 */
 	public List<EspecialidadeMedica>recuperarTodas(){
@@ -23,7 +23,7 @@ public class EspecialidadeFacade {
 	}
 
 	/**
-	 * @descricao: Recupera todas especialidades.
+	 * : Recupera todas especialidades.
 	 * @return
 	 */
 	public List<EspecialidadeMedica>recuperarTodas(List<Integer> lista){
@@ -37,7 +37,7 @@ public class EspecialidadeFacade {
 
 
 	/**
-	 * @descricao: Recuperar a especialidade pelo id.
+	 * : Recuperar a especialidade pelo id.
 	 * @param id
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class EspecialidadeFacade {
 
 
 	/**
-	 * @descricao: Recupera uma lista de especialidades apartir dos caracteres passados.
+	 * : Recupera uma lista de especialidades apartir dos caracteres passados.
 	 * @param esp
 	 * @return
 	 */

@@ -15,7 +15,7 @@ public class ReceitaFacade {
 	private AgendamentoDao agendamentoDao;
 	
 	/**
-	 * @descricao: Recupera os agendamentos do médico que foram finalizados.
+	 * : Recupera os agendamentos do médico que foram finalizados.
 	 * @param agendamento
 	 * @return List<Agendamento> 
 	 */
@@ -25,7 +25,7 @@ public class ReceitaFacade {
 	}
 	
 	/**
-	 * @descricao: Recupera o agendamento pelo seu id.
+	 * : Recupera o agendamento pelo seu id.
 	 * @param id
 	 */
 	public Agendamento recuperarAgendamento(int id){
@@ -39,7 +39,7 @@ public class ReceitaFacade {
 
 		
 	/**
-	 * @descricao: valida os campos do objeto da tela passado.
+	 * : valida os campos do objeto da tela passado.
 	 * @param objeto
 	 * @throws CampoInvalidoException 
 	 */

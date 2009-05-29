@@ -16,7 +16,7 @@ public class HistoricoProntuarioFacade {
 	private AgendamentoDao agendamentoDao;
 	
 	/**
-	 * @descricao: Recupera os agendamentos do médico.
+	 * : Recupera os agendamentos do médico.
 	 * @param agendamento
 	 * @return List<Agendamento> 
 	 */
@@ -26,7 +26,7 @@ public class HistoricoProntuarioFacade {
 	}
 	
 	/**
-	 * @descricao: Salva historico de prontuario e atualiza o status do agendamento para CONCLUIDO(2)
+	 * : Salva historico de prontuario e atualiza o status do agendamento para CONCLUIDO(2)
 	 * @param historicoProntuario, agendamento
 	 * @throws CampoInvalidoException
 	 */
@@ -47,7 +47,7 @@ public class HistoricoProntuarioFacade {
 	}
 	
 	/**
-	 * @descricao: Recupera o agendamento pelo seu id.
+	 * : Recupera o agendamento pelo seu id.
 	 * @param id
 	 */
 	public Agendamento recuperarAgendamento(int id){
@@ -60,7 +60,7 @@ public class HistoricoProntuarioFacade {
 	}
 	
 	/**
-	 * @descricao: valida os campos do historico de prontuário
+	 * : valida os campos do historico de prontuário
 	 * @param historicoProntuario
 	 * @throws CampoInvalidoException 
 	 */

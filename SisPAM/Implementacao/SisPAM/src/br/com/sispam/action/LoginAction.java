@@ -15,7 +15,7 @@ public class LoginAction extends Action{
 	private String dataHoraAcesso;
 
 	/**
-	 * @descricao: Efetua o login no sistema.
+	 * : Efetua o login no sistema.
 	 * @return
 	 */
 	public String logar(){
@@ -51,7 +51,7 @@ public class LoginAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Retira o usuário logado da sessão.
+	 * : Retira o usuário logado da sessão.
 	 * @return
 	 */
 	public String deslogar(){

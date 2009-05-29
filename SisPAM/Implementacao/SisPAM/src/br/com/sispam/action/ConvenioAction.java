@@ -26,7 +26,7 @@ public class ConvenioAction extends Action{
 
 	
 	/**
-	 * @descricao: Recebe os dados da tela para efetuar a inclusão do convênio.
+	 * : Recebe os dados da tela para efetuar a inclusão do convênio.
 	 * @return
 	 */
 	public String incluirConvenio(){
@@ -72,7 +72,7 @@ public class ConvenioAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Recebe o convênio a ser excluído.
+	 * : Recebe o convênio a ser excluído.
 	 * @return
 	 */
 	public String excluirConvenio(){
@@ -89,7 +89,7 @@ public class ConvenioAction extends Action{
 		return SUCESSO_EXCLUIR_CONVENIO;
 	}
 	/**
-	 * @descricao: Realiza a consulta de convênios.
+	 * : Realiza a consulta de convênios.
 	 * @return
 	 */
 	public String consultarConvenio(){
@@ -106,7 +106,7 @@ public class ConvenioAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Carrega a tela de consulta de convênios.
+	 * : Carrega a tela de consulta de convênios.
 	 * @return
 	 */
 	public String carregarConsulta(){
@@ -117,7 +117,7 @@ public class ConvenioAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Carrega os últimos convênios cadastrados e define a tela para realizar consultas.
+	 * : Carrega os últimos convênios cadastrados e define a tela para realizar consultas.
 	 * @return
 	 */
 	public String definirTelaConsulta(){		
@@ -127,7 +127,7 @@ public class ConvenioAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Carrega o convênio a ser alterado.
+	 * : Carrega o convênio a ser alterado.
 	 * @return
 	 */
 	public String carregaEdicaoConvenio(){
@@ -143,7 +143,7 @@ public class ConvenioAction extends Action{
 
 	/*Utilitário*/
 	/**
-	 * @descricao: Limpa os campos da tela.
+	 * : Limpa os campos da tela.
 	 */
 	private void limparCampos(){
 		this.convenio = null;

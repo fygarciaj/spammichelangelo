@@ -17,7 +17,7 @@ public class MedicoDao {
 	private EntityManager manager;
 
 	/**
-	 * @descricao: Salva e atualiza o médico passado.
+	 * : Salva e atualiza o médico passado.
 	 * @param usuario
 	 */
 	public void salvarMedico(Medico medico){
@@ -46,7 +46,7 @@ public class MedicoDao {
 
 
 	/**
-	 * @descricao: Recupera o médico apartir do id passado.
+	 * : Recupera o médico apartir do id passado.
 	 * @param id
 	 * @return
 	 */
@@ -62,7 +62,7 @@ public class MedicoDao {
 	}
 
 	/**
-	 * @descricao: recupera o médico pelo seu crm.
+	 * : recupera o médico pelo seu crm.
 	 * @param cpf
 	 * @return
 	 */
@@ -85,7 +85,7 @@ public class MedicoDao {
 	
 	
 	/**
-	 * @descricao: Recupera uma lista de médicos pelo nome.
+	 * : Recupera uma lista de médicos pelo nome.
 	 * @param nome
 	 * @return
 	 */
@@ -109,7 +109,7 @@ public class MedicoDao {
 	}
 
 	/**
-	 * @descricao: Remove o médico cadastrado
+	 * : Remove o médico cadastrado
 	 * @param medico
 	 */
 	public void remover(Medico medico){
@@ -123,7 +123,7 @@ public class MedicoDao {
 	}
 
 	/**
-	 * @descricao: Lista os últimos médicos cadastrados no sistema.
+	 * : Lista os últimos médicos cadastrados no sistema.
 	 * @return
 	 */
 	public List<Medico> recuperarUltimosCadastrados() {
@@ -142,7 +142,7 @@ public class MedicoDao {
 	}
 
 	/**
-	 * @descricao: Recuperar todos os médicos.
+	 * : Recuperar todos os médicos.
 	 * @return
 	 */
 	public List<Medico> recuperarTodos(){
@@ -160,7 +160,7 @@ public class MedicoDao {
 	}
 
 	/**
-	 * @descricao: Recupera o médico apartir do usuário.
+	 * : Recupera o médico apartir do usuário.
 	 * @param usuario
 	 * @return
 	 */
@@ -179,7 +179,7 @@ public class MedicoDao {
 	}
 
 	/**
-	 * @descricao: Exclui as especialidades do médico.
+	 * : Exclui as especialidades do médico.
 	 * @param medico
 	 */
 	public void excluirEspecialidades(Medico medico){
@@ -192,7 +192,7 @@ public class MedicoDao {
 	}
 	
 	/**
-	 * @descricao: inseri especialidades no médico.
+	 * : inseri especialidades no médico.
 	 * @param medico
 	 */
 	public void inseriEspecialidades(Medico medico){
@@ -211,7 +211,7 @@ public class MedicoDao {
 	}
 	
 	/**
-	 * @descricao: Limpa as tabelas para testes.
+	 * : Limpa as tabelas para testes.
 	 */
 	public void removerTodosTeste() {
 		conexao = new Conexao();

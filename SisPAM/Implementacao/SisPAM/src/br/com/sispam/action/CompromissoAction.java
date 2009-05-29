@@ -30,7 +30,7 @@ public class CompromissoAction extends Action{
 
 
 	/**
-	 * @descricao: Recebe os dados que vem da tela de inclusão de compromisso.
+	 * Recebe os dados que vem da tela de inclusão de compromisso.
 	 * @return
 	 * @throws ParseException 
 	 */
@@ -83,7 +83,7 @@ public class CompromissoAction extends Action{
 	}
 
 	/**
-	 * @descricao: Carrega os objetos necessários para fazer a inclusão de compromisso.
+	 * Carrega os objetos necessários para fazer a inclusão de compromisso.
 	 * @return
 	 */
 	public String carregarInclusao(){
@@ -99,7 +99,7 @@ public class CompromissoAction extends Action{
 	}
 
 	/**
-	 * @descricao: Carrega os dados para realizar a consulta de compromissos.
+	 * Carrega os dados para realizar a consulta de compromissos.
 	 * @return
 	 */
 	public String carregarConsulta(){
@@ -116,7 +116,7 @@ public class CompromissoAction extends Action{
 	}
 
 	/**
-	 * @descricao: Recebe o compromisso a ser excluído.
+	 * Recebe o compromisso a ser excluído.
 	 * @return
 	 */
 	public String excluirCompromisso(){
@@ -135,7 +135,7 @@ public class CompromissoAction extends Action{
 	}
 
 	/**
-	 * @descricao: Efetuar a consulta do compromisso.
+	 * Efetuar a consulta do compromisso.
 	 * @return
 	 */
 	public String consultarCompromisso(){
@@ -153,7 +153,7 @@ public class CompromissoAction extends Action{
 	}
 
 	/**
-	 * @descricao: Carrega o compromisso para ser alterado.
+	 * Carrega o compromisso para ser alterado.
 	 * @return
 	 */
 	public String carregaEdicaoCompromisso(){
@@ -170,7 +170,7 @@ public class CompromissoAction extends Action{
 
 	/*Utilitário*/
 	/**
-	 * @descricao: Limpa os campos da tela.
+	 * Limpa os campos da tela.
 	 */
 	private void limparCampos(){
 		this.compromisso = null;

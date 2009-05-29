@@ -14,7 +14,7 @@ public class CodigoDoencaFacade {
 	}
 	
 	/**
-	 * @descricao: Recupera todos os CIDs.
+	 * : Recupera todos os CIDs.
 	 * @return
 	 */
 	public List<CodigoDoenca>recuperarTodas(){

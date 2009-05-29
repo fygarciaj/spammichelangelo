@@ -17,7 +17,7 @@ public class LoginFacade {
 	private Usuario usuarioNew;
 	
 	/**
-	 * @descricao: Efetua a pesquisa do usuário, apartir do login e senha.
+	 * : Efetua a pesquisa do usuário, apartir do login e senha.
 	 * @param acesso
 	 * @param senha
 	 * @return
@@ -44,7 +44,7 @@ public class LoginFacade {
 	}
 	
 	/**
-	 * @descricao: Método para cripitografar a senha.
+	 * : Método para cripitografar a senha.
 	 * @param senha
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class LoginFacade {
 	}
 	
 	/**
-	 * @descricao: Método para formatar a data do acesso ao sistema.
+	 * : Método para formatar a data do acesso ao sistema.
 	 * @return
 	 */
 	public String dataHoraLogin(){

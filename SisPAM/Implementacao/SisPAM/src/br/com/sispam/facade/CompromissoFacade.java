@@ -14,7 +14,7 @@ public class CompromissoFacade {
 	private CompromissoDao compromissoDao; 
 
 	/**
-	 * @descricao: Salvar compromissos.
+	 * : Salvar compromissos.
 	 * @param compromisso
 	 * @throws CampoInvalidoException
 	 */
@@ -29,7 +29,7 @@ public class CompromissoFacade {
 	}
 
 	/**
-	 * @descricao: Excluir compromissos.
+	 * : Excluir compromissos.
 	 * @param compromisso
 	 * 
 	 */
@@ -55,7 +55,7 @@ public class CompromissoFacade {
 	}
 
 	/**
-	 * @descricao: verifica existencia do compromisso.
+	 * : verifica existencia do compromisso.
 	 * @param compromisso
 	 * @throws CampoInvalidoException 
 	 * 
@@ -71,7 +71,7 @@ public class CompromissoFacade {
 
 
 	/**
-	 * @descricao: Pesquisa compromisso
+	 * : Pesquisa compromisso
 	 * @param compromisso
 	 * @throws CampoInvalidoException 
 	 * 
@@ -94,7 +94,7 @@ public class CompromissoFacade {
 	}
 
 	/**
-	 * @descricao: Recupera os últimos compromissos do médico.
+	 * : Recupera os últimos compromissos do médico.
 	 * @param compromisso
 	 * @return
 	 */
@@ -105,7 +105,7 @@ public class CompromissoFacade {
 
 
 	/**
-	 * @descricao: Valida os campos que devem ser inteiros.
+	 * : Valida os campos que devem ser inteiros.
 	 * @param mapa
 	 * @throws CampoInvalidoException
 	 */
@@ -130,7 +130,7 @@ public class CompromissoFacade {
 	}
 
 	/**
-	 * @descricao: valida os campos do compromissos
+	 * : valida os campos do compromissos
 	 * @param compromisso
 	 * @throws CampoInvalidoException 
 	 */

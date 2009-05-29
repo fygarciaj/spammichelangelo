@@ -17,7 +17,7 @@ public class PacienteDao {
 
 
 	/**
-	 * @descricao: Salva o paciente no banco.
+	 * : Salva o paciente no banco.
 	 * @param paciente
 	 * @return
 	 */
@@ -38,7 +38,7 @@ public class PacienteDao {
 	}
 
 	/**
-	 * @descricao: Recupera o paciente pelo seu id
+	 * : Recupera o paciente pelo seu id
 	 * @param id
 	 * @return
 	 */
@@ -64,7 +64,7 @@ public class PacienteDao {
 	}
 	
 	/**
-	 * @descricao: Lista os ultimos pacientes cadastrados
+	 * : Lista os ultimos pacientes cadastrados
 	 * @return
 	 */
 	public List<Paciente> recuperaUltimosCadastrados(){
@@ -82,7 +82,7 @@ public class PacienteDao {
 	}
 	
 	/**
-	 * @descricao: Recupera o paciente pelo seu CPF.
+	 * : Recupera o paciente pelo seu CPF.
 	 * @param cpf
 	 * @return
 	 */
@@ -102,7 +102,7 @@ public class PacienteDao {
 	}
 	
 	/**
-	 * @descricao: Recupera os pacientes pelo seu NOME.
+	 * : Recupera os pacientes pelo seu NOME.
 	 * @param nome
 	 * @return
 	 */
@@ -122,7 +122,7 @@ public class PacienteDao {
 	}
 	
 	/**
-	 * @descricao: Recupera todos os pacientes cadastrados.
+	 * : Recupera todos os pacientes cadastrados.
 	 * @return
 	 */
 	public List<Paciente> recuperarTodos(){
@@ -141,7 +141,7 @@ public class PacienteDao {
 	
 	
 	/**
-	 * @descricao: Remove o paciente do sistema.
+	 * : Remove o paciente do sistema.
 	 * @param paciente
 	 */
 	public void removerPaciente(Paciente paciente){

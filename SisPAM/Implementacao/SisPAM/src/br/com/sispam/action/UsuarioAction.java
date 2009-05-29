@@ -55,7 +55,7 @@ public class UsuarioAction extends Action{
 
 
 	/**
-	 * @descricao: carrega a tela inicial de cadastro
+	 * : carrega a tela inicial de cadastro
 	 * @return
 	 */
 	public String carregarNovoUsuario(){
@@ -64,7 +64,7 @@ public class UsuarioAction extends Action{
 	}
 
 	/**
-	 * @descricao: define qual usuario será cadastrado no sistema.
+	 * : define qual usuario será cadastrado no sistema.
 	 * @return {@link String}
 	 */
 	public String definirTelaUsuario(){
@@ -89,7 +89,7 @@ public class UsuarioAction extends Action{
 	}
 
 	/**
-	 * @descricao: salva um objeto usuário no banco de dados.
+	 * : salva um objeto usuário no banco de dados.
 	 * @return {@link String}
 	 */
 	public String salvarUsuario(){
@@ -154,7 +154,7 @@ public class UsuarioAction extends Action{
 	}
 
 	/**
-	 * @descricao: Carrega a tela de consulta de usuários.
+	 * : Carrega a tela de consulta de usuários.
 	 * @return {@link String}
 	 */
 	public String carregarConsulta(){
@@ -184,7 +184,7 @@ public class UsuarioAction extends Action{
 	}
 
 	/**
-	 * @descricao: Consulta o usuário apartir dos dados informados.
+	 * : Consulta o usuário apartir dos dados informados.
 	 * @return {@link String}
 	 */
 	public String consultarUsuario(){
@@ -207,7 +207,7 @@ public class UsuarioAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Carrea o usuário a ser alterado.
+	 * : Carrea o usuário a ser alterado.
 	 * @return
 	 */
 	public String carregarEdicao(){
@@ -225,7 +225,7 @@ public class UsuarioAction extends Action{
 
 
 	/**
-	 * @descricao: Remove o usuário do sistema.
+	 * : Remove o usuário do sistema.
 	 * @return {@link String}
 	 */
 	public String excluirUsuario(){
@@ -239,7 +239,7 @@ public class UsuarioAction extends Action{
 
 	/*Utilitário*/
 	/**
-	 * @descricao: Limpa os campos da tela.
+	 * : Limpa os campos da tela.
 	 */
 	private void limparCampos(boolean limpaCodigoPerfilSelecionado){
 		this.usuario = null;

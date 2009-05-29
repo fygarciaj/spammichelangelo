@@ -15,7 +15,7 @@ public class AgendamentoDao {
 	private EntityManager manager;
 
 	/**
-	 * @descricao: inclui ou altera um agendamento
+	 * Inclui ou altera um agendamento
 	 * @param compromisso
 	 */
 	public void incluirAgendamento(Agendamento agendamento){		
@@ -38,7 +38,7 @@ public class AgendamentoDao {
 	}
 
 	/**
-	 * @descricao: Retorna os agendamentos do dia
+	 * Retorna os agendamentos do dia
 	 * @return
 	 */
 	public List<Agendamento> recuperarAgendamentosDoDia(){
@@ -52,7 +52,7 @@ public class AgendamentoDao {
 	}
 
 	/**
-	 * @descricao: Excluir o agendamento do banco de dados.
+	 * Excluir o agendamento do banco de dados.
 	 * @param agendamento
 	 */
 	public void excluir(Agendamento agendamento){
@@ -66,7 +66,7 @@ public class AgendamentoDao {
 	}
 	
 	/**
-	 * @descricao: Recupera os agendamentos apartir dos dados passados.
+	 * Recupera os agendamentos apartir dos dados passados.
 	 * @param agendamento
 	 * @return
 	 */
@@ -81,27 +81,40 @@ public class AgendamentoDao {
 		}if(agendamento.getData() != null){
 			query.setParameter("data", agendamento.getData());
 		}if(agendamento.getTipo() > 0){
-			query.setParameter("tipo", agendamento.getTipo());
+			query.setParameter("idTipo", agendamento.getTipo());
 		}
 		agendamentos = query.getResultList();
 		return agendamentos;
 	}
 	
 	/**
-	 * @descricao: Monta a query da consulta.
+	 * Monta a query da consulta.
 	 * @param agendamento
 	 * @return
 	 */
 	private StringBuilder montaQuery(Agendamento agendamento){
 		StringBuilder builder = new StringBuilder();
+		boolean medico = false;
+		boolean data = false;
+		boolean tipo = false;
 		builder.append("from Agendamento where ");
 
 		if(agendamento.getMedico() != null && agendamento.getMedico().getId() > 0){
-			builder.append("medico.id = :medico");
+			medico = true;
+			builder.append("medico.id = :medico ");
 		}if(agendamento.getData() != null){
-			builder.append("and data = :data");
+			data = true;
+			if(medico == true){
+				builder.append("and data = :data ");
+			}else{
+				builder.append("data = :data ");
+			}
 		}if(agendamento.getTipo() > 0){
-			builder.append("and tipo = :idTipo");
+			if(data == true || medico == true){
+			builder.append("and tipo = :idTipo ");
+			}else{
+				builder.append("tipo = :idTipo ");
+			}
 		}
 
 		return builder;
@@ -109,7 +122,7 @@ public class AgendamentoDao {
 
 
 	/**
-	 * @descricao: Recupera o agendamento a partir do id passado.
+	 * Recupera o agendamento a partir do id passado.
 	 * @param id
 	 * @return Agendamento
 	 */

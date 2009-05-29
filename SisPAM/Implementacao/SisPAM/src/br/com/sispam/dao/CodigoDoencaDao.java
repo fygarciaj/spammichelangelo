@@ -17,7 +17,7 @@ public class CodigoDoencaDao {
 
 	
 	/**
-	 * @descricao: Recupera o codigo de doença a partir do id passado.
+	 * : Recupera o codigo de doença a partir do id passado.
 	 * @param id
 	 * @return CodigoDoenca
 	 */
@@ -27,7 +27,7 @@ public class CodigoDoencaDao {
 		return manager.find(CodigoDoenca.class, id) ;
 	}
 	/**
-	 * @descricao: Recupera todas os codigos internacionais de doença cadastradas.
+	 * : Recupera todas os codigos internacionais de doença cadastradas.
 	 * @return
 	 */
 	public List<CodigoDoenca> recuperarTodas(){

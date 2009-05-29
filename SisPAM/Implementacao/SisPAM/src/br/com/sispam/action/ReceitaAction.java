@@ -24,7 +24,7 @@ public class ReceitaAction extends Action{
 	
 	
 	/**
-	 * @descricao: Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
+	 * : Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
 	 * @return
 	 */
 	public String carregarAgendamentos(){
@@ -46,7 +46,7 @@ public class ReceitaAction extends Action{
 	}
 	
 	/**
-	 * @descricao: carrega os dados necessário para a emissão da receita do paciente.
+	 * : carrega os dados necessário para a emissão da receita do paciente.
 	 * @return
 	 */
 	public String carregaEmissaoReceita(){
@@ -57,7 +57,7 @@ public class ReceitaAction extends Action{
 
 	/*Utilitário*/
 	/**
-	 * @descricao: Limpa os campos.
+	 * : Limpa os campos.
 	 */
 	private void limparCampos(){
 		this.receitaFacade = null;

@@ -22,7 +22,7 @@ public class UsuarioFacade {
 	}
 
 	/**
-	 * @descricao: Salva o usuário de todos os tipos.
+	 * Salva o usuário de todos os tipos.
 	 * @param usuario
 	 * @throws CampoInvalidoException
 	 */
@@ -36,7 +36,7 @@ public class UsuarioFacade {
 	}
 
 	/**
-	 * @descricao: Recupera o usuário pelo seu id.
+	 * Recupera o usuário pelo seu id.
 	 * @param id
 	 */
 	public Usuario recuperarPeloId(int id){
@@ -45,7 +45,7 @@ public class UsuarioFacade {
 	}
 
 	/**
-	 * @descricao: Valida os campos que devem ser inteiros.
+	 * Valida os campos que devem ser inteiros.
 	 * @param mapa
 	 * @throws CampoInvalidoException
 	 */
@@ -70,7 +70,7 @@ public class UsuarioFacade {
 	}
 
 	/**
-	 * @descicao: Verifica se o cpf já está sendo usado.
+	 * Verifica se o cpf já está sendo usado.
 	 * @param cpf
 	 */
 	public void verificaCpfJaExistente(String cpf, int id)throws CampoInvalidoException{
@@ -80,7 +80,7 @@ public class UsuarioFacade {
 		}
 	}
 	/**
-	 * @descricao: Método genérico para recuperar usuários.
+	 * Método genérico para recuperar usuários.
 	 * @param cpf
 	 * @param nome
 	 * @param codigoPerfil
@@ -112,7 +112,7 @@ public class UsuarioFacade {
 
 
 	/**
-	 * @descricao: Recupera os últimos usuários cadastrados.
+	 * Recupera os últimos usuários cadastrados.
 	 * @return
 	 */
 	public List<Usuario> recuperarUltimosCadastrados(int codigoPerfilSelecionado) {
@@ -120,7 +120,7 @@ public class UsuarioFacade {
 	}
 
 	/**
-	 * @descricao: Remove o usuário do sistema.
+	 * Remove o usuário do sistema.
 	 * @param id
 	 */
 	public void removerUsuario(int id){
@@ -129,7 +129,7 @@ public class UsuarioFacade {
 	}
 
 	/**
-	 * @descricao: valida os campos do objeto da tela passado.
+	 * valida os campos do objeto da tela passado.
 	 * @param objeto
 	 * @throws CampoInvalidoException 
 	 */
@@ -175,7 +175,7 @@ public class UsuarioFacade {
 	}
 	
 	/**
-	 * @descricao: Verifica se já existe o login no banco de dados. 
+	 * Verifica se já existe o login no banco de dados. 
 	 * @param acesso
 	 * @param id
 	 * @throws CampoInvalidoException

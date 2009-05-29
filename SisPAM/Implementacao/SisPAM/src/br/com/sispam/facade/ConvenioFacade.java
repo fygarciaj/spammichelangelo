@@ -1,35 +1,23 @@
 ﻿package br.com.sispam.facade;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import javax.persistence.NoResultException;
-
 import br.com.sispam.dao.ConvenioDao;
-
-
-
-
 import br.com.sispam.dominio.Convenio;
-
-
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.validation.IValidation;
 import br.com.sispam.validation.ValidatorFactory;
 import br.com.sispam.validation.cnpjcpf.CNPJValidator;
 
-
-
-
 public class ConvenioFacade {
 	private ConvenioDao convenioDao; 
     private CNPJValidator validador;
+    
 	/**
-	 * @descricao: Salva um convênio.
+	 * Salva um convênio.
 	 * @param convenio
 	 * @throws CampoInvalidoException
 	 */
@@ -44,7 +32,7 @@ public class ConvenioFacade {
 	}
 
 	/**
-	 * @descricao: Exclui um convênio.
+	 * Exclui um convênio.
 	 * @param convenio
 	 * 
 	 */
@@ -60,7 +48,7 @@ public class ConvenioFacade {
 	}
 	
 	/**
-	 * @descricao: Recupera o convênio pelo ID.
+	 * Recupera o convênio pelo ID.
 	 * @param id
 	 * @return
 	 */
@@ -74,7 +62,7 @@ public class ConvenioFacade {
 	}
 
 	/**
-	 * @descricao: verifica existencia do convenio.
+	 * verifica existencia do convenio.
 	 * @param convenio
 	 * @throws CampoInvalidoException 
 	 * 
@@ -100,7 +88,7 @@ public class ConvenioFacade {
 
 
 	/**
-	 * @descricao: Pesquisa convenio por CNPJ.
+	 * Pesquisa convenio por CNPJ.
 	 * @param convenio
 	 * @throws CampoInvalidoException 
 	 * 
@@ -127,7 +115,7 @@ public class ConvenioFacade {
 	}
 
 	/**
-	 * @descricao: Recupera os últimos convênios cadastrados.
+	 * Recupera os últimos convênios cadastrados.
 	 * @return
 	 */
 	public List<Convenio> recuperarUltimosCadastrados() {
@@ -135,7 +123,7 @@ public class ConvenioFacade {
 		return this.convenioDao.recuperarUltimosCadastrados();
 	}
 	/**
-	 * @descricao: Valida os campos que devem ser inteiros.
+	 * Valida os campos que devem ser inteiros.
 	 * @param mapa
 	 * @throws CampoInvalidoException
 	 */
@@ -160,7 +148,7 @@ public class ConvenioFacade {
 	}
 
 	/**
-	 * @descricao: valida os campos do convenio da tela passado.
+	 * valida os campos do convenio da tela passado.
 	 * @param convenio
 	 * @throws CampoInvalidoException 
 	 */
@@ -196,7 +184,7 @@ public class ConvenioFacade {
 	}
 	
 	/**
-	 * @descricao: Recupera todos os convênios cadastrados.
+	 * Recupera todos os convênios cadastrados.
 	 * @return
 	 */
 	public List<Convenio> recuperarTodos(){

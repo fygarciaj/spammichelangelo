@@ -126,6 +126,8 @@
 				<param name="actionName">agendamentoAction</param>
 				<param name="method">carregarAgendamentos</param>
 			</result>
+			<result name="sucessoCarregarEdicao">/agendamento/altera-agendamento.jsp</result>
+			
 		</action>
 		
 			<!--Receita Action-->

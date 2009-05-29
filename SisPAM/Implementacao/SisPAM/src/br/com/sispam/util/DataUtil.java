@@ -10,7 +10,7 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 public class DataUtil {
 	
 	/**
-	 * @descricao: converte date para string de acordo com o formato desejado.
+	 * : converte date para string de acordo com o formato desejado.
 	 * @param date
 	 * @param formato
 	 * @return

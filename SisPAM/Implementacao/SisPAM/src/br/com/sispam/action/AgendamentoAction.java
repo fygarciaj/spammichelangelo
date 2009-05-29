@@ -19,6 +19,11 @@ import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
 import br.com.sispam.util.DataUtil;
 
+/**
+ * Classe que recebe as informações da página referente aos Agendamentos.
+ * @author laurindo
+ *
+ */
 public class AgendamentoAction extends Action{
 
 	private List<EspecialidadeMedica> especialidades;
@@ -43,7 +48,7 @@ public class AgendamentoAction extends Action{
 	private String agendamentoRetornado;
 
 	/**
-	 * @descricao: define o tipo de agendamento.
+	 * Define o tipo de agendamento.
 	 * @return
 	 */
 	public String definirTipo(){
@@ -61,7 +66,7 @@ public class AgendamentoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Salva o agendamento.
+	 * Salva o agendamento.
 	 * @return
 	 */
 	public String salvarAgendamento(){
@@ -69,6 +74,9 @@ public class AgendamentoAction extends Action{
 		this.usuarioFacade = new UsuarioFacade();
 		//monta um mapa com os campos que devem ser inteiros
 		Map<String, String> camposInteiros = new HashMap<String, String>();
+		if(horario != null){
+			horario.split(":");
+		}
 		camposInteiros.put("horário", horario);
 
 		try {
@@ -88,7 +96,29 @@ public class AgendamentoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Carrega os agendamentos do dia.
+	 * Carrega a edição do agendamento.
+	 * @return
+	 */
+	public String carregaEdicaoAgendamento(){
+		this.agendamentoFacade = new AgendamentoFacade();
+		this.pacienteFacade = new PacienteFacade();
+		this.medicoFacade = new MedicoFacade();
+		this.especialidadeFacade = new EspecialidadeFacade();
+		
+		this.agendamento = this.agendamentoFacade.recuperarPeloId(this.agendamento.getId());
+		this.dataAgendamento = DataUtil.dateToString(this.agendamento.getData());
+		this.horario = String.valueOf(this.agendamento.getHora());
+		
+		//monta as listas de pacientes, medicos e especialidades
+		this.especialidades = this.especialidadeFacade.recuperarTodas();
+		this.medicos = this.medicoFacade.recuperarTodos();
+		this.pacientes = this.pacienteFacade.recuperarTodos();
+		
+		return SUCESSO_CARREGAR_EDICAO;
+	}
+	
+	/**
+	 * Carrega os agendamentos do dia.
 	 * @return
 	 */
 	public String carregarAgendamentos(){
@@ -101,7 +131,7 @@ public class AgendamentoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Exclui o agendamento passado
+	 * Exclui o agendamento passado
 	 * @return
 	 */
 	public String excluirAgendamento(){
@@ -111,17 +141,29 @@ public class AgendamentoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: Realiza a consulta dos agendamentos.
+	 * Realiza a consulta dos agendamentos.
 	 * @return
 	 */
 	public String consultarAgendamento(){
 		this.agendamentoFacade = new AgendamentoFacade();
+		this.medicoFacade = new MedicoFacade();
 		this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
+		this.agendamentoFacade.montarAgendamentos(agendamentos);
+		this.medicos = this.medicoFacade.recuperarTodos();
+		limpaCamposConsulta();
 		return SUCESSO_CARREGAR_AGENDAMENTOS;
+	}
+	
+	/**
+	 * Limpa os campos da consulta.
+	 */
+	private void limpaCamposConsulta(){
+		this.agendamento = null;
+		this.dataAgendamento = null;
 	}
 
 	/**
-	 * @descricao: Prepara a inclusão do agendamento
+	 * Prepara a inclusão do agendamento
 	 * @return
 	 */
 	public String preparaInclusao(){
@@ -155,7 +197,7 @@ public class AgendamentoAction extends Action{
 	}
 	
 	/**
-	 * @descricao: limpa os campos da tela.
+	 * Limpa os campos da tela.
 	 */
 	private void limparCampos(){
 		this.medico = null;

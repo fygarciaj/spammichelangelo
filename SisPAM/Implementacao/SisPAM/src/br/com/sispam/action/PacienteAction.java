@@ -37,7 +37,7 @@ public class PacienteAction extends Action {
 
 
 	/**
-	 * @descricao: Salva o paciente no sistema.
+	 * : Salva o paciente no sistema.
 	 * @return
 	 */
 	public String salvarPaciente(){
@@ -95,7 +95,7 @@ public class PacienteAction extends Action {
 	}
 	
 	/**
-	 * @descricao: Carrega o paciente para ser editado.
+	 * : Carrega o paciente para ser editado.
 	 * @return
 	 */
 	public String carregarEdicao(){
@@ -113,7 +113,7 @@ public class PacienteAction extends Action {
 	}
 	
 	/**
-	 * @descricao: Efetua a consulta do paciente.
+	 * : Efetua a consulta do paciente.
 	 * @return
 	 */
 	public String consultarPaciente(){
@@ -137,7 +137,7 @@ public class PacienteAction extends Action {
 
 	
 	/**
-	 * @descricao: Remove o paciente do sistema.
+	 * : Remove o paciente do sistema.
 	 * @return
 	 */
 	public String excluirPaciente(){
@@ -153,7 +153,7 @@ public class PacienteAction extends Action {
 	/*Utilitarios*/
 	
 	/**
-	 * @descricao: Limpa os campos da tela.
+	 * : Limpa os campos da tela.
 	 */
 	public void limparCampos(boolean codigoPerfil){
 

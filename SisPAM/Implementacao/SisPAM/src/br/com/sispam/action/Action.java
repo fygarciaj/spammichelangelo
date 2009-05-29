@@ -8,6 +8,11 @@ import br.com.sispam.dominio.Usuario;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * Classe que possui as constantes do projeto.
+ * @author laurindo
+ *
+ */
 public class Action extends ActionSupport{
 	
 	//USUÁRIO
@@ -81,15 +86,25 @@ public class Action extends ActionSupport{
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();
 
-
+	/**
+	 * Recupera o usuário logado da sessão.
+	 * @return
+	 */
 	public Usuario getUsuarioLogado(){
 		return (Usuario) ActionContext.getContext().getSession().get(USUARIO_LOGADO);
 	}
 	
+	/**
+	 * Recupera a hora que foi efetuado o Login.
+	 * @return
+	 */
 	public Usuario getDataHoraAcesso(){
 		return (Usuario) ActionContext.getContext().getSession().get(DATA_HORA_ACESSO);
 	}
-
+	
+	/**
+	 * Apresenta os erros na tela.
+	 */
 	public void apresentaErrors(){
 		if(erros != null && erros.size() > 0){
 			for(String chave: erros.keySet()){
@@ -105,7 +120,9 @@ public class Action extends ActionSupport{
 			}
 		}
 	}
-
+	/**
+	 * Apresenta as Mensagens na tela.
+	 */
 	public void apresentaTodasMensagens(){
 		apresentaErrors();
 		apresentaMensagens();
