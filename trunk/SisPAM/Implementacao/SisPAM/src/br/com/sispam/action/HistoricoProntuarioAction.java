@@ -77,6 +77,7 @@ public class HistoricoProntuarioAction extends Action{
 	 */
 	public String carregaAtualizacaoHistorico(){
 		this.historicoProntuarioFacade = new HistoricoProntuarioFacade();
+		this.codigoDoencaFacade = new CodigoDoencaFacade();
 		this.agendamento = this.historicoProntuarioFacade.recuperarAgendamento(agendamento.getId());
 		this.codigosDoencas = this.codigoDoencaFacade.recuperarTodas();
 		return SUCESSO_ATUALIZACAO_HISTORICO_PRONTUARIO;
