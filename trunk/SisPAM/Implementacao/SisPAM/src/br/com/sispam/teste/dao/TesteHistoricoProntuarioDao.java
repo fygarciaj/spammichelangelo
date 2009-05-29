@@ -64,4 +64,11 @@ public class TesteHistoricoProntuarioDao {
 		
 		
 	}
+	
+	@Test
+	public void carregaCodigosDoenca(){
+		CodigoDoencaDao codigoDoencaDao = new CodigoDoencaDao();		
+		List<CodigoDoenca> codigosDoencas = codigoDoencaDao.recuperarTodas();
+		System.out.println(codigosDoencas.size());
+	}
 }
