@@ -112,7 +112,7 @@
 			
 				<!-- Monta a url para carregar a edição do convênio -->
 				<s:url id="editarAgendamento" action="agendamentoAction!carregaEdicaoAgendamento.action">
-					<s:param name="convenio.id" value="%{id}"/>
+					<s:param name="agendamento.id" value="%{id}"/>
 				</s:url>
 					<!-- Monta a url para carregar a exclusão do convênio -->
 				<s:url id="excluirAgendamento" action="agendamentoAction!excluirAgendamento.action">
