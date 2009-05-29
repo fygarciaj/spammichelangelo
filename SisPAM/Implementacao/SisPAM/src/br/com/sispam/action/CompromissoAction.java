@@ -32,6 +32,7 @@ public class CompromissoAction extends Action{
 	/**
 	 * @descricao: Recebe os dados que vem da tela de inclusão de compromisso.
 	 * @return
+	 * @throws ParseException 
 	 */
 	public String incluirCompromisso(){
 		compromissoFacade = new CompromissoFacade();
@@ -42,27 +43,32 @@ public class CompromissoAction extends Action{
 			mapa.put("horaInicial", horaInicialAux);
 			mapa.put("horaFinal", horaFinalAux);
 			this.compromisso.setMedico(this.medicoFacade.recuperar(compromisso.getMedico().getId()));
-
-			//verifica se os campos são inteiros
-			compromissoFacade.verificaCampoInteiro(mapa);
-
+			
+			if(dataAux != null && !dataAux.equals("")){
+				try {
+					compromisso.setData(DataUtil.stringToDate(dataAux));
+				} catch (ParseException e) {
+					erros.put("campoInvalido", "Data inválida!");
+					apresentaErrors();
+					return FALHA_SALVAR_COMPROMISSO;
+				}
+			}
+			
+			//verifica se os campo obrigatorios foram preenchidos
+			compromissoFacade.validaCampos(compromisso);
+			
 			//seta os valores das variváveis auxiliares.
 			compromisso.setHoraInicial(Integer.parseInt(horaInicialAux));
 			compromisso.setHoraFinal(Integer.parseInt(horaFinalAux));
-			try {
-				compromisso.setData(DataUtil.stringToDate(dataAux));
-			} catch (ParseException e) {
-				erros.put("campoInvalido", "Data inválida!");
-				apresentaErrors();
-				return FALHA_SALVAR_COMPROMISSO;
-			}
+			
+			//verifica se os campos são inteiros
+			compromissoFacade.verificaCampoInteiro(mapa);
 
-			//verifica se os campo obrigatorios foram preenchidos
-			compromissoFacade.validaCampos(compromisso);
-
+			compromissoFacade.validaHora(compromisso);
+								
 			//verifica se já existe compromisso cadastrado com esses dados.
 			compromissoFacade.verificaExistencia(compromisso);
-
+			
 			compromissoFacade.salvaCompromisso(compromisso);
 			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
 
@@ -106,7 +112,6 @@ public class CompromissoAction extends Action{
 			this.compromisso.setData(new Date());
 			this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
 		}
-
 		return CARREGAR_CONSULTA_COMPROMISSO;
 	}
 
@@ -115,7 +120,7 @@ public class CompromissoAction extends Action{
 	 * @return
 	 */
 	public String excluirCompromisso(){
-
+		this.medicoFacade = new MedicoFacade();
 		this.compromissoFacade = new CompromissoFacade();		
 		try {
 			this.compromissoFacade.excluiCompromisso(this.compromisso);
@@ -124,7 +129,8 @@ public class CompromissoAction extends Action{
 			e.printStackTrace();					
 			return FALHA_EXCLUIR_COMPROMISSO;
 		}
-		apresentaMensagens();		
+		apresentaMensagens();
+		this.medicos = this.medicoFacade.recuperarTodos();
 		return FALHA_EXCLUIR_COMPROMISSO;
 	}
 
