@@ -11,7 +11,7 @@
 <body>
 
 <div id="tabs">
-<img src="img/simbolo.jpg" width="248px" align="left">
+<img src="img/simbolo.jpg" width="240px" align="left">
 <br>
 <s:url id="deslogar" action="loginAction!deslogar.action"/>
 <table width="750px">
