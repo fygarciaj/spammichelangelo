@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.CodigoDoenca;
 import br.com.sispam.dominio.HistoricoProntuario;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.CodigoDoencaFacade;
 import br.com.sispam.facade.HistoricoProntuarioFacade;
 import br.com.sispam.facade.MedicoFacade;
 
@@ -17,6 +19,8 @@ public class HistoricoProntuarioAction extends Action{
 	private HistoricoProntuarioFacade historicoProntuarioFacade;
 	private List<Agendamento> agendamentosCadastrados;
 	private MedicoFacade medicoFacade;
+	private List<CodigoDoenca> codigosDoencas;
+	private CodigoDoencaFacade codigoDoencaFacade;
 	
 	/**
 	 * @descricao: Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
@@ -34,7 +38,9 @@ public class HistoricoProntuarioAction extends Action{
 			this.agendamento.setStatus(StatusAgendamento.SOLICITADO.getCodigo());
 			this.agendamento.setData(new Date());
 			this.agendamentosCadastrados = this.historicoProntuarioFacade.recuperarAgendamentosDiaAtual(agendamento);
-			
+			if (agendamentosCadastrados.size() == 0){
+				erros.put("vazio", "Desculpe Dr., Sem agendamentos para atender!");
+			}
 		}
 		apresentaMensagens();
 		return CARREGAR_CONSULTA_AGENDAMENTO;
@@ -72,6 +78,7 @@ public class HistoricoProntuarioAction extends Action{
 	public String carregaAtualizacaoHistorico(){
 		this.historicoProntuarioFacade = new HistoricoProntuarioFacade();
 		this.agendamento = this.historicoProntuarioFacade.recuperarAgendamento(agendamento.getId());
+		this.codigosDoencas = this.codigoDoencaFacade.recuperarTodas();
 		return SUCESSO_ATUALIZACAO_HISTORICO_PRONTUARIO;
 	}
 

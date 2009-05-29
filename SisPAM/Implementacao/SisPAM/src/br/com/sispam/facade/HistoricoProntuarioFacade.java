@@ -39,8 +39,8 @@ public class HistoricoProntuarioFacade {
 			agendamento = agendamentoDao.recuperarAgendamento(agendamento.getId());
 			//Seta status do agendamento para CONCLUIDO
 			agendamento.setStatus(StatusAgendamento.CONCLUIDO.getCodigo());
-			agendamentoDao.incluirAgendamento(agendamento);
 			historicoProntuarioDao.atualizarHistorioProntuario(historicoProntuario);
+			agendamentoDao.incluirAgendamento(agendamento);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
