@@ -100,9 +100,8 @@
 				<td><s:textarea name="historicoProntuario.observacao" id="sintoma" theme="simple" cols="70" rows="5"/></td>
 			</tr>
 			<tr>
-				<td><label class="label">CID:</label></td>
-				<td colspan="3">
-				<s:select theme="simple" name="historicoProntuario.codigoDoenca.id" list="codigosDoencas" headerValue="--Selecione--" headerKey="0" listValue="codigoDoenca.abreviatura" listKey="id" />
+				<td><label class="label">CID:</label>				
+				<s:select theme="simple" name="historicoProntuario.codigoDoenca.id" list="codigosDoencas" headerValue="--Selecione--" headerKey="0" listValue="historicoProntuario.codigoDoenca.abreviatura" listKey="id" />
 				</td>
 			</tr>
 			<tr>				

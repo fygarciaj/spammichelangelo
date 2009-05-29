@@ -55,6 +55,7 @@ public class HistoricoProntuarioAction extends Action{
 		
 		try {
 			this.historicoProntuarioFacade = new HistoricoProntuarioFacade();
+			
 			//verifica campos obrigatorios
 			historicoProntuarioFacade.validaCampos(historicoProntuario);
 			
@@ -132,6 +133,23 @@ public class HistoricoProntuarioAction extends Action{
 	public void setMedicoFacade(MedicoFacade medicoFacade) {
 		this.medicoFacade = medicoFacade;
 	}
+
+	public List<CodigoDoenca> getCodigosDoencas() {
+		return codigosDoencas;
+	}
+
+	public void setCodigosDoencas(List<CodigoDoenca> codigosDoencas) {
+		this.codigosDoencas = codigosDoencas;
+	}
+
+	public CodigoDoencaFacade getCodigoDoencaFacade() {
+		return codigoDoencaFacade;
+	}
+
+	public void setCodigoDoencaFacade(CodigoDoencaFacade codigoDoencaFacade) {
+		this.codigoDoencaFacade = codigoDoencaFacade;
+	}
+	
 	
 	
 }
