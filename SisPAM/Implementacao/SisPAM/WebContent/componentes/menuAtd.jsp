@@ -15,6 +15,7 @@
 				document.getElementById("menuReceita").style.display = 'none';
 				document.getElementById("menuHistoricoProntuario").style.display = 'none';
 				document.getElementById("menuAgendamento").style.display = 'none';
+				document.getElementById("menuConsultaRealizados").style.display = 'none';
 				}
 			break;
 		case "agendamento":
@@ -27,9 +28,23 @@
 				document.getElementById("menuReceita").style.display = 'none';
 				document.getElementById("menuHistoricoProntuario").style.display = 'none';
 				document.getElementById("menuAgendaMedica").style.display = 'none';
+				document.getElementById("menuConsultaRealizados").style.display = 'none';
 				}
 			break;
 
+		case "consultaRealizados":
+			var div = document.getElementById("menuConsultaRealizados"); 
+			if(div.style.display == 'block'){
+				div.style.display = 'none';
+			}
+			else{
+				div.style.display = 'block'
+		        document.getElementById("menuAgendaMedica").style.display = 'none';
+				document.getElementById("menuReceita").style.display = 'none';
+				document.getElementById("menuAgendamento").style.display = 'none';
+				document.getElementById("menuHistoricoProntuario").style.display = 'none';
+				}
+			break;
 						
 		case "historicoProntuario":
 			var div = document.getElementById("menuHistoricoProntuario"); 
@@ -41,6 +56,7 @@
 		        document.getElementById("menuAgendaMedica").style.display = 'none';
 				document.getElementById("menuReceita").style.display = 'none';
 				document.getElementById("menuAgendamento").style.display = 'none';
+				document.getElementById("menuConsultaRealizados").style.display = 'none';
 				}
 			break;
 		case "receita":
@@ -53,6 +69,7 @@
 		        document.getElementById("menuAgendaMedica").style.display = 'none';
 				document.getElementById("menuHistoricoProntuario").style.display = 'none';
 				document.getElementById("menuAgendamento").style.display = 'none';
+				document.getElementById("menuConsultaRealizados").style.display = 'none';
 				}
 			break;
 		default:
@@ -67,7 +84,7 @@
 <body>
 <div id="menu">
 <ul>
-	<li><a href="javaScript:void(0)" onclick="selecionaMenu('agendaMedica')" title="Mantem Compromissos Médicos"
+	<li><a href="javaScript:void(0)" onclick="selecionaMenu('agendaMedica')" title="Manter Agenda Médica"
 		target="CENTRAL">AGENDA MÉDICA</a>
 	<div id="menuAgendaMedica" style="display: none">
 	<ul id="subMenu">
@@ -76,7 +93,7 @@
 	</ul>
 	</div>
 	</li>
-	<li><a href="javaScript:void(0)" onclick="selecionaMenu('agendamento')" title="Mantem Compromissos Médicos"
+	<li><a href="javaScript:void(0)" onclick="selecionaMenu('agendamento')" title="Manter Agendamento"
 		target="CENTRAL">AGENDAMENTO</a>
 	<div id="menuAgendamento" style="display: none">
 	<ul id="subMenu">
@@ -85,7 +102,15 @@
 	</ul>
 	</div>
 	</li>
-	<li><a href="javaScript:void(0)" onclick="selecionaMenu('historicoProntuario')" title="Mantem Compromissos Médicos"
+	<li><a href="javaScript:void(0)" onclick="selecionaMenu('consultaRealizados')" title="Consulta Agendamento Realizado"
+		target="CENTRAL">CONSULTA REALIZADO</a>
+	<div id="menuConsultaRealizados" style="display: none">
+	<ul id="subMenu">
+		<li><a href="../consultaAgendamentoRealizado/consulta-agendamentoRealizado.jsp" title="Consultar" target="CENTRAL">Consultar</a></li>
+	</ul>
+	</div>
+	</li>
+	<li><a href="javaScript:void(0)" onclick="selecionaMenu('historicoProntuario')" title="Atualizar Histórico de Prontuário"
 		target="CENTRAL">HISTÓRICO PRONTUÁRIO</a>
 	<div id="menuHistoricoProntuario" style="display: none">
 	<ul id="subMenu">
