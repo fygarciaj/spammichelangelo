@@ -1,6 +1,6 @@
 
 -- ------------------------------------------------------------
--- Tabela de Especialidade MÈdica
+-- Tabela de Especialidade M√©dica
 -- ------------------------------------------------------------
 
 CREATE SEQUENCE especialidademedica_emdcod_seq;
@@ -16,7 +16,7 @@ ALTER TABLE especialidademedica
 CREATE INDEX emdB ON especialidademedica (emddes);
 
 -- ------------------------------------------------------------
--- Tabela de ConvÍnio
+-- Tabela de Conv√™nio
 -- ------------------------------------------------------------
 
 CREATE SEQUENCE convenio_cvncod_seq;
@@ -43,7 +43,7 @@ CREATE INDEX cvnB ON convenio (cvndes);
 
 CREATE INDEX cvnC ON convenio (cvncpj);
 -- ------------------------------------------------------------
--- Tabela de Usu·rio
+-- Tabela de Usu√°rio
 -- ------------------------------------------------------------
 
 CREATE SEQUENCE usuario_usrcod_seq;
@@ -66,6 +66,7 @@ CREATE TABLE usuario (
   usrsen VARCHAR(32) NULL,
   usrpfl NUMERIC(1) NOT NULL,
   usrdatnsc DATE NULL
+
 );
 
 ALTER TABLE usuario
@@ -74,7 +75,7 @@ ALTER TABLE usuario
 CREATE INDEX usrB ON usuario (usrnom);
 CREATE INDEX usrC ON usuario (usracs);
 -- ------------------------------------------------------------
--- Tabela de Par‚metro
+-- Tabela de Par√¢metro
 -- ------------------------------------------------------------
 
 CREATE SEQUENCE parametro_pmtcod_seq;
@@ -93,7 +94,7 @@ ALTER TABLE parametro
 CREATE INDEX pmtB ON parametro (pmtdes);
 
 -- ------------------------------------------------------------
--- Tabela de Codigos Internacionais de DoenÁas
+-- Tabela de Codigos Internacionais de Doen√ßas
 -- ------------------------------------------------------------
 
 CREATE SEQUENCE codigodoenca_cidcod_seq;
@@ -121,14 +122,19 @@ CREATE SEQUENCE auditoria_adtcod_seq;
 CREATE TABLE auditoria (
   adtcod NUMERIC(12) NOT NULL DEFAULT NEXTVAL('auditoria_adtcod_seq'),
   adtdatref TIMESTAMP NULL,
-  adtip VARCHAR(15) NULL
+  adtact VARCHAR(50) NULL,
+  usrcod INTEGER  NOT NULL
 );
 
 ALTER TABLE auditoria
    ADD CONSTRAINT adtA PRIMARY KEY(adtcod);
+   
+ALTER TABLE auditoria
+   ADD CONSTRAINT FK_auditoria_USUARIO FOREIGN KEY (usrcod)
+                          REFERENCES USUARIO (usrcod);
 
 -- ------------------------------------------------------------
--- Tabela de MÈdico
+-- Tabela de M√©dico
 -- ------------------------------------------------------------
 
 CREATE SEQUENCE medico_mdccod_seq;
@@ -256,7 +262,7 @@ ALTER TABLE agendamento
                           REFERENCES ESPECIALIDADEMEDICA (emdcod);
 
 -- ------------------------------------------------------------
--- Tabela de Historico de Prontu·rio
+-- Tabela de Historico de Prontu√°rio
 -- ------------------------------------------------------------
 
 CREATE SEQUENCE historicoprontuario_htccod_seq;
@@ -282,4 +288,5 @@ ALTER TABLE historicoprontuario
 ALTER TABLE historicoprontuario
    ADD CONSTRAINT FK_historicoprontuario_PACIENTE FOREIGN KEY (pctidfseg)
                           REFERENCES PACIENTE (pctidfseg);
+
 
