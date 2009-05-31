@@ -87,7 +87,7 @@
 				</td>
 					<td align="center">
 					<s:a href="%{#atualizarProntuario}">
-						<img src="../componentes/img/editar.png" alt="Alterar" />
+						<img src="../componentes/img/prancheta.gif" alt="Alterar" height="27px" width="27px"/>
 					</s:a>
 				</td>			
 			</tr>

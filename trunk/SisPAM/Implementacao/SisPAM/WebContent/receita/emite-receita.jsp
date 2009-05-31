@@ -96,7 +96,7 @@
 				</td>
 					<td align="center">
 					<s:a href="%{#emitirReceita}">
-						<img src="../componentes/img/editar.png" alt="emitir receita" />
+						<img src="../componentes/img/relatorio.gif" alt="emitir receita" height="27px" width="27px"/>
 					</s:a>
 				</td>			
 			</tr>

@@ -36,7 +36,6 @@ hr {
 #tabs {
 	float:left;
 	width:1430px;
-	
 	font-size:95%;
 	line-height:inherit;
 	border-bottom:0 solid #BCD2E6;
@@ -49,10 +48,12 @@ hr {
 	}
 #tabs li {
 	display:inline;
+	
 	margin:0;
 	padding:1px;
 	}
-#tabs a {
+	
+.link{
 	float:left;
 	background:url("../componentes/img/tableft.gif") no-repeat left top;
 	margin:0px;

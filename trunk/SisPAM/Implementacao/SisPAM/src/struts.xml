@@ -49,7 +49,7 @@
 		<action name="loginAction!*" method="{1}" class="br.com.sispam.action.LoginAction">
 			<result name="sucesso">index.jsp</result>
 			<result name="falha">login.jsp</result>
-			<result name="sucessoDeslogar">../remote.jsp</result>
+			<result name="sucessoDeslogar">../login.jsp</result>
 		</action>
 		
 			<!-- Medico Action -->
@@ -98,7 +98,10 @@
 			<result name="falhaExcluirCompromisso">/compromisso/consulta-compromisso.jsp</result>
 			<result name="listarCompromissos">/compromisso/consulta-compromisso.jsp</result>
 			<result name="carregarInclusaoCompromisso">/compromisso/inclui-compromisso.jsp</result>
-			<result name="carregarConsultaCompromisso">/compromisso/consulta-compromisso.jsp</result>
+			<result name="carregarConsultaCompromisso" type="chain">
+				<param name="actionName">compromissoAction</param>
+				<param name="method">carregarConsulta</param>
+			</result>
 		</action>
 		
 		<!--HistoricoProntuario Action-->
