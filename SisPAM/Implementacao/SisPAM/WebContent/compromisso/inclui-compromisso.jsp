@@ -40,8 +40,13 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Atendimento <img src="../componentes/img/seta.gif"/> Agenda Médica <img
-			src="../componentes/img/seta.gif" /> Incluir</div>
+		<div>Atendimento <img src="../componentes/img/seta.gif" />
+		Agenda Médica <img src="../componentes/img/seta.gif" /> 
+		<s:if test="compromisso.id > 0">
+    		Alterar
+    	</s:if> <s:else>
+			Incluir
+		</s:else></div>
 		</td>
 	</tr>
 </table>
@@ -71,14 +76,8 @@
 				</tr>
 				<tr>
 					<td><label class="label">Tipo de Evento:</label></td>
-					<td><select name="compromisso.tipo">
-						<option value=0>Selecione</option>
-						<option value="Consulta">Consulta</option>
-						<option value="Cirurgia">Cirurgia</option>
-						<option value="Reunião">Reunião</option>
-						<option value="Palestra">Palestra</option>
-						<option value="Seminário">Seminário</option>
-					</select></td>
+						<td><s:select headerKey="0" headerValue="--Selecione--" list = "tipoCompromisso" name="compromisso.tipo" listKey="codigo" theme ="simple"/>
+					</td>
 				</tr>
 				<tr>
 					<td><label class="label">Data:</label></td>
@@ -99,7 +98,14 @@
 			</table>
 		<table border="0" align="center">
 		<tr>
-			<td align="center"><br><input type="submit" value="Incluir" class="button"><br></td>		
+			<td align="center">
+				<s:if test="compromisso.id > 0">
+					<input type="submit" tabindex="1" name="confirmarAction" value="Alterar" class="button"><br>
+				</s:if>
+				<s:else>
+					<br><input type="submit" value="Incluir" class="button"><br>		
+				</s:else>
+			</td>
 		</tr>
 		</table>
 			</td>

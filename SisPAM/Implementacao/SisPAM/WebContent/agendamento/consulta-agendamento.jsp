@@ -77,7 +77,7 @@
 	<!-- Lista dos últimos convênios cadastrados -->
 	<s:if test="agendamentos != null && agendamentos.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
 			<th colspan="8" class="principal style2" scope="col">Agendamentos do dia&nbsp;<s:property value="agendamentoRetornado"/></th>
 		</tr>

@@ -10,6 +10,7 @@ import java.util.Map;
 import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.enums.Perfil;
+import br.com.sispam.enums.TipoCompromisso;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.CompromissoFacade;
@@ -27,6 +28,7 @@ public class CompromissoAction extends Action{
 	private String horaInicialAux;
 	private String horaFinalAux;
 	private String dataAux;
+	private TipoCompromisso[] tipoCompromisso = TipoCompromisso.values();
 
 
 	/**
@@ -141,6 +143,7 @@ public class CompromissoAction extends Action{
 	public String consultarCompromisso(){
 		compromissoFacade= new CompromissoFacade();
 		this.medicoFacade = new MedicoFacade();
+		
 		try {
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
@@ -220,4 +223,14 @@ public class CompromissoAction extends Action{
 	public void setDataAux(String dataAux) {
 		this.dataAux = dataAux;
 	}
+
+	public TipoCompromisso[] getTipoCompromisso() {
+		return tipoCompromisso;
+	}
+
+	public void setTipoCompromisso(TipoCompromisso[] tipoCompromisso) {
+		this.tipoCompromisso = tipoCompromisso;
+	}
+	
+	
 }

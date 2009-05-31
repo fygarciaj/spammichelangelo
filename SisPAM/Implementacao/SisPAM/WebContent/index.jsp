@@ -14,5 +14,4 @@
         <FRAME SRC="componentes/defaut.jsp" NAME=CENTRAL noresize="noresize">
      </FRAMESET>
 	</FRAMESET>
-
 </html>

@@ -62,7 +62,7 @@
 					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--Selecione--" headerKey="0" listValue="usuario.nome" listKey="id"/>
 					</td>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple"  name="compromisso.data" id="data" size="10" maxlength="10"/>&nbsp;</td>
+					<td><s:textfield theme="simple"  name="compromisso.data" id="data" size="10" maxlength="10" format = "dd/MM/yyyy"/>&nbsp;</td>
 					<td><input type="submit" value="Consultar" class="button"></td>
 				</tr>
 			</table>
@@ -98,7 +98,7 @@
 
 		
 		<s:iterator value="compromissosCadastrados" status="status">
-			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
+			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>" >
 				<!-- Monta a url para carregar a edição do compromisso -->
 				<s:url id="editarCompromisso" action="compromissoAction!carregaEdicaoCompromisso.action">
 					<s:param name="compromisso.id" value="%{id}"/>
@@ -113,8 +113,8 @@
 				<td align="center">
 					<s:property value="horaFinal"/>
 				</td>
-				<td>
-					<s:property value="tipo"/>
+				<td align="center">
+					<s:property value="tipoCompromisso"/>
 				</td>
 				<td>
 					<s:property value="descricao"/>
