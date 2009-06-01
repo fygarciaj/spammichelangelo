@@ -18,22 +18,9 @@
 <script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
 <link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
-<link rel="Stylesheet" media="screen" href="../componentes/js/jquery/css/jquery-ui.core-1.7.1.css" />
-<link rel="Stylesheet" media="screen" href="componentes/js/jquery/css/jquery-ui.core-1.7.1.css" />
-<link rel="Stylesheet" media="screen" href="../componentes/js/jquery/css/jquery.timepickr.css" />
-<link rel="Stylesheet" media="screen" href="componentes/js/jquery/css/jquery.timepickr.css" />
-<script type="text/javascript" src="../componentes/js/jquery/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="componentes/js/jquery/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../componentes/js/jquery/jquery.utils.js"></script>
-<script type="text/javascript" src="componentes/js/jquery/jquery.utils.js"></script>
-<script type="text/javascript" src="../componentes/js/jquery/jquery.strings.js"></script>
-<script type="text/javascript" src="componentes/js/jquery/jquery.strings.js"></script>         
-<script type="text/javascript" src="../componentes/js/jquery/jquery.ui.all.js"></script>
-<script type="text/javascript" src="componentes/js/jquery/jquery.ui.all.js"></script>
-<script type="text/javascript" src="../componentes/js/jquery/ui.dropslide.js"></script>
-<script type="text/javascript" src="componentes/js/jquery/ui.dropslide.js"></script>
-<script type="text/javascript" src="../componentes/js/jquery/ui.timepickr.js"></script>
-<script type="text/javascript" src="componentes/js/jquery/ui.timepickr.js"></script>
+<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>  
+
 <title>Insert title here</title>
 
 
@@ -52,30 +39,14 @@
 							 gotoCurrent: true
 				 });
 			}
-      $(function(){
-	      //marque a covnersão de horário (12 ou 24)
-              $('#hor').timepickr({convention:24});             
-              // temporary fix..
-              //$('.ui-dropslide ol:eq(0) li:first').mouseover();
-              // apply theme              
-              $('#hor').next().addClass('dark');
-            });
-  </script>
 
-	  <style type="text/css">
-	    .dark li.ui-timepickr span {
-		background:#333	 url('images/btn-hover.png') repeat-x!important;
-		font-family:monospace;
-		font-size:80%;
-		font-weight:bold;
-		color:#ccc!important;
-	    }
-	    .dark li.ui-timepickr.hover span {
-		background:#3679AE url('images/btn-hover.png') repeat-x!important;
-		border: #fff 1px solid;
-		color:#fff!important;
-	    }
-	</style>
+	  $(document).ready(
+  			function(){
+  			  $(".horario").mask("99:99");	
+  			}
+  		      );
+    </script>
+
 </head>
 <body>
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -101,7 +72,7 @@
 				<td><label class="label">Tipo</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="tipoAgendamento" name="agendamento.tipo" listKey="codigo" theme="simple"/></td>
 				<td><label class="label">Data</label>&nbsp;&nbsp;<s:textfield theme="simple" name="dataAgendamento" size="12" id="data"/></td>
 				<td><label class="label">Horário</label>&nbsp;&nbsp;
-					<s:textfield id="hor" theme="simple" name="horario" size="10" maxlength="5"/>
+					<s:textfield id="hor" theme="simple" name="horario" cssClass="horario" size="10" maxlength="5"/>
 					</td>
 				<td><label class="label">Paciente</label>&nbsp;&nbsp;<s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.paciente.id" listValue="usuario.nome" theme="simple"/></td>
 			</tr>
