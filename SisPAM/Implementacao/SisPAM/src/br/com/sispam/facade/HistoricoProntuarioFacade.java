@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import br.com.sispam.dao.AgendamentoDao;
+import br.com.sispam.dao.CodigoDoencaDao;
 import br.com.sispam.dao.HistoricoProntuarioDao;
 import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.HistoricoProntuario;
@@ -35,11 +36,13 @@ public class HistoricoProntuarioFacade {
 		try{
 			historicoProntuarioDao = new HistoricoProntuarioDao();					
 			agendamentoDao = new AgendamentoDao();
-			
+			CodigoDoencaDao codigoDoencaDao = new CodigoDoencaDao();
 			agendamento = agendamentoDao.recuperarAgendamento(agendamento.getId());
+			historicoProntuario.setCodigoDoenca(codigoDoencaDao.recuperarCodigoDoenca(historicoProntuario.getCodigoDoenca().getId()));
+			historicoProntuarioDao.atualizarHistorioProntuario(historicoProntuario);
+
 			//Seta status do agendamento para CONCLUIDO
 			agendamento.setStatus(StatusAgendamento.CONCLUIDO.getCodigo());
-			historicoProntuarioDao.atualizarHistorioProntuario(historicoProntuario);
 			agendamentoDao.incluirAgendamento(agendamento);
 		}catch(Exception e){
 			e.printStackTrace();

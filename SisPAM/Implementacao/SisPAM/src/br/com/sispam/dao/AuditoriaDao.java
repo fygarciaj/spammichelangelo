@@ -16,7 +16,7 @@ public class AuditoriaDao {
 	 */
 	public void gravaAuditoria(Auditoria auditoria){		
 		
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		
@@ -30,6 +30,5 @@ public class AuditoriaDao {
 		}
 		
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
 	}
 }

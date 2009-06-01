@@ -64,7 +64,8 @@ public class HistoricoProntuarioAction extends Action{
 		} catch (CampoInvalidoException e) {			
 			erros.put("campoInvalido", e.getMessage());
 			apresentaErrors();
-			return FALHA_ATUALIZAR_HISTORICO_PRONTUARIO;
+			this.agendamento.setId(this.agendamento.getId());
+			return carregaAtualizacaoHistorico();
 		}
 		
 	
@@ -133,6 +134,8 @@ public class HistoricoProntuarioAction extends Action{
 	public void setMedicoFacade(MedicoFacade medicoFacade) {
 		this.medicoFacade = medicoFacade;
 	}
+
+
 
 	public List<CodigoDoenca> getCodigosDoencas() {
 		return codigosDoencas;

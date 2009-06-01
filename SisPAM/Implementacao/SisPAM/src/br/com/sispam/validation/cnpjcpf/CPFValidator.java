@@ -45,7 +45,6 @@ public class CPFValidator extends Validator
 		CPFValidator validator = (CPFValidator) ValidatorFactory.getInstance()
 		.getValidator(IValidation.VALIDATOR_CPF);
 		validator.setCpf("28391900100");
-		
-		System.out.println(validator.isValid());
+
 	}
 }

@@ -22,7 +22,7 @@ public class PacienteDao {
 	 * @return
 	 */
 	public Paciente salvar(Paciente paciente){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 
 		this.manager.getTransaction().begin();
@@ -33,7 +33,6 @@ public class PacienteDao {
 			this.manager.persist(paciente);
 		}
 		this.manager.getTransaction().commit();
-		this.conexao.finalizaConexao();
 		return paciente;
 	}
 
@@ -44,7 +43,7 @@ public class PacienteDao {
 	 */
 	public Paciente recuperarPeloId(int id){
 		Paciente paciente = null;
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		paciente = this.manager.find(Paciente.class, id);
 		return paciente;
@@ -56,7 +55,7 @@ public class PacienteDao {
 	 * @return
 	 */
 	public List<Paciente> recuperaTodosPaciente(Convenio convenio){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		Query query = this.manager.createQuery("from Paciente where convenio.id = :idConvenio");
 		query.setParameter("idConvenio", convenio.getId());
@@ -68,7 +67,7 @@ public class PacienteDao {
 	 * @return
 	 */
 	public List<Paciente> recuperaUltimosCadastrados(){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		List<Paciente> lista = null;
 		try{
@@ -87,7 +86,7 @@ public class PacienteDao {
 	 * @return
 	 */
 	public Paciente recuperarPeloCpf(String cpf){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		Paciente paciente = null;
 		try{
@@ -107,7 +106,7 @@ public class PacienteDao {
 	 * @return
 	 */
 	public List<Paciente> recuperarPeloNome(String nome){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		List<Paciente> pacientes = null;
 		try{
@@ -126,7 +125,7 @@ public class PacienteDao {
 	 * @return
 	 */
 	public List<Paciente> recuperarTodos(){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		List<Paciente> pacientes = null;
 		try{
@@ -145,7 +144,7 @@ public class PacienteDao {
 	 * @param paciente
 	 */
 	public void removerPaciente(Paciente paciente){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		this.manager.getTransaction().begin();
 		paciente = this.manager.merge(paciente);

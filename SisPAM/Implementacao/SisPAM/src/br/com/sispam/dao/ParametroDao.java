@@ -21,7 +21,7 @@ public class ParametroDao {
 	 * @return
 	 */
 	public List<Parametro> recuperarTodos(){
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = conexao.getEntityManger();
 		List<Parametro> parametros = null;
 		try{

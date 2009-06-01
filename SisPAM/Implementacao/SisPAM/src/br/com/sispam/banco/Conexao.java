@@ -8,6 +8,7 @@ public class Conexao {
 
 	private EntityManagerFactory factory;
 	private EntityManager manager;
+	private static Conexao conexao;
 
 	/**
 	 * Cria a conexão com o banco de dados
@@ -21,16 +22,18 @@ public class Conexao {
 		return this.manager;
 	}
 
-	/**
-	 * Finaliza a conexão com o banco de dados.
-	 */
-	public void finalizaConexao(){
-//		if(this.factory != null){
-//			this.factory.close();
-//		}
-//		if(this.manager != null){
-//			this.manager.close();
-//		}
+	public static Conexao getConexao(){
+		if(conexao == null){
+			conexao = new Conexao();
+			return conexao;
+		}else{
+			return conexao;
+		}
+
+	}
+
+	private Conexao(){
+		
 	}
 
 }

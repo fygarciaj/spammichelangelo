@@ -22,7 +22,7 @@ public class ConvenioDao {
 	 */
 	public void incluirConvenio(Convenio convenio){		
 		
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		
@@ -36,7 +36,7 @@ public class ConvenioDao {
 		}
 		
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
+
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class ConvenioDao {
 	 */
 	public void excluirConvenio(String cnpj) throws EntityExistsException{
 				
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
@@ -60,7 +60,7 @@ public class ConvenioDao {
 			e.printStackTrace();
 			throw new EntityExistsException("Atenção! Pacientes vinculados a esse convênio, não permitindo a sua exclusao.");
 		}
-		conexao.finalizaConexao();
+	
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public Convenio recuperarPeloId(int id){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Convenio.class, id);
 	}
@@ -80,7 +80,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public Convenio consultarConvenioPorCnpj(String cnpj){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		Convenio convenio = null;
 		try{
@@ -92,7 +92,6 @@ public class ConvenioDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();		
 		return convenio;
 	}
 	
@@ -102,7 +101,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public List<Convenio> consultarConvenioPorDescricao(String nome){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Convenio> convenios = null;
 		try{
@@ -115,7 +114,6 @@ public class ConvenioDao {
 			e.printStackTrace();
 			e.getMessage();
 		}
-		conexao.finalizaConexao();		
 		return convenios;
 	}	
 	
@@ -124,7 +122,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public List<Convenio> recuperarUltimosCadastrados() {
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Convenio> lista = null;
 		try{
@@ -134,7 +132,6 @@ public class ConvenioDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
 		return lista;
 	}
 	
@@ -143,7 +140,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public List<Convenio> recuperarTodos(){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Convenio> convenios = null;
 		try{
@@ -152,7 +149,6 @@ public class ConvenioDao {
 		}catch (NoResultException e) {
 			convenios = null;
 		}
-		conexao.finalizaConexao();
 		return convenios;
 	}
 }

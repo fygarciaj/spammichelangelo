@@ -23,6 +23,7 @@
 
 
 <form action="../relatorioConvenio.sispam" method="post">
+		<input type="hidden" name="relatorioChamado" value="convenio"/>
 		<table class="tabela_moldura" >
 			<tr>			
         	<td><label class="label">Tipo de Relatório</label>

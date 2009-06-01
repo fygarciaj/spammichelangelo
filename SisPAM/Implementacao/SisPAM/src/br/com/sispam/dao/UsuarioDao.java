@@ -20,7 +20,7 @@ public class UsuarioDao {
 	 * @param usuario
 	 */
 	public Usuario salvarUsuario(Usuario usuario){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 
 		manager.getTransaction().begin();
@@ -34,7 +34,7 @@ public class UsuarioDao {
 		}
 
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
+		
 		return usuario;
 	}
 
@@ -43,14 +43,14 @@ public class UsuarioDao {
 	 * @param perfil
 	 */
 	public List<Usuario> recuperaLista(Perfil perfil){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		//cria uma queri para fazer a busca pelo perfil
 		Query query = manager.createQuery("from Usuario u where u.perfil = :perfil ");
 		//seta o parametro
 		query.setParameter("perfil", perfil);
 		List<Usuario> lista = query.getResultList();
-		conexao.finalizaConexao();
+		
 		return lista;
 	}
 
@@ -59,13 +59,13 @@ public class UsuarioDao {
 	 * @param usuario
 	 */
 	public void removerUsuario(Usuario usuario){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		usuario = manager.merge(usuario);
 		manager.remove(usuario);
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
+		
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public Usuario recuperarPeloId(int id){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Usuario.class, id);
 	}
@@ -85,7 +85,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public Usuario recupera(String cpf){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 		try{
@@ -97,7 +97,7 @@ public class UsuarioDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		
 		return usuario;
 	}
 
@@ -108,7 +108,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public List<Usuario> recuperaPeloNome(String nome, int codigoPerfil){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Usuario> lista = null;
 		try{
@@ -121,7 +121,7 @@ public class UsuarioDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		
 		return lista;
 	}
 
@@ -130,7 +130,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public List<Usuario> recuperarUltimosCadastrados(int codigoPerfil) {
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Usuario> lista = null;
 		try{
@@ -141,7 +141,7 @@ public class UsuarioDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		
 		return lista;
 	}
 	
@@ -149,7 +149,7 @@ public class UsuarioDao {
 	 * remove todos usuários para testes.
 	 */
 	public void removerTodosTeste() {
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
@@ -167,7 +167,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public Usuario recuperaPeloLogin(String acesso) {
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 		try{
@@ -179,7 +179,7 @@ public class UsuarioDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		
 		return usuario;
 	}
 

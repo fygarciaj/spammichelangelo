@@ -10,6 +10,24 @@
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 	<title>Insert title here</title>
+	
+	<script type="text/javascript">
+
+		function emiteReceita(){
+			var paciente = document.getElementById("paciente");
+			var hora = document.getElementById("hora");
+			var data = document.getElementById("data");
+		
+			document.getElementById("pacienteForm").value = paciente.value;
+			document.getElementById("horaForm").value = hora.value;
+			document.getElementById("dataForm").value= data.value;
+
+			document.forms[1].submit();
+
+		}
+		
+	
+	</script>
 </head>
 <body>
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -72,11 +90,10 @@
 		</tr>
 		<s:iterator value="agendamentosCadastrados" status="status">
 			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
-			
-				<!-- Monta a url para carregar a atualizacao de prontuario -->
-				<s:url id="emitirReceita" action="../relatorioConvenio.sispam" method="post">
-					<s:param name="agendamento.id" value="%{id}"/>
-				</s:url>					
+				<s:hidden name="agendamento.paciente.id" value="%{paciente.id}" id="paciente"/>
+				<s:hidden name="hora" value="%{hora}" id="hora"/>
+				<s:hidden name="data" value="%{data}" id="data"/>
+		
 				<td>
 					<s:property value="paciente.usuario.nome" />
 				</td>
@@ -95,13 +112,17 @@
 					<s:property value="especialidadeMedica.descricao"/>
 				</td>
 					<td align="center">
-					<s:a href="%{#emitirReceita}">
-						<img src="../componentes/img/relatorio.gif" alt="emitir receita" height="27px" width="27px"/>
-					</s:a>
+					<a href="#" onclick="emiteReceita()"><img src="../componentes/img/relatorio.gif" alt="emitir receita" height="27px" width="27px"/></a>
 				</td>			
 			</tr>
 		</s:iterator>	
 	</table>
-	</s:if>		
+	</s:if>	
+	<form action="../emiteReceita.sispam" method="post" name="relatorio">
+		<input type="hidden" name="paciente" id="pacienteForm"/>
+		<input type="hidden" name="hora" id="horaForm">
+		<input type="hidden" name="data" id="dataForm">
+		<input type="hidden" name="relatorioChamado" value="receita">
+	</form>	
 </body>
 </html>
