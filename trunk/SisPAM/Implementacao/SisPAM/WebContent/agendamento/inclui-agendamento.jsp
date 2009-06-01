@@ -82,27 +82,32 @@
 	<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
 	<s:actionmessage theme="simple" cssClass="sucessMessage" />
 	
-	<table border="0" width="80%" class="tabela_moldura" cellpadding="3" cellspacing="4">
+	<table border="0" class="tabela_moldura" cellpadding="3" cellspacing="4">
 		<tr>
 			<td><label class="label">Agendamento por:</label></td>
 			<s:form action="agendamentoAction!definirTipo.action" theme="simple">
 				<td>
 					<s:radio list="#{'med':'Médico', 'esp':'Especialidade'}" name="tipo" theme="simple" onclick="definirTipo()"/>
-			</td>
+				</td>
 			</s:form>
 			<td>
 			<s:form action="agendamentoAction!preparaInclusao.action" theme="simple">
 				<s:hidden name="tipo" value="%{tipo}"/>
 				<s:if test="tipo.equals('med')">
-					<label class="label">Médico:</label>&nbsp;&nbsp;<s:select list="medicos" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.medico.id" listValue="usuario.nome" theme="simple" onchange="preparaInclusao()"/>
+					<tr>
+					<td><label class="label">Médico:</label></td><td><s:select list="medicos" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.medico.id" listValue="usuario.nome" theme="simple" onchange="preparaInclusao()"/></td>
+					</tr>
 				</s:if>
 				<s:elseif test="tipo.equals('esp')">
-					<label class="label">Especialidades:</label>&nbsp;&nbsp;<s:select list="especialidades" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.especialidadeMedica.id" id="especialidade1" listValue="descricao" theme="simple" onchange="preparaInclusao()"/>
+					<tr>	
+					<td><label class="label">Especialidades:</label></td><td><s:select list="especialidades" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.especialidadeMedica.id" id="especialidade1" listValue="descricao" theme="simple" onchange="preparaInclusao()"/></td>
+					</tr>
 				</s:elseif>
 			</s:form>
 			</td>
 			<s:if test="medico != null">
-				<td><label class="label">Especialidades do Dr.&nbsp;&nbsp;<s:property value="medico.usuario.nome"/></label>&nbsp;<s:select headerKey="0" headerValue="--Selecione--" list="medico.especialidades" id="especialidade" theme="simple" name="agendamento.especialidadeMedica.id" listKey="id" listValue="descricao" /></td>
+				<td><label class="label">Especialidades do Dr.</td><td><s:property value="medico.usuario.nome"/></label></td>
+				<td><s:select headerKey="0" headerValue="--Selecione--" list="medico.especialidades" id="especialidade" theme="simple" name="agendamento.especialidadeMedica.id" listKey="id" listValue="descricao" /></td>
 			</s:if>
 			<s:elseif test="especialidadeMedica != null">
 				<s:form action="agendamentoAction!preparaInclusao.action" theme="simple">
@@ -112,14 +117,13 @@
 				</s:form>
 			</s:elseif>
 		</tr>
-		</table>
-		
+		</table>		
 	<s:if test="isAgenda > 0">
-		<table  class="tabela_listagem" width="40%" >
+		<table  class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
-				<th width="50%" bgcolor="#A7C2DA" scope="col"><span
+				<th bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Dias de Trabalho</span></th>
-				<th width="50%" bgcolor="#A7C2DA" scope="col"><span
+				<th bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Horário de Trabalho</span></th>
 			</tr>
 			<tr>
@@ -133,8 +137,7 @@
 				</td>
 			</tr>
 		</table>
-	</s:if>
-	
+	</s:if>	
 <s:if test="formulario == true">
 	<s:form action="agendamentoAction!salvarAgendamento.action" theme="simple">	
 		<s:hidden name="agendamento.medico.id" value="%{agendamento.medico.id}"/>
@@ -142,24 +145,26 @@
 		<s:hidden id="espM" name="agendamento.especialidadeMedica.id" value="%{agendamento.especialidadeMedica.id}"/>	
 		<table  border="0"  class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
-				<td><label class="label">Tipo</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="tipoAgendamento" name="agendamento.tipo" listKey="codigo" theme="simple"/></td>
-				<td><label class="label">Data</label>&nbsp;&nbsp;<s:textfield theme="simple" name="dataAgendamento" size="12" id="data"/></td>
-				<td><label class="label">Horário</label>&nbsp;&nbsp;<s:textfield id="hor" cssClass="horario" theme="simple" name="horario" size="10" maxlength="5"/></td>
+				<td><label class="label">Tipo</label>&nbsp;&nbsp;<s:select headerKey="0" headerValue="--Selecione--" list="tipoAgendamento" name="agendamento.tipo" listKey="codigo" theme="simple"/>
+				<label class="label">Data</label>&nbsp;&nbsp;<s:textfield theme="simple" name="dataAgendamento" size="12" id="data"/>
+				<label class="label">Horário</label>&nbsp;&nbsp;<s:textfield id="hor" cssClass="horario" theme="simple" name="horario" size="10" maxlength="5"/></td>				
+			</tr>
+				<tr>
 				<td><label class="label">Paciente</label>&nbsp;&nbsp;<s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.paciente.id" listValue="usuario.nome" theme="simple"/></td>
-			</tr>
+				</tr>
 			<tr >
-				<td colspan="6" rowspan="3"><label class="label">Observação</label>&nbsp;&nbsp;<s:textarea name="agendamento.observacao" cssStyle="width:90%" theme="simple"/></td>
-				
+				<td><label class="label">Observação</label></td>				
 			</tr>
+				<tr>
+				<td><s:textarea name="agendamento.observacao" cssStyle="width:90%" theme="simple"/></td>
+				</tr>
 			<tr>
-				<td>
+				<td align="center">
 					<s:submit value="Salvar" cssClass="button" theme="simple" onclick="preparaInclusaoAgendamento()"/>
 				</td>
 			</tr>
 		</table>
 	</s:form>
 </s:if>		
-
-	
 </body>
 </html>
