@@ -79,7 +79,7 @@
 	<s:form id="formPerfil" action="usuarioAction!salvarUsuario.action" method="post">
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
 	<s:hidden name="usuario.id" value="%{usuario.id}"/>
-		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
+		<table border="0" class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
 				<td><label class="label">Nome:</label></td>
 				<td><s:textfield theme="simple" name="usuario.nome" size="60" maxlength="60" /></td>
@@ -88,12 +88,12 @@
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
-				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Expedidor:&nbsp;&nbsp;</label>
 				<s:textfield theme="simple" name="usuario.expedidorRg" size="15" maxlength="15" /></td>
 				<td><label class="label">Sexo:</label></td>
 				<td><s:select list="sexos" theme="simple" name="usuario.sexo" headerKey="0" headerValue="" listKey="sigla" /></td>
-			</tr>
+			</tr>			
 			<tr>
 				<td><label class="label">Endereço:</label></td>
 				<td><s:textfield theme="simple" name="usuario.endereco"	size="60" maxlength="60" /></td>
@@ -121,11 +121,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label class="label">E-mail:</label></td>
-				<td colspan="3">
-					<s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" />&nbsp;&nbsp;
-					<label class="label">Data de Nascimento:</label>&nbsp;&nbsp;<s:textfield id="data" name="dataNascimentoAux" theme="simple" size="12"/>
-				</td>
+				<td>
+				<label class="label">Data de Nascimento:</label></td>
+				<td><s:textfield id="data" name="dataNascimentoAux" theme="simple" size="12"/>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">E-mail:</label>&nbsp;
+				<s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>						
 			</tr>
 			<tr>
 				<td><label class="label">Login:</label></td>
@@ -148,7 +148,7 @@
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
 	<s:hidden name="medico.id" value="%{medico.id}"/>
 	<s:hidden name="medico.usuario.id" value="%{medico.usuario.id}"/>
-		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
+		<table border="0" class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
 				<td><label class="label">Nome:</label></td>
 				<td><s:textfield theme="simple" name="medico.usuario.nome" size="60" maxlength="60" /></td>
@@ -157,7 +157,7 @@
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
-				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Expedidor:&nbsp;&nbsp;</label>
 				<s:textfield theme="simple" name="medico.usuario.expedidorRg" size="15" maxlength="15" /></td>
 				<td><label class="label">Sexo:</label></td>
@@ -189,29 +189,32 @@
 					<s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8" />
 				</td>
 			</tr>
+<tr>
+				<td>
+				<label class="label">Data de Nasc.:</label></td><td>
+				<s:textfield id="data" name="dataNascimentoAux" theme="simple" size="10"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">CRM:</label>&nbsp;&nbsp;&nbsp;
+				<s:textfield theme="simple" name="crmAux" size="6" maxlength="6" />&nbsp;&nbsp; 
+				<label class="label">UF:</label>&nbsp;&nbsp;&nbsp;
+					<s:select name="medico.crmUf" theme="simple"  list="#{'':'Selecione','AC':'AC', 'AL':'AL', 'AP': 'AP', 
+					'AM':'AM', 'BA': 'BA', 'CE':'CE', 'DF':'DF', 'ES':'ES', 'GO':'GO', 
+					'MA': 'MA', 'MT':'MT', 'MS':'MS', 'MG':'MG', 'PA':'PA', 
+					'PB':'PB', 'PR':'PR', 'PE':'PE', 'PI':'PI', 'RJ':'RJ', 'RN':'RN', 
+					'RS':'RS', 'RO':'RO', 'RR':'RR', 'SC':'SC', 'SP':'SP', 
+					'SE':'SE', 'TO': 'TO'}" />	
+			 </td>
+				<td><label class="label">E-mail:</label>&nbsp;</td><td>
+				<s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>						
+			</tr>
 			<tr>
 				<td><label class="label">Consultório:</label></td><td><s:textfield theme="simple" name="consultorioAux" maxlength="4" size="7" />&nbsp;&nbsp;&nbsp;
 				<label class="label">Hora início:&nbsp;&nbsp;</label><s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;&nbsp;&nbsp;
-				<label class="label">Hora Fim:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" /></td>
-				<td><label class="label">CRM:</label></td>
-				<td><s:textfield theme="simple" name="crmAux" size="7" maxlength="7" />&nbsp;&nbsp; 
-				<label class="label">UF-CRM:</label>&nbsp;
-					<s:select name="medico.crmUf" theme="simple"  list="#{'':'Selecione','AC':'Acre', 'AL':'Alagoas', 'AP': 'Amapá', 
-					'AM':'Amazônas', 'BA': 'Bahia', 'CE':'Ceará', 'DF':'Distrito Federal', 'ES':'Espírito Santo', 'GO':'Goiás', 
-					'MA': 'Maranhão', 'MT':'Mato Grosso', 'MS':'Mato Grosso do Sul', 'MG':'Minas Gerais', 'PA':'Pará', 
-					'PB':'Paraíba', 'PR':'Paraná', 'PE':'Pernambuco', 'PI':'Piauí', 'RJ':'Rio de Janeiro', 'RN':'Rio Grande do Norte', 
-					'RS':'Rio Grande do Sul', 'RO':'Rondônia', 'RR':'Roraima', 'SC':'Santa Catariana', 'SP':'São Paulo', 
-					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
-			 </td>
-
+				<label class="label">Hora Fim:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" /></td>				
 			</tr>
 			<tr>
 				<td><label class="label">Login:</label></td>
 				<td><s:textfield theme="simple" name="medico.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label class="label">Senha:</label>&nbsp;&nbsp;<s:password theme="simple" name="medico.usuario.senha"	maxlength="6" size="6" /></td>
-				<td colspan="4"><label class="label">E-mail:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="medico.usuario.email" size="30" maxlength="30" />&nbsp;&nbsp;
-				<label class="label">Data de Nascimento:</label>&nbsp;&nbsp;<s:textfield theme="simple" id="data" name="dataNascimentoAux" size="12" maxlength="12" /></td>
-				
+				<label class="label">Senha:</label>&nbsp;&nbsp;&nbsp;<s:password theme="simple" name="medico.usuario.senha"	maxlength="6" size="6" /></td>
 			</tr>
 			<tr>				
 			</tr>			
@@ -253,7 +256,7 @@
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}" />
 	<s:hidden name="paciente.id" value="%{paciente.id}"/>
 	<s:hidden name="paciente.usuario.id" value="%{paciente.usuario.id}"/>
-		<table border="0" width="90%" class="tabela_moldura" cellpadding="3" cellspacing="4">
+		<table border="0" class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
 				<td><label class="label">Nome:</label></td>
 				<td><s:textfield theme="simple" name="paciente.usuario.nome" size="60" maxlength="60" /></td>
@@ -262,7 +265,7 @@
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
-				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Expedidor:&nbsp;&nbsp;</label>
 				<s:textfield theme="simple" name="paciente.usuario.expedidorRg" size="15" maxlength="15" /></td>
 				<td><label class="label">Sexo:</label></td>
@@ -296,31 +299,36 @@
 				
 			</tr>
 			<tr>
-				<td><label class="label">E-mail:</label></td>
-				<td colspan="5">
-					<s:textfield theme="simple" name="paciente.usuario.email" size="30" maxlength="30" />&nbsp;&nbsp;
-					<label class="label">Data de Nascimento:&nbsp;&nbsp;</label>
-					<s:textfield name="dataNascimentoAux" id="data" size="12" theme="simple"/>
-				</td>
-				
+				<td>
+				<label class="label">Data de Nasc.:</label></td>
+				<td><s:textfield id="data" name="dataNascimentoAux" theme="simple" size="10"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="label">E-mail:</label>&nbsp;
+				<s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>
+				<td><label class="label">Convênio:</label></td>
+				<td >
+					<s:select theme="simple" name="paciente.convenio.id" list="convenios" listKey="id" listValue="nome" headerKey="0" headerValue="--Selecione--"/>
+				</td>						
 			</tr>
+			<tr>
 			
+			</tr>
+			<tr>
+			<td>
+			<label class="label">Plano:&nbsp;&nbsp;</label></td><td><s:textfield name="paciente.plano" size="25" maxlength="25" theme="simple"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;					
+			<label class="label">Validade:&nbsp;&nbsp;</label><s:textfield name="validaPlanoAux" size="10" id="data1" maxlength="30" theme="simple"/>
+			</td>			
+			<td>
+			<label class="label">Acomodação:&nbsp;&nbsp;</label></td><td><s:textfield name="paciente.descricaoAcomodacao" size="20" maxlength="20" theme="simple"/>&nbsp;&nbsp;
+			</td>
+			</tr>			
 			<tr>
 				<td><label class="label">Login:</label></td>
-				<td ><s:textfield theme="simple" name="paciente.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td ><s:textfield theme="simple" name="paciente.usuario.acesso" maxlength="25" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Senha:&nbsp;&nbsp;</label><s:password theme="simple" name="paciente.usuario.senha"	maxlength="6" size="6" /></td>
 				
 				
 			</tr>
-			<tr>
-				<td><label class="label">Convênio:</label></td>
-				<td colspan="5">
-					<s:select theme="simple" name="paciente.convenio.id" list="convenios" listKey="id" listValue="nome" headerKey="0" headerValue="--Selecione--"/>&nbsp;&nbsp;
-					<label class="label">Plano:&nbsp;&nbsp;</label><s:textfield name="paciente.plano" size="25" maxlength="25" theme="simple"/>&nbsp;&nbsp;
-					<label class="label">Acomodação:&nbsp;&nbsp;</label><s:textfield name="paciente.descricaoAcomodacao" size="20" maxlength="20" theme="simple"/>&nbsp;&nbsp;
-					<label class="label">Validade:&nbsp;&nbsp;</label><s:textfield name="validaPlanoAux" size="12" id="data1" maxlength="30" theme="simple"/>
-				</td>
-			</tr>
+
 			<tr>
 				<s:if test="paciente.id > 0">
 					<td><s:submit value="Alterar" cssClass="button" /></td>

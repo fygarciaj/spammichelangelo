@@ -8,7 +8,7 @@
 		</conditionalStyle>
 	</style>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["../relatorios/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="PCTIDFSEG" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>

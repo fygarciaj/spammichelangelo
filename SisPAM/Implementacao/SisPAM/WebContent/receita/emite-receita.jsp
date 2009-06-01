@@ -20,7 +20,7 @@
 		
 			document.getElementById("pacienteForm").value = paciente.value;
 			document.getElementById("horaForm").value = hora.value;
-			document.getElementById("dataForm").value= data.value;
+			document.getElementById("dataForm").value = data.value;
 
 			document.forms[1].submit();
 
@@ -104,7 +104,7 @@
 					<s:property value="paciente.usuario.convenio.nome"/>
 				</td>
 				<td>
-					<s:property value="data"/>
+					<s:date name="data" format="dd/MM/yyyy"/>
 					<td>
 					<s:property value="hora"/>
 				</td>				

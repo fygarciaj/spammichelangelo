@@ -68,8 +68,8 @@
 		<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}"/>
 		<table class="tabela_moldura" >
 			<tr>
-				<td><label>CRM</label>&nbsp;<s:textfield name="crmAux" id="crm" theme="simple" size="13" maxlength="11"/></td>
-				<td align="right" width="60px"><label>Nome</label>&nbsp;<s:textfield name="medico.usuario.nome" id="nome" theme="simple" size="60" maxlength="60"/></td>
+				<td><label>CRM</label></td><td><s:textfield name="crmAux" id="crm" theme="simple" size="13" maxlength="11"/></td>
+				<td align="right" width="60px"><label>Nome</label></td><td><s:textfield name="medico.usuario.nome" id="nome" theme="simple" size="60" maxlength="60"/></td>
 				<td><s:submit value="Consultar" cssClass="button"  theme="simple"/></td>
 			</tr>
 		</table>
