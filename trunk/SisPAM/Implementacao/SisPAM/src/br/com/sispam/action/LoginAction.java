@@ -25,7 +25,6 @@ public class LoginAction extends Action{
 		try{
 			usr = this.loginFacade.pesquisaUsuario(acesso, senha);
 			senha = this.loginFacade.criptografaSenha(senha);
-			System.out.println(senha);
 			if(usr != null){
 				if(usr.getSenha().equals(senha)){
 					ActionContext.getContext().getSession().put(USUARIO_LOGADO, usr);

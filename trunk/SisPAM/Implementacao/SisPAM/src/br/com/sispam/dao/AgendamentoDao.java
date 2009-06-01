@@ -20,7 +20,7 @@ public class AgendamentoDao {
 	 */
 	public void incluirAgendamento(Agendamento agendamento){		
 
-		conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 
@@ -34,8 +34,7 @@ public class AgendamentoDao {
 		}
 
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
-	}
+		}
 
 	/**
 	 * Retorna os agendamentos do dia
@@ -43,7 +42,7 @@ public class AgendamentoDao {
 	 */
 	public List<Agendamento> recuperarAgendamentosDoDia(){
 		List<Agendamento> agendamentos = null;
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = this.conexao.getEntityManger();
 		Query query = this.manager.createQuery("from Agendamento where data = :data");
 		query.setParameter("data", new Date());
@@ -56,13 +55,13 @@ public class AgendamentoDao {
 	 * @param agendamento
 	 */
 	public void excluir(Agendamento agendamento){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		Agendamento ag = manager.merge(agendamento);
 		manager.remove(ag);
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
+		
 	}
 	
 	/**
@@ -73,7 +72,7 @@ public class AgendamentoDao {
 	public List<Agendamento> consultar(Agendamento agendamento){
 		StringBuilder builder = montaQuery(agendamento);
 		List<Agendamento> agendamentos = null;
-		this.conexao = new Conexao();
+		this.conexao = Conexao.getConexao();
 		this.manager = this.conexao.getEntityManger();
 		Query query = this.manager.createQuery(builder.toString());
 		if(agendamento.getMedico() != null && agendamento.getMedico().getId() > 0){
@@ -127,7 +126,7 @@ public class AgendamentoDao {
 	 * @return Agendamento
 	 */
 	public Agendamento recuperarAgendamento(int id){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Agendamento.class, id) ;
 	}

@@ -101,7 +101,7 @@
 			</tr>
 			<tr>
 				<td><label class="label">CID:</label>				
-				<s:select theme="simple" name="historicoProntuario.codigoDoenca.id" list="codigosDoencas" headerValue="--Selecione--" headerKey="0" listValue="historicoProntuario.codigoDoenca.abreviatura" listKey="id" />
+				<s:select theme="simple" name="historicoProntuario.codigoDoenca.id" list="codigosDoencas" headerValue="--Selecione--" headerKey="0" listValue="abreviatura" listKey="id" />
 				</td>
 			</tr>
 			<tr>				

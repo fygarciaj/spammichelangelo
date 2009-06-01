@@ -23,7 +23,7 @@ public class LoginDao {
 	 * @throws PersistenceException
 	 */
 	public Usuario recuperaSenha(String acesso)throws CampoInvalidoException, PersistenceException{
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 
@@ -41,7 +41,7 @@ public class LoginDao {
 			throw new PersistenceException("Sem comunicação com Banco de Dados");
 		}
 		
-		conexao.finalizaConexao();
+		
 		return usuario;
 		
 	}

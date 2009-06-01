@@ -12,16 +12,19 @@ import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Paciente;
 import br.com.sispam.dominio.Usuario;
+import br.com.sispam.enums.Acao;
 import br.com.sispam.enums.Dia;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.ConvenioFacade;
 import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
+import br.com.sispam.util.AuditoriaUtil;
 import br.com.sispam.util.DataUtil;
 
 public class UsuarioAction extends Action{
@@ -32,6 +35,7 @@ public class UsuarioAction extends Action{
 	private MedicoFacade medicoFacade;
 	private PacienteFacade pacienteFacade;
 	private ConvenioFacade convenioFacade;
+	private AuditoriaFacade auditoriaFacade;
 	private EspecialidadeFacade especialidadeFacade;
 	private Perfil[] perfils = Perfil.values();
 	private Integer codigoPerfilSelecionado;
@@ -131,6 +135,10 @@ public class UsuarioAction extends Action{
 			}else{
 				mensagens.put("salvo", Perfil.getPerfil(usuario.getPerfil())+" cadastrado com sucesso!");
 			}
+			
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Acao.SALVAR_PACIENTE, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());

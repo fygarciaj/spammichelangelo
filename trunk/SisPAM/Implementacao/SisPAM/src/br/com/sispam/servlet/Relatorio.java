@@ -1,11 +1,13 @@
 package br.com.sispam.servlet;
 import java.io.*;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 import br.com.sispam.banco.ConexaoRelatorio;
+import br.com.sispam.util.DataUtil;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperRunManager;
@@ -13,6 +15,7 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -22,14 +25,20 @@ public class Relatorio extends HttpServlet {
 
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		String relatorioChamdo = request.getParameter("relatorioChamado");
+		
 		ServletOutputStream servletOutputStream = response.getOutputStream();
 
 		String caminho = "/WEB-INF/relatorios/";
 		
 		String relatorio = null;
 		
-		relatorio = caminho+emiteRelatorioConvenio(request, response).get("relatorio");;
+		if(relatorioChamdo.equals("convenio")){
+			relatorio = caminho+emiteRelatorioConvenio(request, response).get("relatorio");;
+		}else if(relatorioChamdo.equals("receita")){
+			relatorio = caminho+emiteReceita(request, response).get("relatorio");
+		}
 		
 		InputStream reportStream = getServletConfig().getServletContext().getResourceAsStream(relatorio);
 		
@@ -37,19 +46,25 @@ public class Relatorio extends HttpServlet {
 		try {
 			ConexaoRelatorio conexaoRelatorio = new ConexaoRelatorio();
 			Connection connection = conexaoRelatorio.getConexao();
-			HashMap<String, String> map = 
-				new HashMap<String, String>();
+			HashMap<String, String> map = new HashMap<String, String>();
+			HashMap<String, Object> mapaReceita = new HashMap<String, Object>();
 
-			
+			if(relatorioChamdo.equals("convenio")){
 			//passa o map dependendo do relatorio			
 			map = emiteRelatorioConvenio(request, response);
-			
+			}else if(relatorioChamdo.equals("receita")){
+				mapaReceita = emiteReceita(request, response);
+			}
 			
 			//para gerar o relatório em PDF
 			// o método runReportToPdfStream foi usado
-					
-			JasperRunManager.runReportToPdfStream(reportStream, 
-					servletOutputStream, map,connection);
+			if(relatorioChamdo.equals("convenio")){	
+				JasperRunManager.runReportToPdfStream(reportStream, 
+						servletOutputStream, map,connection);
+			}else if(relatorioChamdo.equals("receita")){
+				JasperRunManager.runReportToPdfStream(reportStream, 
+						servletOutputStream, mapaReceita,connection);
+			}
 
 			// envia o relatório em formato PDF para o browser
 			response.setContentType("application/pdf");
@@ -103,12 +118,40 @@ public class Relatorio extends HttpServlet {
 		}
 		return parameterMap;
 	}
+	
+	
+	protected HashMap<String, Object> emiteReceita(HttpServletRequest request, HttpServletResponse response){
+		HashMap<String, Object> parameterMap;
+		parameterMap = new HashMap<String, Object>();
+		
+		int paciente = Integer.parseInt(request.getParameter("paciente"));
+		String dataString = request.getParameter("data");
+		Date data;
+		try {
+			data = DataUtil.stringToDate(dataString);
+			int hora = Integer.parseInt(request.getParameter("hora"));
+			parameterMap.put("PCTIDFSEG", paciente);
+			parameterMap.put("AGDDAT", data);
+			parameterMap.put("AGDHOR", hora);
+			parameterMap.put("relatorio", "RelatorioReceita.jasper");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return parameterMap;
+	}
+
 
 	/* (non-Java-doc)
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
+		String pag = request.getServletPath();
+		pag = pag.substring(1, pag.length()-7);
+		if(pag.equals("relatorioConvenio")){
+			processRequest(request, response);
+		}else if(pag.equals("emiteReceita")){
+			processRequest(request, response);
+		}
 	}  	
 
 	/* (non-Java-doc)
@@ -118,6 +161,8 @@ public class Relatorio extends HttpServlet {
 		String pag = request.getServletPath();
 		pag = pag.substring(1, pag.length()-7);
 		if(pag.equals("relatorioConvenio")){
+			processRequest(request, response);
+		}else if(pag.equals("emiteReceita")){
 			processRequest(request, response);
 		}
 	}   	  	    

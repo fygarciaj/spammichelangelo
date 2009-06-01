@@ -20,7 +20,7 @@ public class ReceitaDao {
 	 * @return agendamentos
 	 */
 	public List<Agendamento> consultarAgendamento(Agendamento agendamento){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Agendamento> agendamentos = null;
 		try{
@@ -35,7 +35,7 @@ public class ReceitaDao {
 			e.printStackTrace();
 			e.getMessage();
 		}
-		conexao.finalizaConexao();		
+				
 		return agendamentos;
 	}	
 	

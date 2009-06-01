@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.Auditoria;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Paciente;
+import br.com.sispam.enums.Acao;
 import br.com.sispam.enums.TipoAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.AgendamentoFacade;
@@ -75,7 +77,7 @@ public class AgendamentoAction extends Action{
 		//monta um mapa com os campos que devem ser inteiros
 		Map<String, String> camposInteiros = new HashMap<String, String>();
 		if(horario != null){
-			horario.split(":");
+			horario = horario.replaceAll("[:]", "");
 		}
 		camposInteiros.put("horário", horario);
 
@@ -86,6 +88,10 @@ public class AgendamentoAction extends Action{
 			this.agendamento.setHora(Integer.parseInt(horario));
 			this.agendamentoFacade.salvarAgendamento(agendamento);
 			this.mensagens.put("sucesso", "Agedamento solicitado com sucesso!");
+			
+			Auditoria auditoria = new Auditoria();
+			auditoria.setAcao(Acao.SALVAR_MEDICO.getDescricao());
+			auditoria.setDataReferencia(new Date());
 		}catch (CampoInvalidoException e) {
 			this.erros.put("erro", e.getMessage());
 			return FALHA_SALVAR_AGENDMENTO;

@@ -22,7 +22,7 @@ public class CodigoDoencaDao {
 	 * @return CodigoDoenca
 	 */
 	public CodigoDoenca recuperarCodigoDoenca(int id){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		return manager.find(CodigoDoenca.class, id) ;
 	}
@@ -31,7 +31,7 @@ public class CodigoDoencaDao {
 	 * @return
 	 */
 	public List<CodigoDoenca> recuperarTodas(){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		Query query = manager.createQuery("from CodigoDoenca");
 		return query.getResultList();

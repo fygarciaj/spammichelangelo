@@ -112,7 +112,11 @@
 				<param name="method">carregarAgendamentos</param>
 			</result>
 			<result name="sucessoAtualizacaoHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>
-			<result name="falhaAtualizarHistoricoProntuario">/historicoProntuario/atualiza-historicoProntuario.jsp</result>	
+			
+			<result name="falhaAtualizarHistoricoProntuario" type="chain">
+				<param name="actionName">historicoProntuarioAction</param>
+				<param name="method">carregaAtualizacaoHistorico</param>
+			</result>	
 		
 		</action>
 		

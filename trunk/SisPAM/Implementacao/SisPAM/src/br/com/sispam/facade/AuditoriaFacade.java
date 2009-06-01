@@ -13,12 +13,14 @@ public class AuditoriaFacade {
 	 * @param auditoria
 	 * @throws CampoInvalidoException
 	 */
+	
+	public AuditoriaFacade(){
+		this.auditoriaDao = new AuditoriaDao();
+	}
 	public void gravaAuditoria(Auditoria auditoria) throws CampoInvalidoException{
 
 		try{
-			auditoriaDao = new AuditoriaDao();					
 			auditoriaDao.gravaAuditoria(auditoria);
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -21,7 +21,7 @@ public class MedicoDao {
 	 * @param usuario
 	 */
 	public void salvarMedico(Medico medico){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 				
 		if(medico != null && medico.getId() > 0){
@@ -41,7 +41,7 @@ public class MedicoDao {
 			manager.persist(medico);
 		}
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
+		
 	}
 
 
@@ -51,7 +51,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public Medico recuperaPeloId(int id){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		try{
 			return manager.find(Medico.class,id);
@@ -67,7 +67,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public Medico recuperaPeloCrm(int crm){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		Medico medico = null;
 		try{
@@ -79,7 +79,7 @@ public class MedicoDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		
 		return medico;
 	}
 	
@@ -90,7 +90,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public List<Medico> recuperaPeloNome(String nome){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		List<Medico> lista = null;
 		manager = conexao.getEntityManger();
 		Medico medico = null;
@@ -104,7 +104,7 @@ public class MedicoDao {
 			e.printStackTrace();
 			lista = null;
 		}
-		conexao.finalizaConexao();
+		
 		return lista;
 	}
 
@@ -113,13 +113,13 @@ public class MedicoDao {
 	 * @param medico
 	 */
 	public void remover(Medico medico){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		medico = manager.merge(medico);
 		manager.remove(medico);
 		manager.getTransaction().commit();
-		conexao.finalizaConexao();
+		
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public List<Medico> recuperarUltimosCadastrados() {
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Medico> lista = null;
 		try{
@@ -137,7 +137,7 @@ public class MedicoDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		
 		return lista;
 	}
 
@@ -146,7 +146,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public List<Medico> recuperarTodos(){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		List<Medico> lista = null;
 		try{
@@ -155,7 +155,7 @@ public class MedicoDao {
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		conexao.finalizaConexao();
+		
 		return lista;
 	}
 
@@ -165,7 +165,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public Medico recuperar(Usuario usuario){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		Medico medico =  null;
 		try{
@@ -183,7 +183,7 @@ public class MedicoDao {
 	 * @param medico
 	 */
 	public void excluirEspecialidades(Medico medico){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager.getTransaction().begin();
 		Query query = manager.createNativeQuery("delete from medico_especialidade where mdccod = :id");
 		query.setParameter("id", medico.getId());
@@ -196,7 +196,7 @@ public class MedicoDao {
 	 * @param medico
 	 */
 	public void inseriEspecialidades(Medico medico){
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager.getTransaction().begin();
 		
 		for(EspecialidadeMedica esp: medico.getEspecialidades()){
@@ -214,7 +214,7 @@ public class MedicoDao {
 	 * : Limpa as tabelas para testes.
 	 */
 	public void removerTodosTeste() {
-		conexao = new Conexao();
+		conexao = Conexao.getConexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		Query query = manager.createQuery("delete from Medico where id > 0");

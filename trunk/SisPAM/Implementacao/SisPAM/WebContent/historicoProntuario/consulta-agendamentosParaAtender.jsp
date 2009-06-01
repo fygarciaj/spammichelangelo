@@ -71,14 +71,14 @@
 				<td>
 					<s:property value="paciente.usuario.nome" />
 				</td>
-				<td>
-					<s:property value="paciente.usuario.dataNascimento"/>
+				<td align="center">
+					<s:date name="paciente.usuario.dataNascimento" format="dd/MM/yyyy"/>
 				</td>
 				<td>
 					<s:property value="paciente.usuario.convenio.nome"/>
 				</td>
-				<td>
-					<s:property value="data"/>
+				<td align="center">
+					<s:date name="data" format="dd/MM/yyyy"/>
 					<td>
 					<s:property value="hora"/>
 				</td>				

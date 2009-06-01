@@ -19,11 +19,9 @@ public class ConexaoRelatorio {
 			return connection;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Sem conexão");
 			return null;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("Driver não encontrado");
 			return null;
 		}
 	}

@@ -1,10 +1,13 @@
 package br.com.sispam.dominio;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class CodigoDoenca {
@@ -14,6 +17,7 @@ public class CodigoDoenca {
 	private String categoriaFinal;	
 	private String descricao;
 	private String abreviatura;
+	private List<HistoricoProntuario> historicos;
 	
 	@Id
 	@Column(name="cidcod")
@@ -52,7 +56,11 @@ public class CodigoDoenca {
 	public void setAbreviatura(String abreviatura) {
 		this.abreviatura = abreviatura;
 	}
-	
-	
-	
+	@OneToMany(mappedBy = "codigoDoenca")
+	public List<HistoricoProntuario> getHistoricos() {
+		return historicos;
+	}
+	public void setHistoricos(List<HistoricoProntuario> historicos) {
+		this.historicos = historicos;
+	}
 }
