@@ -46,7 +46,7 @@ AND MEDICO.MDCCOD = $P{MEDCOD}]]>
 				<text><![CDATA[Médico/CRM]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="5" y="23" width="137" height="14"/>
+				<reportElement x="5" y="23" width="135" height="14"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
