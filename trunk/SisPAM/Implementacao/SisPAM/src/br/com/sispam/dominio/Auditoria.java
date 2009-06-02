@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 public class Auditoria {
 	private int id;
 	private Date dataReferencia;
+	private String tipo;
 	private String acao;
 	private Usuario usuario;
 	
@@ -48,6 +49,13 @@ public class Auditoria {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	@Column(name="adttip")
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	

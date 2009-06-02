@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioUsuarioSemFiltroSintetico" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioUsuarioComFiltroSintetico" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<style name="titulo" isDefault="false" fontName="tahoma, verdana, arial, helvetica, sans-serif;" fontSize="11"/>
 	<style name="zebra" isDefault="false" forecolor="#DCDCDC">
 		<conditionalStyle>
@@ -87,6 +87,13 @@ ORDER BY
 	</field>
 	<variable name="PERFIL" class="java.lang.String"/>
 	<variable name="TOTAL_ADM" class="java.lang.Integer"/>
+	<variable name="DESCRICAO_PERFIL" class="java.lang.String">
+		<variableExpression><![CDATA[($P{PERFIL}.toString().equals("1") ? $V{DESCRICAO_PERFIL}.valueOf( "ADMINISTRADOR" )  
+: $P{PERFIL}.toString().equals("2") ? $V{DESCRICAO_PERFIL}.valueOf("ATENDENTE") 
+: $P{PERFIL}.toString().equals("3") ? $V{DESCRICAO_PERFIL}.valueOf("MÉDICO")
+: $P{PERFIL}.toString().equals("4") ? $V{DESCRICAO_PERFIL}.valueOf("PACIENTE")
+: $V{DESCRICAO_PERFIL})]]></variableExpression>
+	</variable>
 	<background>
 		<band/>
 	</background>
@@ -113,7 +120,7 @@ ORDER BY
 				</textField>
 			</frame>
 			<staticText>
-				<reportElement style="titulo" mode="Opaque" x="157" y="31" width="235" height="31" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
+				<reportElement style="titulo" mode="Opaque" x="157" y="31" width="232" height="31" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
 				<textElement textAlignment="Justified">
 					<font size="22"/>
 				</textElement>
@@ -134,14 +141,14 @@ ORDER BY
 				<reportElement mode="Opaque" x="2" y="12" width="550" height="31" forecolor="#191970" backcolor="#191970"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="50" y="23" width="109" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="50" y="23" width="107" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome do Usuário]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="229" y="23" width="41" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="245" y="23" width="41" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -155,7 +162,7 @@ ORDER BY
 				<text><![CDATA[Código]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="373" y="23" width="34" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="389" y="23" width="25" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -176,14 +183,14 @@ ORDER BY
 				<text><![CDATA[E-mail]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="185" y="23" width="44" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="157" y="23" width="44" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Perfil]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="306" y="23" width="67" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="325" y="23" width="67" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -206,12 +213,12 @@ ORDER BY
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario_usrnom}]]></textFieldExpression>
 				</textField>
 				<textField pattern="###.###.###/####-##">
-					<reportElement x="226" y="0" width="77" height="20"/>
+					<reportElement x="242" y="0" width="77" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[( $F{usuario_usrcpf}.length() == 14 ? ($F{usuario_usrcpf}.substring(0, 2) + "." + $F{usuario_usrcpf}.substring(2, 5) + "." + $F{usuario_usrcpf}.substring(5, 8) + "/" + $F{usuario_usrcpf}.substring(8, 12) + "-" + $F{usuario_usrcpf}.substring(12, 14)) : ($F{usuario_usrcpf}.substring(0, 3) + "." + $F{usuario_usrcpf}.substring(3, 6) + "." + $F{usuario_usrcpf}.substring(6, 9) + "-" + $F{usuario_usrcpf}.substring(9, 11)) )]]></textFieldExpression>
 				</textField>
 				<textField pattern="">
-					<reportElement x="370" y="0" width="59" height="20"/>
+					<reportElement x="386" y="0" width="20" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrddd}]]></textFieldExpression>
 				</textField>
@@ -225,15 +232,15 @@ ORDER BY
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario_usreml}]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement x="176" y="0" width="50" height="20"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle"/>
-					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrpfl}]]></textFieldExpression>
-				</textField>
 				<textField pattern="dd/MM/yyyy">
-					<reportElement x="303" y="0" width="67" height="20"/>
+					<reportElement x="319" y="0" width="67" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.util.Date"><![CDATA[$F{usuario_usrdatnsc}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="154" y="0" width="84" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$V{DESCRICAO_PERFIL}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
