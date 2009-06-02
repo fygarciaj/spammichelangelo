@@ -68,11 +68,14 @@ public class DataUtil {
 	 * @throws java.text.ParseException 
 	 * @throws java.text.ParseException 
 	 */
-	public static Date stringToDateFormatoPdf(String data) throws java.text.ParseException {
+	public static String stringToDateFormatoPdf(String data) throws java.text.ParseException {
 		SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yy");
 			try {
 				Date date = formata.parse(data);
-				return date;
+				
+				SimpleDateFormat formataString = new SimpleDateFormat("dd/MM/yyyy");
+				data = formataString.format(date);
+				return data;
 			} catch (ParseException e) {
 				e.printStackTrace();
 				return null;

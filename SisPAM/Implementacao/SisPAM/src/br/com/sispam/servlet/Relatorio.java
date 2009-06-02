@@ -126,12 +126,12 @@ public class Relatorio extends HttpServlet {
 		
 		int paciente = Integer.parseInt(request.getParameter("paciente"));
 		String dataString = request.getParameter("data");
-		Date data;
+		String data;
 		try {
 			data = DataUtil.stringToDateFormatoPdf(dataString);
 			int hora = Integer.parseInt(request.getParameter("hora"));
 			parameterMap.put("PCTIDFSEG", paciente);
-			parameterMap.put("AGDDAT", data);
+			parameterMap.put("AGDDAT", (data));
 			parameterMap.put("AGDHOR", hora);
 			parameterMap.put("relatorio", "RelatorioReceita.jasper");
 		} catch (ParseException e) {
