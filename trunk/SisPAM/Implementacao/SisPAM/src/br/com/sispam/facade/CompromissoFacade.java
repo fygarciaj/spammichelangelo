@@ -65,8 +65,13 @@ public class CompromissoFacade {
 		List<Compromisso> compromissoNew = null;
 		compromissoNew = (compromissoDao.consultarCompromissoUnico(compromisso));
 		if(compromissoNew != null && compromissoNew.size() > 0){
-			throw new CampoInvalidoException("Já existe Compromisso no período informado!");
+			for(Compromisso comp: compromissoNew){
+				if(comp.getId() != compromisso.getId()){
+					throw new CampoInvalidoException("Já existe Compromisso no período informado!");
+				}
+			}
 		}
+		
 	}
 
 

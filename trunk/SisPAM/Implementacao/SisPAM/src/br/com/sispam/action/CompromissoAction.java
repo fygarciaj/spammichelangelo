@@ -45,7 +45,7 @@ public class CompromissoAction extends Action{
 			mapa.put("horaInicial", horaInicialAux);
 			mapa.put("horaFinal", horaFinalAux);
 			this.compromisso.setMedico(this.medicoFacade.recuperar(compromisso.getMedico().getId()));
-			
+
 			if(dataAux != null && !dataAux.equals("")){
 				try {
 					compromisso.setData(DataUtil.stringToDate(dataAux));
@@ -55,24 +55,28 @@ public class CompromissoAction extends Action{
 					return FALHA_SALVAR_COMPROMISSO;
 				}
 			}
-			
+
 			//verifica se os campo obrigatorios foram preenchidos
 			compromissoFacade.validaCampos(compromisso);
-			
+
 			//seta os valores das variváveis auxiliares.
 			compromisso.setHoraInicial(Integer.parseInt(horaInicialAux));
 			compromisso.setHoraFinal(Integer.parseInt(horaFinalAux));
-			
+
 			//verifica se os campos são inteiros
 			compromissoFacade.verificaCampoInteiro(mapa);
 
 			compromissoFacade.validaHora(compromisso);
-								
+
 			//verifica se já existe compromisso cadastrado com esses dados.
 			compromissoFacade.verificaExistencia(compromisso);
-			
+
 			compromissoFacade.salvaCompromisso(compromisso);
-			mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
+			if(compromisso.getId() > 0){
+				mensagens.put("salvo", "Compromisso alterado com sucesso!");
+			}else{
+				mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
+			}
 
 		}catch (CampoInvalidoException e) {
 			erros.put("campoInvalido", e.getMessage());
@@ -143,7 +147,7 @@ public class CompromissoAction extends Action{
 	public String consultarCompromisso(){
 		compromissoFacade= new CompromissoFacade();
 		this.medicoFacade = new MedicoFacade();
-		
+
 		try {
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
@@ -231,6 +235,6 @@ public class CompromissoAction extends Action{
 	public void setTipoCompromisso(TipoCompromisso[] tipoCompromisso) {
 		this.tipoCompromisso = tipoCompromisso;
 	}
-	
-	
+
+
 }

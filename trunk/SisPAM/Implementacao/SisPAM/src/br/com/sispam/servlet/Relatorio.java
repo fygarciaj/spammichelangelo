@@ -128,7 +128,7 @@ public class Relatorio extends HttpServlet {
 		String dataString = request.getParameter("data");
 		Date data;
 		try {
-			data = DataUtil.stringToDate(dataString);
+			data = DataUtil.stringToDateFormatoPdf(dataString);
 			int hora = Integer.parseInt(request.getParameter("hora"));
 			parameterMap.put("PCTIDFSEG", paciente);
 			parameterMap.put("AGDDAT", data);

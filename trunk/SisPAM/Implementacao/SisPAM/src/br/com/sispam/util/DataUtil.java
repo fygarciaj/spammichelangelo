@@ -61,4 +61,22 @@ public class DataUtil {
 			}
 		}
 	
+	/**
+	 * descrição: converte uma data em string para um objeto do tipo Date
+	 * @param data
+	 * @return
+	 * @throws java.text.ParseException 
+	 * @throws java.text.ParseException 
+	 */
+	public static Date stringToDateFormatoPdf(String data) throws java.text.ParseException {
+		SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yy");
+			try {
+				Date date = formata.parse(data);
+				return date;
+			} catch (ParseException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+	
 }

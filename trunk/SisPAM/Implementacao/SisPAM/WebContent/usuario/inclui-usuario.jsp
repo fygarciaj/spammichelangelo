@@ -18,6 +18,9 @@
 <script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
 <link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+
+<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script> 
 <title>Insert title here</title>
 
 <SCRIPT language="javaScript">
@@ -45,6 +48,10 @@
 							 gotoCurrent: true
 				 });
 			}
+
+		$(document).ready(function(){
+				$(".cpf").mask("999.999.999-99");
+			});
 	</script>
 
 
@@ -84,7 +91,7 @@
 				<td><label class="label">Nome:</label></td>
 				<td><s:textfield theme="simple" name="usuario.nome" size="60" maxlength="60" /></td>
 				<td><label class="label">CPF:</label></td>
-				<td><s:textfield theme="simple" name="usuario.cpf" size="12" maxlength="11" /></td>
+				<td><s:textfield cssClass="cpf" theme="simple" name="usuario.cpf" size="12" maxlength="11" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
@@ -153,7 +160,7 @@
 				<td><label class="label">Nome:</label></td>
 				<td><s:textfield theme="simple" name="medico.usuario.nome" size="60" maxlength="60" /></td>
 				<td><label class="label">CPF:</label></td>
-				<td><s:textfield theme="simple" name="medico.usuario.cpf" size="12" maxlength="11" /></td>
+				<td><s:textfield cssClass="cpf" theme="simple" name="medico.usuario.cpf" size="12" maxlength="11" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
@@ -261,7 +268,7 @@
 				<td><label class="label">Nome:</label></td>
 				<td><s:textfield theme="simple" name="paciente.usuario.nome" size="60" maxlength="60" /></td>
 				<td><label class="label">CPF:</label></td>
-				<td><s:textfield theme="simple" name="paciente.usuario.cpf" size="12" maxlength="11" /></td>
+				<td><s:textfield cssClass="cpf" theme="simple" name="paciente.usuario.cpf" size="12" maxlength="11" /></td>
 			</tr>
 			<tr>
 				<td><label class="label">RG:</label></td>
