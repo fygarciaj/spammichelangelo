@@ -13,7 +13,7 @@
 	<parameter name="PCTIDFSEG" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="AGDDAT" class="java.util.Date">
+	<parameter name="AGDDAT" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="AGDHOR" class="java.lang.Integer">
@@ -41,8 +41,8 @@ WHERE
  AND AGENDAMENTO.PCTIDFSEG = HISTORICOPRONTUARIO.PCTIDFSEG
  AND AGENDAMENTO.MDCCOD = MEDICO.MDCCOD
  AND CONVENIO.CVNCOD = PACIENTE.CVNCOD
- AND PACIENTE.PCTIDFSEG = $P{PCTIDFSEG}
- AND AGENDAMENTO.AGDDAT = $P{AGDDAT}
+ AND PACIENTE.PCTIDFSEG = $P{PCTIDFSEG} 
+ AND (to_char(AGENDAMENTO.AGDDAT,'dd/mm/yyyy') = $P{AGDDAT})
  AND AGENDAMENTO.AGDHOR = $P{AGDHOR}]]>
 	</queryString>
 	<field name="usrnom" class="java.lang.String">
@@ -89,7 +89,7 @@ WHERE
 	<pageHeader>
 		<band height="26">
 			<staticText>
-				<reportElement style="titulo" mode="Transparent" x="65" y="4" width="157" height="18" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
+				<reportElement style="titulo" mode="Transparent" x="38" y="5" width="196" height="18" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
 				<textElement textAlignment="Center">
 					<font size="10"/>
 				</textElement>
@@ -151,7 +151,7 @@ WHERE
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( $F{usrsex}.equals("M") ? $F{usrsex}.concat( "asculino" ) : $F{usrsex}.concat( "eminino" ) )]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="66" y="57" width="63" height="16" forecolor="#000000"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
@@ -175,12 +175,12 @@ WHERE
 			<staticText>
 				<reportElement mode="Transparent" x="92" y="93" width="103" height="20" forecolor="#003399"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="tahoma, verdana, arial, helvetica, sans-serif;" size="8"/>
+					<font fontName="tahoma, verdana, arial, helvetica, sans-serif;" size="10"/>
 				</textElement>
 				<text><![CDATA[Prescrição]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="4" y="113" width="294" height="48"/>
+				<reportElement x="4" y="113" width="294" height="49"/>
 				<textElement verticalAlignment="Top">
 					<font size="8"/>
 				</textElement>
