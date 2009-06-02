@@ -10,8 +10,9 @@
 <link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css"/>
 <script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <title>Login SisPAM</title>
+
 </HEAD>
-<BODY >
+<BODY>
 	<img src="componentes/img/simbLogin.jpg"  width="100%" align="top">
 <br>
 <table align="center" width="352px">
@@ -21,9 +22,12 @@
 </td>
 </tr>
 </table>
-
+<%
+	session.removeAttribute("usuarioLogado");
+	session.removeAttribute("dtHrAcess");
+%>
 <center> 
-<s:form id="formLogin" action="loginAction!logar.action" method="post">
+<s:form id="formLogin" action="loginAction!logar.action" method="post" >
 	<table width="235" border="0"cellpadding="3" height="123" class="tabela_login" >
 		<tr>
 			<td colspan="6" height="13">

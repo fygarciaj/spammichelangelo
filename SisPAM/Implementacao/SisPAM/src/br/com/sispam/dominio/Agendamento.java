@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,7 +46,7 @@ public class Agendamento {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="pctidfseg")
 	public Paciente getPaciente() {
 		return paciente;
@@ -53,7 +54,7 @@ public class Agendamento {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="mdccod")
 	public Medico getMedico() {
 		return medico;

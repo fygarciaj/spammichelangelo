@@ -106,7 +106,7 @@
 			</s:form>
 			</td>
 			<s:if test="medico != null">
-				<td><label class="label">Especialidades do Dr.</td><td><s:property value="medico.usuario.nome"/></label></td>
+				<td><label class="label">Especialidades do Dr.</label></td><td><s:property value="medico.usuario.nome"/></td>
 				<td><s:select headerKey="0" headerValue="--Selecione--" list="medico.especialidades" id="especialidade" theme="simple" name="agendamento.especialidadeMedica.id" listKey="id" listValue="descricao" /></td>
 			</s:if>
 			<s:elseif test="especialidadeMedica != null">

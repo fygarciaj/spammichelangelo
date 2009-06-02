@@ -18,6 +18,8 @@
 <script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
 <link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>  
 <script type="text/javascript">
 		 $(document).ready(function(){
 			calendario('data');
@@ -32,6 +34,12 @@
 							 gotoCurrent: true
 				 });
 			}
+
+     $(document).ready(
+ 			function(){
+ 			  $(".horario").mask("99:99");	
+ 			}
+ 		      );
 	</script>
 	
 
@@ -85,9 +93,9 @@
 				</tr>
 				<tr>
 					<td><label class="label">Hora Inicial:</label></td>
-					<td><s:textfield theme="simple" name="horaInicialAux"
+					<td><s:textfield cssClass="horario" theme="simple" name="horaInicialAux"
 						size="4" maxlength="4" />&nbsp;&nbsp;&nbsp;&nbsp; <label
-						class="label">Hora Final:</label>&nbsp; <s:textfield
+						class="label">Hora Final:</label>&nbsp; <s:textfield cssClass="horario"
 						theme="simple" name="horaFinalAux" size="4" maxlength="4" />&nbsp;</td>
 
 				</tr>
