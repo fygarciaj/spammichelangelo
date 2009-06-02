@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioLogComFiltroSintetico" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="titulo" isDefault="false" fontName="tahoma, verdana, arial, helvetica, sans-serif;" fontSize="11"/>
+	<style name="zebra" isDefault="false" forecolor="#DCDCDC">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean( $V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style isDefault="false" style="zebra" mode="Opaque" backcolor="#DCDCDC"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="DATA_REFERENCIA" class="java.lang.String">
+		<defaultValueExpression><![CDATA["02/06/2009"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     auditoria."adtcod",
+     auditoria."adtdatref",
+     auditoria."adtip",
+     auditoria."adtact",
+     auditoria."usrcod",
+     usuario."usrnom"
+FROM
+     "auditoria" auditoria,
+     "usuario" usuario
+WHERE
+     (to_char(date_trunc('day',auditoria."adtdatref"),'dd/mm/yyyy') = $P{DATA_REFERENCIA})
+ AND auditoria."usrcod" = usuario."usrcod"
+ORDER BY
+     auditoria."adtdatref" ASC]]>
+	</queryString>
+	<field name="adtcod" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adtdatref" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adtip" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adtact" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usrcod" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="usrnom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="PERFIL" class="java.lang.String"/>
+	<variable name="TOTAL_ADM" class="java.lang.Integer"/>
+	<variable name="DESCRICAO_PERFIL" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="79">
+			<frame>
+				<reportElement mode="Opaque" x="129" y="31" width="423" height="33" isPrintInFirstWholeBand="true" forecolor="#F4F8FB" backcolor="#F4F8FB"/>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="129" y="64" width="423" height="15" isPrintInFirstWholeBand="true" backcolor="#191970"/>
+				<staticText>
+					<reportElement x="284" y="0" width="80" height="15" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data de Emissão:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="363" y="0" width="60" height="14" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="titulo" mode="Opaque" x="179" y="31" width="168" height="31" isPrintInFirstWholeBand="true" forecolor="#003399" backcolor="#F4F8FB"/>
+				<textElement textAlignment="Justified">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Log de Auditoria]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="4" y="31" width="135" height="48" isPrintInFirstWholeBand="true"/>
+				<imageExpression class="java.lang.String"><![CDATA["../../componentes/img/simbolo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="43">
+			<rectangle>
+				<reportElement mode="Opaque" x="2" y="12" width="550" height="31" forecolor="#191970" backcolor="#191970"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="61" y="23" width="107" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="23" width="46" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="23" width="62" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="23" width="44" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="23" width="67" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e Hora]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<frame>
+				<reportElement style="zebra" stretchType="RelativeToBandHeight" x="3" y="0" width="549" height="20"/>
+				<textField pattern="########00000000">
+					<reportElement x="1" y="0" width="57" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{adtcod}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="58" y="0" width="100" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{adtip}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="176" y="0" width="66" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{adtact}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="259" y="0" width="85" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{adtdatref}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="367" y="0" width="182" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{usrnom}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="55">
+			<textField>
+				<reportElement x="432" y="32" width="80" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="512" y="32" width="40" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="77">
+			<rectangle>
+				<reportElement mode="Opaque" x="4" y="53" width="548" height="20" forecolor="#191970" backcolor="#191970"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="16" y="53" width="115" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Registros:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="514" y="53" width="40" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="53" width="80" height="20" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="53" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="42"/>
+	</summary>
+</jasperReport>
