@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="componentes/js/sispam.js"></script>
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
-	<title>Relatório de Convênio</title>
+	<title>Relatório de Usuário</title>
 </head>
 <body>
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -19,31 +19,30 @@
 		</td>
 	</tr>
 </table>
-<h2>Emissão de Relatório de Convênio</h2>
+<h2>Emissão de Relatório de Usuário</h2>
 
 
-<form action="../relatorioConvenio.sispam" method="post">
-		<input type="hidden" name="relatorioChamado" value="convenio"/>
+<form action="../relatorioUsuario.sispam" method="post" name="relatorio"> 
+		<input type="hidden" name="relatorioChamado" value="usuario"/>
 		<table class="tabela_moldura" >
 			<tr>			
-        	<td><label class="label">Tipo de Relatório</label>
+        	<td><label class="label">Perfil</label>
         	</td><td>
-        	<!-- Tipo de Relatorio -->        	
-			<select id="cmbTipRel" name="tipoRelatorio">
-				<option value="1">Sintético</option>			
-				<option value="2">Analítico</option>
+        	<!-- Perfil -->        	
+			<select id="cmbPerfil" name="perfil">
+				<option value="0">--Selecione--</option>			
+				<option value="1">Administrador</option>
+				<option value="2">Atendente</option>
+				<option value="3">Médico</option>
+				<option value="4">Paciente</option>
 			</select>
         	</td>
 			</tr>			
-			<tr>			        	
-        	<!-- Filtro -->        	
-			<td><label class="label" >Nome do Convênio</label></td><td><input type="text" name="convenio.nome" size="60" maxlength="60"/></td>
-        	
+			<tr>			        	        	
 			<td><input type="submit" value="Emitir" class="button"/></td>
 			</tr>	
 		</table>
 	</form>
-	
-	
+
 </body>
 </html>
