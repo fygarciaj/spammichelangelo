@@ -7,7 +7,8 @@ public enum Acao {
 	CONSULTA(3, "CONSULTA"), 
 	ALTERACAO(4, "ALTERAÇÃO"), 
 	ATUALIZACAO(5, "ATUALIZAÇÃO"), 
-	EMISSAO(6, "EMISSÃO");
+	EMISSAO(6, "EMISSÃO"),
+	LOGIN(7, "LOGIN");
 
 	
 	private int codigo;

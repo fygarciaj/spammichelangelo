@@ -3,8 +3,12 @@ package br.com.sispam.action;
 import com.opensymphony.xwork2.ActionContext;
 
 import br.com.sispam.dominio.Usuario;
+import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.LoginFacade;
+import br.com.sispam.util.AuditoriaUtil;
 
 public class LoginAction extends Action{
 	private String acesso;
@@ -13,7 +17,7 @@ public class LoginAction extends Action{
 	private Usuario usr;
 	private String usrLogado;
 	private String dataHoraAcesso;
-
+	private AuditoriaFacade auditoriaFacade;
 	/**
 	 * : Efetua o login no sistema.
 	 * @return
@@ -31,6 +35,9 @@ public class LoginAction extends Action{
 					this.usrLogado = (getUsuarioLogado().getAcesso());
 					ActionContext.getContext().getSession().put(DATA_HORA_ACESSO, usr);
 					this.dataHoraAcesso = getDataHoraAcesso().getDtHoraAcesso();
+					//salva o Log de auditoria
+					auditoriaFacade = new AuditoriaFacade();
+					auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.LOGIN, Acao.LOGIN, getUsuarioLogado()));
 					return SUCESSO;
 				}else{
 					erros.put("campoInvalido", "Senha inválida!");

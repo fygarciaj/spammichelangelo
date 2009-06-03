@@ -9,12 +9,16 @@ import java.util.Map;
 
 import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.Medico;
+import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.TipoCompromisso;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.CompromissoFacade;
 import br.com.sispam.facade.MedicoFacade;
+import br.com.sispam.util.AuditoriaUtil;
 import br.com.sispam.util.DataUtil;
 
 
@@ -29,7 +33,7 @@ public class CompromissoAction extends Action{
 	private String horaFinalAux;
 	private String dataAux;
 	private TipoCompromisso[] tipoCompromisso = TipoCompromisso.values();
-
+	private AuditoriaFacade auditoriaFacade;
 
 	/**
 	 * Recebe os dados que vem da tela de inclusão de compromisso.
@@ -74,8 +78,14 @@ public class CompromissoAction extends Action{
 			compromissoFacade.salvaCompromisso(compromisso);
 			if(compromisso.getId() > 0){
 				mensagens.put("salvo", "Compromisso alterado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.ALTERACAO, getUsuarioLogado()));
 			}else{
 				mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.INCLUSAO, getUsuarioLogado()));
 			}
 
 		}catch (CampoInvalidoException e) {
@@ -131,6 +141,9 @@ public class CompromissoAction extends Action{
 		try {
 			this.compromissoFacade.excluiCompromisso(this.compromisso);
 			mensagens.put("excluido", "Compromisso excluido com sucesso!");
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.EXCLUSAO, getUsuarioLogado()));
 		} catch (Exception e) {
 			e.printStackTrace();					
 			return FALHA_EXCLUIR_COMPROMISSO;
@@ -152,6 +165,10 @@ public class CompromissoAction extends Action{
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
 			this.medicos = this.medicoFacade.recuperarTodos();
+			
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.CONSULTA, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 		}
@@ -234,6 +251,22 @@ public class CompromissoAction extends Action{
 
 	public void setTipoCompromisso(TipoCompromisso[] tipoCompromisso) {
 		this.tipoCompromisso = tipoCompromisso;
+	}
+
+	public MedicoFacade getMedicoFacade() {
+		return medicoFacade;
+	}
+
+	public void setMedicoFacade(MedicoFacade medicoFacade) {
+		this.medicoFacade = medicoFacade;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
 	}
 
 

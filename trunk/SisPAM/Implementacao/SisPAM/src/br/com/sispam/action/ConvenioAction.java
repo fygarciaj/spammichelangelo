@@ -7,9 +7,13 @@ import java.util.Map;
 
 import br.com.sispam.dominio.Convenio;
 
+import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.ConvenioFacade;
+import br.com.sispam.util.AuditoriaUtil;
 
 
 public class ConvenioAction extends Action{
@@ -23,7 +27,7 @@ public class ConvenioAction extends Action{
 	private String cepAux;
 	private String cnpjAux;
 	private String dddAux;
-
+	private AuditoriaFacade auditoriaFacade;
 	
 	/**
 	 * : Recebe os dados da tela para efetuar a inclusão do convênio.
@@ -54,8 +58,17 @@ public class ConvenioAction extends Action{
 			//verifica se já existe convênio cadastrado com esses dados.
 			convenioFacade.verificaExistencia(convenio);
 			convenioFacade.salvaConvenio(convenio);
-			mensagens.put("salvo", "Convênio cadastrado com sucesso!");
-
+			if(convenio.getId() > 0){
+				mensagens.put("salvo", "Convênio alterado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_CONVENIO, Acao.ALTERACAO, getUsuarioLogado()));
+			}else{
+				mensagens.put("salvo", "Convênio cadastrado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_CONVENIO, Acao.INCLUSAO, getUsuarioLogado()));
+			}	
 		}catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
@@ -81,6 +94,9 @@ public class ConvenioAction extends Action{
 		try {
 			this.convenioFacade.excluiConvenio(this.convenio);
 			mensagens.put("excluido", "Convenio excluido com sucesso!");
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_CONVENIO, Acao.EXCLUSAO, getUsuarioLogado()));
 		} catch (Exception e) {
 			e.printStackTrace();					
 			return FALHA_EXCLUIR_CONVENIO;
@@ -97,6 +113,9 @@ public class ConvenioAction extends Action{
 		try {
 			this.conveniosCadastrados = new ArrayList<Convenio>();
 			this.conveniosCadastrados = convenioFacade.pesquisaConvenio(convenio);
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_CONVENIO, Acao.CONSULTA, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 		}
@@ -224,6 +243,14 @@ public class ConvenioAction extends Action{
 
 	public void setDddAux(String dddAux) {
 		this.dddAux = dddAux;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
 	}
 
 

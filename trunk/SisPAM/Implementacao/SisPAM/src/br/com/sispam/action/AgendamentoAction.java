@@ -12,13 +12,16 @@ import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Paciente;
 import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.TipoAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.AgendamentoFacade;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
+import br.com.sispam.util.AuditoriaUtil;
 import br.com.sispam.util.DataUtil;
 
 /**
@@ -36,7 +39,7 @@ public class AgendamentoAction extends Action{
 	private String dataAgendamento;
 	private List<Paciente> pacientes;
 	private List<Agendamento> agendamentos;
-
+	private AuditoriaFacade auditoriaFacade;
 	private MedicoFacade medicoFacade;
 	private EspecialidadeFacade especialidadeFacade;
 	private AgendamentoFacade agendamentoFacade;
@@ -87,11 +90,18 @@ public class AgendamentoAction extends Action{
 			this.usuarioFacade.verificaCampoInteiro(camposInteiros);
 			this.agendamento.setHora(Integer.parseInt(horario));
 			this.agendamentoFacade.salvarAgendamento(agendamento);
-			this.mensagens.put("sucesso", "Agedamento solicitado com sucesso!");
 			
-			Auditoria auditoria = new Auditoria();
-			auditoria.setAcao(Acao.INCLUSAO.getDescricao());
-			auditoria.setDataReferencia(new Date());
+			if(agendamento.getId() > 0){
+				this.mensagens.put("sucesso", "Agendamento alterado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.ALTERACAO, getUsuarioLogado()));
+			}else{
+				this.mensagens.put("sucesso", "Agendamento solicitado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.INCLUSAO, getUsuarioLogado()));
+			}		
 		}catch (CampoInvalidoException e) {
 			this.erros.put("erro", e.getMessage());
 			return FALHA_SALVAR_AGENDMENTO;
@@ -143,6 +153,15 @@ public class AgendamentoAction extends Action{
 	public String excluirAgendamento(){
 		this.agendamentoFacade = new AgendamentoFacade();
 		this.agendamentoFacade.excluir(agendamento);
+		
+		try {
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.EXCLUSAO, getUsuarioLogado()));
+		} catch (CampoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCESSO_EXCLUIR_AGENDAMENTO;
 	}
 	
@@ -156,6 +175,15 @@ public class AgendamentoAction extends Action{
 		this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
 		this.agendamentoFacade.montarAgendamentos(agendamentos);
 		this.medicos = this.medicoFacade.recuperarTodos();
+				
+		try {
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.CONSULTA, getUsuarioLogado()));
+		} catch (CampoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		limpaCamposConsulta();
 		return SUCESSO_CARREGAR_AGENDAMENTOS;
 	}
@@ -308,6 +336,54 @@ public class AgendamentoAction extends Action{
 
 	public void setAgendamentoRetornado(String agendamentoRetornado) {
 		this.agendamentoRetornado = agendamentoRetornado;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
+	}
+
+	public MedicoFacade getMedicoFacade() {
+		return medicoFacade;
+	}
+
+	public void setMedicoFacade(MedicoFacade medicoFacade) {
+		this.medicoFacade = medicoFacade;
+	}
+
+	public EspecialidadeFacade getEspecialidadeFacade() {
+		return especialidadeFacade;
+	}
+
+	public void setEspecialidadeFacade(EspecialidadeFacade especialidadeFacade) {
+		this.especialidadeFacade = especialidadeFacade;
+	}
+
+	public AgendamentoFacade getAgendamentoFacade() {
+		return agendamentoFacade;
+	}
+
+	public void setAgendamentoFacade(AgendamentoFacade agendamentoFacade) {
+		this.agendamentoFacade = agendamentoFacade;
+	}
+
+	public PacienteFacade getPacienteFacade() {
+		return pacienteFacade;
+	}
+
+	public void setPacienteFacade(PacienteFacade pacienteFacade) {
+		this.pacienteFacade = pacienteFacade;
+	}
+
+	public UsuarioFacade getUsuarioFacade() {
+		return usuarioFacade;
+	}
+
+	public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
+		this.usuarioFacade = usuarioFacade;
 	}
 	
 }
