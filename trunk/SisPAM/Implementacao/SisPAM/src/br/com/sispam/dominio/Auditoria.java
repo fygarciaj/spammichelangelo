@@ -42,7 +42,7 @@ public class Auditoria {
 	public void setAcao(String acao) {
 		this.acao = acao;
 	}
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "usrcod")
 	public Usuario getUsuario() {
 		return usuario;
