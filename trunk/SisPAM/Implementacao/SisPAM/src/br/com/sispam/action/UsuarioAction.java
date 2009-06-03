@@ -14,6 +14,7 @@ import br.com.sispam.dominio.Paciente;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Acao;
 import br.com.sispam.enums.Dia;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
@@ -138,7 +139,7 @@ public class UsuarioAction extends Action{
 			
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
-			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Acao.INCLUSAO, getUsuarioLogado()));
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.INCLUSAO, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
@@ -425,4 +426,45 @@ public class UsuarioAction extends Action{
 	public void setDataNascimentoAux(String dataNascimentoAux) {
 		this.dataNascimentoAux = dataNascimentoAux;
 	}
+
+	public MedicoFacade getMedicoFacade() {
+		return medicoFacade;
+	}
+
+	public void setMedicoFacade(MedicoFacade medicoFacade) {
+		this.medicoFacade = medicoFacade;
+	}
+
+	public PacienteFacade getPacienteFacade() {
+		return pacienteFacade;
+	}
+
+	public void setPacienteFacade(PacienteFacade pacienteFacade) {
+		this.pacienteFacade = pacienteFacade;
+	}
+
+	public ConvenioFacade getConvenioFacade() {
+		return convenioFacade;
+	}
+
+	public void setConvenioFacade(ConvenioFacade convenioFacade) {
+		this.convenioFacade = convenioFacade;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
+	}
+
+	public EspecialidadeFacade getEspecialidadeFacade() {
+		return especialidadeFacade;
+	}
+
+	public void setEspecialidadeFacade(EspecialidadeFacade especialidadeFacade) {
+		this.especialidadeFacade = especialidadeFacade;
+	}
+	
 }
