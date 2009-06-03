@@ -2,7 +2,13 @@ package br.com.sispam.enums;
 
 public enum Acao {
 	
-	SALVAR_MEDICO(1, "Inclusão de médico"), SALVAR_PACIENTE(2, "Inclusão de paciente");
+	INCLUSAO(1, "INCLUSÃO"), 
+	EXCLUSAO(2, "EXCLUSÃO"), 
+	CONSULTA(3, "CONSULTA"), 
+	ALTERACAO(4, "ALTERAÇÃO"), 
+	ATUALIZACAO(5, "ATUALIZAÇÃO"), 
+	EMISSAO(6, "EMISSÃO");
+
 	
 	private int codigo;
 	private String descricao;

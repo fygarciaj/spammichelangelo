@@ -138,7 +138,7 @@ public class UsuarioAction extends Action{
 			
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
-			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Acao.SALVAR_PACIENTE, getUsuarioLogado()));
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Acao.INCLUSAO, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
