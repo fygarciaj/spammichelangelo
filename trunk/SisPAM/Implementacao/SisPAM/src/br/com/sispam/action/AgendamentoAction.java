@@ -90,7 +90,7 @@ public class AgendamentoAction extends Action{
 			this.mensagens.put("sucesso", "Agedamento solicitado com sucesso!");
 			
 			Auditoria auditoria = new Auditoria();
-			auditoria.setAcao(Acao.SALVAR_MEDICO.getDescricao());
+			auditoria.setAcao(Acao.INCLUSAO.getDescricao());
 			auditoria.setDataReferencia(new Date());
 		}catch (CampoInvalidoException e) {
 			this.erros.put("erro", e.getMessage());
