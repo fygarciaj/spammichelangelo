@@ -82,10 +82,10 @@ public class TesteMedicoDao {
 		medicoDao.salvarMedico(medico);
 
 		//realiza a consulta do medico cadastrado
-		Medico medicoRecuperado = medicoDao.recuperaPeloCrm(1234);
+		List<Medico> medicoRecuperado = medicoDao.recuperaPeloCrm(1234);
 		assertNotNull(medicoRecuperado);
-		assertEquals("Batista", medicoRecuperado.getUsuario().getNome());
-		assertEquals("GO", medicoRecuperado.getCrmUf());
+		assertEquals("Batista", medicoRecuperado.get(0).getUsuario().getNome());
+		assertEquals("GO", medicoRecuperado.get(0).getCrmUf());
 	}
 
 	@Test

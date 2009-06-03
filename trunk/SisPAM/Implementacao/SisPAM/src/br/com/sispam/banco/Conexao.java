@@ -6,34 +6,22 @@ import javax.persistence.Persistence;
 
 public class Conexao {
 
-	private EntityManagerFactory factory;
+	private static EntityManagerFactory factory;
 	private EntityManager manager;
 	private static Conexao conexao;
+	
+	public Conexao(){
+		if(factory == null){
+			factory = Persistence.createEntityManagerFactory("sispam");
+		}
+	}
 
 	/**
 	 * Cria a conexão com o banco de dados
 	 * @return 
 	 */
 	public EntityManager getEntityManger(){
-		if(manager == null){
-			this.factory = Persistence.createEntityManagerFactory("sispam");
-			this.manager = factory.createEntityManager();
-		}
-		return this.manager;
+			manager = factory.createEntityManager();
+			return manager;
 	}
-
-	public static Conexao getConexao(){
-		if(conexao == null){
-			conexao = new Conexao();
-			return conexao;
-		}else{
-			return conexao;
-		}
-
-	}
-
-	private Conexao(){
-		
-	}
-
 }

@@ -22,7 +22,7 @@ public class HistoricoProntuarioDao {
 	 * @return agendamentos
 	 */
 	public List<Agendamento> consultarAgendamento(Agendamento agendamento){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Agendamento> agendamentos = null;
 		try{
@@ -47,7 +47,7 @@ public class HistoricoProntuarioDao {
 	 */
 	public void atualizarHistorioProntuario(HistoricoProntuario historicoProntuario){		
 		
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		

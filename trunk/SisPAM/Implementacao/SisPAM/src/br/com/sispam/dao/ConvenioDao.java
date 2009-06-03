@@ -22,7 +22,7 @@ public class ConvenioDao {
 	 */
 	public void incluirConvenio(Convenio convenio){		
 		
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		
@@ -46,7 +46,7 @@ public class ConvenioDao {
 	 */
 	public void excluirConvenio(String cnpj) throws EntityExistsException{
 				
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
@@ -69,7 +69,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public Convenio recuperarPeloId(int id){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Convenio.class, id);
 	}
@@ -80,7 +80,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public Convenio consultarConvenioPorCnpj(String cnpj){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Convenio convenio = null;
 		try{
@@ -101,7 +101,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public List<Convenio> consultarConvenioPorDescricao(String nome){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Convenio> convenios = null;
 		try{
@@ -122,7 +122,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public List<Convenio> recuperarUltimosCadastrados() {
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Convenio> lista = null;
 		try{
@@ -140,7 +140,7 @@ public class ConvenioDao {
 	 * @return
 	 */
 	public List<Convenio> recuperarTodos(){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Convenio> convenios = null;
 		try{

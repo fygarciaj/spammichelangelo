@@ -16,7 +16,7 @@ public class AuditoriaDao {
 	 */
 	public void gravaAuditoria(Auditoria auditoria){		
 		
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		

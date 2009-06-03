@@ -20,7 +20,7 @@ public class EspecialidadeDao {
 	 * @return
 	 */
 	public EspecialidadeMedica recuperarEspecialidade(int id){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		return manager.find(EspecialidadeMedica.class, id) ;
 	}
@@ -30,7 +30,7 @@ public class EspecialidadeDao {
 	 * @return
 	 */
 	public List<EspecialidadeMedica> recuperarTodas(){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Query query = manager.createQuery("from EspecialidadeMedica");
 		return query.getResultList();
@@ -41,7 +41,7 @@ public class EspecialidadeDao {
 	 * @return
 	 */
 	public List<EspecialidadeMedica> recuperarTodas(List<Integer> lista){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Query query = manager.createQuery("from EspecialidadeMedica where id not in (:lista)");
 		query.setParameter("lista", lista);
@@ -54,7 +54,7 @@ public class EspecialidadeDao {
 	 * @return
 	 */
 	public List<EspecialidadeMedica> recuperarEspecialidades(List<Integer> lista){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Query query = manager.createQuery("from EspecialidadeMedica where id in (:lista)");
 		query.setParameter("lista", lista);

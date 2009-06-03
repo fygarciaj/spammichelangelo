@@ -21,7 +21,7 @@ public class MedicoDao {
 	 * @param usuario
 	 */
 	public void salvarMedico(Medico medico){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 				
 		if(medico != null && medico.getId() > 0){
@@ -51,7 +51,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public Medico recuperaPeloId(int id){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		try{
 			return manager.find(Medico.class,id);
@@ -64,17 +64,19 @@ public class MedicoDao {
 	/**
 	 * : recupera o médico pelo seu crm.
 	 * @param cpf
+	 * @param estado
 	 * @return
 	 */
-	public Medico recuperaPeloCrm(int crm){
-		conexao = Conexao.getConexao();
+	public Medico recuperaPeloCrm(int crm, String estado){
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Medico medico = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Medico where crm = :crm ");
+			Query query = manager.createQuery("from Medico where crm = :crm and crmUf = :uf ");
 			//seta o parametro
 			query.setParameter("crm", crm);
+			query.setParameter("uf", estado);
 			medico = (Medico) query.getSingleResult();
 		}catch (NoResultException e) {
 			e.printStackTrace();
@@ -83,6 +85,27 @@ public class MedicoDao {
 		return medico;
 	}
 	
+	/**
+	 * : recupera o médico pelo seu crm.
+	 * @param cpf
+	 * @return
+	 */
+	public List<Medico> recuperaPeloCrm(int crm){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Medico medico = null;
+		try{
+			//cria uma queri para fazer a busca pelo perfil
+			Query query = manager.createQuery("from Medico where crm = :crm ");
+			//seta o parametro
+			query.setParameter("crm", crm);
+			return query.getResultList();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
 	
 	/**
 	 * : Recupera uma lista de médicos pelo nome.
@@ -90,7 +113,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public List<Medico> recuperaPeloNome(String nome){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		List<Medico> lista = null;
 		manager = conexao.getEntityManger();
 		Medico medico = null;
@@ -113,7 +136,7 @@ public class MedicoDao {
 	 * @param medico
 	 */
 	public void remover(Medico medico){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		medico = manager.merge(medico);
@@ -127,7 +150,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public List<Medico> recuperarUltimosCadastrados() {
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Medico> lista = null;
 		try{
@@ -146,7 +169,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public List<Medico> recuperarTodos(){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Medico> lista = null;
 		try{
@@ -165,7 +188,7 @@ public class MedicoDao {
 	 * @return
 	 */
 	public Medico recuperar(Usuario usuario){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Medico medico =  null;
 		try{
@@ -183,7 +206,7 @@ public class MedicoDao {
 	 * @param medico
 	 */
 	public void excluirEspecialidades(Medico medico){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager.getTransaction().begin();
 		Query query = manager.createNativeQuery("delete from medico_especialidade where mdccod = :id");
 		query.setParameter("id", medico.getId());
@@ -196,7 +219,7 @@ public class MedicoDao {
 	 * @param medico
 	 */
 	public void inseriEspecialidades(Medico medico){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager.getTransaction().begin();
 		
 		for(EspecialidadeMedica esp: medico.getEspecialidades()){
@@ -214,7 +237,7 @@ public class MedicoDao {
 	 * : Limpa as tabelas para testes.
 	 */
 	public void removerTodosTeste() {
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		Query query = manager.createQuery("delete from Medico where id > 0");

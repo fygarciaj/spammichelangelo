@@ -19,7 +19,7 @@ public class CompromissoDao {
 	 */
 	public void incluirCompromisso(Compromisso compromisso){		
 
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 
@@ -41,7 +41,7 @@ public class CompromissoDao {
 	 */
 	public void excluirCompromisso(Compromisso compromisso){
 
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
@@ -64,7 +64,7 @@ public class CompromissoDao {
 	 * @return
 	 */
 	public Compromisso recuperarPeloId(int id){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Compromisso.class, id);
 	}
@@ -75,7 +75,7 @@ public class CompromissoDao {
 	 * @return
 	 */
 	public List<Compromisso> consultarCompromissoUnico(Compromisso compromisso){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Compromisso> compromissos = null;
 	try{
@@ -102,7 +102,7 @@ public class CompromissoDao {
 	 * @return
 	 */
 	public List<Compromisso> consultarCompromissos(Compromisso compromisso){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Compromisso> compromissos = null;
 		try{
