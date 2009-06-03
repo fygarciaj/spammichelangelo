@@ -15,14 +15,14 @@
 %>
 </HEAD>
 <BODY>
-	<img src="componentes/img/simbLogin.jpg"  width="100%" align="top">
-<br>
-
-
-<center> 
 	
-	<table width="235" border="0"cellpadding="3" height="123" class="tabela_login" >
-		dfdfadfdfasfd
+<br><br>
+	<table width="750px" class="errorMessage" >
+		<tr>
+			<td>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Informe os campos para obrigatórios.
+			</td>
+		</tr>
 	</table>
 
 </center>

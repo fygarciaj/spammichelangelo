@@ -7,6 +7,6 @@
 </head>
 <body>
 <br>
-	<img src="img/defaultBackground.jpg" width="200px" hspace="500px">
+	<img src="img/defaultBackground.jpg" width="450px" hspace="500px">
 </body>
 </html>

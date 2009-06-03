@@ -84,7 +84,7 @@
 <body>
 <div id="menu">
 <ul>
-	<li><a href="javaScript:void(0)" onclick="selecionaMenu('agendaMedica')" title="Manter Agenda Médica"
+	<li><a href="defaut.jsp" onclick="selecionaMenu('agendaMedica')" title="Manter Agenda Médica"
 		target="CENTRAL">AGENDA MÉDICA</a>
 	<div id="menuAgendaMedica" style="display: none">
 	<ul id="subMenu">
@@ -93,7 +93,7 @@
 	</ul>
 	</div>
 	</li>
-	<li><a href="javaScript:void(0)" onclick="selecionaMenu('agendamento')" title="Manter Agendamento"
+	<li><a href="defaut.jsp" onclick="selecionaMenu('agendamento')" title="Manter Agendamento"
 		target="CENTRAL">AGENDAMENTO</a>
 	<div id="menuAgendamento" style="display: none">
 	<ul id="subMenu">
@@ -102,7 +102,7 @@
 	</ul>
 	</div>
 	</li>
-	<li><a href="javaScript:void(0)" onclick="selecionaMenu('consultaRealizados')" title="Consulta Agendamento Realizado"
+	<li><a href="defaut.jsp" onclick="selecionaMenu('consultaRealizados')" title="Consulta Agendamento Realizado"
 		target="CENTRAL">CONSULTA REALIZADO</a>
 	<div id="menuConsultaRealizados" style="display: none">
 	<ul id="subMenu">
@@ -110,7 +110,7 @@
 	</ul>
 	</div>
 	</li>
-	<li><a href="javaScript:void(0)" onclick="selecionaMenu('historicoProntuario')" title="Atualizar Histórico de Prontuário"
+	<li><a href="defaut.jsp" onclick="selecionaMenu('historicoProntuario')" title="Atualizar Histórico de Prontuário"
 		target="CENTRAL">HISTÓRICO PRONTUÁRIO</a>
 	<div id="menuHistoricoProntuario" style="display: none">
 	<ul id="subMenu">
@@ -119,7 +119,7 @@
 	</div>
 	</li>
   	<li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('receita')" title = "Emitir Receita" target="CENTRAL">RECEITA</a>
+		<a href="defaut.jsp" onclick="selecionaMenu('receita')" title = "Emitir Receita" target="CENTRAL">RECEITA</a>
 		<div id="menuReceita" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="receitaAction!carregarAgendamentos.action" title = "Emitir" target="CENTRAL">Emitir</a></li>
