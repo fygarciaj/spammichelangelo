@@ -26,7 +26,7 @@ public class Relatorio extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String relatorioChamdo = request.getParameter("relatorioChamado");
+		String relatorioChamado = request.getParameter("relatorioChamado");
 		
 		ServletOutputStream servletOutputStream = response.getOutputStream();
 
@@ -34,10 +34,14 @@ public class Relatorio extends HttpServlet {
 		
 		String relatorio = null;
 		
-		if(relatorioChamdo.equals("convenio")){
+		if(relatorioChamado.equals("convenio")){
 			relatorio = caminho+emiteRelatorioConvenio(request, response).get("relatorio");;
-		}else if(relatorioChamdo.equals("receita")){
+		}else if(relatorioChamado.equals("receita")){
 			relatorio = caminho+emiteReceita(request, response).get("relatorio");
+		}else if(relatorioChamado.equals("relatorioLog")){
+			relatorio = caminho+emiteRelatorioLog(request, response).get("relatorio");
+		}else if(relatorioChamado.equals("usuario")){
+			relatorio = caminho+emiteRelatorioUsuario(request, response).get("relatorio");
 		}
 		
 		InputStream reportStream = getServletConfig().getServletContext().getResourceAsStream(relatorio);
@@ -49,22 +53,33 @@ public class Relatorio extends HttpServlet {
 			HashMap<String, String> map = new HashMap<String, String>();
 			HashMap<String, Object> mapaReceita = new HashMap<String, Object>();
 
-			if(relatorioChamdo.equals("convenio")){
-			//passa o map dependendo do relatorio			
-			map = emiteRelatorioConvenio(request, response);
-			}else if(relatorioChamdo.equals("receita")){
+			if(relatorioChamado.equals("convenio")){
+				//passa o map dependendo do relatorio			
+				map = emiteRelatorioConvenio(request, response);
+			}else if(relatorioChamado.equals("receita")){
 				mapaReceita = emiteReceita(request, response);
+			}else if(relatorioChamado.equals("relatorioLog")){
+				map = emiteRelatorioLog(request, response);
+			}else if(relatorioChamado.equals("usuario")){
+				mapaReceita = emiteRelatorioUsuario(request, response);
 			}
 			
 			//para gerar o relatório em PDF
 			// o método runReportToPdfStream foi usado
-			if(relatorioChamdo.equals("convenio")){	
+			if(relatorioChamado.equals("convenio")){	
 				JasperRunManager.runReportToPdfStream(reportStream, 
 						servletOutputStream, map,connection);
-			}else if(relatorioChamdo.equals("receita")){
+			}else if(relatorioChamado.equals("receita")){
+				JasperRunManager.runReportToPdfStream(reportStream, 
+						servletOutputStream, mapaReceita,connection);
+			}else if(relatorioChamado.equals("relatorioLog")){
+				JasperRunManager.runReportToPdfStream(reportStream, 
+						servletOutputStream, map,connection);
+			}else if(relatorioChamado.equals("usuario")){
 				JasperRunManager.runReportToPdfStream(reportStream, 
 						servletOutputStream, mapaReceita,connection);
 			}
+				
 
 			// envia o relatório em formato PDF para o browser
 			response.setContentType("application/pdf");
@@ -119,6 +134,28 @@ public class Relatorio extends HttpServlet {
 		return parameterMap;
 	}
 	
+	protected HashMap<String, Object> emiteRelatorioUsuario(HttpServletRequest request, HttpServletResponse response){
+		HashMap<String, Object> parameterMap;
+		parameterMap = new HashMap<String, Object>();
+				
+		String relatorio = null;
+		try {
+			int perfil = Integer.parseInt(request.getParameter("perfil"));
+			parameterMap.put("PERFIL", perfil);
+		if(parameterMap.get("PERFIL").toString().equals("0")){
+			relatorio = "RelatorioUsuarioSemFiltroSintetico.jasper";
+			parameterMap.put("relatorio", relatorio);
+		}else {
+			
+			relatorio = "RelatorioUsuarioComFiltroSintetico.jasper";			
+			parameterMap.put("relatorio", relatorio);
+		}
+		
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return parameterMap;
+	}
 	
 	protected HashMap<String, Object> emiteReceita(HttpServletRequest request, HttpServletResponse response){
 		HashMap<String, Object> parameterMap;
@@ -140,6 +177,22 @@ public class Relatorio extends HttpServlet {
 		return parameterMap;
 	}
 
+	protected HashMap<String, String> emiteRelatorioLog(HttpServletRequest request, HttpServletResponse response){
+		HashMap<String, String> parameterMap;
+		parameterMap = new HashMap<String, String>();
+		
+		String dataString = request.getParameter("data");
+		String data;
+		try {
+			data = DataUtil.stringToDateFormatoPdf(dataString);		
+			parameterMap.put("DATA_REFERENCIA", (data));
+			parameterMap.put("relatorio", "RelatorioLogComFiltroSintetico.jasper");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return parameterMap;
+	}
+
 
 	/* (non-Java-doc)
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -151,10 +204,14 @@ public class Relatorio extends HttpServlet {
 			processRequest(request, response);
 		}else if(pag.equals("emiteReceita")){
 			processRequest(request, response);
+		}else if(pag.equals("relatorioLog")){
+			processRequest(request, response);
+		}else if(pag.equals("relatorioUsuario")){
+			processRequest(request, response);
 		}
 	}  	
 
-	/* (non-Java-doc)
+	/* (non-Java-doc)relatorioUsuario
 	 * @see javax.servlet.http.HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -164,6 +221,10 @@ public class Relatorio extends HttpServlet {
 			processRequest(request, response);
 		}else if(pag.equals("emiteReceita")){
 			processRequest(request, response);
-		}
+		}else if(pag.equals("relatorioLog")){
+			processRequest(request, response);
+		}else if(pag.equals("relatorioUsuario")){
+			processRequest(request, response);
+		}	
 	}   	  	    
 }

@@ -26,10 +26,11 @@ h2{
 }
 
 h3{
-	font-size: 20px;
+	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
+	font-size: 12px;	
 	clear:left;
-	color: #172F4A;
-	padding: 10px 0px 5px 0px;
+	color: #00008B;
+	padding: 5px 10px 5px 0px;
 	margin: 0;
 }
 th{

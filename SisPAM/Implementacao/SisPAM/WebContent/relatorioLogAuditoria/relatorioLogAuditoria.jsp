@@ -35,17 +35,12 @@
 							 gotoCurrent: true
 				 });
 			}
-
-     $(document).ready(
- 			function(){
- 			  $(".horario").mask("99:99");	
- 			}
- 		      );
-      	
+	
 		function emiteRelatorio(){			
 			var data = document.getElementById("data");
 			document.getElementById("dataForm").value = data.value;
 			document.forms[1].submit();
+			
 		}		
 	</script>
 </head>
@@ -58,20 +53,20 @@
 		</td>
 </table>
 <h2>Emissão de Log de Auditoria</h2>
-
-<s:form action="" theme="simple">
+<h3>Atenção! Informe uma data válida para pesquisa</h3>
+<form action="../relatorioLog.sispam" method="post" name="relatorio">
 		<table class="tabela_relatorio"  >
 						
 			<tr>
 				<td><label>Data de pesquisa:</label></td>				
-				<td><s:textfield name="data" id="data" theme="simple" size="10" maxlength="10"/></td>
-				<td></td><td><BUTTON onclick="emiteReceita()" value="Emitir" name="Emitir"/></td>
+				<td><input type="text" name="data" id="data" size="10" maxlength="10"/></td>
+				<td></td><td><input type="button" onclick="emiteRelatorio()" value="Emitir" class="button"/></td>
 			</tr>
 			
 		</table>
-	</s:form>
+</form>
 			
-	<form action="../emiteRelatorioLog.sispam" method="post" name="relatorio">
+	<form action="../relatorioLog.sispam" method="post" name="relatorio">
 		<input type="hidden" name="data" id="dataForm">
 		<input type="hidden" name="relatorioChamado" value="relatorioLog">
 	</form>	
