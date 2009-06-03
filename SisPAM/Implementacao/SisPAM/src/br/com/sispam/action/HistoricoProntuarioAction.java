@@ -6,12 +6,16 @@ import java.util.List;
 import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.CodigoDoenca;
 import br.com.sispam.dominio.HistoricoProntuario;
+import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.CodigoDoencaFacade;
 import br.com.sispam.facade.HistoricoProntuarioFacade;
 import br.com.sispam.facade.MedicoFacade;
+import br.com.sispam.util.AuditoriaUtil;
 
 public class HistoricoProntuarioAction extends Action{
 	private HistoricoProntuario historicoProntuario;
@@ -21,6 +25,7 @@ public class HistoricoProntuarioAction extends Action{
 	private MedicoFacade medicoFacade;
 	private List<CodigoDoenca> codigosDoencas;
 	private CodigoDoencaFacade codigoDoencaFacade;
+	private AuditoriaFacade auditoriaFacade;
 	
 	/**
 	 * : Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
@@ -39,9 +44,10 @@ public class HistoricoProntuarioAction extends Action{
 			this.agendamento.setData(new Date());
 			this.agendamentosCadastrados = this.historicoProntuarioFacade.recuperarAgendamentosDiaAtual(agendamento);
 			if (agendamentosCadastrados.size() == 0){
-				erros.put("vazio", "Desculpe Dr., Sem agendamentos para atender!");
+				erros.put("vazio", "Desculpe Dr."+ this.getUsuarioLogado().getAcesso().toUpperCase() + ", sem agendamentos para atender!");
 			}
 		}
+		apresentaErrors();
 		apresentaMensagens();
 		return CARREGAR_CONSULTA_AGENDAMENTO;
 	}
@@ -61,6 +67,10 @@ public class HistoricoProntuarioAction extends Action{
 			
 			historicoProntuarioFacade.atualizaHistoricoProntuario(historicoProntuario, agendamento);
 			mensagens.put("salvo", "Histórico de Prontuário atualizado com sucesso!");
+			
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.ATUALIZA_PRONTUARIO, Acao.ATUALIZACAO, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {			
 			erros.put("campoInvalido", e.getMessage());
 			apresentaErrors();
@@ -68,7 +78,6 @@ public class HistoricoProntuarioAction extends Action{
 			return carregaAtualizacaoHistorico();
 		}
 		
-	
 		limparCampos();
 		return ATUALIZAR_HISTORICO_PRONTUARIO;
 	}
@@ -135,8 +144,6 @@ public class HistoricoProntuarioAction extends Action{
 		this.medicoFacade = medicoFacade;
 	}
 
-
-
 	public List<CodigoDoenca> getCodigosDoencas() {
 		return codigosDoencas;
 	}
@@ -151,6 +158,14 @@ public class HistoricoProntuarioAction extends Action{
 
 	public void setCodigoDoencaFacade(CodigoDoencaFacade codigoDoencaFacade) {
 		this.codigoDoencaFacade = codigoDoencaFacade;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
 	}
 	
 	
