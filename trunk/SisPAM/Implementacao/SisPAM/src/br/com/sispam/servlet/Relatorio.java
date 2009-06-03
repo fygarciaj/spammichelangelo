@@ -9,15 +9,15 @@ import javax.servlet.http.*;
 import br.com.sispam.banco.ConexaoRelatorio;
 import br.com.sispam.util.DataUtil;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRParameter;
+
 import net.sf.jasperreports.engine.JasperRunManager;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
-import java.util.Date;
+
 import java.util.HashMap;
-import java.util.Locale;
+
 
 
 public class Relatorio extends HttpServlet {
