@@ -24,7 +24,7 @@
 <div id="menu">
   <ul>  
 	<li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('atualizaParametro')" title = "Atualizar Parâmetro" target="CENTRAL">ATUALIZA PARÂMETRO</a>
+		<a href="defaut.jsp" onclick="selecionaMenu('atualizaParametro')" title = "Atualizar Parâmetro" target="CENTRAL">ATUALIZA PARÂMETRO</a>
 		<div id="menuAtualizaParametro" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="../relatorioConvenio/relatorio-convenio.jsp" title = "Atualizar" target="CENTRAL">Atualizar</a></li>

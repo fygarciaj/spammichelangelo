@@ -51,7 +51,7 @@
 <div id="menu">
   <ul>  
 	<li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('relatorioConvenio')" title = "Emitir Relatorio Convenio" target="CENTRAL">RELATÓRIO CONVÊNIO</a>
+		<a href="defaut.jsp" onclick="selecionaMenu('relatorioConvenio')" title = "Emitir Relatorio Convenio" target="CENTRAL">RELATÓRIO CONVÊNIO</a>
 		<div id="menuRelatorioConvenio" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="../relatorioConvenio/relatorio-convenio.jsp" title = "Emitir" target="CENTRAL">Emitir</a></li>
@@ -59,7 +59,7 @@
 		</div>
 	</li>
 	<li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('relatorioLog')" title = "Emitir Relatorio Log" target="CENTRAL">RELATÓRIO LOG</a>
+		<a href="defaut.jsp" onclick="selecionaMenu('relatorioLog')" title = "Emitir Relatorio Log" target="CENTRAL">RELATÓRIO LOG</a>
 		<div id="menuRelatorioLog" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="../relatorioLogAuditoria/relatorioLogAuditoria.jsp" title = "Emitir" target="CENTRAL">Emitir</a></li>
@@ -67,7 +67,7 @@
 		</div>
 	</li>
 	<li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('relatorioUsuario')" title = "Emitir Relatorio Usuário" target="CENTRAL">RELATÓRIO USUÁRIO</a>
+		<a href="defaut.jsp" onclick="selecionaMenu('relatorioUsuario')" title = "Emitir Relatorio Usuário" target="CENTRAL">RELATÓRIO USUÁRIO</a>
 		<div id="menuRelatorioUsuario" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="../relatorioUsuario/relatorio-usuario.jsp" title = "Emitir" target="CENTRAL">Emitir</a></li>

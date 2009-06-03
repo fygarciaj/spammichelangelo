@@ -39,7 +39,7 @@
 <div id="menu">
   <ul>
     <li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('usuario')" title = "Manter Usuário" target="CENTRAL">USUÁRIO</a>
+		<a href="defaut.jsp" onclick="selecionaMenu('usuario')" title = "Manter Usuário" target="CENTRAL">USUÁRIO</a>
 		<div id="menuUsuario" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="usuarioAction!carregarNovoUsuario.action" title = "Incluir" target="CENTRAL">Incluir</a></li>
@@ -49,7 +49,7 @@
 		</div>
 	</li>
     <li>
-		<a href="javaScript:void(0)" onclick="selecionaMenu('convenio')" title = "Manter Convênio" target="CENTRAL">CONVÊNIO</a>
+		<a href="defaut.jsp" onclick="selecionaMenu('convenio')" title = "Manter Convênio" target="CENTRAL">CONVÊNIO</a>
 		<div id="menuConvenio" style="display:none">
 			<ul id="subMenu">
 			<li ><a href="../convenio/inclui-convenio.jsp" title = "Incluir" target="CENTRAL">Incluir</a></li>
