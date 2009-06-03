@@ -33,7 +33,7 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Relatório<img src="../componentes/img/seta.gif" />Receita<img
+		<div>Atendimento<img src="../componentes/img/seta.gif" />Receita<img
 			src="../componentes/img/seta.gif" />Emitir</div>
 		</td>
 </table>
@@ -58,6 +58,7 @@
 		<s:fielderror theme="simple" cssClass="errorMessage" />
 		<s:actionmessage theme="simple" cssClass="sucessMessage" />
 	</div>
+	<h3>Atenção! Clique no botão "Emitir Receita" para gerar a receita</h3>
 	<!-- Lista agendamentos realizados -->
 	<s:if test="agendamentosCadastrados != null && agendamentosCadastrados.size() > 0">
 	<br>

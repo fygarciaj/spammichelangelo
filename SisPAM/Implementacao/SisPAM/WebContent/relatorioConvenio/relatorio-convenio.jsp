@@ -14,17 +14,17 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Relatório<img src="../componentes/img/seta.gif" />Relatório de Convênio<img
+		<div>Relatórios<img src="../componentes/img/seta.gif" />Relatório Convênio<img
 			src="../componentes/img/seta.gif" />Emitir</div>
 		</td>
 	</tr>
 </table>
 <h2>Emissão de Relatório de Convênio</h2>
 
-
+<h3>Atenção! Informe o nome caso queira filtrar o relatório</h3>
 <form action="../relatorioConvenio.sispam" method="post">
 		<input type="hidden" name="relatorioChamado" value="convenio"/>
-		<table class="tabela_moldura" >
+		<table class="tabela_relatorio" >
 			<tr>			
         	<td><label class="label">Tipo de Relatório</label>
         	</td><td>

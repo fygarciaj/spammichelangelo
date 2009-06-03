@@ -48,7 +48,7 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Relatórios<img src="../componentes/img/seta.gif" />Log de Auditoria<img
+		<div>Relatórios<img src="../componentes/img/seta.gif" />Relatório Log<img
 			src="../componentes/img/seta.gif" />Emitir</div>
 		</td>
 </table>

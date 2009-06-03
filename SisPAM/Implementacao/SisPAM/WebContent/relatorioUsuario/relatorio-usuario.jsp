@@ -14,20 +14,20 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Relatório<img src="../componentes/img/seta.gif" />Relatório de Convênio<img
+		<div>Relatórios<img src="../componentes/img/seta.gif" />Relatório Convênio<img
 			src="../componentes/img/seta.gif" />Emitir</div>
 		</td>
 	</tr>
 </table>
 <h2>Emissão de Relatório de Usuário</h2>
 
-
+<h3>Atenção! Informe um Perfil caso queira filtrar o relatório</h3>
 <form action="../relatorioUsuario.sispam" method="post" name="relatorio"> 
 		<input type="hidden" name="relatorioChamado" value="usuario"/>
-		<table class="tabela_moldura" >
+		<table class="tabela_relatorio" >
 			<tr>			
-        	<td><label class="label">Perfil</label>
-        	</td><td>
+        	<td align="center"><label class="label">Perfil</label>
+        	
         	<!-- Perfil -->        	
 			<select id="cmbPerfil" name="perfil">
 				<option value="0">--Selecione--</option>			
@@ -39,7 +39,7 @@
         	</td>
 			</tr>			
 			<tr>			        	        	
-			<td><input type="submit" value="Emitir" class="button"/></td>
+			<td align="center"><input type="submit" value="Emitir" class="button"/></td>
 			</tr>	
 		</table>
 	</form>
