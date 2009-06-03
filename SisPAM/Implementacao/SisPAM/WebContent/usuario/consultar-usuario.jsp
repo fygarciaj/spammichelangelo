@@ -10,6 +10,18 @@
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 	<title>Insert title here</title>
+	<SCRIPT type="text/javascript">
+
+		function mostrarUF(){
+			var variavel = document.getElementById("crm");
+			if(variavel.value.length > 1){
+				document.getElementById("ufCrm").style.display = 'block';
+			}else{
+				document.getElementById("ufCrm").style.display = 'none';
+			}
+		}
+	
+	</SCRIPT>
 </head>
 <body>
 	<table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -68,8 +80,18 @@
 		<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}"/>
 		<table class="tabela_moldura" >
 			<tr>
-				<td><label>CRM</label></td><td><s:textfield name="crmAux" id="crm" theme="simple" size="13" maxlength="11"/></td>
-				<td align="right" width="60px"><label>Nome</label></td><td><s:textfield name="medico.usuario.nome" id="nome" theme="simple" size="60" maxlength="60"/></td>
+				<td width="50%"><label>CRM</label>&nbsp;<s:textfield name="crmAux" id="crm" theme="simple" size="10" maxlength="11" onkeyup="return mostrarUF()"/>
+				<div id="ufCrm" style="display:none">
+				&nbsp;<label>UF</label>&nbsp;
+				<s:select name="crmUf" theme="simple"  list="#{'':'Selecione','AC':'Acre', 'AL':'Alagoas', 'AP': 'Amapá', 
+					'AM':'Amazônas', 'BA': 'Bahia', 'CE':'Ceará', 'DF':'Distrito Federal', 'ES':'Espírito Santo', 'GO':'Goiás', 
+					'MA': 'Maranhão', 'MT':'Mato Grosso', 'MS':'Mato Grosso do Sul', 'MG':'Minas Gerais', 'PA':'Pará', 
+					'PB':'Paraíba', 'PR':'Paraná', 'PE':'Pernambuco', 'PI':'Piauí', 'RJ':'Rio de Janeiro', 'RN':'Rio Grande do Norte', 
+					'RS':'Rio Grande do Sul', 'RO':'Rondônia', 'RR':'Roraima', 'SC':'Santa Catariana', 'SP':'São Paulo', 
+					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
+				</div>
+				</td>
+				<td align="right" width="30%"><label>Nome</label></td><td><s:textfield name="medico.usuario.nome" id="nome" theme="simple" size="40" maxlength="60"/></td>
 				<td><s:submit value="Consultar" cssClass="button"  theme="simple"/></td>
 			</tr>
 		</table>

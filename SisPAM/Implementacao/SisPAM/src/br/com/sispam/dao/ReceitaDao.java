@@ -20,7 +20,7 @@ public class ReceitaDao {
 	 * @return agendamentos
 	 */
 	public List<Agendamento> consultarAgendamento(Agendamento agendamento){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Agendamento> agendamentos = null;
 		try{

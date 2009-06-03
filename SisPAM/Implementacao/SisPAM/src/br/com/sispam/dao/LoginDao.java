@@ -23,7 +23,7 @@ public class LoginDao {
 	 * @throws PersistenceException
 	 */
 	public Usuario recuperaSenha(String acesso)throws CampoInvalidoException, PersistenceException{
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 

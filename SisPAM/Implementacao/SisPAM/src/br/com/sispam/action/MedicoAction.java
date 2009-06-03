@@ -44,6 +44,7 @@ public class MedicoAction extends Action{
 	private List<String> diasString;
 	private String dataNascimentoAux;
 	private List<Medico> medicosCadastrados;
+	private String crmUf;
 
 	
 	/**
@@ -94,7 +95,7 @@ public class MedicoAction extends Action{
 			medico.setCrm(Integer.parseInt(crmAux));
 
 			//verifica se o crm está sendo usado
-			medicoFacade.verificaCrmExistente(medico.getCrm(), medico.getId());
+			medicoFacade.verificaCrmExistente(medico.getCrm(), medico.getId(), medico.getCrmUf());
 
 			//monta a lista de especialidades
 			this.medicoFacade.validaEspecialidadesSalvas(medico, especialidadesSelecionadas);
@@ -157,7 +158,7 @@ public class MedicoAction extends Action{
 		this.medicoFacade = new MedicoFacade();
 		
 		try{
-			this.medicosCadastrados = this.medicoFacade.consultar(crmAux, medico.getUsuario().getNome());
+			this.medicosCadastrados = this.medicoFacade.consultar(crmAux,crmUf,  medico.getUsuario().getNome());
 		}catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
@@ -462,6 +463,14 @@ public class MedicoAction extends Action{
 	}
 	public void setMedicosCadastrados(List<Medico> medicosCadastrados) {
 		this.medicosCadastrados = medicosCadastrados;
+	}
+
+	public String getCrmUf() {
+		return crmUf;
+	}
+
+	public void setCrmUf(String crmUf) {
+		this.crmUf = crmUf;
 	}
 	
 }

@@ -60,8 +60,8 @@ public class MedicoFacade {
 	 * @param id
 	 * @throws CampoInvalidoException
 	 */
-	public void verificaCrmExistente(int crm, int id) throws CampoInvalidoException {
-		Medico medico = this.medicoDao.recuperaPeloCrm(crm);
+	public void verificaCrmExistente(int crm, int id, String estado) throws CampoInvalidoException {
+		Medico medico = this.medicoDao.recuperaPeloCrm(crm, estado);
 		if(medico != null && id != medico.getId()){
 			throw new CampoInvalidoException("Este CRM está em uso!");
 		}
@@ -197,7 +197,7 @@ public class MedicoFacade {
 	 * @return
 	 * @throws CampoInvalidoException 
 	 */
-	public List<Medico> consultar(String crm, String nome) throws CampoInvalidoException{
+	public List<Medico> consultar(String crm,String uf,  String nome) throws CampoInvalidoException{
 		List<Medico>lista = null;
 		Medico medicoRecuperado = null;
 		
@@ -208,10 +208,14 @@ public class MedicoFacade {
 			validaCampoInteiro(crm);
 			int crmNumero = Integer.parseInt(crm);
 			lista = new ArrayList<Medico>();
-			medicoRecuperado = this.medicoDao.recuperaPeloCrm(crmNumero);
-			if(medicoRecuperado != null){
-				lista.add(medicoRecuperado);
+			if(uf != null && !uf.isEmpty()){
+				medicoRecuperado = this.medicoDao.recuperaPeloCrm(crmNumero, uf);
+				if(medicoRecuperado != null){
+					lista.add(medicoRecuperado);
+			}else{
+				lista = this.medicoDao.recuperaPeloCrm(crmNumero);
 			}
+		}
 		}else{
 			lista = medicoDao.recuperaPeloNome(nome);
 		}

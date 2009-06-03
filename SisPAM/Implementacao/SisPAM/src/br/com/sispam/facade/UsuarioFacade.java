@@ -139,6 +139,11 @@ public class UsuarioFacade {
 			
 		if(objeto != null && objeto instanceof Usuario){
 			Usuario usuario = (Usuario)objeto;
+			//retira a mascára do cpf
+			if(usuario.getCpf() != null){
+				usuario.setCpf(usuario.getCpf().replaceAll("[.]", ""));
+				usuario.setCpf(usuario.getCpf().replaceAll("[-]", ""));
+			}
 			validador.setCpf(usuario.getCpf());
 			if(usuario.getNome() == null || usuario.getNome().length() == 0){
 				throw new CampoInvalidoException("Campo nome inválido");

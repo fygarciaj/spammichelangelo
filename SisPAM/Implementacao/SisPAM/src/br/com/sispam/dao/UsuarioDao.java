@@ -20,7 +20,7 @@ public class UsuarioDao {
 	 * @param usuario
 	 */
 	public Usuario salvarUsuario(Usuario usuario){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 
 		manager.getTransaction().begin();
@@ -43,7 +43,7 @@ public class UsuarioDao {
 	 * @param perfil
 	 */
 	public List<Usuario> recuperaLista(Perfil perfil){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		//cria uma queri para fazer a busca pelo perfil
 		Query query = manager.createQuery("from Usuario u where u.perfil = :perfil ");
@@ -59,7 +59,7 @@ public class UsuarioDao {
 	 * @param usuario
 	 */
 	public void removerUsuario(Usuario usuario){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		usuario = manager.merge(usuario);
@@ -74,7 +74,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public Usuario recuperarPeloId(int id){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		return manager.find(Usuario.class, id);
 	}
@@ -85,7 +85,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public Usuario recupera(String cpf){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 		try{
@@ -108,7 +108,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public List<Usuario> recuperaPeloNome(String nome, int codigoPerfil){
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Usuario> lista = null;
 		try{
@@ -130,7 +130,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public List<Usuario> recuperarUltimosCadastrados(int codigoPerfil) {
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		List<Usuario> lista = null;
 		try{
@@ -149,7 +149,7 @@ public class UsuarioDao {
 	 * remove todos usuários para testes.
 	 */
 	public void removerTodosTeste() {
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		try{
 			manager.getTransaction().begin();
@@ -167,7 +167,7 @@ public class UsuarioDao {
 	 * @return
 	 */
 	public Usuario recuperaPeloLogin(String acesso) {
-		conexao = Conexao.getConexao();
+		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 		try{
