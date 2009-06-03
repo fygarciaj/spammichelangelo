@@ -17,6 +17,7 @@
 <BODY>
 	
 <br><br>
+<center>
 	<table width="750px" class="errorMessage" >
 		<tr>
 			<td>
