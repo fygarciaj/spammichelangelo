@@ -122,7 +122,8 @@ CREATE SEQUENCE auditoria_adtcod_seq;
 CREATE TABLE auditoria (
   adtcod NUMERIC(12) NOT NULL DEFAULT NEXTVAL('auditoria_adtcod_seq'),
   adtdatref TIMESTAMP NULL,
-  adtact VARCHAR(50) NULL,
+  adtact VARCHAR(15) NULL,
+  adttip VARCHAR(40) NULL,
   usrcod INTEGER  NOT NULL
 );
 
