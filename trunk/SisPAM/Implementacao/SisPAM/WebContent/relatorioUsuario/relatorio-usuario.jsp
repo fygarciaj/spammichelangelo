@@ -26,8 +26,8 @@
 		<input type="hidden" name="relatorioChamado" value="usuario"/>
 		<table class="tabela_relatorio" >
 			<tr>			
-        	<td align="center"><label class="label">Perfil</label>
-        	
+        	<td align="center"><label class="label">Perfil:</label>
+			</td><td>        	
         	<!-- Perfil -->        	
 			<select id="cmbPerfil" name="perfil">
 				<option value="0">--Selecione--</option>			
@@ -36,11 +36,9 @@
 				<option value="3">Médico</option>
 				<option value="4">Paciente</option>
 			</select>
-        	</td>
+			<td></td>
+			<td align="center"><input type="submit" value="Emitir" class="button"/></td>        				
 			</tr>			
-			<tr>			        	        	
-			<td align="center"><input type="submit" value="Emitir" class="button"/></td>
-			</tr>	
 		</table>
 	</form>
 
