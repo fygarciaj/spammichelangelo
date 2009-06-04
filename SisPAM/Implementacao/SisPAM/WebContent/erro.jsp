@@ -17,17 +17,14 @@
 <BODY>
 	
 <br><br>
-<center>
 	<table width="750px" class="errorMessage" >
 		<tr>
 			<td>
-			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Informe os campos para obrigatórios.
+			 Informe os campos para obrigatórios.
 			</td>
 		</tr>
 	</table>
-
-</center>
 </BODY>
 
 
-<p align="center" style="margin-top: 0; margin-bottom: 0"> </p>
+<p style="margin-top: 0; margin-bottom: 0"> </p>
