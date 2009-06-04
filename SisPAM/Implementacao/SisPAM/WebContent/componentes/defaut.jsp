@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
+<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 </head>
 <body>
 <br>
-	<img src="img/defaultBackground.jpg" width="450px" hspace="500px">
+<br>
+<label class="caminhoUsuario">Clique em uma das abas e selecione um menu para iniciar a navegação do sistema.</label>
+<!--	<img src="img/defaultBackground.jpg" width="450px" hspace="500px">-->
 </body>
 </html>
