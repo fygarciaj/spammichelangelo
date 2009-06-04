@@ -88,15 +88,16 @@ public class AgendamentoAction extends Action{
 			this.agendamentoFacade.validaCampos(agendamento, dataAgendamento);
 			this.agendamentoFacade.verificaDisponivilidade();
 			this.usuarioFacade.verificaCampoInteiro(camposInteiros);
-			this.agendamento.setHora(Integer.parseInt(horario));
-			this.agendamentoFacade.salvarAgendamento(agendamento);
+			this.agendamento.setHora(Integer.parseInt(horario));			
 			
 			if(agendamento.getId() > 0){
+				this.agendamentoFacade.salvarAgendamento(agendamento);
 				this.mensagens.put("sucesso", "Agendamento alterado com sucesso!");
 				//salva o Log de auditoria
 				auditoriaFacade = new AuditoriaFacade();
 				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.ALTERACAO, getUsuarioLogado()));
 			}else{
+				this.agendamentoFacade.salvarAgendamento(agendamento);
 				this.mensagens.put("sucesso", "Agendamento solicitado com sucesso!");
 				//salva o Log de auditoria
 				auditoriaFacade = new AuditoriaFacade();

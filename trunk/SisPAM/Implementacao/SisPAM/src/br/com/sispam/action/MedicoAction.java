@@ -10,14 +10,18 @@ import com.opensymphony.xwork2.ActionContext;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
+import br.com.sispam.enums.Acao;
 import br.com.sispam.enums.Dia;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.EspecialidadeFacade;
 import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.UsuarioFacade;
+import br.com.sispam.util.AuditoriaUtil;
 import br.com.sispam.util.DataUtil;
 
 public class MedicoAction extends Action{
@@ -45,7 +49,7 @@ public class MedicoAction extends Action{
 	private String dataNascimentoAux;
 	private List<Medico> medicosCadastrados;
 	private String crmUf;
-
+	private AuditoriaFacade auditoriaFacade;
 	
 	/**
 	 * : Recebe os dados do médico para ser incluído.
@@ -109,8 +113,14 @@ public class MedicoAction extends Action{
 
 			if(isEdicao){
 				mensagens.put("salvo", "Médico alterado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.ALTERACAO, getUsuarioLogado()));
 			}else{
 				mensagens.put("salvo", "Médico cadastrado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.INCLUSAO, getUsuarioLogado()));
 			}
 
 		} catch (CampoInvalidoException e) {
@@ -159,6 +169,9 @@ public class MedicoAction extends Action{
 		
 		try{
 			this.medicosCadastrados = this.medicoFacade.consultar(crmAux,crmUf,  medico.getUsuario().getNome());
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.CONSULTA, getUsuarioLogado()));
 		}catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
@@ -166,7 +179,7 @@ public class MedicoAction extends Action{
 		}
 		
 		if(this.medicosCadastrados == null || this.medicosCadastrados.size() < 1){
-			mensagens.put("consulta", "Nenhum médico encontrado com esses dados!");
+			mensagens.put("consulta", "Nenhum médico encontrado para os dados informados!");
 		}
 		limparCampos(false);
 		apresentaMensagens();
@@ -215,6 +228,15 @@ public class MedicoAction extends Action{
 		this.medicoFacade.removerMedico(this.medico.getId());
 		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
 		mensagens.put("salvo", "Médico excluído com sucesso!");
+		
+		
+		try {
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.EXCLUSAO, getUsuarioLogado()));
+		} catch (CampoInvalidoException e) {
+			e.printStackTrace();
+		}
 		return SUCESSO_EXCLUIR_MEDICO;
 	}
 	/**
@@ -471,6 +493,30 @@ public class MedicoAction extends Action{
 
 	public void setCrmUf(String crmUf) {
 		this.crmUf = crmUf;
+	}
+
+	public MedicoFacade getMedicoFacade() {
+		return medicoFacade;
+	}
+
+	public void setMedicoFacade(MedicoFacade medicoFacade) {
+		this.medicoFacade = medicoFacade;
+	}
+
+	public EspecialidadeFacade getEspecialidadeFacade() {
+		return especialidadeFacade;
+	}
+
+	public void setEspecialidadeFacade(EspecialidadeFacade especialidadeFacade) {
+		this.especialidadeFacade = especialidadeFacade;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
 	}
 	
 }

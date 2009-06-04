@@ -113,7 +113,7 @@ public class AgendamentoFacade {
 			agendamento.setData(DataUtil.stringToDate(data));
 			agendamento.setStatus(StatusAgendamento.SOLICITADO.getCodigo());
 		} catch (ParseException e) {
-			new CampoInvalidoException("Data inválida! use o calendário.");
+			new CampoInvalidoException("Data inválida! use o calendário ou digite no formato DD/MM/AAAA.");
 		}
 	}
 	

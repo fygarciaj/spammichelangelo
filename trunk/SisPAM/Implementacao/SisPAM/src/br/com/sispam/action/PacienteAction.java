@@ -7,12 +7,16 @@ import java.util.Map;
 
 import br.com.sispam.dominio.Convenio;
 import br.com.sispam.dominio.Paciente;
+import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.ConvenioFacade;
 import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
+import br.com.sispam.util.AuditoriaUtil;
 import br.com.sispam.util.DataUtil;
 
 public class PacienteAction extends Action {
@@ -34,7 +38,7 @@ public class PacienteAction extends Action {
 	private UsuarioFacade usuarioFacade;
 	private PacienteFacade pacienteFacade;
 	private ConvenioFacade convenioFacade;
-
+	private AuditoriaFacade auditoriaFacade;
 
 	/**
 	 * : Salva o paciente no sistema.
@@ -76,8 +80,14 @@ public class PacienteAction extends Action {
 			this.pacienteFacade.salvar(paciente);
 			if(isEdicao){
 				mensagens.put("salvo", "Paciente alterado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.ALTERACAO, getUsuarioLogado()));
 			}else{
 				mensagens.put("salvo", "Paciente cadastrado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.INCLUSAO, getUsuarioLogado()));
 			}
 		} catch (CampoInvalidoException e) {
 			erros.put("erros", e.getMessage());
@@ -121,6 +131,9 @@ public class PacienteAction extends Action {
 		
 		try{
 			this.pacientesCadastrados = this.pacienteFacade.consultar(paciente);
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.CONSULTA, getUsuarioLogado()));
 		}catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
@@ -145,6 +158,15 @@ public class PacienteAction extends Action {
 		this.pacienteFacade.removerPaciente(this.paciente.getId());
 		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
 		mensagens.put("salvo", "Paciente excluído com sucesso!");
+		
+		try {
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.EXCLUSAO, getUsuarioLogado()));
+		} catch (CampoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCESSO_EXCLUIR_PACIENTE;
 	}
 
@@ -248,6 +270,38 @@ public class PacienteAction extends Action {
 	}
 	public void setPacientesCadastrados(List<Paciente> pacientesCadastrados) {
 		this.pacientesCadastrados = pacientesCadastrados;
+	}
+
+	public UsuarioFacade getUsuarioFacade() {
+		return usuarioFacade;
+	}
+
+	public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
+		this.usuarioFacade = usuarioFacade;
+	}
+
+	public PacienteFacade getPacienteFacade() {
+		return pacienteFacade;
+	}
+
+	public void setPacienteFacade(PacienteFacade pacienteFacade) {
+		this.pacienteFacade = pacienteFacade;
+	}
+
+	public ConvenioFacade getConvenioFacade() {
+		return convenioFacade;
+	}
+
+	public void setConvenioFacade(ConvenioFacade convenioFacade) {
+		this.convenioFacade = convenioFacade;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
 	}
 	
 }

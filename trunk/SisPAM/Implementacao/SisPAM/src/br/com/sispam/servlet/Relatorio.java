@@ -6,7 +6,15 @@ import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import br.com.sispam.banco.ConexaoRelatorio;
+import br.com.sispam.dominio.Usuario;
+import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
+import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AuditoriaFacade;
+import br.com.sispam.util.AuditoriaUtil;
 import br.com.sispam.util.DataUtil;
 import net.sf.jasperreports.engine.JRException;
 
@@ -22,17 +30,25 @@ import java.util.HashMap;
 
 public class Relatorio extends HttpServlet {
 	static final long serialVersionUID = 1L;
-
-
+	private AuditoriaFacade auditoriaFacade;
+	public final String USUARIO_LOGADO = "usuarioLogado";
+	private Usuario usuario;
+	
+	
+	/**
+	 * @descricao gera um relatorio de acordo com os parametros passados
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String relatorioChamado = request.getParameter("relatorioChamado");
-		
+		String relatorioChamado = request.getParameter("relatorioChamado");		
 		ServletOutputStream servletOutputStream = response.getOutputStream();
-
-		String caminho = "/WEB-INF/relatorios/";
-		
+		String caminho = "/WEB-INF/relatorios/";		
 		String relatorio = null;
+		usuario = (Usuario)request.getSession().getAttribute(USUARIO_LOGADO);
 		
 		if(relatorioChamado.equals("convenio")){
 			relatorio = caminho+emiteRelatorioConvenio(request, response).get("relatorio");;
@@ -69,15 +85,27 @@ public class Relatorio extends HttpServlet {
 			if(relatorioChamado.equals("convenio")){	
 				JasperRunManager.runReportToPdfStream(reportStream, 
 						servletOutputStream, map,connection);
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.RELATORIO_CONVENIO, Acao.EMISSAO, usuario));
 			}else if(relatorioChamado.equals("receita")){
 				JasperRunManager.runReportToPdfStream(reportStream, 
 						servletOutputStream, mapaReceita,connection);
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.EMITE_RECEITA, Acao.EMISSAO, usuario));
 			}else if(relatorioChamado.equals("relatorioLog")){
 				JasperRunManager.runReportToPdfStream(reportStream, 
 						servletOutputStream, map,connection);
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.RELATORIO_LOG, Acao.EMISSAO, usuario));
 			}else if(relatorioChamado.equals("usuario")){
 				JasperRunManager.runReportToPdfStream(reportStream, 
 						servletOutputStream, mapaReceita,connection);
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.RELATORIO_USUARIO, Acao.EMISSAO, usuario));
 			}
 				
 
@@ -96,11 +124,17 @@ public class Relatorio extends HttpServlet {
 			e.printStackTrace(printWriter);
 			response.setContentType("text/plain");
 			response.getOutputStream().print(stringWriter.toString());
+		} catch (CampoInvalidoException e) {			
+			e.printStackTrace();
 		}
-
-
 	} 
 	
+	/**
+	 * @descricao retorna um map com os parametros para emissao do relatorio de convênios
+	 * @param request
+	 * @param response
+	 * @return HashMap
+	 */
 	protected HashMap<String, String> emiteRelatorioConvenio(HttpServletRequest request, HttpServletResponse response){
 		HashMap<String, String> parameterMap;
 		parameterMap = new HashMap<String, String>();
@@ -134,6 +168,12 @@ public class Relatorio extends HttpServlet {
 		return parameterMap;
 	}
 	
+	/**
+	 * @descricao retorna um map com os parametros para emissao do relatorio de usuários
+	 * @param request
+	 * @param response
+	 * @return HashMap
+	 */
 	protected HashMap<String, Object> emiteRelatorioUsuario(HttpServletRequest request, HttpServletResponse response){
 		HashMap<String, Object> parameterMap;
 		parameterMap = new HashMap<String, Object>();
@@ -157,6 +197,12 @@ public class Relatorio extends HttpServlet {
 		return parameterMap;
 	}
 	
+	/**
+	 * @descricao retorna um map com os parametros para emissao de receita
+	 * @param request
+	 * @param response
+	 * @return HashMap
+	 */
 	protected HashMap<String, Object> emiteReceita(HttpServletRequest request, HttpServletResponse response){
 		HashMap<String, Object> parameterMap;
 		parameterMap = new HashMap<String, Object>();
@@ -176,7 +222,13 @@ public class Relatorio extends HttpServlet {
 		}
 		return parameterMap;
 	}
-
+	
+	/**
+	 * @descricao retorna um map com os parametros para emissao do relatorio de logs
+	 * @param request
+	 * @param response
+	 * @return HashMap
+	 */
 	protected HashMap<String, String> emiteRelatorioLog(HttpServletRequest request, HttpServletResponse response){
 		HashMap<String, String> parameterMap;
 		parameterMap = new HashMap<String, String>();
