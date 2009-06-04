@@ -248,6 +248,7 @@ a:hover{
 	display:block;
 	text-align: left;
 	list-style-type: none;
+	width: 750px;
 }
 
 .sucessMessage{
@@ -260,6 +261,7 @@ a:hover{
 	display:block;
 	text-align: left;
 	list-style-type: none;
+	width: 750px;
 }
 
 .errorMessageSis{
