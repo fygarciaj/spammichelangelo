@@ -168,6 +168,7 @@ public class CompromissoFacade {
 			if(compromisso.getHoraFinal() > 2359){
 				throw new CampoInvalidoException("Hora Final deve ser menor ou igual a 23:59!");
 			}
+			
 			if(compromisso.getHoraInicial() >= compromisso.getHoraFinal()){
 				throw new CampoInvalidoException("Hora Inicial deve ser menor que Hora Final!");
 			}
