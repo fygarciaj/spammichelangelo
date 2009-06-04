@@ -88,7 +88,7 @@
 					<s:a href="%{#editarConvenio}" cssClass="linkEditar" cssStyle="linkEditar"></s:a>
 				</td>
 				<td align="center">
-					<s:a href="%{#excluirConvenio}" cssClass="linkExcluir" cssStyle="linkExcluir"></s:a>
+					<s:a href="%{#excluirConvenio}" cssClass="linkExcluir" onclick="return confirmaExclusao()" cssStyle="linkExcluir"></s:a>
 				</td>
 			
 			</tr>

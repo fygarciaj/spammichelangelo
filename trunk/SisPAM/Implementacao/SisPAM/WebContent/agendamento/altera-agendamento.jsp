@@ -70,18 +70,23 @@
 			</tr>
 			<tr>
 				<td><label class="label">Tipo</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="tipoAgendamento" name="agendamento.tipo" listKey="codigo" theme="simple"/></td>
-				<td><label class="label">Data</label>&nbsp;&nbsp;<s:textfield theme="simple" name="dataAgendamento" size="12" id="data"/></td>
-				<td><label class="label">Horário</label>&nbsp;&nbsp;
-					<s:textfield id="hor" theme="simple" name="horario" cssClass="horario" size="10" maxlength="5"/>
-					</td>
-				<td><label class="label">Paciente</label>&nbsp;&nbsp;<s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.paciente.id" listValue="usuario.nome" theme="simple"/></td>
-			</tr>
-			<tr >
-				<td colspan="6" rowspan="3"><label class="label">Observação</label>&nbsp;&nbsp;<s:textarea name="agendamento.observacao" cssStyle="width:90%" theme="simple"/></td>
-				
+				<td><label class="label">Data</label></td><td><s:textfield theme="simple" name="dataAgendamento" size="12" id="data"/>&nbsp;
+					<label class="label">Horário</label>
+					<s:textfield id="hor" theme="simple" name="horario" cssClass="horario" size="7" maxlength="5"/>
+				</td>
 			</tr>
 			<tr>
-				<td>
+				<td><label class="label">Paciente</label></td><td><s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.paciente.id" listValue="usuario.nome" theme="simple"/></td>
+			</tr>
+			<tr >
+				<td><label class="label">Observação</label></td>			
+			</tr>
+			<tr>
+				<td colspan="4">
+				<s:textarea name="agendamento.observacao" cols="90" rows="4" theme="simple"/></td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center">
 					<s:submit value="Alterar" cssClass="button" theme="simple" />
 				</td>
 			</tr>

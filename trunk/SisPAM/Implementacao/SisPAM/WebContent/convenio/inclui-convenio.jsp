@@ -9,7 +9,15 @@
 	<script type="text/javascript" src="componentes/js/sispam.js"></script>
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
+	<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+	<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+
 <title>Insert title here</title>
+	<script type="text/javascript">		
+		$(document).ready(function(){
+				$(".cnpj").mask("99.999.999/9999-99");
+			});
+	</script>
 </head>
 <body>
 	<table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -47,7 +55,7 @@
 							
 							<tr>							    
 								<td><label class="label" >Nome do Convênio:</label></td><td><s:textfield theme="simple" name="convenio.nome" size="60" maxlength="60"/></td>
-								<td><label class="label" >CNPJ:</label></td><td><s:textfield theme="simple" name="convenio.cnpj" size="17" maxlength="14"/></td>
+								<td><label class="label" >CNPJ:</label></td><td><s:textfield cssClass="cnpj" theme="simple" name="convenio.cnpj" size="17" maxlength="14"/></td>
 							</tr>																				
 							<tr>
 							    <td><label class="label" >Endereço:</label></td><td colspan="1"><s:textfield theme="simple" name="convenio.endereco" size="60" maxlength="60"/></td>
@@ -83,7 +91,7 @@
 							<tr>																								
 								<td align="center"><br>
 									<s:if test="convenio.id > 0">
-										<input type="submit" tabindex="1" name="confirmarAction" value="Alterar" class="button"><br>
+										<s:submit name="Alterar" onclick="return confirmaAlteracao()" value="Alterar" cssClass="button"/><br>
 									</s:if>
 									<s:else>
 										<input type="submit" tabindex="1"  name="confirmarAction" value="Incluir" class="button"><br>
