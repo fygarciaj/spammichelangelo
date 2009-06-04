@@ -157,7 +157,12 @@ public class ConvenioFacade {
 		.getInstance().getValidator(IValidation.VALIDATOR_CNPJ);
 		validador.setCnpj(convenio.getCnpj());
 		if(convenio != null){
-
+			//retira a mascára do cpf
+			if(convenio.getCnpj() != null){
+				convenio.setCnpj(convenio.getCnpj().replaceAll("[.]", ""));
+				convenio.setCnpj(convenio.getCnpj().replaceAll("[/]", ""));
+				convenio.setCnpj(convenio.getCnpj().replaceAll("[-]", ""));
+			}
 			if(convenio.getNome() == null || convenio.getNome().length() == 0){
 				throw new CampoInvalidoException("Campo Nome do Convênio inválido");
 			}						

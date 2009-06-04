@@ -88,7 +88,7 @@ function confirmaAcao(){
 }
 
 function confirmaExclusao(nome){
-	if(confirm("Deseja efetuar exclusão?")){
+	if(confirm("Deseja efetuar a exclusão?")){
 		return true;
 	}else{
 		return false;
@@ -96,7 +96,7 @@ function confirmaExclusao(nome){
 }
 
 function confirmaInclusao(){
-	var acao = document.getElementById("submit").name;
+
 	
 	if(confirm("Deseja efetuar inclusão?")){
 		return true;
@@ -105,10 +105,10 @@ function confirmaInclusao(){
 	}
 }
 
-function confirmaAlteracao(){
-	var acao = document.getElementById("submit").name;
+function confirmaAlteracao(nome){
 	
-	if(confirm("Deseja efetuar ilteração?")){
+	
+	if(confirm("Deseja efetuar a alteração?")){
 		return true;
 	}else{
 		return false;

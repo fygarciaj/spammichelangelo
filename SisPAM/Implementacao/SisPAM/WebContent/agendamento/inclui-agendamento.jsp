@@ -145,22 +145,25 @@
 		<s:hidden id="espM" name="agendamento.especialidadeMedica.id" value="%{agendamento.especialidadeMedica.id}"/>	
 		<table  border="0"  class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
-				<td><label class="label">Tipo</label>&nbsp;&nbsp;<s:select headerKey="0" headerValue="--Selecione--" list="tipoAgendamento" name="agendamento.tipo" listKey="codigo" theme="simple"/>
-				<label class="label">Data</label>&nbsp;&nbsp;<s:textfield theme="simple" name="dataAgendamento" size="12" id="data"/>
-				<label class="label">Horário</label>&nbsp;&nbsp;<s:textfield id="hor" cssClass="horario" theme="simple" name="horario" size="10" maxlength="5"/></td>				
+				<td><label class="label">Tipo</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="tipoAgendamento" name="agendamento.tipo" listKey="codigo" theme="simple"/></td>
+				<td><label class="label">Data</label></td><td><s:textfield theme="simple" name="dataAgendamento" size="12" id="data"/>&nbsp;					
+				</td>
 			</tr>
-				<tr>
-				<td><label class="label">Paciente</label>&nbsp;&nbsp;<s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.paciente.id" listValue="usuario.nome" theme="simple"/></td>
-				</tr>
+			<tr>
+				<td><label class="label">Paciente</label></td><td><s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="agendamento.paciente.id" listValue="usuario.nome" theme="simple"/></td>
+				<td><label class="label">Horário</label></td>
+				<td><s:textfield id="hor" theme="simple" name="horario" cssClass="horario" size="7" maxlength="5"/></td>
+			</tr>
 			<tr >
 				<td><label class="label">Observação</label></td>				
 			</tr>
 				<tr>
-				<td><s:textarea name="agendamento.observacao" cssStyle="width:90%" theme="simple"/></td>
+				<td colspan="4">
+				<s:textarea name="agendamento.observacao" cols="90" rows="4" theme="simple"/></td>
 				</tr>
 			<tr>
-				<td align="center">
-					<s:submit value="Salvar" cssClass="button" theme="simple" onclick="preparaInclusaoAgendamento()"/>
+				<td colspan="4" align="center">
+					<s:submit value="Incluir" cssClass="button" theme="simple" onclick="preparaInclusaoAgendamento()"/>
 				</td>
 			</tr>
 		</table>
