@@ -111,21 +111,21 @@ ORDER BY
 				<text><![CDATA[Código]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="23" width="62" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="406" y="23" width="50" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Usuário]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="179" y="23" width="44" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="224" y="23" width="44" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="262" y="23" width="67" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="318" y="23" width="67" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -143,22 +143,22 @@ ORDER BY
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{adtcod}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="58" y="0" width="100" height="20"/>
+					<reportElement x="58" y="0" width="152" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{adttip}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="176" y="0" width="66" height="20"/>
+					<reportElement x="221" y="0" width="90" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{adtact}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="259" y="0" width="85" height="20"/>
+					<reportElement x="315" y="0" width="85" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{adtdatref}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="367" y="0" width="182" height="20"/>
+					<reportElement x="403" y="0" width="144" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{usrnom}]]></textFieldExpression>
 				</textField>
