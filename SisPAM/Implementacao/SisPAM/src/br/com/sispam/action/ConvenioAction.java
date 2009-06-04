@@ -57,13 +57,15 @@ public class ConvenioAction extends Action{
 
 			//verifica se já existe convênio cadastrado com esses dados.
 			convenioFacade.verificaExistencia(convenio);
-			convenioFacade.salvaConvenio(convenio);
+			
 			if(convenio.getId() > 0){
+				convenioFacade.salvaConvenio(convenio);
 				mensagens.put("salvo", "Convênio alterado com sucesso!");
 				//salva o Log de auditoria
 				auditoriaFacade = new AuditoriaFacade();
 				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_CONVENIO, Acao.ALTERACAO, getUsuarioLogado()));
 			}else{
+				convenioFacade.salvaConvenio(convenio);
 				mensagens.put("salvo", "Convênio cadastrado com sucesso!");
 				//salva o Log de auditoria
 				auditoriaFacade = new AuditoriaFacade();

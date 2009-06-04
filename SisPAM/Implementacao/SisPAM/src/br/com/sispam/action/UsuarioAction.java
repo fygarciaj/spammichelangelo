@@ -133,13 +133,16 @@ public class UsuarioAction extends Action{
 			usuarioFacade.salvarUsuario(usuario);
 			if(isEdicao){
 				mensagens.put("salvo", Perfil.getPerfil(usuario.getPerfil())+" alterado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.ALTERACAO, getUsuarioLogado()));
 			}else{
 				mensagens.put("salvo", Perfil.getPerfil(usuario.getPerfil())+" cadastrado com sucesso!");
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.INCLUSAO, getUsuarioLogado()));
 			}
 			
-			//salva o Log de auditoria
-			auditoriaFacade = new AuditoriaFacade();
-			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.INCLUSAO, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
@@ -200,6 +203,9 @@ public class UsuarioAction extends Action{
 		this.usuarioFacade = new UsuarioFacade();
 		try{
 			this.usuariosCadastrados = this.usuarioFacade.recuperarUsuario(usuario.getCpf(), usuario.getNome(), this.codigoPerfilSelecionado);
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.CONSULTA, getUsuarioLogado()));
 		}catch (CampoInvalidoException e) {
 			erros.put("campoInvalido", e.getMessage());
 			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
@@ -242,6 +248,15 @@ public class UsuarioAction extends Action{
 		this.usuarioFacade.removerUsuario(this.usuario.getId());
 		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
 		mensagens.put("exclusao", Perfil.getPerfil(this.codigoPerfilSelecionado)+" excluído com sucesso!");
+		
+		try {
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.EXCLUSAO, getUsuarioLogado()));
+		} catch (CampoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return definirTelaConsulta();
 	}
 

@@ -75,13 +75,15 @@ public class CompromissoAction extends Action{
 			//verifica se já existe compromisso cadastrado com esses dados.
 			compromissoFacade.verificaExistencia(compromisso);
 
-			compromissoFacade.salvaCompromisso(compromisso);
+			
 			if(compromisso.getId() > 0){
+				compromissoFacade.salvaCompromisso(compromisso);
 				mensagens.put("salvo", "Compromisso alterado com sucesso!");
 				//salva o Log de auditoria
 				auditoriaFacade = new AuditoriaFacade();
 				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.ALTERACAO, getUsuarioLogado()));
 			}else{
+				compromissoFacade.salvaCompromisso(compromisso);
 				mensagens.put("salvo", "Compromisso cadastrado com sucesso!");
 				//salva o Log de auditoria
 				auditoriaFacade = new AuditoriaFacade();
