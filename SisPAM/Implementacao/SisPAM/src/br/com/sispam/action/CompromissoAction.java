@@ -45,6 +45,10 @@ public class CompromissoAction extends Action{
 		medicoFacade =  new MedicoFacade();
 
 		try {
+			//Remove o caracter ":" da hora
+			horaInicialAux = horaInicialAux.replaceAll("[:]", "");
+			horaFinalAux = horaFinalAux.replaceAll("[:]", "");
+			
 			Map<String, String> mapa = new HashMap<String, String>();
 			mapa.put("horaInicial", horaInicialAux);
 			mapa.put("horaFinal", horaFinalAux);
@@ -62,7 +66,7 @@ public class CompromissoAction extends Action{
 
 			//verifica se os campo obrigatorios foram preenchidos
 			compromissoFacade.validaCampos(compromisso);
-
+									
 			//seta os valores das variváveis auxiliares.
 			compromisso.setHoraInicial(Integer.parseInt(horaInicialAux));
 			compromisso.setHoraFinal(Integer.parseInt(horaFinalAux));
