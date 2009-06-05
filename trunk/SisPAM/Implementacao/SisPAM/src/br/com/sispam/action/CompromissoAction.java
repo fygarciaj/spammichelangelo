@@ -125,6 +125,7 @@ public class CompromissoAction extends Action{
 	 * @return
 	 */
 	public String carregarConsulta(){
+		
 		this.medicoFacade = new MedicoFacade();
 		this.compromissoFacade = new CompromissoFacade();
 		this.medicos = this.medicoFacade.recuperarTodos();
@@ -177,6 +178,9 @@ public class CompromissoAction extends Action{
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.CONSULTA, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
+			apresentaErrors();
+			apresentaMensagens();
+		
 		}
 		return LISTAR_COMPROMISSOS;
 

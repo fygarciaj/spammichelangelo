@@ -153,9 +153,7 @@ public class ConvenioFacade {
 	 * @throws CampoInvalidoException 
 	 */
 	public void validaCampos(Convenio convenio) throws CampoInvalidoException{
-		validador = (CNPJValidator) ValidatorFactory
-		.getInstance().getValidator(IValidation.VALIDATOR_CNPJ);
-		validador.setCnpj(convenio.getCnpj());
+	
 		if(convenio != null){
 			//retira a mascára do cpf
 			if(convenio.getCnpj() != null){
@@ -163,6 +161,9 @@ public class ConvenioFacade {
 				convenio.setCnpj(convenio.getCnpj().replaceAll("[/]", ""));
 				convenio.setCnpj(convenio.getCnpj().replaceAll("[-]", ""));
 			}
+			validador = (CNPJValidator) ValidatorFactory
+			.getInstance().getValidator(IValidation.VALIDATOR_CNPJ);
+			validador.setCnpj(convenio.getCnpj());
 			if(convenio.getNome() == null || convenio.getNome().length() == 0){
 				throw new CampoInvalidoException("Campo Nome do Convênio inválido");
 			}						
@@ -183,8 +184,9 @@ public class ConvenioFacade {
 			}
 			if(convenio.getEmail() == null || convenio.getEmail().length() == 0){
 				throw new CampoInvalidoException("Campo E-mail inválido");
-			}						
-
+			}
+			
+			
 		}
 	}
 	

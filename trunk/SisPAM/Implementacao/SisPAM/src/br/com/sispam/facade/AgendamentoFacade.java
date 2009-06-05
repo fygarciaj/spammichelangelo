@@ -117,6 +117,15 @@ public class AgendamentoFacade {
 		}
 	}
 	
+	/**
+	 * Recupera os agendamentos do paciente.
+	 * @param id
+	 * @return
+	 */
+	public List<Agendamento> recuperaAgendamentosPaciente(int id){
+			return this.agendamentoDao.recuperarAgendamentoPaciente(id);
+	}
+	
 	public void verificaDisponivilidade(){
 		
 	}
