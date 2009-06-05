@@ -52,6 +52,17 @@
 		$(document).ready(function(){
 				$(".cpf").mask("999.999.999-99");
 			});
+
+		$(document).ready(function(){
+			$(".cep").mask("99.999.999");
+		});
+		$(document).ready(function(){
+			$(".horario").mask("99:99");
+		});
+
+		$(document).ready(function(){
+			$(".telefone").mask("9999-9999");
+		});
 	</script>
 
 
@@ -118,13 +129,13 @@
 					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="label">CEP:&nbsp;&nbsp;</label>
-					<s:textfield theme="simple" name="cepAux" size="15" maxlength="8" />
+					<s:textfield theme="simple" cssClass="cep" name="cepAux" size="15" maxlength="8" />
 				</td>
 				<td><label class="label">DDD:</label></td>
 				<td>
 					<s:textfield theme="simple" name="dddAux" size="2"	maxlength="2" />&nbsp;&nbsp; 
 					<label class="label">Tel:&nbsp;&nbsp;</label>
-					<s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8" />
+					<s:textfield theme="simple" cssClass="telefone" name="telefoneAux" size="8" maxlength="8" />
 				</td>
 			</tr>
 			<tr>
@@ -141,7 +152,7 @@
 			</tr>
 			<tr>
 				<s:if test="usuario.id > 0">
-					<td><s:submit value="Alterar" cssClass="button" /></td>
+					<td><s:submit value="Alterar" cssClass="button" onclick="return confirmaAlteracao()" /></td>
 				</s:if>
 				<s:else>
 					<td><s:submit value="Incluir" cssClass="button" /></td>
@@ -187,13 +198,13 @@
 					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="label">CEP:&nbsp;&nbsp;</label>
-					<s:textfield theme="simple" name="cepAux" size="15" maxlength="8" />
+					<s:textfield cssClass="cep" theme="simple" name="cepAux" size="15" maxlength="8" />
 				</td>
 				<td><label class="label">DDD:</label></td>
 				<td>
 					<s:textfield theme="simple" name="dddAux" size="2"	maxlength="2" />&nbsp;&nbsp; 
 					<label class="label">Tel:&nbsp;&nbsp;</label>
-					<s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8" />
+					<s:textfield cssClass="telefone" theme="simple" name="telefoneAux" size="8" maxlength="8" />
 				</td>
 			</tr>
 <tr>
@@ -215,8 +226,8 @@
 			</tr>
 			<tr>
 				<td><label class="label">Consultório:</label></td><td><s:textfield theme="simple" name="consultorioAux" maxlength="4" size="7" />&nbsp;&nbsp;&nbsp;
-				<label class="label">Hora início:&nbsp;&nbsp;</label><s:textfield theme="simple" name="horaIni" maxlength="4" size="4" />&nbsp;&nbsp;&nbsp;
-				<label class="label">Hora Fim:</label>&nbsp;&nbsp;<s:textfield theme="simple" name="horaFim" maxlength="4" size="4" /></td>				
+				<label class="label">Hora início:&nbsp;&nbsp;</label><s:textfield theme="simple" cssClass="horario" name="horaIni" maxlength="4" size="4" />&nbsp;&nbsp;&nbsp;
+				<label class="label">Hora Fim:</label>&nbsp;&nbsp;<s:textfield theme="simple" cssClass="horario" name="horaFim" maxlength="4" size="4" /></td>				
 			</tr>
 			<tr>
 				<td><label class="label">Login:</label></td>
@@ -248,7 +259,7 @@
 				</s:iterator>
 				</td>
 				<s:if test="medico.id > 0">						
-					<td><s:submit value="Alterar" onclick="return marcaEspecialidades();" cssClass="button" /></td>
+					<td><s:submit value="Alterar" onclick="return marcaEspecialidades(); return confirmaAlteracao();" cssClass="button" /></td>
 				</s:if>
 				<s:else>
 					<td><s:submit value="Incluir" onclick="return marcaEspecialidades();" cssClass="button" /></td>
@@ -295,13 +306,13 @@
 					'SE':'Sergipe', 'TO': 'Tocantins'}" />	
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label class="label">CEP:&nbsp;&nbsp;</label>
-					<s:textfield theme="simple" name="cepAux" size="15" maxlength="8" />
+					<s:textfield cssClass="cep" theme="simple" name="cepAux" size="15" maxlength="8" />
 				</td>
 				<td><label class="label">DDD:</label></td>
 				<td>
 					<s:textfield theme="simple" name="dddAux" size="2"	maxlength="2" />&nbsp;&nbsp; 
 					<label class="label">Tel:&nbsp;&nbsp;</label>
-					<s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8" />
+					<s:textfield cssClass="telefone" theme="simple" name="telefoneAux" size="8" maxlength="8" />
 				</td>
 				
 			</tr>
@@ -338,7 +349,7 @@
 
 			<tr>
 				<s:if test="paciente.id > 0">
-					<td><s:submit value="Alterar" cssClass="button" /></td>
+					<td><s:submit value="Alterar" cssClass="button" onclick="return confirmaAlteracao()" /></td>
 				</s:if>
 				<s:else>
 					<td><s:submit value="Incluir" cssClass="button" /></td>
