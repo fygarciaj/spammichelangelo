@@ -17,6 +17,7 @@ import br.com.sispam.facade.ConvenioFacade;
 import br.com.sispam.facade.PacienteFacade;
 import br.com.sispam.facade.UsuarioFacade;
 import br.com.sispam.util.AuditoriaUtil;
+import br.com.sispam.util.CampoUtil;
 import br.com.sispam.util.DataUtil;
 
 public class PacienteAction extends Action {
@@ -51,6 +52,11 @@ public class PacienteAction extends Action {
 		}
 		this.usuarioFacade = new UsuarioFacade();
 		this.pacienteFacade = new PacienteFacade();
+		
+		//limpa os caracteres dos campos
+		telefoneAux = CampoUtil.replaceCampo("-", telefoneAux);
+		cepAux = CampoUtil.replaceCampo(".", cepAux);
+		
 		//monta um mapa com todos os campos que devem ser inteiros.	
 		Map<String, String> mapa = new HashMap<String, String>();
 		mapa.put("ddd", dddAux);
