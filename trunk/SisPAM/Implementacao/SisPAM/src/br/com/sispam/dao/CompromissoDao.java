@@ -119,4 +119,37 @@ public class CompromissoDao {
 		return compromissos;
 	}	
 
+	public List<Compromisso> consultarCompromissosMedico(Compromisso compromisso){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Compromisso> compromissos = null;
+		try{
+			//cria uma queri para fazer a busca pelo nome
+			Query query = manager.createQuery("from Compromisso where medico.id = :medico");
+			//seta o parametro
+			query.setParameter("medico", compromisso.getMedico().getId());
+			compromissos = query.getResultList();				
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		return compromissos;
+	}	
+	
+	public List<Compromisso> consultarCompromissosData(Compromisso compromisso){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Compromisso> compromissos = null;
+		try{
+			//cria uma queri para fazer a busca pelo nome
+			Query query = manager.createQuery("from Compromisso where data = :data");
+			//seta o parametro
+			query.setParameter("data", compromisso.getData());
+			compromissos = query.getResultList();				
+		}catch (NoResultException e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		return compromissos;
+	}	
 }

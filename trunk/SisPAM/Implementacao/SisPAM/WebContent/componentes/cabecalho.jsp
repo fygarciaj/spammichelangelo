@@ -46,7 +46,8 @@
 		<td class="nomeSistema" width="500px">Sistema de Pronto Atendimento Médico</td>
 		<td class="userLogado" width="240">Usuário logado: <%=((Usuario) session.getAttribute("usuarioLogado")).getAcesso().toUpperCase()%>
 		<br>Login em: <%=((Usuario) session.getAttribute("dtHrAcess")).getDtHoraAcesso()%><br>
-		<a href="javascript:logoff()" ><b>Sair</b></a></td>
+		<a href="javascript:logoff()" ><b>Sair</b></a>&nbsp;&nbsp;&nbsp;
+		<a href = "../alteracaoSenha/alteraSenha.jsp" target="CENTRAL"><b>Alterar Senha</b></a></td>
 
 	</tr>
 </table>

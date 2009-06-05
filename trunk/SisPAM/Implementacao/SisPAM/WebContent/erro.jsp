@@ -20,7 +20,7 @@
 	<table width="750px" class="errorMessage" >
 		<tr>
 			<td>
-			 Informe os campos para obrigatórios.
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Informe os campos obrigatórios.
 			</td>
 		</tr>
 	</table>

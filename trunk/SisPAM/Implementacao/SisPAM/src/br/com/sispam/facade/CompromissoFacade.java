@@ -91,6 +91,10 @@ public class CompromissoFacade {
 				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" para efetuar a pesquisa!");
 			}else if((compromisso.getMedico().getId() != 0) && (compromisso.getData() != null)){
 				compromissosRetornados = compromissoDao.consultarCompromissos(compromisso);
+			}else if((compromisso.getMedico().getId() != 0)){
+				compromissosRetornados = compromissoDao.consultarCompromissosMedico(compromisso);
+			}else if((compromisso.getData() != null)){
+				compromissosRetornados = compromissoDao.consultarCompromissosData(compromisso);
 			}
 		} catch (NoResultException e) {
 			throw new CampoInvalidoException("Nenhum registro encontrado");

@@ -1,7 +1,7 @@
 package br.com.sispam.enums;
 
 public enum TipoCompromisso {
-	Cirugia(1), Palestra(2), Perícia(3), Reunião(4), Seminário(5);
+	Cirurgia(1), Palestra(2), Perícia(3), Reunião(4), Seminário(5), Congresso(6);
 	
 	private int codigo;
 	
@@ -20,7 +20,7 @@ public enum TipoCompromisso {
 	public static TipoCompromisso getTipoCompromisso(int codigo){
 		switch (codigo) {
 		case 1:
-			return Cirugia;
+			return Cirurgia;
 		case 2:
 			return Palestra;
 		case 3:
@@ -28,7 +28,9 @@ public enum TipoCompromisso {
 		case 4:
 			return Reunião;		
 		case 5:
-			return Seminário;		
+			return Seminário;	
+		case 6:
+			return Congresso;
 		default:
 			return null;
 		}

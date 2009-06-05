@@ -132,8 +132,10 @@ public class CompromissoAction extends Action{
 		this.compromisso = new Compromisso();
 		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 			this.compromisso.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
-			this.compromisso.setData(new Date());
-			this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
+			if(compromissosCadastrados == null || compromissosCadastrados.size() == 0){
+				this.compromisso.setData(new Date());
+				this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
+			}
 		}
 		return CARREGAR_CONSULTA_COMPROMISSO;
 	}
@@ -177,15 +179,13 @@ public class CompromissoAction extends Action{
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.CONSULTA, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
-			erros.put("erro", e.getMessage());
-			apresentaErrors();
-			apresentaMensagens();
-		
+			erros.put("erro", e.getMessage());		
 		}
 		apresentaErrors();
 		apresentaMensagens();
-		return LISTAR_COMPROMISSOS;
-
+		limparCampos();
+		return carregarConsulta();
+		
 	}
 
 	/**
