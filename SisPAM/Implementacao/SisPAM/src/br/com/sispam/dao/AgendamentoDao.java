@@ -65,6 +65,21 @@ public class AgendamentoDao {
 	}
 	
 	/**
+	 * Recupera os agendamentos do paciente.
+	 * @param idPaciente
+	 * @return
+	 */
+	public List<Agendamento> recuperarAgendamentoPaciente(int idPaciente){
+		List<Agendamento> agendamentos = null;
+		this.conexao = new Conexao();
+		this.manager = this.conexao.getEntityManger();
+		Query query = this.manager.createQuery("from Agendamento where paciente.usuario.id = :id and status = 2");
+		query.setParameter("id", idPaciente);
+		agendamentos = query.getResultList();
+		return agendamentos;	
+	}
+	
+	/**
 	 * Recupera os agendamentos apartir dos dados passados.
 	 * @param agendamento
 	 * @return

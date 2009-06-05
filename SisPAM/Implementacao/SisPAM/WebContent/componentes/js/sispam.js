@@ -95,15 +95,6 @@ function confirmaExclusao(nome){
 	}
 }
 
-function confirmaInclusao(){
-
-	
-	if(confirm("Deseja efetuar inclusão?")){
-		return true;
-	}else{
-		return false;
-	}
-}
 
 function confirmaAlteracao(nome){
 	

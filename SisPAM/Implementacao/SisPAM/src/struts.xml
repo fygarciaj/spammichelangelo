@@ -132,6 +132,7 @@
 				<param name="method">carregarAgendamentos</param>
 			</result>
 			<result name="sucessoCarregarEdicao">/agendamento/altera-agendamento.jsp</result>
+			<result name="consultaAgendamentosRealizados">/consultaAgendamentoRealizado/consulta-agendamentoRealizado.jsp</result>
 			
 		</action>
 		

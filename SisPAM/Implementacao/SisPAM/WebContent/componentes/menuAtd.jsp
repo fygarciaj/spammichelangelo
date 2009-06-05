@@ -106,7 +106,7 @@
 		target="CENTRAL">CONSULTA REALIZADO</a>
 	<div id="menuConsultaRealizados" style="display: none">
 	<ul id="subMenu">
-		<li><a href="../consultaAgendamentoRealizado/consulta-agendamentoRealizado.jsp" title="Consultar" target="CENTRAL">Consultar</a></li>
+		<li><a href="agendamentoAction!carregarAgendamentosPaciente.action" title="Consultar" target="CENTRAL">Consultar</a></li>
 	</ul>
 	</div>
 	</li>

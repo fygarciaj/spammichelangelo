@@ -11,6 +11,7 @@ import br.com.sispam.dominio.Auditoria;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Paciente;
+import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Acao;
 import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.TipoAgendamento;
@@ -68,6 +69,19 @@ public class AgendamentoAction extends Action{
 
 		return SUCESSO_CARREGAR_INCLUSAO_AGENDAMENTO;
 
+	}
+	
+	/**
+	 * Recupera os agendamentos do paciente.
+	 * @return
+	 */
+	public String carregarAgendamentosPaciente(){
+		
+		Usuario usuario = getUsuarioLogado();
+		this.agendamentoFacade = new AgendamentoFacade();
+		this.agendamentos = this.agendamentoFacade.recuperaAgendamentosPaciente(usuario.getId());
+		
+		return CONSULTA_AGENDAMENTOS_REALIZADOS;
 	}
 	
 	/**

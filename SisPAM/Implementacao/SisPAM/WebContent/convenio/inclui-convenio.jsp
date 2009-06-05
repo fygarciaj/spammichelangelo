@@ -9,6 +9,15 @@
 	<script type="text/javascript" src="componentes/js/sispam.js"></script>
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery/ui.core.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
 	<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
 	<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
 
@@ -91,7 +100,7 @@
 							<tr>																								
 								<td align="center"><br>
 									<s:if test="convenio.id > 0">
-										<s:submit name="Alterar" onclick="return confirmaAlteracao()" value="Alterar" cssClass="button"/><br>
+										<s:submit name="Alterar" value="Alterar" cssClass="button" onclick="return confirmaAlteracao()"/><br>
 									</s:if>
 									<s:else>
 										<input type="submit" tabindex="1"  name="confirmarAction" value="Incluir" class="button"><br>

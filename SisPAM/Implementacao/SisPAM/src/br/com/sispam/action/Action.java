@@ -78,7 +78,7 @@ public class Action extends ActionSupport{
 	public final String FALHA_SALVAR_AGENDMENTO = "falharSalvarAgendamento";
 	public final String SUCESSO_CARREGAR_AGENDAMENTOS = "sucessoCarregarAgendamentos";
 	public final String SUCESSO_EXCLUIR_AGENDAMENTO = "sucessoExcluirAgendamento";
-	
+	public final String CONSULTA_AGENDAMENTOS_REALIZADOS = "consultaAgendamentosRealizados";
 	//RECEITA
 	public final String SUCESSO_EMISSAO_RECEITA = "sucessoEmissaoReceita";
 	public final String SUCESSO_CARREGAR_ATENDIMENTOS = "sucessoCarregarAtendimentos";
