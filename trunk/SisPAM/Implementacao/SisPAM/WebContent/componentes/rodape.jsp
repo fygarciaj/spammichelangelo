@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
 <link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 </head>
-<body bgcolor="#F2F7FE">
+<body bgcolor=#191970>
 <center>
-<label class="caminhoUsuario">Powered by LCL - 2009</label>
+<label class="rodape">Powered by LCL - 2009</label>
 </center>
 </body>
 </html>

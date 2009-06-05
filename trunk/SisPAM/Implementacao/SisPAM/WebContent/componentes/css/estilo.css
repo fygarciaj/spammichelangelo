@@ -164,6 +164,11 @@ a:hover{
 	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
 }
 
+.rodape{
+	font: 11px tahoma, verdana, arial, helvetica, sans-serif;
+	color: white;
+}
+
 .button{
 	font: bold 12px/1.5em Verdana;
 	width: 100px;

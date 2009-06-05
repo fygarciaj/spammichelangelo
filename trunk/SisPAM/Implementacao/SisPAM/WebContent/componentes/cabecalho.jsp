@@ -37,7 +37,7 @@
 </head>
 <body>
 
-<div id="tabs">
+<div class="tabs" >
 <img src="img/simbolo.jpg" width="240px" align="left">
 <br>
 <s:url id="deslogar" action="loginAction!deslogar.action"/>
@@ -51,12 +51,12 @@
 	</tr>
 </table>
 
-<ul>
-    <li><a class="link" href="javascript:acessaMenu('ADM')"><span>ADMINISTRATIVO</span></a></li>
-	<li><a class="link" href="javascript:acessaMenu('ATD')"><span>ATENDIMENTO</span></a></li>
-    <li><a class="link" href="javascript:acessaMenu('CAD')"><span>CADASTRO</span></a></li>
-    <li><a class="link" href="javascript:acessaMenu('REL')"><span>RELATÓRIOS</span></a></li>
-   </ul>
+<ul class="ul">
+    <li class="li"><a class="link" href="javascript:acessaMenu('ADM')"><span>ADMINISTRATIVO</span></a></li>
+	<li class="li"><a class="link" href="javascript:acessaMenu('ATD')"><span>ATENDIMENTO</span></a></li>
+    <li class="li"><a class="link" href="javascript:acessaMenu('CAD')"><span>CADASTRO</span></a></li>
+    <li class="li"><a class="link" href="javascript:acessaMenu('REL')"><span>RELATÓRIOS</span></a></li>
+ </ul>
 </div>
 </body>
 </html>

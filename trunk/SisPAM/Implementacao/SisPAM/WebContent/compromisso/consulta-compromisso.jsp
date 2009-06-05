@@ -123,7 +123,7 @@
 					<s:a href="%{#editarCompromisso}" cssClass="linkEditar" cssStyle="linkEditar"></s:a>
 				</td>
 				<td align="center">
-					<s:a href="%{#excluirCompromisso}" cssClass="linkExcluir" cssStyle="linkExcluir"></s:a>
+					<s:a href="%{#excluirCompromisso}" cssClass="linkExcluir" onclick="return confirmaExclusao()" cssStyle="linkExcluir"></s:a>
 				</td>
 			
 			</tr>
