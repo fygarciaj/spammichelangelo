@@ -8,12 +8,14 @@ import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.LoginFacade;
+import br.com.sispam.facade.UsuarioFacade;
 import br.com.sispam.util.AuditoriaUtil;
 
 public class LoginAction extends Action{
 	private String acesso;
 	private String senha;
 	private LoginFacade loginFacade;
+	private UsuarioFacade usuarioFacade;
 	private Usuario usr;
 	private String usrLogado;
 	private String dataHoraAcesso;
@@ -64,6 +66,30 @@ public class LoginAction extends Action{
 		ActionContext.getContext().getSession().remove(USUARIO_LOGADO);
 		return SUCESSO_DESLOGAR;
 	}
+	
+	public String alterarSenha(){
+		usr = new Usuario();
+		loginFacade = new LoginFacade();
+		
+		try{
+			if(getUsuarioLogado().getSenha().equals(this.loginFacade.criptografaSenha(senha))){
+				getUsuarioLogado().setSenha(senha);
+				usuarioFacade.salvarUsuario(getUsuarioLogado());
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.LOGIN, Acao.ALTERACAO, getUsuarioLogado()));
+				return SUCESSO_ALTERACAO_SENHA;
+			}else{
+				erros.put("campoInvalido", "Senha inválida!");
+				apresentaErrors();
+				return FALHA_ALTERACAO_SENHA;
+			}
+
+		}catch(CampoInvalidoException ex) {
+			erros.put("campoInvalido", ex.getMessage());
+			apresentaErrors();
+			return FALHA;
+		}
+	}
 
 	/*Get & Set*/
 	public String getAcesso() {
@@ -101,6 +127,14 @@ public class LoginAction extends Action{
 
 	public String getDtHoraAcesso() {
 		return this.dataHoraAcesso;
+	}
+
+	public UsuarioFacade getUsuarioFacade() {
+		return usuarioFacade;
+	}
+
+	public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
+		this.usuarioFacade = usuarioFacade;
 	}
 
 }

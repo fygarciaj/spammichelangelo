@@ -16,8 +16,6 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Action extends ActionSupport{
 	
 	//USUÁRIO
-	public final String SUCESSO = "sucesso";	
-	public final String FALHA = "falha";
 	public final String SUCESSO_SALVAR_USUARIO = "sucessoSalvarUsuario";
 	public final String CARREGAR_NOVO_USUARIO = "carregarNovoUsuario";
 	public final String FALHA_SALVAR_USUARIO = "falhaSalvarUsuario";
@@ -53,9 +51,13 @@ public class Action extends ActionSupport{
 	public final String SUCESSO_EXCLUIR_CONVENIO = "sucessoExcluirConvenio";	
 	
 	//LOGIN
+	public final String SUCESSO = "sucesso";	
+	public final String FALHA = "falha";
 	public final String USUARIO_LOGADO = "usuarioLogado";
 	public final String DATA_HORA_ACESSO = "dtHrAcess";
 	public final String SUCESSO_DESLOGAR = "sucessoDeslogar";
+	public final String SUCESSO_ALTERACAO_SENHA = "sucessoAlteracaoSenha";
+	public final String FALHA_ALTERACAO_SENHA = "falhaAlteracaoSenha";
 	
 	//COMPROMISSO 
 	public final String SUCESSO_SALVAR_COMPROMISSO = "sucessoSalvarCompromisso";
