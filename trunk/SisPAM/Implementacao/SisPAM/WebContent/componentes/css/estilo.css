@@ -227,10 +227,18 @@ a:hover{
 	font-size:12px;
 }
 .linkAtualizar{
+	#float:left;
+	#background:url("../../componentes/img/prancheta.gif") no-repeat 2px 1px;
+	#margin:0px;
+	#padding:0 15px 0 0px;
+	#text-decoration:none;
+	#font-size:12px;
 	margin: 0px 0px 0px 0px;
-	padding: 0px 15px 0px 0px;
-	background: #F4F7FB url(../img/up.png) no-repeat 2px 1px;
+	padding: auto;
+	background: url(../img/prancheta.gif) no-repeat 2px 1px;
 	font-size:12px;
+	width: auto;
+	height: auto;	
 }
 
  .botao_salvar {
