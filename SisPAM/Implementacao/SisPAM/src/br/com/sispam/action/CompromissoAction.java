@@ -182,6 +182,8 @@ public class CompromissoAction extends Action{
 			apresentaMensagens();
 		
 		}
+		apresentaErrors();
+		apresentaMensagens();
 		return LISTAR_COMPROMISSOS;
 
 	}

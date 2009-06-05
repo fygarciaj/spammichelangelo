@@ -65,7 +65,7 @@ public class Action extends ActionSupport{
 	public final String LISTAR_COMPROMISSOS = "listarCompromissos";
 	public final String CARREGAR_INCLUSAO_COMPROMISSO = "carregarInclusaoCompromisso";
 	public final String CARREGAR_CONSULTA_COMPROMISSO = "carregarConsultaCompromisso";
-	
+	public final String FALHA_CONSULTAR_COMPROMISSO = "falhaConsultarCompromisso";
 	//PRONTUÁRIO
 	public final String CARREGAR_CONSULTA_AGENDAMENTO = "carregarConsultaAgendamento";
 	public final String	ATUALIZAR_HISTORICO_PRONTUARIO = "atualizarHistoricoProntuario";

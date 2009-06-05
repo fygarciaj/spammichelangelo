@@ -108,7 +108,7 @@
 		<tr>
 			<td align="center">
 				<s:if test="compromisso.id > 0">
-					<input type="submit" tabindex="1" name="confirmarAction" value="Alterar" class="button"><br>
+					<input type="submit" tabindex="1" name="confirmarAction" onclick="return confirmaAlteracao()" value="Alterar" class="button"><br>
 				</s:if>
 				<s:else>
 					<br><input type="submit" value="Incluir" class="button"><br>		
