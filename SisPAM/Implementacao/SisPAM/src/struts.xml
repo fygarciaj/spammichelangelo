@@ -21,6 +21,10 @@
 				<param name="actionName">usuarioAction</param>
 				<param name="method">definirTelaConsulta</param>
 			</result>
+			<result name="sucessoCarregarEdicaoPaciente" type="chain">
+				<param name="actionName">pacienteAction</param>
+				<param name="method">carregarEdicao</param>
+			</result>
 			
 		</action>
 

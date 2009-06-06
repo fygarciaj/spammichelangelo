@@ -62,6 +62,14 @@ public class PacienteDao {
 		return query.getResultList();
 	}
 	
+	public Paciente recuperarPeloUsuario(int idUsuario){
+		this.conexao = new Conexao();
+		this.manager = conexao.getEntityManger();
+		Query query = this.manager.createQuery("from Paciente where usuario.id = :id");
+		query.setParameter("id", idUsuario);
+		return (Paciente)query.getSingleResult();
+	}
+	
 	/**
 	 * : Lista os ultimos pacientes cadastrados
 	 * @return
