@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
-
-<html>
+<%@page import="br.com.sispam.dominio.Usuario"%><html>
 <head>
+<%Usuario usuario = (Usuario) session.getAttribute("usuarioLogado"); %>
 <script type="text/javascript">
 	function selecionaMenu(valor){
 		switch (valor) {
@@ -84,6 +84,7 @@
 <body>
 <div id="menu">
 <ul>
+	<%if(usuario.getPerfil() == 1 || usuario.getPerfil() == 2 || usuario.getPerfil() == 3){ %>
 	<li><a href="defaut.jsp" onclick="selecionaMenu('agendaMedica')" title="Manter Agenda Médica"
 		target="CENTRAL">AGENDA MÉDICA</a>
 	<div id="menuAgendaMedica" style="display: none">
@@ -93,6 +94,7 @@
 	</ul>
 	</div>
 	</li>
+	<%} if(usuario.getPerfil() == 1 || usuario.getPerfil() == 2) {%>
 	<li><a href="defaut.jsp" onclick="selecionaMenu('agendamento')" title="Manter Agendamento"
 		target="CENTRAL">AGENDAMENTO</a>
 	<div id="menuAgendamento" style="display: none">
@@ -102,14 +104,18 @@
 	</ul>
 	</div>
 	</li>
+	<%} %>
+	<%if(usuario.getPerfil() == 4) {%>
 	<li><a href="defaut.jsp" onclick="selecionaMenu('consultaRealizados')" title="Consulta Agendamento Realizado"
-		target="CENTRAL">CONSULTA REALIZADO</a>
+		target="CENTRAL">CONSULTAS REALIZADAS</a>
 	<div id="menuConsultaRealizados" style="display: none">
 	<ul id="subMenu">
 		<li><a href="agendamentoAction!carregarAgendamentosPaciente.action" title="Consultar" target="CENTRAL">Consultar</a></li>
 	</ul>
 	</div>
 	</li>
+	<%} %>
+	<%if(usuario.getPerfil() == 3){ %>
 	<li><a href="defaut.jsp" onclick="selecionaMenu('historicoProntuario')" title="Atualizar Histórico de Prontuário"
 		target="CENTRAL">HISTÓRICO PRONTUÁRIO</a>
 	<div id="menuHistoricoProntuario" style="display: none">
@@ -126,6 +132,7 @@
 			</ul>
 		</div>
 	</li>
+	<%} %>
 </ul>
 </div>
 </body>

@@ -36,7 +36,7 @@
 	<br>
 	<table class="tabela_listagem"  cellspacing="1" cellpadding="2" align="left">
 		<tr>
-			<th colspan="6" class="principal style2" scope="col">Agendamentos do Dia</th>
+			<th colspan="7" class="principal style2" scope="col">Agendamentos do Dia</th>
 		</tr>
 		<tr>		
 			<th width="250px" bgcolor="#A7C2DA" scope="col">

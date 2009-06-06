@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
+<%@page import="br.com.sispam.dominio.Usuario"%>
+<%Usuario usuario = (Usuario) session.getAttribute("usuarioLogado"); %>
 
 <html>
 <head>
@@ -49,7 +51,8 @@
 </head>
 <body>
 <div id="menu">
-  <ul>  
+  <ul>
+  	<%if(usuario.getPerfil() == 1 || usuario.getPerfil() == 2){ %>  
 	<li>
 		<a href="defaut.jsp" onclick="selecionaMenu('relatorioConvenio')" title = "Emitir Relatorio Convenio" target="CENTRAL">RELATÓRIO CONVÊNIO</a>
 		<div id="menuRelatorioConvenio" style="display:none">
@@ -58,6 +61,8 @@
 			</ul>
 		</div>
 	</li>
+	<%} %>
+	<%if(usuario.getPerfil() == 1){ %>
 	<li>
 		<a href="defaut.jsp" onclick="selecionaMenu('relatorioLog')" title = "Emitir Relatorio Log" target="CENTRAL">RELATÓRIO LOG</a>
 		<div id="menuRelatorioLog" style="display:none">
@@ -66,6 +71,8 @@
 			</ul>
 		</div>
 	</li>
+	<%} %>
+	<%if(usuario.getPerfil() == 1 || usuario.getPerfil() == 2){ %>  
 	<li>
 		<a href="defaut.jsp" onclick="selecionaMenu('relatorioUsuario')" title = "Emitir Relatorio Usuário" target="CENTRAL">RELATÓRIO USUÁRIO</a>
 		<div id="menuRelatorioUsuario" style="display:none">
@@ -74,6 +81,17 @@
 			</ul>
 		</div>
 	</li>
+	<%} %>
+	<%if(usuario.getPerfil() == 3 || usuario.getPerfil() == 4){ %>  
+	<li>
+		<a href="defaut.jsp" onclick="selecionaMenu('relatorioUsuario')" title = "Emitir Relatorio Usuário" target="CENTRAL">RELATÓRIO PRONTUÁRIO</a>
+		<div id="menuRelatorioUsuario" style="display:none">
+			<ul id="subMenu">
+			<li ><a href="../relatorioUsuario/relatorio-usuario.jsp" title = "Emitir" target="CENTRAL">Emitir</a></li>
+			</ul>
+		</div>
+	</li>
+	<%} %>
   </ul>
 </div>
 </body>

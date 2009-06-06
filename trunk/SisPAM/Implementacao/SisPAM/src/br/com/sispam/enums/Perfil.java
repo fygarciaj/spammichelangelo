@@ -32,4 +32,15 @@ public enum Perfil {
 		}
 	}
 	
+	public static Perfil[] values(int perfil){
+		 if(perfil == ATENDENTE.getCodigo()){
+		   Perfil[] perfils = new Perfil[]{ATENDENTE, MEDICO, PACIENTE};
+		   return perfils;
+		 }
+		 else{
+			 Perfil[] perfils = new Perfil[]{ADMINISTRADOR, ATENDENTE, MEDICO, PACIENTE};
+			 return perfils;
+		 }
+	}
+	
 }

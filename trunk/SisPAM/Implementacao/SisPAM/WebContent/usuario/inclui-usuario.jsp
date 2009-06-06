@@ -71,12 +71,24 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário<img
-			src="../componentes/img/seta.gif" /> Incluir</div>
+		Cadastro <span class="imgSeta"></span> Usuário <span class="imgSeta"></span> 
+			<s:if test="paciente.id > 0">
+				Alterar
+			</s:if>
+			<s:elseif test="usuario.id > 0">
+				Alterar
+			</s:elseif>
+			<s:elseif test="medico.id > 0">
+				Alterar
+			</s:elseif>
+			<s:else>
+			Incluir
+			</s:else>
 		</td>
 	</tr>
 </table>
 <h2>Cadastro de Usuários</h2>
+<s:if test="pacienteLogado == false">
 <s:form action="usuarioAction!definirTelaUsuario.action">
 	<table class="tabela_moldura">
 		<tr>
@@ -87,6 +99,7 @@
 		</tr>
 	</table>
 </s:form>
+</s:if>
 
 
 	<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
@@ -222,7 +235,7 @@
 					'SE':'SE', 'TO': 'TO'}" />	
 			 </td>
 				<td><label class="label">E-mail:</label>&nbsp;</td><td>
-				<s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>						
+				<s:textfield theme="simple" name="medico.usuario.email" size="30" maxlength="30" /></td>						
 			</tr>
 			<tr>
 				<td><label class="label">Consultório:</label></td><td><s:textfield theme="simple" name="consultorioAux" maxlength="4" size="7" />&nbsp;&nbsp;&nbsp;
@@ -321,7 +334,7 @@
 				<label class="label">Data de Nasc.:</label></td>
 				<td><s:textfield id="data" name="dataNascimentoAux" theme="simple" size="10"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">E-mail:</label>&nbsp;
-				<s:textfield theme="simple" name="usuario.email" size="30" maxlength="30" /></td>
+				<s:textfield theme="simple" name="paciente.usuario.email" size="30" maxlength="30" /></td>
 				<td><label class="label">Convênio:</label></td>
 				<td >
 					<s:select theme="simple" name="paciente.convenio.id" list="convenios" listKey="id" listValue="nome" headerKey="0" headerValue="--Selecione--"/>

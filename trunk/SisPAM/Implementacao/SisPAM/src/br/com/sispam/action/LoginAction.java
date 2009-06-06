@@ -164,5 +164,4 @@ public class LoginAction extends Action{
 	public void setReNovaSenha(String reNovaSenha) {
 		this.reNovaSenha = reNovaSenha;
 	}
-
 }

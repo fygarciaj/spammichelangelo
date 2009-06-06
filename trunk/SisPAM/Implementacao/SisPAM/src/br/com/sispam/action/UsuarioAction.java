@@ -39,7 +39,7 @@ public class UsuarioAction extends Action{
 	private ConvenioFacade convenioFacade;
 	private AuditoriaFacade auditoriaFacade;
 	private EspecialidadeFacade especialidadeFacade;
-	private Perfil[] perfils = Perfil.values();
+	private Perfil[] perfils;
 	private Integer codigoPerfilSelecionado;
 	private String codigoPerfilString;
 	private Sexo[] sexos = Sexo.values();
@@ -56,16 +56,14 @@ public class UsuarioAction extends Action{
 	private List<EspecialidadeMedica> especialidades;
 	private List<Convenio> convenios;
 	private String dataNascimentoAux;
-
-
-
-
+	private boolean pacienteLogado;
 	/**
 	 * : carrega a tela inicial de cadastro
 	 * @return
 	 */
 	public String carregarNovoUsuario(){
 		limparCampos(true);
+		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return CARREGAR_NOVO_USUARIO;
 	}
 
@@ -91,6 +89,7 @@ public class UsuarioAction extends Action{
 			this.convenios = this.convenioFacade.recuperarTodos();
 		}
 		limparCampos(false);
+		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return TELA_SELECIONADA;
 	}
 
@@ -168,6 +167,7 @@ public class UsuarioAction extends Action{
 
 		apresentaMensagens();
 		limparCampos(true);
+		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return SUCESSO_SALVAR_USUARIO;
 	}
 
@@ -177,6 +177,11 @@ public class UsuarioAction extends Action{
 	 */
 	public String carregarConsulta(){
 		limparCampos(true);
+		
+		if(getUsuarioLogado().getPerfil() == 4){
+			return SUCESSO_CARREGAR_EDICAO_PACIENTE;			
+		}
+		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
 
@@ -198,6 +203,7 @@ public class UsuarioAction extends Action{
 		}
 		apresentaMensagens();
 		apresentaErrors();
+		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return SUCESSO_TELA_CONSULTA;
 	}
 
@@ -224,6 +230,7 @@ public class UsuarioAction extends Action{
 		
 		limparCampos(false);
 		apresentaMensagens();
+		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
 	
@@ -487,5 +494,13 @@ public class UsuarioAction extends Action{
 	public void setEspecialidadeFacade(EspecialidadeFacade especialidadeFacade) {
 		this.especialidadeFacade = especialidadeFacade;
 	}
-	
+
+	public boolean isPacienteLogado() {
+		return pacienteLogado;
+	}
+
+	public void setPacienteLogado(boolean pacienteLogado) {
+		this.pacienteLogado = pacienteLogado;
+	}
+
 }

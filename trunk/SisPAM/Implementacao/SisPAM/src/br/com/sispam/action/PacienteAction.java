@@ -35,6 +35,7 @@ public class PacienteAction extends Action {
 	private String validaPlanoAux;
 	private String dataNascimentoAux;
 	private List<Paciente> pacientesCadastrados;
+	private boolean pacienteLogado;
 
 	private UsuarioFacade usuarioFacade;
 	private PacienteFacade pacienteFacade;
@@ -104,9 +105,14 @@ public class PacienteAction extends Action {
 			erros.put("erros", "Data inválida!");
 			apresentaErrors();
 			return FALHA_SALVAR__PACIENTE;
+		}finally{
+			if(getUsuarioLogado().getPerfil() == 4){
+				this.pacienteLogado = true;
+			}
 		}
 		apresentaMensagens();
 		limparCampos(true);
+		
 		return SUCESSO_SALVAR_PACIENTE;
 	}
 	
@@ -118,13 +124,20 @@ public class PacienteAction extends Action {
 		this.pacienteFacade = new PacienteFacade();
 		this.convenioFacade = new ConvenioFacade();
 		this.convenios = this.convenioFacade.recuperarTodos();
-		this.paciente = this.pacienteFacade.recuperarPeloId(this.paciente.getId());
+		if(getUsuarioLogado().getPerfil() == 4){
+			this.paciente = this.pacienteFacade.recuperarPeloUsuario(getUsuarioLogado().getId());
+			this.codigoPerfilSelecionado = 4;
+			this.pacienteLogado = true;
+		}else{
+			this.paciente = this.pacienteFacade.recuperarPeloId(this.paciente.getId());
+		}
 		this.cepAux = String.valueOf(this.paciente.getUsuario().getCep());
 		this.dataNascimentoAux = DataUtil.dateToString(this.paciente.getUsuario().getDataNascimento());
 		this.dddAux = String.valueOf(this.paciente.getUsuario().getDdd());
 		this.rgAux = String.valueOf(this.paciente.getUsuario().getRg());
 		this.telefoneAux = String.valueOf(this.paciente.getUsuario().getTelefone());
 		this.validaPlanoAux = DataUtil.dateToString(this.paciente.getValidadePlano());
+		
 		return SUCESSO_CARREGAR_EDICAO_PACIENTE;
 	}
 	
@@ -309,5 +322,12 @@ public class PacienteAction extends Action {
 	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
 		this.auditoriaFacade = auditoriaFacade;
 	}
-	
+
+	public boolean isPacienteLogado() {
+		return pacienteLogado;
+	}
+
+	public void setPacienteLogado(boolean pacienteLogado) {
+		this.pacienteLogado = pacienteLogado;
+	}
 }

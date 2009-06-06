@@ -37,6 +37,10 @@ public class PacienteFacade {
 		Paciente paciente = this.pacienteDao.recuperarPeloId(id);
 		this.pacienteDao.removerPaciente(paciente);
 	}
+	
+	public Paciente recuperarPeloUsuario(int idUsuario){
+		return this.pacienteDao.recuperarPeloUsuario(idUsuario);
+	}
 
 	/**
 	 * : Recupera vários pacientes pelo nome se existir..

@@ -48,7 +48,7 @@ public class CompromissoAction extends Action{
 			//Remove o caracter ":" da hora
 			horaInicialAux = horaInicialAux.replaceAll("[:]", "");
 			horaFinalAux = horaFinalAux.replaceAll("[:]", "");
-			
+
 			Map<String, String> mapa = new HashMap<String, String>();
 			mapa.put("horaInicial", horaInicialAux);
 			mapa.put("horaFinal", horaFinalAux);
@@ -66,7 +66,7 @@ public class CompromissoAction extends Action{
 
 			//verifica se os campo obrigatorios foram preenchidos
 			compromissoFacade.validaCampos(compromisso);
-									
+
 			//seta os valores das variváveis auxiliares.
 			compromisso.setHoraInicial(Integer.parseInt(horaInicialAux));
 			compromisso.setHoraFinal(Integer.parseInt(horaFinalAux));
@@ -79,7 +79,7 @@ public class CompromissoAction extends Action{
 			//verifica se já existe compromisso cadastrado com esses dados.
 			compromissoFacade.verificaExistencia(compromisso);
 
-			
+
 			if(compromisso.getId() > 0){
 				compromissoFacade.salvaCompromisso(compromisso);
 				mensagens.put("salvo", "Compromisso alterado com sucesso!");
@@ -115,8 +115,14 @@ public class CompromissoAction extends Action{
 		}
 		apresentaErrors();
 		apresentaMensagens();
-		this.medicoFacade = new MedicoFacade();
-		this.medicos = this.medicoFacade.recuperarTodos();
+		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
+			this.medicos = new ArrayList<Medico>();
+			this.medicoFacade = new MedicoFacade();
+			this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
+		}else{
+			this.medicoFacade = new MedicoFacade();
+			this.medicos = this.medicoFacade.recuperarTodos();
+		}
 		return CARREGAR_INCLUSAO_COMPROMISSO;
 	}
 
@@ -125,10 +131,15 @@ public class CompromissoAction extends Action{
 	 * @return
 	 */
 	public String carregarConsulta(){
-		
+
 		this.medicoFacade = new MedicoFacade();
 		this.compromissoFacade = new CompromissoFacade();
-		this.medicos = this.medicoFacade.recuperarTodos();
+		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
+			this.medicos = new ArrayList<Medico>();
+			this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
+		}else{
+			this.medicos = this.medicoFacade.recuperarTodos();
+		}
 		this.compromisso = new Compromisso();
 		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 			this.compromisso.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
@@ -173,8 +184,13 @@ public class CompromissoAction extends Action{
 		try {
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
-			this.medicos = this.medicoFacade.recuperarTodos();
-			
+			if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
+				this.medicos = new ArrayList<Medico>();
+				this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
+			}else{
+				this.medicos = this.medicoFacade.recuperarTodos();
+			}
+
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.CONSULTA, getUsuarioLogado()));
@@ -185,7 +201,7 @@ public class CompromissoAction extends Action{
 		apresentaMensagens();
 		limparCampos();
 		return carregarConsulta();
-		
+
 	}
 
 	/**
@@ -199,7 +215,12 @@ public class CompromissoAction extends Action{
 		this.dataAux = DataUtil.dateToString(this.compromisso.getData());
 		this.horaInicialAux = String.valueOf(this.compromisso.getHoraInicial());
 		this.horaFinalAux = String.valueOf(this.compromisso.getHoraFinal());
-		this.medicos = this.medicoFacade.recuperarTodos();
+		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
+			this.medicos = new ArrayList<Medico>();
+			this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
+		}else{
+			this.medicos = this.medicoFacade.recuperarTodos();
+		}
 		return SUCESSO_EDICAO_COMPROMISSO;
 	}
 
