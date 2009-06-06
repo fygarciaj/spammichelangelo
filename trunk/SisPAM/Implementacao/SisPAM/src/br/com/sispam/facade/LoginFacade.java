@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 
 import br.com.sispam.dao.LoginDao;
+import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
@@ -44,7 +45,7 @@ public class LoginFacade {
 	}
 	
 	/**
-	 * : Método para cripitografar a senha.
+	 * : Método para criptografar a senha.
 	 * @param senha
 	 * @return
 	 */
@@ -52,6 +53,21 @@ public class LoginFacade {
 		Cripto cripto = new Cripto();
 		return cripto.criptografar(senha);
 	}
+	
+	/**
+	 * : Método para verificar preenchimento obrigatórios na alteração da senha.
+	 * @param senha
+	 * @return
+	 */
+	public void verificaPreenchimento(Usuario usuario) throws CampoInvalidoException{
+
+		if(usuario != null){
+			if(usuario.getSenha()== null || usuario.getSenha().length() == 0){
+				throw new CampoInvalidoException("Campo Nova Senha Inválido!");
+			}
+		}
+	}
+			
 	
 	/**
 	 * : Método para formatar a data do acesso ao sistema.
