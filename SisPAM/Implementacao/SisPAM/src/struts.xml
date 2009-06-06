@@ -50,6 +50,8 @@
 			<result name="sucesso">index.jsp</result>
 			<result name="falha">login.jsp</result>
 			<result name="sucessoDeslogar">../login.jsp</result>
+			<result name="sucessoAlteracaoSenha">/alteracaoSenha/alteraSenha.jsp</result>
+			<result name="falhaAlteracaoSenha">/alteracaoSenha/alteraSenha.jsp</result>
 		</action>
 		
 			<!-- Medico Action -->

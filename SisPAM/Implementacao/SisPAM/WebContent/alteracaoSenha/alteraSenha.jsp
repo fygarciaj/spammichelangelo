@@ -15,11 +15,11 @@
 <BODY>
 <br>
 
-<table width="89%" id="cmnUsr" class="caminhoUsuario">
+<table class="caminhoUsuario">
 	<tr>
-		<td><br>
-		<div>Usuário <img src="../componentes/img/seta.gif" />
-		Senha <img src="../componentes/img/seta.gif" /> Alterar</div>
+		<td>
+		Usuário <span class="imgSeta"></span>
+		Senha <span class="imgSeta"></span> Alterar
 		</td>
 	</tr>
 </table>
@@ -27,7 +27,7 @@
 <table>
 <tr><td>
 <s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
-<s:actionmessage theme="simple" cssClass="errorMessage" cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+<s:actionmessage theme="simple" cssClass="sucessMessage" />
 </td>
 </tr>
 </table>
@@ -45,13 +45,11 @@
 			</td>
 		</tr>
 		<tr>
-			<td rowspan="4" align="left">
-				<p align="right">
-					<img border="0" src="../componentes/img/Senha.gif"	width="80" height="80" align="left">
-				</p>
+			<td rowspan="4" >
+				<span class="imgAlteraSenha"></span>
 			</td>
 		</tr>
-		<tr align="left">
+		<tr >
 			<td width="150px"><b>Senha</b></td>
 			<td width="50px"><s:password  name="senha" cssClass="campos" theme="simple" size="8" maxlength="6"/></td>
 		</tr>
@@ -61,13 +59,13 @@
 		</tr>
 		<tr>
 			<td width="150px"><b>Redigite a Nova Senha</b></td>
-			<td width="50px"><s:password name="novaSenha" cssClass="campos" theme="simple" size="8" maxlength="6" /></td> 			
+			<td width="50px"><s:password name="reNovaSenha" cssClass="campos" theme="simple" size="8" maxlength="6" /></td> 			
 		</tr>
 		</table>
 	</td>
 </tr>
 		<tr>	
-			<td valign="middle" height="40px" align="center" ><s:submit theme="simple" cssClass="button" value="Alterar"/></td>
+			<td valign="middle" height="40px" align="center" colspan="2"><s:submit theme="simple" cssClass="button" value="Alterar"/></td>
 		</tr>
 	</table>
 </s:form>

@@ -231,6 +231,24 @@ a:hover{
 	
 }
 
+.imgAlteraSenha {
+	#background-image:url("../../componentes/img/Senha.gif");
+	#width:80px;
+	#height:80px;
+	background-image: url(../img/Senha.gif);
+	width:80px;
+	height:80px;
+}
+
+.imgSeta {
+	#background: url("../../componentes/img/seta.gif") no-repeat 2px 1px;
+	#width:15px;
+	
+	background: url(../img/seta.gif) no-repeat 2px 1px;
+	width:15px;
+	
+}
+
 .linkExcluir {
 	
 	#float:left;

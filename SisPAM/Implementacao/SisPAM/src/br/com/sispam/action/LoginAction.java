@@ -20,6 +20,8 @@ public class LoginAction extends Action{
 	private String usrLogado;
 	private String dataHoraAcesso;
 	private AuditoriaFacade auditoriaFacade;
+	private String novaSenha;
+	private String reNovaSenha;
 	/**
 	 * : Efetua o login no sistema.
 	 * @return
@@ -68,27 +70,37 @@ public class LoginAction extends Action{
 	}
 	
 	public String alterarSenha(){
-		usr = new Usuario();
 		loginFacade = new LoginFacade();
-		
+		usuarioFacade = new UsuarioFacade();
+		auditoriaFacade = new AuditoriaFacade();
+		usr = new Usuario();
+
 		try{
-			if(getUsuarioLogado().getSenha().equals(this.loginFacade.criptografaSenha(senha))){
-				getUsuarioLogado().setSenha(senha);
-				usuarioFacade.salvarUsuario(getUsuarioLogado());
-				auditoriaFacade = new AuditoriaFacade();
-				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.LOGIN, Acao.ALTERACAO, getUsuarioLogado()));
-				return SUCESSO_ALTERACAO_SENHA;
+			usr = this.loginFacade.pesquisaUsuario(getUsuarioLogado().getAcesso(), senha);
+			if(usr.getSenha().equals(loginFacade.criptografaSenha(senha))){
+				if(novaSenha.equals(reNovaSenha)){
+					usr.setSenha(novaSenha);
+					
+					loginFacade.verificaPreenchimento(usr);
+					usuarioFacade.salvarUsuario(usr);
+					
+					auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.LOGIN, Acao.ALTERACAO, getUsuarioLogado()));
+					mensagens.put("salvo", "Senha Alterada com Sucesso!");
+					apresentaMensagens();
+					return SUCESSO_ALTERACAO_SENHA;
+				}else{
+					erros.put("campoInvalido", "Campo\"Nova Senha\" diferente de\" Redigite a Nova Senha\"");
+				}
 			}else{
 				erros.put("campoInvalido", "Senha inválida!");
-				apresentaErrors();
-				return FALHA_ALTERACAO_SENHA;
 			}
 
 		}catch(CampoInvalidoException ex) {
 			erros.put("campoInvalido", ex.getMessage());
-			apresentaErrors();
-			return FALHA;
+			
 		}
+		apresentaErrors();
+		return FALHA_ALTERACAO_SENHA;
 	}
 
 	/*Get & Set*/
@@ -135,6 +147,22 @@ public class LoginAction extends Action{
 
 	public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
 		this.usuarioFacade = usuarioFacade;
+	}
+
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
+	}
+
+	public String getReNovaSenha() {
+		return reNovaSenha;
+	}
+
+	public void setReNovaSenha(String reNovaSenha) {
+		this.reNovaSenha = reNovaSenha;
 	}
 
 }
