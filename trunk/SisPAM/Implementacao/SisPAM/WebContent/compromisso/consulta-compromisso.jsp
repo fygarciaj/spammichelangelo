@@ -63,7 +63,7 @@
 					<s:select theme="simple" name="compromisso.medico.id" list="medicos" headerValue="--Selecione--" headerKey="0" listValue="usuario.nome" listKey="id"/>
 					</td>
 					<td><label class="label">Data:</label></td>
-					<td><s:textfield theme="simple"  name="compromisso.data" id="data" size="10" maxlength="10" format = "dd/MM/yyyy"/>&nbsp;</td>
+					<td><s:textfield theme="simple"  name="compromisso.data" id="data" size="10" maxlength="10"/>&nbsp;</td>
 					<td><input type="submit" value="Consultar" class="button"></td>
 				</tr>
 			</table>
@@ -73,10 +73,13 @@
 	<br>
 	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
-			<th colspan="6" class="principal style2" scope="col">Compromissos do Dia: <s:date name="compromisso.data" format="dd/MM/yyyy"/></th>
+			<th colspan="6" class="principal style2" scope="col">Compromissos</th>
 			
 		</tr>
-		<tr>		
+		<tr>
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Data</span>
+			</th>		
 			<th width="10%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Hora Inicial</span>
 			</th>
@@ -109,6 +112,9 @@
 					<s:param name="compromisso.id" value="%{id}"/>
 				</s:url>
 				<td align="center">
+					<s:date name="data" format="dd/MM/yyyy" />
+				</td>				
+				<td align="center">
 					<s:property value="horaInicial" />
 				</td>
 				<td align="center">
@@ -127,6 +133,57 @@
 					<s:a href="%{#excluirCompromisso}" cssClass="linkExcluir" onclick="return confirmaExclusao()" cssStyle="linkExcluir"></s:a>
 				</td>
 			
+			</tr>
+		</s:iterator>	
+	</table>
+	</s:if>	
+
+	<!-- Lista os Agendamentos do dia-->
+	<s:if test="agendamentosCadastrados != null && agendamentosCadastrados.size() > 0">
+	<br>
+	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
+		<tr>
+			<th colspan="6" class="principal style2" scope="col">Agendamentos</th>
+			
+		</tr>
+		<tr>
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Data</span>
+			</th>		
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Paciente</span>
+			</th>
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Hora</span>
+			</th>
+			<th width="15%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Tipo</span>
+			</th>
+			<th width="50%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Especialidade</span>
+			</th>
+		</tr>
+
+		
+		<s:iterator value="agendamentosCadastrados" status="status">
+			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>" >
+								
+				<td align="center">
+					<s:date name="data" format="dd/MM/yyyy" />
+				</td>				
+				<td align="center">
+					<s:property value="paciente.usuario.nome" />
+				</td>
+				<td align="center">
+					<s:property value="hora"/>
+				</td>
+				<td align="center">
+					<s:property value="tipoAgendamento"/>
+				</td>
+				<td>
+					<s:property value="especialidadeMedica.descricao"/>
+				</td>
+				
 			</tr>
 		</s:iterator>	
 	</table>

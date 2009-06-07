@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.enums.Acao;
 import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
+import br.com.sispam.enums.TipoAgendamento;
 import br.com.sispam.enums.TipoCompromisso;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
@@ -28,11 +30,13 @@ public class CompromissoAction extends Action{
 	private CompromissoFacade compromissoFacade;
 	private MedicoFacade medicoFacade;
 	private List<Compromisso> compromissosCadastrados;
+	private List<Agendamento> agendamentosCadastrados;
 	private List<Medico> medicos;
 	private String horaInicialAux;
 	private String horaFinalAux;
 	private String dataAux;
 	private TipoCompromisso[] tipoCompromisso = TipoCompromisso.values();
+	private TipoAgendamento[] tipoAgendamento = TipoAgendamento.values();
 	private AuditoriaFacade auditoriaFacade;
 
 	/**
@@ -143,11 +147,13 @@ public class CompromissoAction extends Action{
 		this.compromisso = new Compromisso();
 		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 			this.compromisso.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
-			if(compromissosCadastrados == null || compromissosCadastrados.size() == 0){
+			if((compromissosCadastrados == null || compromissosCadastrados.size() == 0)&& (agendamentosCadastrados == null || agendamentosCadastrados.size()== 0)){
 				this.compromisso.setData(new Date());
 				this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
+				this.agendamentosCadastrados = this.compromissoFacade.getAgendamentos();
 			}
 		}
+		limparData();
 		return CARREGAR_CONSULTA_COMPROMISSO;
 	}
 
@@ -170,6 +176,7 @@ public class CompromissoAction extends Action{
 		}
 		apresentaMensagens();
 		this.medicos = this.medicoFacade.recuperarTodos();
+		
 		return FALHA_EXCLUIR_COMPROMISSO;
 	}
 
@@ -184,13 +191,13 @@ public class CompromissoAction extends Action{
 		try {
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
+			this.agendamentosCadastrados = compromissoFacade.getAgendamentos();
 			if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 				this.medicos = new ArrayList<Medico>();
 				this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
 			}else{
 				this.medicos = this.medicoFacade.recuperarTodos();
 			}
-
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDA_MEDICO, Acao.CONSULTA, getUsuarioLogado()));
@@ -235,6 +242,11 @@ public class CompromissoAction extends Action{
 		horaInicialAux = null;
 		this.dataAux = null;
 	}
+	
+	private void limparData(){
+		this.compromisso.setData(null);
+	}
+	
 	public Compromisso getCompromisso() {
 		return compromisso;
 	}
@@ -302,5 +314,19 @@ public class CompromissoAction extends Action{
 		this.auditoriaFacade = auditoriaFacade;
 	}
 
+	public List<Agendamento> getAgendamentosCadastrados() {
+		return agendamentosCadastrados;
+	}
 
+	public void setAgendamentosCadastrados(List<Agendamento> agendamentosCadastrados) {
+		this.agendamentosCadastrados = agendamentosCadastrados;
+	}
+
+	public TipoAgendamento[] getTipoAgendamento() {
+		return tipoAgendamento;
+	}
+
+	public void setTipoAgendamento(TipoAgendamento[] tipoAgendamento) {
+		this.tipoAgendamento = tipoAgendamento;
+	}
 }

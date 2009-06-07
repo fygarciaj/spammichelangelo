@@ -5,13 +5,18 @@ import java.util.Map;
 
 import javax.persistence.NoResultException;
 
+import br.com.sispam.dao.AgendamentoDao;
 import br.com.sispam.dao.CompromissoDao;
+import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 
 public class CompromissoFacade {
 	private CompromissoDao compromissoDao; 
+	private List<Agendamento> agendamentosRetornados = null;
+	private AgendamentoDao agendamentoDao;
+	private Agendamento agendamento;
 
 	/**
 	 * : Salvar compromissos.
@@ -55,7 +60,7 @@ public class CompromissoFacade {
 	}
 
 	/**
-	 * : verifica existencia do compromisso.
+	 * : verifica existencia do compromisso ou agendamentos.
 	 * @param compromisso
 	 * @throws CampoInvalidoException 
 	 * 
@@ -63,6 +68,8 @@ public class CompromissoFacade {
 	public void verificaExistencia(Compromisso compromisso) throws CampoInvalidoException{
 		compromissoDao = new CompromissoDao();				
 		List<Compromisso> compromissoNew = null;
+		List<Agendamento> agendamentosNew = null; 
+		
 		compromissoNew = (compromissoDao.consultarCompromissoUnico(compromisso));
 		if(compromissoNew != null && compromissoNew.size() > 0){
 			for(Compromisso comp: compromissoNew){
@@ -72,6 +79,14 @@ public class CompromissoFacade {
 			}
 		}
 		
+		agendamentosNew = (compromissoDao.consultarAgendamentoUnico(compromisso));
+		if(agendamentosNew != null && agendamentosNew.size() > 0){
+			for(Agendamento agend: agendamentosNew){
+				if(agend.getId() != 0){
+					throw new CampoInvalidoException("Já existe Agendamento no período informado!");
+				}
+			}
+		}
 	}
 
 
@@ -83,23 +98,46 @@ public class CompromissoFacade {
 	 */
 	public List<Compromisso> pesquisaCompromisso(Compromisso compromisso) throws CampoInvalidoException{
 		compromissoDao = new CompromissoDao();
-		Compromisso compromissoRetornado = null;
+		agendamentoDao = new AgendamentoDao();
+		agendamento = new Agendamento();
 		List<Compromisso> compromissosRetornados = null;
+		
 		try {
 			if((compromisso.getMedico().getId() == 0)  
 					&& (compromisso.getData() == null)){
 				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" para efetuar a pesquisa!");
+			
 			}else if((compromisso.getMedico().getId() != 0) && (compromisso.getData() != null)){
 				compromissosRetornados = compromissoDao.consultarCompromissos(compromisso);
-			}else if((compromisso.getMedico().getId() != 0)){
+				agendamento.setMedico(compromisso.getMedico());
+				agendamento.setData(compromisso.getData());
+				agendamentosRetornados = agendamentoDao.consultar(agendamento);
+			
+			}else if(compromisso.getMedico().getId() != 0 && compromisso.getData() == null){
 				compromissosRetornados = compromissoDao.consultarCompromissosMedico(compromisso);
-			}else if((compromisso.getData() != null)){
-				compromissosRetornados = compromissoDao.consultarCompromissosData(compromisso);
+				agendamento.setMedico(compromisso.getMedico());
+				agendamentosRetornados = agendamentoDao.consultar(agendamento);
+				
+			}else if((compromisso.getMedico().getId() == 0 && compromisso.getData() != null)){
+				throw new CampoInvalidoException("Selecione o médico!");
 			}
+			
+			if ((compromissosRetornados == null || compromissosRetornados.size() == 0)&& (agendamentosRetornados == null || agendamentosRetornados.size() == 0)){
+				throw new CampoInvalidoException("Compromissos ou Agendamentos não encontrados.");
+			}
+				
 		} catch (NoResultException e) {
 			throw new CampoInvalidoException("Nenhum registro encontrado");
 		}
 		return compromissosRetornados;
+	}
+	
+	public void setAgendamentos(List<Agendamento> agendamentosRetornados){
+		this.agendamentosRetornados = agendamentosRetornados;
+	}
+	
+	public List<Agendamento> getAgendamentos(){
+		return agendamentosRetornados;
 	}
 
 	/**
@@ -109,7 +147,16 @@ public class CompromissoFacade {
 	 */
 	public List<Compromisso> recuperarCompromissosDiaAtual(Compromisso compromisso){
 		this.compromissoDao = new CompromissoDao();
-		return this.compromissoDao.consultarCompromissos(compromisso);
+		agendamentoDao = new AgendamentoDao();
+		agendamento = new Agendamento();
+		List<Compromisso> compromissosRetornados = null;
+		
+		compromissosRetornados = this.compromissoDao.consultarCompromissos(compromisso);
+		agendamento.setMedico(compromisso.getMedico());
+		agendamento.setData(compromisso.getData());
+		agendamentosRetornados = agendamentoDao.consultar(agendamento);
+				
+		return compromissosRetornados;
 	}
 
 
