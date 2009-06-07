@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.Compromisso;
 
 
 public class AgendamentoDao {
@@ -134,7 +136,6 @@ public class AgendamentoDao {
 		return builder;
 	}
 
-
 	/**
 	 * Recupera o agendamento a partir do id passado.
 	 * @param id
@@ -145,4 +146,6 @@ public class AgendamentoDao {
 		manager = conexao.getEntityManger();
 		return manager.find(Agendamento.class, id) ;
 	}
+	
+	
 }

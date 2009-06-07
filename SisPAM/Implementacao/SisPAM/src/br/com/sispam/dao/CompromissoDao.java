@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
+import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.Compromisso;
 
 public class CompromissoDao {
@@ -97,6 +98,32 @@ public class CompromissoDao {
 	}
 	
 	/**
+	 * : Verifica se a colisão de agendamento pela data e hora
+	 * @param compromisso
+	 * @return
+	 */
+	public List<Agendamento> consultarAgendamentoUnico(Compromisso compromisso){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Agendamento> agendamentos = null;
+	try{
+			Query query = manager.createQuery("from Agendamento where " +
+					"((hora >= :horaInicio and hora+15 < :horaFim) or (hora+15 > :horaInicio and hora <= :horaFim)) " +
+					"and medico.id = :idMedico and data = :data ");
+			//seta o parametro
+			query.setParameter("idMedico", compromisso.getMedico().getId());
+			query.setParameter("data", compromisso.getData());
+			query.setParameter("horaInicio", compromisso.getHoraInicial());
+			query.setParameter("horaFim", compromisso.getHoraFinal());
+			agendamentos = query.getResultList();						
+		}catch (NoResultException e) {
+			agendamentos = null;
+		}
+	
+		return agendamentos;
+	}
+	
+	/**
 	 * : Consulta compromisso.
 	 * @param compromisso
 	 * @return
@@ -125,7 +152,7 @@ public class CompromissoDao {
 		List<Compromisso> compromissos = null;
 		try{
 			//cria uma queri para fazer a busca pelo nome
-			Query query = manager.createQuery("from Compromisso where medico.id = :medico");
+			Query query = manager.createQuery("from Compromisso where medico.id = :medico order by data");
 			//seta o parametro
 			query.setParameter("medico", compromisso.getMedico().getId());
 			compromissos = query.getResultList();				
@@ -142,7 +169,7 @@ public class CompromissoDao {
 		List<Compromisso> compromissos = null;
 		try{
 			//cria uma queri para fazer a busca pelo nome
-			Query query = manager.createQuery("from Compromisso where data = :data");
+			Query query = manager.createQuery("from Compromisso where data = :data order by horaInicial");
 			//seta o parametro
 			query.setParameter("data", compromisso.getData());
 			compromissos = query.getResultList();				
