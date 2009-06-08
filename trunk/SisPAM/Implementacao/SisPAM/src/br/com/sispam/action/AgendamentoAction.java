@@ -70,20 +70,21 @@ public class AgendamentoAction extends Action{
 		return SUCESSO_CARREGAR_INCLUSAO_AGENDAMENTO;
 
 	}
-	
+
 	/**
 	 * Recupera os agendamentos do paciente.
 	 * @return
 	 */
 	public String carregarAgendamentosPaciente(){
-		
+
 		Usuario usuario = getUsuarioLogado();
 		this.agendamentoFacade = new AgendamentoFacade();
 		this.agendamentos = this.agendamentoFacade.recuperaAgendamentosPaciente(usuario.getId());
-		
+		apresentaErrors();
+		apresentaMensagens();
 		return CONSULTA_AGENDAMENTOS_REALIZADOS;
 	}
-	
+
 	/**
 	 * Salva o agendamento.
 	 * @return
@@ -103,7 +104,7 @@ public class AgendamentoAction extends Action{
 			this.agendamentoFacade.verificaDisponivilidade();
 			this.usuarioFacade.verificaCampoInteiro(camposInteiros);
 			this.agendamento.setHora(Integer.parseInt(horario));			
-			
+
 			if(agendamento.getId() > 0){
 				this.agendamentoFacade.salvarAgendamento(agendamento);
 				this.mensagens.put("sucesso", "Agendamento alterado com sucesso!");
@@ -125,7 +126,7 @@ public class AgendamentoAction extends Action{
 		apresentaMensagens();
 		return SUCESSO_SALVAR_AGENDAMENTO;
 	}
-	
+
 	/**
 	 * Carrega a edição do agendamento.
 	 * @return
@@ -135,24 +136,26 @@ public class AgendamentoAction extends Action{
 		this.pacienteFacade = new PacienteFacade();
 		this.medicoFacade = new MedicoFacade();
 		this.especialidadeFacade = new EspecialidadeFacade();
-		
+
 		this.agendamento = this.agendamentoFacade.recuperarPeloId(this.agendamento.getId());
 		this.dataAgendamento = DataUtil.dateToString(this.agendamento.getData());
 		this.horario = String.valueOf(this.agendamento.getHora());
-		
+
 		//monta as listas de pacientes, medicos e especialidades
 		this.especialidades = this.especialidadeFacade.recuperarTodas();
 		this.medicos = this.medicoFacade.recuperarTodos();
 		this.pacientes = this.pacienteFacade.recuperarTodos();
-		
+
 		return SUCESSO_CARREGAR_EDICAO;
 	}
-	
+
 	/**
 	 * Carrega os agendamentos do dia.
 	 * @return
 	 */
 	public String carregarAgendamentos(){
+		apresentaErrors();
+		apresentaMensagens();
 		this.agendamentoFacade = new AgendamentoFacade();
 		this.medicoFacade = new MedicoFacade();
 		this.agendamentos = this.agendamentoFacade.recuperarAgendamentosDoDia();
@@ -160,7 +163,7 @@ public class AgendamentoAction extends Action{
 		this.medicos = this.medicoFacade.recuperarTodos();
 		return SUCESSO_CARREGAR_AGENDAMENTOS;
 	}
-	
+
 	/**
 	 * Exclui o agendamento passado
 	 * @return
@@ -168,7 +171,7 @@ public class AgendamentoAction extends Action{
 	public String excluirAgendamento(){
 		this.agendamentoFacade = new AgendamentoFacade();
 		this.agendamentoFacade.excluir(agendamento);
-		
+
 		try {
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
@@ -179,7 +182,7 @@ public class AgendamentoAction extends Action{
 		}
 		return SUCESSO_EXCLUIR_AGENDAMENTO;
 	}
-	
+
 	/**
 	 * Realiza a consulta dos agendamentos.
 	 * @return
@@ -187,43 +190,43 @@ public class AgendamentoAction extends Action{
 	public String consultarAgendamento(){
 		this.agendamentoFacade = new AgendamentoFacade();
 		this.medicoFacade = new MedicoFacade();
-		this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
-		this.agendamentoFacade.montarAgendamentos(agendamentos);
-		this.medicos = this.medicoFacade.recuperarTodos();
-				
+
 		try {
+			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
+			this.agendamentoFacade.montarAgendamentos(agendamentos);
+			this.medicos = this.medicoFacade.recuperarTodos();
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.CONSULTA, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			erros.put("erro", e.getMessage());
+			return FALHA_CONSULTAR_AGENDAMENTO;
 		}
 		limpaCamposConsulta();
 		return SUCESSO_CARREGAR_AGENDAMENTOS;
 	}
-	
+
 	/**
 	 * Realiza a consulta dos agendamentos realizados de um paciente.
 	 * @return
 	 */
 	public String consultarAgendamentoRealizado(){
 		this.agendamentoFacade = new AgendamentoFacade();
-		this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
-		this.agendamentoFacade.montarAgendamentos(agendamentos);
-				
+
 		try {
+			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
+			this.agendamentoFacade.montarAgendamentos(agendamentos);
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.CONSULTA, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			erros.put("erro", e.getMessage());
+			return FALHA_CONSULTAR_AGENDAMENTO_PACIENTE;
 		}
 		limpaCamposConsulta();
 		return CONSULTA_AGENDAMENTOS_REALIZADOS;
 	}
-	
+
 	/**
 	 * Limpa os campos da consulta.
 	 */
@@ -265,7 +268,7 @@ public class AgendamentoAction extends Action{
 		}
 		return SUCESSO_CARREGAR_INCLUSAO_AGENDAMENTO;
 	}
-	
+
 	/**
 	 * Limpa os campos da tela.
 	 */
@@ -421,5 +424,5 @@ public class AgendamentoAction extends Action{
 	public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
 		this.usuarioFacade = usuarioFacade;
 	}
-	
+
 }

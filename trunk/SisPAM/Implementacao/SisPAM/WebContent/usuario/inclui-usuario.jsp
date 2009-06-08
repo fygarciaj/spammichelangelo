@@ -31,6 +31,18 @@
 			}
 		return false;
 		}
+
+	function marcaEspecialidadesEdicao(){
+		if(confirmaAlteracao() == true){
+			var elemento = document.getElementById("idDouble");
+				for(var i=0; i < elemento.size; i++){
+					elemento.options[i].selected = true;
+				}
+		}
+		else{
+			return false;
+			}
+	}
 	
 </script>
 <script type="text/javascript">
@@ -272,7 +284,7 @@
 				</s:iterator>
 				</td>
 				<s:if test="medico.id > 0">						
-					<td><s:submit value="Alterar" onclick="return marcaEspecialidades(); return confirmaAlteracao();" cssClass="button" /></td>
+					<td><s:submit value="Alterar" onclick="return marcaEspecialidadesEdicao();" cssClass="button" /></td>
 				</s:if>
 				<s:else>
 					<td><s:submit value="Incluir" onclick="return marcaEspecialidades();" cssClass="button" /></td>

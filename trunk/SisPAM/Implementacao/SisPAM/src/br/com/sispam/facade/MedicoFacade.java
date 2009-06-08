@@ -200,7 +200,7 @@ public class MedicoFacade {
 	public List<Medico> consultar(String crm,String uf,  String nome) throws CampoInvalidoException{
 		List<Medico>lista = null;
 		Medico medicoRecuperado = null;
-		
+
 		if((crm == null || crm.isEmpty()) && (nome == null || nome.isEmpty())){
 			throw new CampoInvalidoException("Preencha um dos campos para realizar a pesquisa!");
 		}
@@ -212,10 +212,10 @@ public class MedicoFacade {
 				medicoRecuperado = this.medicoDao.recuperaPeloCrm(crmNumero, uf);
 				if(medicoRecuperado != null){
 					lista.add(medicoRecuperado);
+				}
 			}else{
-				lista = this.medicoDao.recuperaPeloCrm(crmNumero);
+				lista = medicoDao.recuperaPeloCrm(crmNumero);
 			}
-		}
 		}else{
 			lista = medicoDao.recuperaPeloNome(nome);
 		}

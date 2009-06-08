@@ -16,7 +16,7 @@ import br.com.sispam.validation.cnpjcpf.CPFValidator;
 public class UsuarioFacade {
 	private UsuarioDao usuarioDao;
 	private CPFValidator validador;
-	
+
 	public UsuarioFacade(){
 		this.usuarioDao = new UsuarioDao();
 	}
@@ -91,6 +91,10 @@ public class UsuarioFacade {
 		List<Usuario> lista = null;
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = null;
+		if(cpf != null){
+			cpf = cpf.replaceAll("[.]", "");
+			cpf = cpf.replaceAll("[-]", "");
+		}
 
 		if((cpf == null || cpf.isEmpty()) && (nome == null || nome.isEmpty())){
 			throw new CampoInvalidoException("Preencha um dos campos para realizar a pesquisa!");
@@ -136,7 +140,7 @@ public class UsuarioFacade {
 	public void validaCampos(Object objeto, String dataNascimento) throws CampoInvalidoException{
 		validador = (CPFValidator) ValidatorFactory.getInstance()
 		.getValidator(IValidation.VALIDATOR_CPF);		
-			
+
 		if(objeto != null && objeto instanceof Usuario){
 			Usuario usuario = (Usuario)objeto;
 			//retira a mascára do cpf
@@ -178,7 +182,7 @@ public class UsuarioFacade {
 		}
 
 	}
-	
+
 	/**
 	 * Verifica se já existe o login no banco de dados. 
 	 * @param acesso

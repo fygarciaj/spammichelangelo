@@ -52,6 +52,10 @@
 	</tr>	
 	</table>
 	<h2>Consulta de Agendamentos Realizados</h2>
+	<div id="MensagensErro" >	
+		<s:fielderror theme="simple" cssClass="errorMessage" />
+		<s:actionmessage theme="simple" cssClass="sucessMessage" />
+	</div>
 	<s:form action="agendamentoAction!consultarAgendamentoRealizado.action">
 		<table class="tabela_moldura">
 			<tr>			        	
