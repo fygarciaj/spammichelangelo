@@ -38,6 +38,50 @@ public class ReceitaDao {
 				
 		return agendamentos;
 	}	
+	/**
+	 * Recupera os agendamentos apartir dos dados passados.
+	 * @param agendamento
+	 * @return
+	 */
+	public List<Agendamento> consultar(Agendamento agendamento){
+		StringBuilder builder = montaQuery(agendamento);
+		List<Agendamento> agendamentos = null;
+		this.conexao = new Conexao();
+		this.manager = this.conexao.getEntityManger();
+		Query query = this.manager.createQuery(builder.toString());
+		if(agendamento.getMedico() != null && agendamento.getMedico().getId() > 0){
+			query.setParameter("medico", agendamento.getMedico().getId());
+		}if(agendamento.getData() != null){
+			query.setParameter("data", agendamento.getData());
+		}
+		agendamentos = query.getResultList();
+		return agendamentos;
+	}
 	
+	/**
+	 * Monta a query da consulta.
+	 * @param agendamento
+	 * @return
+	 */
+	private StringBuilder montaQuery(Agendamento agendamento){
+		StringBuilder builder = new StringBuilder();
+		boolean medico = false;
+		boolean data = false;		
+		builder.append("from Agendamento where ");
+
+		if(agendamento.getMedico() != null && agendamento.getMedico().getId() > 0){
+			medico = true;
+			builder.append("medico.id = :medico ");
+		}if(agendamento.getData() != null){
+			data = true;
+			if(medico == true){
+				builder.append("and data = :data ");
+			}else{
+				builder.append("data = :data ");
+			}
+		}
+
+		return builder;
+	}
 	
 }

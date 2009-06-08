@@ -5,11 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../componentes/css/estilo.css"	type="text/css" />
+	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
 	<link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="componentes/js/sispam.js"></script>
-	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
-	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
-	<title>Insert title here</title>
+	<script type="text/javascript" src="componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery/ui.core.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+	<title>Emite Receita</title>
 	
 	<script type="text/javascript">
 
@@ -25,8 +34,20 @@
 			document.forms[1].submit();
 
 		}
-		
-	
+
+		 $(document).ready(function(){
+				calendario('dataAgendamento');
+		 });
+		 function calendario(idCampo){
+					var id = '#'+idCampo;
+					 $(id).datepicker({
+								 showMonthAfterYear: false,
+								 showOtherMonths: true,
+								 changeMonth: true,
+								 changeYear: true,
+								 gotoCurrent: true
+					 });
+				}	
 	</script>
 </head>
 <body>
@@ -39,17 +60,12 @@
 </table>
 <h2>Emissão de Receita</h2>
 
-<s:form action="receitaAction!carregaEmissaoReceita.action" theme="simple">
-		<table class="tabela_moldura" >
-			<tr>
-				<td><label>Paciente:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="40" maxlength="40"/></td>
-			</tr>
+<s:form action="receitaAction!consultarAgendamento.action" theme="simple">
+		<table class="tabela_consulta" >			
 			<tr>				
-				<td><label>Data de Atendimento:</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="10" maxlength="10"/></td>
-			</tr>
-			<tr>	
-				<td colspan="1"></td><td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
-			</tr>
+				<td><label>Data de Atendimento:</label>&nbsp;<s:textfield id="dataAgendamento" size="12" maxlength="7" name="dataAgendamento" theme="simple"/></td>
+				<td></td><td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
+			</tr>			
 		</table>
 	</s:form>
 	
