@@ -51,7 +51,13 @@ public class PacienteFacade {
 	public List<Paciente> consultar(Paciente paciente) throws CampoInvalidoException{
 		List<Paciente> lista = null;
 		Paciente pacienteRecuperado = null;
-	
+		
+		if(paciente != null && paciente.getUsuario() != null && paciente.getUsuario().getCpf() != null){
+			String cpf = paciente.getUsuario().getCpf().replaceAll("[.]", "");
+			cpf = cpf.replaceAll("[-]", "");
+			paciente.getUsuario().setCpf(cpf);
+		}
+		
 		if((paciente.getUsuario().getCpf() == null || paciente.getUsuario().getCpf().isEmpty())
 				&& (paciente.getUsuario().getNome() == null || paciente.getUsuario().getNome().isEmpty())){
 			throw new CampoInvalidoException("Preencha um dos campos para realizar a pesquisa!");

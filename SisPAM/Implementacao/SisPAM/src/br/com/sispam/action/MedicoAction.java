@@ -302,6 +302,8 @@ public class MedicoAction extends Action{
 	 */
 	private void limparCampos(boolean limpaCodigoPerfilSelecionado){
 		this.medico = null;
+		this.crmAux = null;
+		this.crmUf = null;
 		if(limpaCodigoPerfilSelecionado == true){
 			this.codigoPerfilSelecionado = null;
 		}

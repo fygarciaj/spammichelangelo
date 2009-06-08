@@ -79,7 +79,7 @@ public class PacienteDao {
 		this.manager = conexao.getEntityManger();
 		List<Paciente> lista = null;
 		try{
-		Query query = this.manager.createQuery("from Paciente order by id desc");
+		Query query = this.manager.createQuery("from Paciente order by usuario.nome, id desc");
 		query.setMaxResults(8);
 		lista = query.getResultList();
 		}catch (NoResultException e) {
@@ -115,6 +115,7 @@ public class PacienteDao {
 	 */
 	public List<Paciente> recuperarPeloNome(String nome){
 		this.conexao = new Conexao();
+		this.manager = this.conexao.getEntityManger();
 		List<Paciente> pacientes = null;
 		try{
 		Query query = this.manager.createQuery("from Paciente where usuario.nome like :nome");

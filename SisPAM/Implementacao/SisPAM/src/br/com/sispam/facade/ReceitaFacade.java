@@ -44,15 +44,16 @@ public class ReceitaFacade {
 	 * @param agendamento
 	 * @param data
 	 * @return
+	 * @throws CampoInvalidoException 
 	 * @throws CampoInvalidoException
 	 */
-	public List<Agendamento> consultar(Agendamento agendamento, String data){
-		
+	public List<Agendamento> consultar(Agendamento agendamento, String data) throws CampoInvalidoException{
+		this.receitaDao = new ReceitaDao();
 		if(agendamento != null){
 			try {
 				agendamento.setData(DataUtil.stringToDate(data));
 			} catch (ParseException e) {
-				agendamento.setData(null);
+				throw new CampoInvalidoException("Digite a data para a consulta!");
 			}
 			return this.receitaDao.consultar(agendamento);
 		}else{

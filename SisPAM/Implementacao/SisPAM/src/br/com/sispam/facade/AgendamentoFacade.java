@@ -49,15 +49,16 @@ public class AgendamentoFacade {
 	 * @param agendamento
 	 * @param data
 	 * @return
+	 * @throws CampoInvalidoException 
 	 * @throws CampoInvalidoException
 	 */
-	public List<Agendamento> consultar(Agendamento agendamento, String data){
+	public List<Agendamento> consultar(Agendamento agendamento, String data) throws CampoInvalidoException{
 		
 		if(agendamento != null){
 			try {
 				agendamento.setData(DataUtil.stringToDate(data));
 			} catch (ParseException e) {
-				agendamento.setData(null);
+				throw new CampoInvalidoException("Informe a data para a consulta!");
 			}
 			return this.agendamentoDao.consultar(agendamento);
 		}else{

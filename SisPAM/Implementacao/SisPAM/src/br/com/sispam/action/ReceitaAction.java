@@ -18,7 +18,7 @@ import br.com.sispam.facade.ReceitaFacade;
 import br.com.sispam.util.AuditoriaUtil;
 
 public class ReceitaAction extends Action{
-	
+
 	private Agendamento agendamento;
 	private ReceitaFacade receitaFacade;
 	private List<Agendamento> agendamentosCadastrados;
@@ -28,9 +28,8 @@ public class ReceitaAction extends Action{
 	private int horaAtendimentoAux;
 	private AuditoriaFacade auditoriaFacade;
 	private AgendamentoFacade agendamentoFacade;
-	private List<Agendamento> agendamentos;
 	private String dataAgendamento;
-	
+
 	/**
 	 * : Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
 	 * @return
@@ -39,7 +38,7 @@ public class ReceitaAction extends Action{
 		this.receitaFacade = new ReceitaFacade();
 		this.agendamento = new Agendamento();
 		this.medicoFacade = new MedicoFacade();
-		
+
 		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 			this.agendamento.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
 
@@ -47,12 +46,14 @@ public class ReceitaAction extends Action{
 			this.agendamento.setStatus(StatusAgendamento.CONCLUIDO.getCodigo());
 			this.agendamento.setData(new Date());
 			this.agendamentosCadastrados = this.receitaFacade.recuperarAgendamentosDiaAtual(agendamento);
-			
+
 		}
 		apresentaMensagens();
+		apresentaErrors();
+		limpaCamposConsulta();
 		return SUCESSO_CARREGAR_ATENDIMENTOS;
 	}
-	
+
 	/**
 	 * : carrega os dados necessário para a emissão da receita do paciente.
 	 * @return
@@ -69,30 +70,30 @@ public class ReceitaAction extends Action{
 	 */
 	public String consultarAgendamento(){
 		this.agendamentoFacade = new AgendamentoFacade();
+		this.receitaFacade = new ReceitaFacade();
 		this.medicoFacade = new MedicoFacade();
 		this.agendamento = new Agendamento();
 		this.agendamento.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
-		this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
-		this.agendamentoFacade.montarAgendamentos(agendamentos);						
 		try {
+			this.agendamentosCadastrados = this.receitaFacade.consultar(this.agendamento, dataAgendamento);
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.EMITE_RECEITA, Acao.CONSULTA, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			erros.put("erro", e.getMessage());
+			return FALHA_CONSULTAR_AGENDAMENTO;
 		}
 		limpaCamposConsulta();
 		return SUCESSO_CARREGAR_ATENDIMENTOS;
 	}
-	
+
 	/*Utilitário*/
 	/**
 	 * : Limpa os campos.
 	 */
 	private void limparCampos(){
 		this.receitaFacade = null;
-		
+
 	}
 	/**
 	 * Limpa os campos da consulta.
@@ -173,14 +174,6 @@ public class ReceitaAction extends Action{
 		this.agendamentoFacade = agendamentoFacade;
 	}
 
-	public List<Agendamento> getAgendamentos() {
-		return agendamentos;
-	}
-
-	public void setAgendamentos(List<Agendamento> agendamentos) {
-		this.agendamentos = agendamentos;
-	}
-
 	public String getDataAgendamento() {
 		return dataAgendamento;
 	}
@@ -188,6 +181,6 @@ public class ReceitaAction extends Action{
 	public void setDataAgendamento(String dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
 	}
-	
-	
+
+
 }

@@ -149,23 +149,21 @@ public class UsuarioAction extends Action{
 			}
 			
 		} catch (CampoInvalidoException e) {
-			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
-			apresentaErrors();
 			return FALHA_SALVAR_USUARIO;
 		}
 		catch (CampoInteiroException e) {
 			erros.put("campoInvalido", e.getMessage());
-			apresentaErrors();
 			return FALHA_SALVAR_USUARIO;
 		}catch (ParseException e) {
 			erros.put("dataInvalida", e.getMessage());
-			apresentaErrors();
 			return FALHA_SALVAR_USUARIO;
 		}
-
-
-		apresentaMensagens();
+		finally{
+			this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
+			apresentaErrors();
+			apresentaMensagens();
+		}
 		limparCampos(true);
 		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return SUCESSO_SALVAR_USUARIO;

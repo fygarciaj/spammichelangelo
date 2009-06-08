@@ -80,7 +80,7 @@ public class ReceitaDao {
 				builder.append("data = :data ");
 			}
 		}
-
+		builder.append("and status = 2");
 		return builder;
 	}
 	

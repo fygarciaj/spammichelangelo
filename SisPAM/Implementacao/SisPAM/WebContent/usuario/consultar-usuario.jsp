@@ -9,6 +9,18 @@
 	<script type="text/javascript" src="componentes/js/sispam.js"></script>
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery/ui.core.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+
+	<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+	<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script> 
 	<title>Insert title here</title>
 	<SCRIPT type="text/javascript">
 
@@ -20,7 +32,9 @@
 				document.getElementById("ufCrm").style.display = 'none';
 			}
 		}
-	
+		$(document).ready(function(){
+			$(".cpf").mask("999.999.999-99");
+		});
 	</SCRIPT>
 </head>
 <body>
@@ -66,7 +80,7 @@
 	<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}"/>
 		<table class="tabela_moldura" >
 			<tr>
-				<td><label>CPF</label></td><td><s:textfield name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
+				<td><label>CPF</label></td><td><s:textfield cssClass="cpf" name="usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
 				<td align="right" width="60px"><label>Nome</label></td><td><s:textfield name="usuario.nome" id="nome" theme="simple" size="60" maxlength="60"/></td>
 				<td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
 			</tr>
@@ -104,7 +118,7 @@
 		<s:hidden name="codigoPerfilSelecionado" value="%{codigoPerfilSelecionado}"/>
 		<table class="tabela_moldura" >
 			<tr>
-				<td><label>CPF:</label>&nbsp;<s:textfield name="paciente.usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
+				<td><label>CPF:</label>&nbsp;<s:textfield cssClass="cpf" name="paciente.usuario.cpf" id="cpf" theme="simple" size="13" maxlength="11"/></td>
 				<td ><label>Nome</label>&nbsp;<s:textfield name="paciente.usuario.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
 				<td><s:submit value="Consultar" cssClass="button"  theme="simple"/></td>
 			</tr>
@@ -230,7 +244,7 @@
 <s:if test="codigoPerfilSelecionado == 4 && pacientesCadastrados != null && pacientesCadastrados.size() > 0">
 	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 			<tr>
-				<th colspan="6" class="principal style2" scope="col">
+				<th colspan="7" class="principal style2" scope="col">
 					Últimos	Pacientes cadastrados
 				</th>
 		</tr>		
@@ -263,7 +277,7 @@
 				</s:url>
 			
 			<tr	class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
-				<td><s:property value="id" /></td>
+				<td align="center"><s:property value="id" /></td>
 				<td><s:property value="usuario.nome" /></td>
 				<td align="center"><s:property value="usuario.cpf" /></td>
 				<td align="center"><s:property value="usuario.telefone" /></td>

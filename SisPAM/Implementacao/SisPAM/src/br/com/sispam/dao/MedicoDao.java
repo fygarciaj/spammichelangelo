@@ -154,7 +154,7 @@ public class MedicoDao {
 		manager = conexao.getEntityManger();
 		List<Medico> lista = null;
 		try{
-			Query query = manager.createQuery("from Medico order by id desc");
+			Query query = manager.createQuery("from Medico order by usuario.nome, id desc");
 			query.setMaxResults(8);
 			lista = query.getResultList();
 		}catch (NoResultException e) {

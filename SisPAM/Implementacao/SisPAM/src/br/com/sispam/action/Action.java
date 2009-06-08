@@ -81,9 +81,12 @@ public class Action extends ActionSupport{
 	public final String SUCESSO_CARREGAR_AGENDAMENTOS = "sucessoCarregarAgendamentos";
 	public final String SUCESSO_EXCLUIR_AGENDAMENTO = "sucessoExcluirAgendamento";
 	public final String CONSULTA_AGENDAMENTOS_REALIZADOS = "consultaAgendamentosRealizados";
+	public final String FALHA_CONSULTAR_AGENDAMENTO_PACIENTE = "falhaConsultarAgendamentoPaciente";
 	//RECEITA
 	public final String SUCESSO_EMISSAO_RECEITA = "sucessoEmissaoReceita";
 	public final String SUCESSO_CARREGAR_ATENDIMENTOS = "sucessoCarregarAtendimentos";
+	public final String FALHA_CONSULTAR_AGENDAMENTO= "falhaConsultarAgendamento";
+	
 	
 	protected Map<String, String> erros = new HashMap<String, String>();
 	protected Map<String, String> mensagens = new HashMap<String, String>();

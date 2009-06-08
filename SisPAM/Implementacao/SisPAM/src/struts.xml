@@ -137,6 +137,16 @@
 				<param name="actionName">agendamentoAction</param>
 				<param name="method">carregarAgendamentos</param>
 			</result>
+			
+			
+			<result name="falhaConsultarAgendamento" type="chain">
+				<param name="actionName">agendamentoAction</param>
+				<param name="method">carregarAgendamentos</param>
+			</result>
+			<result name="falhaConsultarAgendamentoPaciente" type="chain">
+				<param name="actionName">agendamentoAction</param>
+				<param name="method">carregarAgendamentosPaciente</param>
+			</result>
 			<result name="sucessoCarregarEdicao">/agendamento/altera-agendamento.jsp</result>
 			<result name="consultaAgendamentosRealizados">/consultaAgendamentoRealizado/consulta-agendamentoRealizado.jsp</result>
 			
@@ -146,6 +156,11 @@
 		<action name="receitaAction!*" method="{1}" class="br.com.sispam.action.ReceitaAction">
 			<result name="sucessoCarregarAtendimentos">/receita/emite-receita.jsp</result>
 			<result name="sucessoEmissaoReceita" type="chain">
+				<param name="actionName">receitaAction</param>
+				<param name="method">carregarAgendamentos</param>
+			</result>
+			
+			<result name="falhaConsultarAgendamento" type="chain">
 				<param name="actionName">receitaAction</param>
 				<param name="method">carregarAgendamentos</param>
 			</result>
