@@ -5,12 +5,17 @@ import java.util.List;
 
 import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.HistoricoProntuario;
+import br.com.sispam.enums.Acao;
+import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.facade.AgendamentoFacade;
+import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.HistoricoProntuarioFacade;
 import br.com.sispam.facade.MedicoFacade;
 import br.com.sispam.facade.ReceitaFacade;
+import br.com.sispam.util.AuditoriaUtil;
 
 public class ReceitaAction extends Action{
 	
@@ -21,7 +26,10 @@ public class ReceitaAction extends Action{
 	private String idAux;
 	private Date dataAtendimentoAux;
 	private int horaAtendimentoAux;
-	
+	private AuditoriaFacade auditoriaFacade;
+	private AgendamentoFacade agendamentoFacade;
+	private List<Agendamento> agendamentos;
+	private String dataAgendamento;
 	
 	/**
 	 * : Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
@@ -55,6 +63,29 @@ public class ReceitaAction extends Action{
 		return SUCESSO_EMISSAO_RECEITA;
 	}
 
+	/**
+	 * Realiza a consulta dos atendimentos.
+	 * @return
+	 */
+	public String consultarAgendamento(){
+		this.agendamentoFacade = new AgendamentoFacade();
+		this.medicoFacade = new MedicoFacade();
+		this.agendamento = new Agendamento();
+		this.agendamento.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
+		this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
+		this.agendamentoFacade.montarAgendamentos(agendamentos);						
+		try {
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.EMITE_RECEITA, Acao.CONSULTA, getUsuarioLogado()));
+		} catch (CampoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		limpaCamposConsulta();
+		return SUCESSO_CARREGAR_ATENDIMENTOS;
+	}
+	
 	/*Utilitário*/
 	/**
 	 * : Limpa os campos.
@@ -62,6 +93,12 @@ public class ReceitaAction extends Action{
 	private void limparCampos(){
 		this.receitaFacade = null;
 		
+	}
+	/**
+	 * Limpa os campos da consulta.
+	 */
+	private void limpaCamposConsulta(){		
+		this.dataAgendamento = null;
 	}
 
 	public Agendamento getAgendamento() {
@@ -118,6 +155,38 @@ public class ReceitaAction extends Action{
 
 	public void setHoraAtendimentoAux(int horaAtendimentoAux) {
 		this.horaAtendimentoAux = horaAtendimentoAux;
+	}
+
+	public AuditoriaFacade getAuditoriaFacade() {
+		return auditoriaFacade;
+	}
+
+	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
+		this.auditoriaFacade = auditoriaFacade;
+	}
+
+	public AgendamentoFacade getAgendamentoFacade() {
+		return agendamentoFacade;
+	}
+
+	public void setAgendamentoFacade(AgendamentoFacade agendamentoFacade) {
+		this.agendamentoFacade = agendamentoFacade;
+	}
+
+	public List<Agendamento> getAgendamentos() {
+		return agendamentos;
+	}
+
+	public void setAgendamentos(List<Agendamento> agendamentos) {
+		this.agendamentos = agendamentos;
+	}
+
+	public String getDataAgendamento() {
+		return dataAgendamento;
+	}
+
+	public void setDataAgendamento(String dataAgendamento) {
+		this.dataAgendamento = dataAgendamento;
 	}
 	
 	

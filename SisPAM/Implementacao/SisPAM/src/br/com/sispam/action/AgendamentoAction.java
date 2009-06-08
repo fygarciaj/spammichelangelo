@@ -204,6 +204,27 @@ public class AgendamentoAction extends Action{
 	}
 	
 	/**
+	 * Realiza a consulta dos agendamentos realizados de um paciente.
+	 * @return
+	 */
+	public String consultarAgendamentoRealizado(){
+		this.agendamentoFacade = new AgendamentoFacade();
+		this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
+		this.agendamentoFacade.montarAgendamentos(agendamentos);
+				
+		try {
+			//salva o Log de auditoria
+			auditoriaFacade = new AuditoriaFacade();
+			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.CONSULTA, getUsuarioLogado()));
+		} catch (CampoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		limpaCamposConsulta();
+		return CONSULTA_AGENDAMENTOS_REALIZADOS;
+	}
+	
+	/**
 	 * Limpa os campos da consulta.
 	 */
 	private void limpaCamposConsulta(){

@@ -52,7 +52,7 @@
 	</tr>	
 	</table>
 	<h2>Consulta de Agendamentos Realizados</h2>
-	<s:form action="agendamentoAction!consultarAgendamento.action">
+	<s:form action="agendamentoAction!consultarAgendamentoRealizado.action">
 		<table class="tabela_moldura">
 			<tr>			        	
 	        	<td>
