@@ -46,7 +46,7 @@
 		</tr>
 		<tr>
 			<td rowspan="4" >
-				<span class="imgAlteraSenha"></span>
+				<img src="/SisPAM/componentes/img/Senha.gif" />
 			</td>
 		</tr>
 		<tr >

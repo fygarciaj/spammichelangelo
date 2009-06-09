@@ -9,7 +9,26 @@
 	<script type="text/javascript" src="componentes/js/sispam.js"></script>
 	<link rel="stylesheet" href="../componentes/css/estilo.css" type="text/css" />
 	<script type="text/javascript" src="../componentes/js/sispam.js"></script>
-	<title>Insert title here</title>
+	<script type="text/javascript" src="componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery/ui.core.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker.js"></script>
+	<script type="text/javascript" src="componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<script type="text/javascript" src="../componentes/js/jquery/ui.datepicker-pt-BR.js"></script>
+	<link rel="stylesheet" href="../componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="componentes/js/jquery/css/ui.all.css" type="text/css" media="screen" />
+	<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+	<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
+
+	<title>Pesquisa Convênio</title>
+
+	<script type="text/javascript">		
+		$(document).ready(function(){
+				$(".cnpj").mask("99.999.999/9999-99");
+		});
+
+		</script>
 </head>
 <body>
 	<table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -24,10 +43,17 @@
 	</tr>	
 	</table>
 	<h2>Consulta de Convênios</h2>
+	<table>
+	<tr><td>
+		<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+		<s:actionmessage theme="simple" cssClass="sucessMessage" />
+	</td>
+	</tr>
+	</table>
 	<s:form action="convenioAction!consultarConvenio.action" theme="simple">	
 		<table class="tabela_moldura" >
 			<tr>
-				<td><label>CNPJ</label></td><td><s:textfield name="convenio.cnpj" id="cnpj" theme="simple" size="17" maxlength="18"/></td>
+				<td><label>CNPJ</label></td><td><s:textfield cssClass="cnpj" name="convenio.cnpj" id="cnpj" theme="simple" size="17" maxlength="18"/></td>
 				<td align="right" width="60px"><label>Nome</label></td><td><s:textfield name="convenio.nome" id="nome" theme="simple" size="30" maxlength="30"/></td>
 				<td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
 			</tr>

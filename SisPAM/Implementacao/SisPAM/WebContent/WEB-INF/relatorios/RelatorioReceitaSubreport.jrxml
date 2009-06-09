@@ -39,11 +39,11 @@ AND MEDICO.MDCCOD = $P{MEDCOD}]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{mdccrmuf}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="5" y="3" width="100" height="20"/>
+				<reportElement x="3" y="3" width="66" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Médico/CRM]]></text>
+				<text><![CDATA[Médico]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="5" y="23" width="135" height="14"/>
@@ -52,6 +52,13 @@ AND MEDICO.MDCCOD = $P{MEDCOD}]]>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrnom}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="140" y="3" width="41" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRM/UF]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>

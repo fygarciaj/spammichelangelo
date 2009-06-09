@@ -21,11 +21,19 @@
 	<script src="../componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
 	<script src="componentes/js/jquery/jquery.maskedinput-1.2.2.js" type="text/javascript"></script>
 
-<title>Insert title here</title>
+<title>Inclui Convênio</title>
 	<script type="text/javascript">		
 		$(document).ready(function(){
 				$(".cnpj").mask("99.999.999/9999-99");
-			});
+		});
+
+		$(document).ready(function(){
+			$(".cep").mask("99999-999");
+		});		
+
+		$(document).ready(function(){
+			$(".telefone").mask("9999-9999");
+		});
 	</script>
 </head>
 <body>
@@ -86,11 +94,11 @@
 								</td>
 							</tr>
 							<tr>
-								<td><label class="label" >CEP:</label></td><td><s:textfield theme="simple" name="cepAux" size="15" maxlength="8"/></td>
+								<td><label class="label" >CEP:</label></td><td><s:textfield cssClass="cep" theme="simple" name="cepAux" size="15" maxlength="8"/></td>
 							</tr>							
 							<tr>
 								<td><label class="label" >DDD:</label></td><td><s:textfield theme="simple" name="dddAux" size="2" maxlength="2"/>
-								<label class="label" >&nbsp;&nbsp;&nbsp;Telefone:&nbsp;&nbsp;</label><s:textfield theme="simple" name="telefoneAux" size="8" maxlength="8"/></td>								
+								<label class="label" >&nbsp;&nbsp;&nbsp;Telefone:&nbsp;&nbsp;</label><s:textfield cssClass="telefone" theme="simple" name="telefoneAux" size="8" maxlength="8"/></td>								
 							</tr>
 							<tr>
 							    <td><label class="label" >Site:</label></td><td><s:textfield theme="simple" name="convenio.site" size="32" maxlength="30"/></td>        	 					        				       		
