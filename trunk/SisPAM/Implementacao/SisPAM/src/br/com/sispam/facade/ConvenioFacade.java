@@ -8,6 +8,7 @@ import br.com.sispam.dao.ConvenioDao;
 import br.com.sispam.dominio.Convenio;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.util.CampoUtil;
 import br.com.sispam.validation.IValidation;
 import br.com.sispam.validation.ValidatorFactory;
 import br.com.sispam.validation.cnpjcpf.CNPJValidator;
@@ -15,7 +16,7 @@ import br.com.sispam.validation.cnpjcpf.CNPJValidator;
 public class ConvenioFacade {
 	private ConvenioDao convenioDao; 
     private CNPJValidator validador;
-    
+    private String cnpjAux;
 	/**
 	 * Salva um convênio.
 	 * @param convenio
@@ -102,6 +103,12 @@ public class ConvenioFacade {
 				throw new CampoInvalidoException("Preencha um dos campos para efetuar a pesquisa!");
 			}else if(convenio.getCnpj() != null && !convenio.getCnpj().isEmpty()) {
 				conveniosRetornados = new ArrayList<Convenio>();
+				cnpjAux = convenio.getCnpj();
+				cnpjAux = CampoUtil.replaceCampo(".", cnpjAux);
+				cnpjAux = CampoUtil.replaceCampo("/", cnpjAux);
+				cnpjAux = CampoUtil.replaceCampo("-", cnpjAux);
+				convenio.setCnpj(cnpjAux);
+				
 				convenioRetornado = convenioDao.consultarConvenioPorCnpj(convenio.getCnpj());
 				conveniosRetornados.add(convenioRetornado);
 			}else{
@@ -173,19 +180,12 @@ public class ConvenioFacade {
 			if(convenio.getEndereco() == null || convenio.getEndereco().length() == 0){
 				throw new CampoInvalidoException("Campo Endereço inválido");
 			}			
-			if(convenio.getCidade() == null){
+			if(convenio.getCidade() == null || convenio.getCidade().length() == 0){
 				throw new CampoInvalidoException("Campo Cidade inválido");
 			}
 			if(convenio.getEstado() ==  null || convenio.getEstado().isEmpty()){
 				throw new CampoInvalidoException("Campo Estado inválido");
-			}												
-			if(convenio.getSite() == null || convenio.getSite().length() == 0){
-				throw new CampoInvalidoException("Campo Site inválido");
-			}
-			if(convenio.getEmail() == null || convenio.getEmail().length() == 0){
-				throw new CampoInvalidoException("Campo E-mail inválido");
-			}
-			
+			}																
 			
 		}
 	}

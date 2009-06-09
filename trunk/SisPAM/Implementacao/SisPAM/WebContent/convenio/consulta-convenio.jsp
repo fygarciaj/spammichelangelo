@@ -11,7 +11,7 @@
 <script type="text/javascript" src="../componentes/js/sispam.js"></script>
 <link rel="stylesheet" href="componentes/css/estilo.css" type="text/css" />
 <script type="text/javascript" src="componentes/js/sispam.js"></script>
-<title>Insert title here</title>
+<title>Consulta Convênio</title>
 </head>
 <body>
 	<table width="89%" id="cmnUsr" class="caminhoUsuario">
@@ -26,6 +26,13 @@
 	</tr>	
 	</table>
 	<h2>Pesquisa de Convênios</h2>
+	<table>
+	<tr><td>
+		<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+		<s:actionmessage theme="simple" cssClass="sucessMessage" />
+	</td>
+	</tr>
+	</table>
 	<s:form action="convenioAction!consultarConvenio.action">
 		<table class="tabela_moldura">
 			<tr>			

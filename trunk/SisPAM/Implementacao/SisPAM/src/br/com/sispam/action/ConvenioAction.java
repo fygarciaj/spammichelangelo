@@ -14,6 +14,7 @@ import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.AuditoriaFacade;
 import br.com.sispam.facade.ConvenioFacade;
 import br.com.sispam.util.AuditoriaUtil;
+import br.com.sispam.util.CampoUtil;
 
 
 public class ConvenioAction extends Action{
@@ -35,24 +36,30 @@ public class ConvenioAction extends Action{
 	 */
 	public String incluirConvenio(){
 		convenioFacade = new ConvenioFacade();
+		
+		//limpa os caracteres dos campos
+		telefoneAux = CampoUtil.replaceCampo("-", telefoneAux);
+		cepAux = CampoUtil.replaceCampo("-", cepAux);
+		
 		//monta um mapa com todos os campos que devem ser inteiros.	
 		Map<String, String> mapa = new HashMap<String, String>();
-		mapa.put("ddd", dddAux);
-		mapa.put("telefone", telefoneAux);
 		mapa.put("codigoANS", codigoANSAux);
 		mapa.put("cep", cepAux);
+		mapa.put("ddd", dddAux);
+		mapa.put("telefone", telefoneAux);		
 
 		try {
-			//verifica se os campos são inteiros
-			convenioFacade.verificaCampoInteiro(mapa);
-
+			
 			//verifica se os campo obrigatorios foram preenchidos
 			convenioFacade.validaCampos(convenio);
 
+			//verifica se os campos são inteiros
+			convenioFacade.verificaCampoInteiro(mapa);
+			
 			//seta os valores das variváveis auxiliares.
-			convenio.setCep(Long.parseLong(cepAux));
-			convenio.setDdd(Integer.parseInt(dddAux));
 			convenio.setCodigoANS(Integer.parseInt(codigoANSAux));
+			convenio.setCep(Long.parseLong(cepAux));
+			convenio.setDdd(Integer.parseInt(dddAux));			
 			convenio.setTelefone(Integer.parseInt(telefoneAux));
 
 			//verifica se já existe convênio cadastrado com esses dados.
@@ -121,6 +128,8 @@ public class ConvenioAction extends Action{
 		} catch (CampoInvalidoException e) {
 			erros.put("erro", e.getMessage());
 		}
+		apresentaErrors();
+		apresentaMensagens();
 		limparCampos();
 		return LISTAR_CONVENIOS;
 
