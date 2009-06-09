@@ -52,8 +52,7 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Atendimento<img src="../componentes/img/seta.gif" /> Agendamento<img
-			src="../componentes/img/seta.gif" /> Alterar</div>
+		<div>Atendimento<img src="/SisPAM/componentes/img/seta.gif" /> Agendamento<img src="/SisPAM/componentes/img/seta.gif" /> Alterar</div>
 		</td>
 	</tr>
 </table>

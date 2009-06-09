@@ -14,8 +14,7 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Relatórios<img src="../componentes/img/seta.gif" />Relatório Convênio<img
-			src="../componentes/img/seta.gif" />Emitir</div>
+		<div>Relatórios<img src="/SisPAM/componentes/img/seta.gif" />Relatório Convênio<img src="/SisPAM/componentes/img/seta.gif" />Emitir</div>
 		</td>
 	</tr>
 </table>

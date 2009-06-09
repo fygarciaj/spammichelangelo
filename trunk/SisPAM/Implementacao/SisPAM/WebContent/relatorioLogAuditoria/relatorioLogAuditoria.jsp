@@ -48,8 +48,7 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Relatórios<img src="../componentes/img/seta.gif" />Relatório Log<img
-			src="../componentes/img/seta.gif" />Emitir</div>
+		<div>Relatórios<img src="/SisPAM/componentes/img/seta.gif" />Relatório Log<img src="/SisPAM/componentes/img/seta.gif" />Emitir</div>
 		</td>
 </table>
 <h2>Emissão de Log de Auditoria</h2>

@@ -38,8 +38,8 @@
 		<tr>
 			<td>
 				<br>
-				<div>Atendimento <img src="../componentes/img/seta.gif" /> Agenda Médica
-				<img src="../componentes/img/seta.gif" /> Consultar</div>
+				<div>Atendimento <img src="/SisPAM/componentes/img/seta.gif" /> Agenda Médica
+				<img src="/SisPAM/componentes/img/seta.gif" /> Consultar</div>
 			</td>
 		</tr>
 	</table>

@@ -42,8 +42,8 @@
 		<tr>
 			<td>
 				<br>
-				<div>Cadastro<img src="../componentes/img/seta.gif" /> Usuário
-				<img src="../componentes/img/seta.gif" /> Consultar</div>
+				<div>Cadastro<img src="/SisPAM/componentes/img/seta.gif" /> Usuário
+				<img src="/SisPAM/componentes/img/seta.gif" /> Consultar</div>
 			</td>
 		</tr>
 	</table>

@@ -48,8 +48,8 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Atendimento <img src="../componentes/img/seta.gif" />
-		Agenda Médica <img src="../componentes/img/seta.gif" /> 
+		<div>Atendimento<img src="/SisPAM/componentes/img/seta.gif" />
+		Agenda Médica <img src="/SisPAM/componentes/img/seta.gif" />
 		<s:if test="compromisso.id > 0">
     		Alterar
     	</s:if> <s:else>

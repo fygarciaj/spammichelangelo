@@ -22,17 +22,11 @@
 	
 	<script type="text/javascript">
 
-		function emiteReceita(){
-			var paciente = document.getElementById("paciente");
-			var hora = document.getElementById("hora");
-			var data = document.getElementById("data");
-		
-			document.getElementById("pacienteForm").value = paciente.value;
-			document.getElementById("horaForm").value = hora.value;
-			document.getElementById("dataForm").value = data.value;
-
+		function emiteReceita(paciente, dataAg, horaAg){
+			document.getElementById("pacienteForm").value = paciente;
+			document.getElementById("horaForm").value = horaAg;
+			document.getElementById("dataForm").value = dataAg;
 			document.forms[1].submit();
-
 		}
 
 		 $(document).ready(function(){
@@ -54,8 +48,8 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		<div>Atendimento<img src="../componentes/img/seta.gif" />Receita<img
-			src="../componentes/img/seta.gif" />Emitir</div>
+		<div>Atendimento<img src="/SisPAM/componentes/img/seta.gif" />Receita<img
+			src="/SisPAM/componentes/img/seta.gif" />Emitir</div>
 		</td>
 </table>
 <h2>Emissão de Receita</h2>
@@ -129,13 +123,13 @@
 					<s:property value="especialidadeMedica.descricao"/>
 				</td>
 					<td align="center">
-					<a href="#" onclick="emiteReceita()"><img src="../componentes/img/relatorio.gif" alt="emitir receita" height="27px" width="27px"/></a>
+					<a href="#" onclick="return emiteReceita(<s:property value="paciente.id"/>, '<s:property value="data"/>', <s:property value="hora"/>)"><img src="/SisPAM/componentes/img/relatorio.gif" alt="emitir receita" height="27px" width="27px"/></a>
 				</td>			
 			</tr>
 		</s:iterator>	
 	</table>
 	</s:if>	
-	<form action="../emiteReceita.sispam" method="post" name="relatorio">
+	<form action="/SisPAM/emiteReceita.sispam" method="post" name="relatorio">
 		<input type="hidden" name="paciente" id="pacienteForm"/>
 		<input type="hidden" name="hora" id="horaForm">
 		<input type="hidden" name="data" id="dataForm">
