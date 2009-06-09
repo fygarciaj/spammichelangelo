@@ -44,8 +44,8 @@
 	<tr>
     <td>
     	<br>
-		<div>Atendimento<img src="../componentes/img/seta.gif" />    		
-    	Agendamento<img src="../componentes/img/seta.gif" />
+		<div>Atendimento<img src="/SisPAM/componentes/img/seta.gif" /> 		
+    	Agendamento<img src="/SisPAM/componentes/img/seta.gif" />
 		Alterar/Excluir				    		
     	</div>		
     </td>	

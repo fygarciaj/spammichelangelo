@@ -16,8 +16,8 @@
 	<tr>
     <td>
     	<br>
-		<div>Cadastro<img src="../componentes/img/seta.gif" />    		
-    	Convênio<img src="../componentes/img/seta.gif" />
+		<div>Cadastro<img src="/SisPAM/componentes/img/seta.gif" />		
+    	Convênio<img src="/SisPAM/componentes/img/seta.gif" />
 		Alterar/Excluir				    		
     	</div>		
     </td>	

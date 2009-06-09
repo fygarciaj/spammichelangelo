@@ -16,8 +16,8 @@
 	<tr>
     <td>
     	<br>
-		<div>Atendimento<img src="../componentes/img/seta.gif" />    		
-    	Histórico de Prontuário<img src="../componentes/img/seta.gif" />
+		<div>Atendimento<img src="/SisPAM/componentes/img/seta.gif" />	
+    	Histórico de Prontuário<img src="/SisPAM/componentes/img/seta.gif" />
 		Atualizar				    		
     	</div>		
     </td>	

@@ -44,8 +44,8 @@
 	<tr>
     <td>
     	<br>
-		<div>Atendimento<img src="../componentes/img/seta.gif" />    		
-    	Consulta Realizado<img src="../componentes/img/seta.gif" />
+		<div>Atendimento<img src="/SisPAM/componentes/img/seta.gif" />  		
+    	Consulta Realizado<img src="/SisPAM/componentes/img/seta.gif" />
 		Consultar				    		
     	</div>		
     </td>	

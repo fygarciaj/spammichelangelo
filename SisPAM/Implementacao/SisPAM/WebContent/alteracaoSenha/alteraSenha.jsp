@@ -18,8 +18,8 @@
 <table class="caminhoUsuario">
 	<tr>
 		<td>
-		Usuário <span class="imgSeta"></span>
-		Senha <span class="imgSeta"></span> Alterar
+		Usuário <img src="/SisPAM/componentes/img/seta.gif" />
+		Senha<img src="/SisPAM/componentes/img/seta.gif" /> Alterar
 		</td>
 	</tr>
 </table>

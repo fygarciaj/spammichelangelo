@@ -83,7 +83,7 @@
 <table width="89%" id="cmnUsr" class="caminhoUsuario">
 	<tr>
 		<td><br>
-		Cadastro <span class="imgSeta"></span> Usuário <span class="imgSeta"></span> 
+		Cadastro<img src="/SisPAM/componentes/img/seta.gif" />Usuário<img src="/SisPAM/componentes/img/seta.gif" />
 			<s:if test="paciente.id > 0">
 				Alterar
 			</s:if>
