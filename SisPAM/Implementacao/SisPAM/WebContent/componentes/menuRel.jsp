@@ -16,6 +16,7 @@
 				div.style.display = 'block'
 				document.getElementById("menuRelatorioLog").style.display = 'none';	
 				document.getElementById("menuRelatorioUsuario").style.display = 'none';
+				document.getElementById("menuRelatorioProntuario").style.display = 'none';
 				}
 			break;
 		case "relatorioLog":
@@ -27,6 +28,7 @@
 				div.style.display = 'block'
 				document.getElementById("menuRelatorioConvenio").style.display = 'none';	
 				document.getElementById("menuRelatorioUsuario").style.display = 'none';
+				document.getElementById("menuRelatorioProntuario").style.display = 'none';
 				}
 			break;
 		case "relatorioUsuario":
@@ -37,7 +39,20 @@
 			else{
 				div.style.display = 'block'
 				document.getElementById("menuRelatorioConvenio").style.display = 'none';
+				document.getElementById("menuRelatorioLog").style.display = 'none';
+				document.getElementById("menuRelatorioProntuario").style.display = 'none';		
+				}
+			break;
+		case "relatorioProntuario":
+			var div = document.getElementById("menuRelatorioProntuario"); 
+			if(div.style.display == 'block'){
+				div.style.display = 'none';
+			}
+			else{
+				div.style.display = 'block'
+				document.getElementById("menuRelatorioConvenio").style.display = 'none';
 				document.getElementById("menuRelatorioLog").style.display = 'none';		
+				document.getElementById("menuRelatorioUsuario").style.display = 'none';
 				}
 			break;
 		default:
@@ -84,10 +99,10 @@
 	<%} %>
 	<%if(usuario.getPerfil() == 3 || usuario.getPerfil() == 4){ %>  
 	<li>
-		<a href="defaut.jsp" onclick="selecionaMenu('relatorioUsuario')" title = "Emitir Relatorio Usuário" target="CENTRAL">RELATÓRIO PRONTUÁRIO</a>
-		<div id="menuRelatorioUsuario" style="display:none">
+		<a href="defaut.jsp" onclick="selecionaMenu('relatorioProntuario')" title = "Emitir Relatorio Prontuário" target="CENTRAL">RELATÓRIO PRONTUÁRIO</a>
+		<div id="menuRelatorioProntuario" style="display:none">
 			<ul id="subMenu">
-			<li ><a href="../relatorioUsuario/relatorio-usuario.jsp" title = "Emitir" target="CENTRAL">Emitir</a></li>
+			<li ><a href="prontuarioAction!carregarPacientes.action" title = "Emitir" target="CENTRAL">Emitir</a></li>
 			</ul>
 		</div>
 	</li>

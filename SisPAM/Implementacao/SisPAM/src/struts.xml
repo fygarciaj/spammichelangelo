@@ -166,6 +166,10 @@
 			</result>
 			
 		</action>
+			<!--Prontuario Action-->
+		<action name="prontuarioAction!*" method="{1}" class="br.com.sispam.action.ProntuarioAction">
+			<result name="sucessoCarregarPacientes">/prontuario/emite-prontuario.jsp</result>						
+		</action>
 	</package>
 
 </struts>
