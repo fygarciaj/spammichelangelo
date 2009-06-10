@@ -89,8 +89,8 @@
 		target="CENTRAL">AGENDA MÉDICA</a>
 	<div id="menuAgendaMedica" style="display: none">
 	<ul id="subMenu">
-		<li><a href="compromissoAction!carregarInclusao.action" title="Incluir" target="CENTRAL">Incluir Compromisso</a></li>
-		<li><a href="compromissoAction!carregarConsulta.action" title="Alterar/Excluir" target="CENTRAL">Alterar/Excluir Compromisso</a></li>
+		<li><a href="compromissoAction!carregarInclusao.action" title="Incluir" target="CENTRAL">Incluir</a></li>
+		<li><a href="compromissoAction!carregarConsulta.action" title="Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 	</ul>
 	</div>
 	</li>
@@ -99,7 +99,7 @@
 		target="CENTRAL">AGENDAMENTO</a>
 	<div id="menuAgendamento" style="display: none">
 	<ul id="subMenu">
-		<li><a href="../agendamento/inclui-agendamento.jsp" title="Incluir" target="CENTRAL">Incluir Agendamento</a></li>
+		<li><a href="../agendamento/inclui-agendamento.jsp" title="Incluir" target="CENTRAL">Incluir</a></li>
 		<li><a href="agendamentoAction!carregarAgendamentos.action" title="Alterar/Excluir" target="CENTRAL">Alterar/Excluir</a></li>
 	</ul>
 	</div>
