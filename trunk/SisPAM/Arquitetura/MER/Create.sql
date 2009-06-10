@@ -270,6 +270,7 @@ CREATE SEQUENCE historicoprontuario_htccod_seq;
 
 CREATE TABLE historicoprontuario (
   htccod INTEGER  NOT NULL DEFAULT NEXTVAL('historicoprontuario_htccod_seq'),
+  agdcod INTEGER NOT NULL,
   cidcod INTEGER  NULL,
   pctidfseg NUMERIC(14) NOT NULL,
   htcstm VARCHAR(400) NULL,
@@ -289,5 +290,7 @@ ALTER TABLE historicoprontuario
 ALTER TABLE historicoprontuario
    ADD CONSTRAINT FK_historicoprontuario_PACIENTE FOREIGN KEY (pctidfseg)
                           REFERENCES PACIENTE (pctidfseg);
-
+ALTER TABLE historicoprontuario
+   ADD CONSTRAINT FK_historicoprontuario_AGENDAMENTO FOREIGN KEY (agdcod)
+                          REFERENCES AGENDAMENTO (agdcod);
 

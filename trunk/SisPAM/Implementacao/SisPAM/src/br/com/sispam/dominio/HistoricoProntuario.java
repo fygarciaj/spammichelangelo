@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class HistoricoProntuario {
@@ -17,6 +18,7 @@ public class HistoricoProntuario {
 	private String laudo;
 	private String prescricao;
 	private String observacao;
+	private Agendamento agendamento;
 	
 	@Id
 	@Column(name="htccod")
@@ -26,6 +28,14 @@ public class HistoricoProntuario {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}	
+	@OneToOne
+	@JoinColumn(name="agdcod")	
+	public Agendamento getAgendamento() {
+		return agendamento;
+	}
+	public void setAgendamento(Agendamento agendamento) {
+		this.agendamento = agendamento;
 	}
 	@ManyToOne
 	@JoinColumn(name="cidcod")

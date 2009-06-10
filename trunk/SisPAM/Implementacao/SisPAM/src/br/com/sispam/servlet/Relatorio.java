@@ -58,6 +58,8 @@ public class Relatorio extends HttpServlet {
 			relatorio = caminho+emiteRelatorioLog(request, response).get("relatorio");
 		}else if(relatorioChamado.equals("usuario")){
 			relatorio = caminho+emiteRelatorioUsuario(request, response).get("relatorio");
+		}else if(relatorioChamado.equals("prontuario")){
+			relatorio = caminho+emiteProntuario(request, response).get("relatorio");
 		}
 		
 		InputStream reportStream = getServletConfig().getServletContext().getResourceAsStream(relatorio);
@@ -78,6 +80,8 @@ public class Relatorio extends HttpServlet {
 				map = emiteRelatorioLog(request, response);
 			}else if(relatorioChamado.equals("usuario")){
 				mapaReceita = emiteRelatorioUsuario(request, response);
+			}else if(relatorioChamado.equals("prontuario")){
+				mapaReceita = emiteProntuario(request, response);
 			}
 			
 			//para gerar o relatório em PDF
@@ -106,6 +110,12 @@ public class Relatorio extends HttpServlet {
 				//salva o Log de auditoria
 				auditoriaFacade = new AuditoriaFacade();
 				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.RELATORIO_USUARIO, Acao.EMISSAO, usuario));
+			}else if(relatorioChamado.equals("prontuario")){
+				JasperRunManager.runReportToPdfStream(reportStream, 
+						servletOutputStream, mapaReceita,connection);
+				//salva o Log de auditoria
+				auditoriaFacade = new AuditoriaFacade();
+				auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.RELATORIO_PRONTUARIO, Acao.EMISSAO, usuario));
 			}
 				
 
@@ -224,6 +234,25 @@ public class Relatorio extends HttpServlet {
 	}
 	
 	/**
+	 * @descricao retorna um map com os parametros para emissao do prontuário
+	 * @param request
+	 * @param response
+	 * @return HashMap
+	 */
+	protected HashMap<String, Object> emiteProntuario(HttpServletRequest request, HttpServletResponse response){
+		HashMap<String, Object> parameterMap;
+		parameterMap = new HashMap<String, Object>();
+				
+		try {						
+			int paciente = Integer.parseInt(request.getParameter("paciente"));
+			parameterMap.put("PCTIDFSEG", paciente);						
+			parameterMap.put("relatorio", "RelatorioProntuario.jasper");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return parameterMap;
+	}
+	/**
 	 * @descricao retorna um map com os parametros para emissao do relatorio de logs
 	 * @param request
 	 * @param response
@@ -244,7 +273,6 @@ public class Relatorio extends HttpServlet {
 		}
 		return parameterMap;
 	}
-
 
 	/* (non-Java-doc)
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

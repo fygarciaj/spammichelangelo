@@ -39,6 +39,7 @@ public class HistoricoProntuarioFacade {
 			CodigoDoencaDao codigoDoencaDao = new CodigoDoencaDao();
 			agendamento = agendamentoDao.recuperarAgendamento(agendamento.getId());
 			historicoProntuario.setCodigoDoenca(codigoDoencaDao.recuperarCodigoDoenca(historicoProntuario.getCodigoDoenca().getId()));
+			historicoProntuario.setAgendamento(agendamento);
 			historicoProntuarioDao.atualizarHistorioProntuario(historicoProntuario);
 
 			//Seta status do agendamento para CONCLUIDO
