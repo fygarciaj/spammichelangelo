@@ -133,7 +133,7 @@
 				<td><label class="label">RG:</label></td>
 				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Expedidor:&nbsp;&nbsp;</label>
-				<s:textfield theme="simple" name="usuario.expedidorRg" size="15" maxlength="15" /></td>
+				<s:textfield theme="simple" name="usuario.expedidorRg" size="15" maxlength="5" /></td>
 				<td><label class="label">Sexo:</label></td>
 				<td><s:select list="sexos" theme="simple" name="usuario.sexo" headerKey="0" headerValue="" listKey="sigla" /></td>
 			</tr>			
@@ -202,7 +202,7 @@
 				<td><label class="label">RG:</label></td>
 				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Expedidor:&nbsp;&nbsp;</label>
-				<s:textfield theme="simple" name="medico.usuario.expedidorRg" size="15" maxlength="15" /></td>
+				<s:textfield theme="simple" name="medico.usuario.expedidorRg" size="15" maxlength="5" /></td>
 				<td><label class="label">Sexo:</label></td>
 				<td><s:select list="sexos" theme="simple" name="medico.usuario.sexo" headerKey="0" headerValue="" listKey="sigla" /></td>
 			</tr>
@@ -310,7 +310,7 @@
 				<td><label class="label">RG:</label></td>
 				<td><s:textfield theme="simple" name="rgAux" size="15"	maxlength="15" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label class="label">Expedidor:&nbsp;&nbsp;</label>
-				<s:textfield theme="simple" name="paciente.usuario.expedidorRg" size="15" maxlength="15" /></td>
+				<s:textfield theme="simple" name="paciente.usuario.expedidorRg" size="15" maxlength="5" /></td>
 				<td><label class="label">Sexo:</label></td>
 				<td><s:select list="sexos" theme="simple" name="paciente.usuario.sexo" headerKey="0" headerValue="" listKey="sigla" /></td>
 			</tr>
