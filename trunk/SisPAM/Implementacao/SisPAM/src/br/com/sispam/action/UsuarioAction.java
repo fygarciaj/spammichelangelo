@@ -245,6 +245,7 @@ public class UsuarioAction extends Action{
 		this.telefoneAux = String.valueOf(this.usuario.getTelefone());
 		this.rgAux = String.valueOf(this.usuario.getRg());
 		this.dataNascimentoAux = DataUtil.dateToString(this.usuario.getDataNascimento());
+		this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		return TELA_SELECIONADA;
 	}
 

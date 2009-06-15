@@ -212,9 +212,9 @@ public class AgendamentoAction extends Action{
 	 */
 	public String consultarAgendamentoRealizado(){
 		this.agendamentoFacade = new AgendamentoFacade();
-
+		
 		try {
-			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
+			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento, getUsuarioLogado().getId());
 			this.agendamentoFacade.montarAgendamentos(agendamentos);
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();

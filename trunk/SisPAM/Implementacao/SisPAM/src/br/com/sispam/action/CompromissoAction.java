@@ -192,6 +192,7 @@ public class CompromissoAction extends Action{
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
 			this.agendamentosCadastrados = compromissoFacade.getAgendamentos();
+			montaAgendamentos(agendamentosCadastrados);
 			if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 				this.medicos = new ArrayList<Medico>();
 				this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
@@ -241,6 +242,20 @@ public class CompromissoAction extends Action{
 		horaFinalAux = null;
 		horaInicialAux = null;
 		this.dataAux = null;
+	}
+	
+	/**
+	 * monta a exbição do agendamento.
+	 * @param lista
+	 * @return
+	 */
+	private List<Agendamento> montaAgendamentos(List<Agendamento> lista){
+		if(lista != null && lista.size() > 0){
+			for(Agendamento ag: lista){
+				ag.setTipoAgendamento(TipoAgendamento.getTipoAgendamento(ag.getTipo()));
+			}
+		}
+		return lista;
 	}
 	
 	private void limparData(){
