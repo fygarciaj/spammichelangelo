@@ -116,7 +116,7 @@ public class MedicoAction extends Action{
 			medico.setHoraFim(Integer.parseInt(horaFim));
 			medico.setConsultorio(Integer.parseInt(consultorioAux));
 			medico.setDataAtendimento(diasMarcados);
-
+			
 			this.medicoFacade.salvarMedico(medico);
 
 			if(isEdicao){
@@ -138,10 +138,12 @@ public class MedicoAction extends Action{
 				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
 				preparaListaDeExibicao(medico2);
 				medico.setEspecialidades(medico2.getEspecialidades());
-			}
+				}
 			else{
 				this.especialidades = this.especialidadeFacade.recuperarTodas();
 			}
+			medico.setDataAtendimento(getDiasMarcados().toString());
+			diasString = this.medicoFacade.montaMedico(medico);
 			getListaDias();
 			apresentaErrors();
 			return FALHA_SALVAR_MEDICO;
@@ -157,9 +159,13 @@ public class MedicoAction extends Action{
 			else{
 				this.especialidades = this.especialidadeFacade.recuperarTodas();
 			}
+			medico.setDataAtendimento(getDiasMarcados().toString());
+			diasString = this.medicoFacade.montaMedico(medico);
 			getListaDias();
 			apresentaErrors();
-			return FALHA_SALVAR_USUARIO;
+			return FALHA_SALVAR_MEDICO;
+		}finally{
+			this.perfils = Perfil.values(getUsuarioLogado().getPerfil());
 		}
 
 

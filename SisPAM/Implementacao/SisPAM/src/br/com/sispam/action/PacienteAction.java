@@ -174,17 +174,18 @@ public class PacienteAction extends Action {
 	 */
 	public String excluirPaciente(){
 		this.pacienteFacade = new PacienteFacade();
-		this.pacienteFacade.removerPaciente(this.paciente.getId());
-		this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
-		mensagens.put("salvo", "Paciente excluído com sucesso!");
 		
 		try {
+			this.pacienteFacade.removerPaciente(this.paciente.getId());
+			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+			mensagens.put("salvo", "Paciente excluído com sucesso!");
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_USUARIO, Acao.EXCLUSAO, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			erros.put("erro", e.getMessage());
+			this.codigoPerfilString = String.valueOf(this.codigoPerfilSelecionado);
+			return FALHA_CONSULTAR_PACIENTE;
 		}
 		return SUCESSO_EXCLUIR_PACIENTE;
 	}
