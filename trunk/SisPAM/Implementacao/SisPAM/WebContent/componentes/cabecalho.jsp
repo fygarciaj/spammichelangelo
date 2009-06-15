@@ -45,7 +45,16 @@
 	<tr>
 		<%Usuario usuario = (Usuario) session.getAttribute("usuarioLogado"); %>
 		<td class="nomeSistema" width="500px">Sistema de Pronto Atendimento Médico</td>
-		<td class="userLogado" width="240">Usuário logado: <%=usuario.getAcesso().toUpperCase()%>
+		<td class="userLogado" width="240">
+			Usuário logado:
+			<%if(usuario.getPerfil() == 1) {%>
+				Adm.
+			<%}else if(usuario.getPerfil() == 2){ %>
+				Atd.
+			<%}else if(usuario.getPerfil() == 3){ %>
+				Dr.
+			<%}%>
+		<%=usuario.getAcesso().toUpperCase()%>
 		<br>Login em: <%=((Usuario) session.getAttribute("dtHrAcess")).getDtHoraAcesso()%><br>
 		<a href="javascript:logoff()" ><b>Sair</b></a>&nbsp;&nbsp;&nbsp;
 		<a href = "../alteracaoSenha/alteraSenha.jsp" target="CENTRAL"><b>Alterar Senha</b></a></td>

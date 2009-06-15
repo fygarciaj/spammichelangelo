@@ -26,7 +26,7 @@
 <h2>Alteração de Senha</h2>
 <table>
 <tr><td>
-<s:fielderror theme="simple" cssClass="errorMessage"  cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
+<s:fielderror theme="simple" cssClass="errorMessage" cssStyle="width:282" cssErrorStyle="errorMessage" cssErrorClass="errorMessage"/>
 <s:actionmessage theme="simple" cssClass="sucessMessage" />
 </td>
 </tr>
