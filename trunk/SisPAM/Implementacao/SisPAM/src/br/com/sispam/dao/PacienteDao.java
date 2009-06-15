@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.RollbackException;
 
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Convenio;
@@ -48,7 +49,7 @@ public class PacienteDao {
 		paciente = this.manager.find(Paciente.class, id);
 		return paciente;
 	}
-	
+
 	/**
 	 * Recupera todos os pacientes do convenio passado.
 	 * @param convenio
@@ -61,7 +62,7 @@ public class PacienteDao {
 		query.setParameter("idConvenio", convenio.getId());
 		return query.getResultList();
 	}
-	
+
 	public Paciente recuperarPeloUsuario(int idUsuario){
 		this.conexao = new Conexao();
 		this.manager = conexao.getEntityManger();
@@ -69,7 +70,7 @@ public class PacienteDao {
 		query.setParameter("id", idUsuario);
 		return (Paciente)query.getSingleResult();
 	}
-	
+
 	/**
 	 * : Lista os ultimos pacientes cadastrados
 	 * @return
@@ -79,15 +80,15 @@ public class PacienteDao {
 		this.manager = conexao.getEntityManger();
 		List<Paciente> lista = null;
 		try{
-		Query query = this.manager.createQuery("from Paciente order by usuario.nome, id desc");
-		query.setMaxResults(8);
-		lista = query.getResultList();
+			Query query = this.manager.createQuery("from Paciente order by usuario.nome, id desc");
+			query.setMaxResults(8);
+			lista = query.getResultList();
 		}catch (NoResultException e) {
 			e.printStackTrace();
 		}
 		return lista;
 	}
-	
+
 	/**
 	 * : Recupera o paciente pelo seu CPF.
 	 * @param cpf
@@ -98,16 +99,16 @@ public class PacienteDao {
 		this.manager = conexao.getEntityManger();
 		Paciente paciente = null;
 		try{
-		Query query = this.manager.createQuery("from Paciente where usuario.cpf = :cpf");
-		query.setParameter("cpf", cpf);
-		paciente = (Paciente) query.getSingleResult();
+			Query query = this.manager.createQuery("from Paciente where usuario.cpf = :cpf");
+			query.setParameter("cpf", cpf);
+			paciente = (Paciente) query.getSingleResult();
 		}catch (NoResultException e) {
 			e.printStackTrace();
 			paciente = null;
 		}
 		return paciente;
 	}
-	
+
 	/**
 	 * : Recupera os pacientes pelo seu NOME.
 	 * @param nome
@@ -118,16 +119,16 @@ public class PacienteDao {
 		this.manager = this.conexao.getEntityManger();
 		List<Paciente> pacientes = null;
 		try{
-		Query query = this.manager.createQuery("from Paciente where usuario.nome like :nome");
-		query.setParameter("nome", "%"+nome+"%");
-		pacientes = query.getResultList();
+			Query query = this.manager.createQuery("from Paciente where usuario.nome like :nome");
+			query.setParameter("nome", "%"+nome+"%");
+			pacientes = query.getResultList();
 		}catch (NoResultException e) {
 			e.printStackTrace();
 			pacientes = null;
 		}
 		return pacientes;
 	}
-	
+
 	/**
 	 * : Recupera todos os pacientes cadastrados.
 	 * @return
@@ -137,21 +138,21 @@ public class PacienteDao {
 		this.manager = conexao.getEntityManger();
 		List<Paciente> pacientes = null;
 		try{
-		Query query = this.manager.createQuery("from Paciente");
-		pacientes = query.getResultList();
+			Query query = this.manager.createQuery("from Paciente");
+			pacientes = query.getResultList();
 		}catch (NoResultException e) {
 			e.printStackTrace();
 			pacientes = null;
 		}
 		return pacientes;
 	}
-	
-	
+
+
 	/**
 	 * : Remove o paciente do sistema.
 	 * @param paciente
 	 */
-	public void removerPaciente(Paciente paciente){
+	public void removerPaciente(Paciente paciente) throws RollbackException{
 		this.conexao = new Conexao();
 		this.manager = conexao.getEntityManger();
 		this.manager.getTransaction().begin();
@@ -159,5 +160,4 @@ public class PacienteDao {
 		this.manager.remove(paciente);
 		this.manager.getTransaction().commit();
 	}
-
 }
