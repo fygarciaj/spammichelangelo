@@ -51,6 +51,30 @@ public class AgendamentoDao {
 		agendamentos = query.getResultList();
 		return agendamentos;
 	}
+	
+	/**
+	 * : Verifica se a colisão de agendamento pela data e hora
+	 * @param compromisso
+	 * @return
+	 */
+	public List<Agendamento> consultarAgendamentoUnico(Agendamento agendamento){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		List<Agendamento> agendamentos = null;
+	try{
+			Query query = manager.createQuery("from Agendamento where " +
+					"((hora >= :horaInicio and hora+15 < :horaFim) or (hora+15 > :horaInicio and hora <= :horaFim)) " +
+					"and medico.id = :idMedico and data = :data ");
+			//seta o parametro
+			query.setParameter("idMedico", agendamento.getMedico().getId());
+			query.setParameter("data", agendamento.getData());
+			agendamentos = query.getResultList();						
+		}catch (NoResultException e) {
+			agendamentos = null;
+		}
+	
+		return agendamentos;
+	}
 
 	/**
 	 * Excluir o agendamento do banco de dados.
@@ -86,8 +110,32 @@ public class AgendamentoDao {
 	 * @param agendamento
 	 * @return
 	 */
+	public List<Agendamento> consultar(Agendamento agendamento, int idUsuario){
+		StringBuilder builder = montaQuery(agendamento, idUsuario);
+		List<Agendamento> agendamentos = null;
+		this.conexao = new Conexao();
+		this.manager = this.conexao.getEntityManger();
+		Query query = this.manager.createQuery(builder.toString());
+		if(agendamento.getMedico() != null && agendamento.getMedico().getId() > 0){
+			query.setParameter("medico", agendamento.getMedico().getId());
+		}if(agendamento.getData() != null){
+			query.setParameter("data", agendamento.getData());
+		}if(agendamento.getTipo() > 0){
+			query.setParameter("idTipo", agendamento.getTipo());
+		}if(idUsuario > 0){
+			query.setParameter("usuario", idUsuario);
+		}
+		agendamentos = query.getResultList();
+		return agendamentos;
+	}
+	
+	/**
+	 * Recupera os agendamentos apartir dos dados passados.
+	 * @param agendamento
+	 * @return
+	 */
 	public List<Agendamento> consultar(Agendamento agendamento){
-		StringBuilder builder = montaQuery(agendamento);
+		StringBuilder builder = montaQuery(agendamento, 0);
 		List<Agendamento> agendamentos = null;
 		this.conexao = new Conexao();
 		this.manager = this.conexao.getEntityManger();
@@ -108,11 +156,12 @@ public class AgendamentoDao {
 	 * @param agendamento
 	 * @return
 	 */
-	private StringBuilder montaQuery(Agendamento agendamento){
+	private StringBuilder montaQuery(Agendamento agendamento, int idUsuario){
 		StringBuilder builder = new StringBuilder();
 		boolean medico = false;
 		boolean data = false;
 		boolean tipo = false;
+		boolean usuario = false;
 		builder.append("from Agendamento where ");
 
 		if(agendamento.getMedico() != null && agendamento.getMedico().getId() > 0){
@@ -126,10 +175,17 @@ public class AgendamentoDao {
 				builder.append("data = :data ");
 			}
 		}if(agendamento.getTipo() > 0){
+			tipo = true;
 			if(data == true || medico == true){
 			builder.append("and tipo = :idTipo ");
 			}else{
 				builder.append("tipo = :idTipo ");
+			}
+		}if(idUsuario > 0){
+			if(data == true || medico == true || tipo == true){
+				builder.append("and paciente.usuario.id = :usuario");
+			}else{
+				builder.append("paciente.usuario.id = :usuario");
 			}
 		}
 

@@ -123,6 +123,8 @@ public class CompromissoDao {
 		return agendamentos;
 	}
 	
+	
+	
 	/**
 	 * : Consulta compromisso.
 	 * @param compromisso
