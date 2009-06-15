@@ -71,8 +71,11 @@ public class MedicoFacade {
 	 * : Salva o médico no banco de dados.
 	 * @param medico
 	 */
-	public void salvarMedico(Medico medico){
+	public void salvarMedico(Medico medico)throws CampoInvalidoException{
 		Cripto cripto = new Cripto();
+		if(medico.getHoraInicio() > medico.getHoraFim()){
+			throw new CampoInvalidoException("Hora Inicial deve ser menor que Hora Final!");
+		}
 		medico.getUsuario().setSenha(cripto.criptografar(medico.getUsuario().getSenha()));
 		this.medicoDao.salvarMedico(medico);
 	}

@@ -12,11 +12,11 @@ import br.com.sispam.util.DataUtil;
 
 public class AgendamentoFacade {
 	private AgendamentoDao agendamentoDao; 
-	
+
 	public AgendamentoFacade() {
 		this.agendamentoDao = new AgendamentoDao();
 	}
-	
+
 	/**
 	 * : Salva o agendamento.
 	 * @param agendamento
@@ -24,7 +24,7 @@ public class AgendamentoFacade {
 	public void salvarAgendamento(Agendamento agendamento){
 		this.agendamentoDao.incluirAgendamento(agendamento);
 	}
-	
+
 	/**
 	 * : Recupera o {@link Agendamento} pelo seu Id.
 	 * @param id
@@ -33,7 +33,7 @@ public class AgendamentoFacade {
 	public Agendamento recuperarPeloId(int id){
 		return this.agendamentoDao.recuperarAgendamento(id);
 	}
-	
+
 	/**
 	 * : Retorna todos os agendamentos do dia.
 	 * @return
@@ -43,7 +43,30 @@ public class AgendamentoFacade {
 		montarAgendamentos(lista);
 		return lista;
 	}
-	
+
+	/**
+	 * : retorna a consulta realizada pelo paciente.
+	 * @param agendamento
+	 * @param data
+	 * @return
+	 * @throws CampoInvalidoException 
+	 * @throws CampoInvalidoException
+	 */
+	public List<Agendamento> consultar(Agendamento agendamento, String data, int idUsuario) throws CampoInvalidoException{
+
+		if(agendamento != null){
+			try {
+				agendamento.setData(DataUtil.stringToDate(data));
+			} catch (ParseException e) {
+				throw new CampoInvalidoException("Informe a data para a consulta!");
+			}
+			return this.agendamentoDao.consultar(agendamento, idUsuario);
+		}else{
+			return null;
+		}
+
+	}
+
 	/**
 	 * : retorna a consulta realizada pelo usuário.
 	 * @param agendamento
@@ -53,7 +76,7 @@ public class AgendamentoFacade {
 	 * @throws CampoInvalidoException
 	 */
 	public List<Agendamento> consultar(Agendamento agendamento, String data) throws CampoInvalidoException{
-		
+
 		if(agendamento != null){
 			try {
 				agendamento.setData(DataUtil.stringToDate(data));
@@ -64,29 +87,29 @@ public class AgendamentoFacade {
 		}else{
 			return null;
 		}
-		
+
 	}
-	
+
 	/**
 	 * : preenche os objetos da lista de agendamento.
 	 * @param agendamentos
 	 */
 	public void montarAgendamentos(List<Agendamento> agendamentos){
 		if(agendamentos != null && agendamentos.size() > 0){
-			
+
 			for (Agendamento agendamento : agendamentos) {
 				agendamento.setStatusAgendamento(StatusAgendamento.getStatusAgendamento(agendamento.getStatus()));
 				agendamento.setTipoAgendamento(TipoAgendamento.getTipoAgendamento(agendamento.getTipo()));
 			}
-			
+
 		}
 	}
-	
+
 	public void excluir(Agendamento agendamento){
 		Agendamento agendamento2 = this.agendamentoDao.recuperarAgendamento(agendamento.getId());
 		this.agendamentoDao.excluir(agendamento2);
 	}
-	
+
 	/**
 	 * : Valida os dados do agendamento passado.
 	 * @param agendamento
@@ -94,7 +117,7 @@ public class AgendamentoFacade {
 	 * @throws CampoInvalidoException 
 	 */
 	public void validaCampos(Agendamento agendamento, String data) throws CampoInvalidoException{
-		
+
 		if(data == null || data.isEmpty()){
 			throw new CampoInvalidoException("Data é campo obrigatório!");
 		}
@@ -117,17 +140,24 @@ public class AgendamentoFacade {
 			new CampoInvalidoException("Data inválida! use o calendário ou digite no formato DD/MM/AAAA.");
 		}
 	}
-	
+
 	/**
 	 * Recupera os agendamentos do paciente.
 	 * @param id
 	 * @return
 	 */
 	public List<Agendamento> recuperaAgendamentosPaciente(int id){
-			return this.agendamentoDao.recuperarAgendamentoPaciente(id);
+		List<Agendamento> lista = this.agendamentoDao.recuperarAgendamentoPaciente(id);
+
+		if(lista != null && lista.size() > 0){
+			for(Agendamento ag: lista){
+				ag.setTipoAgendamento(TipoAgendamento.getTipoAgendamento(ag.getTipo()));
+			}
+		}
+		return lista;
 	}
-	
+
 	public void verificaDisponivilidade(){
-		
+
 	}
 }

@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.RollbackException;
+
 import br.com.sispam.dao.PacienteDao;
 import br.com.sispam.dominio.Paciente;
 import br.com.sispam.excecao.CampoInvalidoException;
@@ -32,12 +34,18 @@ public class PacienteFacade {
 	/**
 	 * : Remove o paciente do sistema.
 	 * @param id
+	 * @throws CampoInvalidoException 
 	 */
-	public void removerPaciente(int id){
-		Paciente paciente = this.pacienteDao.recuperarPeloId(id);
-		this.pacienteDao.removerPaciente(paciente);
+	public void removerPaciente(int id) throws CampoInvalidoException{
+		Paciente paciente = null;
+		try{
+			paciente = this.pacienteDao.recuperarPeloId(id);
+			this.pacienteDao.removerPaciente(paciente);
+		}catch (RollbackException e) {
+			throw new CampoInvalidoException("Não é possível excluir o Pacinte "+paciente.getUsuario().getNome());
+		}
 	}
-	
+
 	public Paciente recuperarPeloUsuario(int idUsuario){
 		return this.pacienteDao.recuperarPeloUsuario(idUsuario);
 	}
@@ -51,13 +59,13 @@ public class PacienteFacade {
 	public List<Paciente> consultar(Paciente paciente) throws CampoInvalidoException{
 		List<Paciente> lista = null;
 		Paciente pacienteRecuperado = null;
-		
+
 		if(paciente != null && paciente.getUsuario() != null && paciente.getUsuario().getCpf() != null){
 			String cpf = paciente.getUsuario().getCpf().replaceAll("[.]", "");
 			cpf = cpf.replaceAll("[-]", "");
 			paciente.getUsuario().setCpf(cpf);
 		}
-		
+
 		if((paciente.getUsuario().getCpf() == null || paciente.getUsuario().getCpf().isEmpty())
 				&& (paciente.getUsuario().getNome() == null || paciente.getUsuario().getNome().isEmpty())){
 			throw new CampoInvalidoException("Preencha um dos campos para realizar a pesquisa!");
@@ -109,7 +117,7 @@ public class PacienteFacade {
 	public List<Paciente> recuperaUltimosCadastrados(){
 		return this.pacienteDao.recuperaUltimosCadastrados();
 	}
-	
+
 	/**
 	 * : Recupera todos os pacientes do banco de dados.
 	 * @return
