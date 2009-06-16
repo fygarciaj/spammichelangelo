@@ -288,6 +288,8 @@ public class Relatorio extends HttpServlet {
 			processRequest(request, response);
 		}else if(pag.equals("relatorioUsuario")){
 			processRequest(request, response);
+		}else if(pag.equals("emiteProntuario")){
+			processRequest(request, response);
 		}
 	}  	
 
