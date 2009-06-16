@@ -22,8 +22,8 @@
 	
 	<script type="text/javascript">
 
-		function emiteProntuario(paciente){
-			document.getElementById("pacienteForm").value = paciente;			
+		function emiteProntuario(){
+			document.getElementById("pacienteForm").value;			
 			document.forms[1].submit();
 		}
 
@@ -43,7 +43,7 @@
 		<table class="tabela_consulta" >			
 			<tr>
 				<td><label class="label">Paciente</label></td><td><s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="prontuario.paciente.id" listValue="usuario.nome" theme="simple"/></td>				
-				<td></td><td><s:submit onclick="return emiteProntuario(<s:property value="paciente.id"/>)"  value="Emitir" cssClass="button" theme="simple"/></td>
+				<td></td><td><s:submit onclick="return emiteProntuario()"  value="Emitir" cssClass="button" theme="simple"/></td>
 			</tr>			
 		</table>
 	</s:form>
