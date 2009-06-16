@@ -7,7 +7,7 @@
 			<style isDefault="false" style="zebra" backcolor="#DCDCDC"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="PCTIDFSEG" class="java.math.BigDecimal"/>
+	<parameter name="PCTIDFSEG" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT
      USUARIO."usrcod",

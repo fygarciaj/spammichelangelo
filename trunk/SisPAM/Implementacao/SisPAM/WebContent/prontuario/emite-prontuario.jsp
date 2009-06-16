@@ -23,7 +23,7 @@
 	<script type="text/javascript">
 
 		function emiteProntuario(){
-			var paciente = document.getElementById("paciente");
+			var paciente = document.getElementById("idPaciente");			
 			if(paciente.value == 0){
 				alert("Selecione o paciente");
 				return false;
@@ -51,7 +51,7 @@
 	<input type="hidden" name="relatorioChamado" value="prontuario">
 	<table class="tabela_consulta" >			
 		<tr>
-			<td><label class="label">Paciente</label></td><td><s:select list="pacientes" headerKey="0" headerValue="--Selecione--" id="paciente" listKey="id" name="prontuario.paciente.id" listValue="usuario.nome" theme="simple"/></td>				
+			<td><label class="label">Paciente</label></td><td><s:select list="pacientes" headerKey="0" headerValue="--Selecione--" id="idPaciente" listKey="id" name="prontuario.paciente.id" listValue="usuario.nome" theme="simple"/></td>				
 			<td></td><td><input type="submit"  value="Emitir" class = "button"></td>
 		</tr>			
 	</table>
