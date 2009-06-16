@@ -23,8 +23,14 @@
 	<script type="text/javascript">
 
 		function emiteProntuario(){
-			document.getElementById("pacienteForm").value;			
-			document.forms[1].submit();
+			var paciente = document.getElementById("paciente");
+			if(paciente.value == 0){
+				alert("Selecione o paciente");
+				return false;
+			}else{
+				document.getElementById("pacienteForm").value = paciente.value;
+				return true;
+			}			
 		}
 
 	</script>
@@ -36,27 +42,20 @@
 		<div>Relatórios<img src="/SisPAM/componentes/img/seta.gif" />Prontuário<img
 			src="/SisPAM/componentes/img/seta.gif" />Emitir</div>
 		</td>
+	</tr>
 </table>
 <h2>Emissão de Prontuário</h2>
 
-<s:form action="prontuarioAction!carregarPacientes.action" theme="simple">
-		<table class="tabela_consulta" >			
-			<tr>
-				<td><label class="label">Paciente</label></td><td><s:select list="pacientes" headerKey="0" headerValue="--Selecione--" listKey="id" name="prontuario.paciente.id" listValue="usuario.nome" theme="simple"/></td>				
-				<td></td><td><s:submit onclick="return emiteProntuario()"  value="Emitir" cssClass="button" theme="simple"/></td>
-			</tr>			
-		</table>
-	</s:form>
+<form action="/SisPAM/emiteProntuario.sispam" method="post" name="relatorio" onsubmit="return emiteProntuario()">
+	<input type="hidden" name="paciente" id="pacienteForm"/>		
+	<input type="hidden" name="relatorioChamado" value="prontuario">
+	<table class="tabela_consulta" >			
+		<tr>
+			<td><label class="label">Paciente</label></td><td><s:select list="pacientes" headerKey="0" headerValue="--Selecione--" id="paciente" listKey="id" name="prontuario.paciente.id" listValue="usuario.nome" theme="simple"/></td>				
+			<td></td><td><input type="submit"  value="Emitir" class = "button"></td>
+		</tr>			
+	</table>
+</form>	
 	
-	<s:hidden name="paciente.id" value="%{paciente.id}"/>
-	<div id="MensagensErro" >	
-		<s:fielderror theme="simple" cssClass="errorMessage" />
-		<s:actionmessage theme="simple" cssClass="sucessMessage" />
-	</div>
-	
-	<form action="/SisPAM/emiteProntuario.sispam" method="post" name="relatorio">
-		<input type="hidden" name="paciente" id="pacienteForm"/>		
-		<input type="hidden" name="relatorioChamado" value="prontuario">
-	</form>	
 </body>
 </html>
