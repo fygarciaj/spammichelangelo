@@ -89,7 +89,7 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<s:submit value="Alterar" cssClass="button" theme="simple" />
+					<s:submit value="Alterar" cssClass="button" onclick="return confirmaAlteracao()" theme="simple" />
 				</td>
 			</tr>
 		</table>

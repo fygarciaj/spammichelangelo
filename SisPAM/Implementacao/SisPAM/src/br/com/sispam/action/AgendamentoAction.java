@@ -224,7 +224,7 @@ public class AgendamentoAction extends Action{
 			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento, getUsuarioLogado().getId());
 			this.agendamentoFacade.montarAgendamentos(agendamentos);
 			if (agendamentos.size() == 0){
-				erros.put("erro", "Não existe Agendamentos Realizados para a data informada!");
+				erros.put("erro", "Não existem Agendamentos Realizados para a data informada!");
 			}
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
