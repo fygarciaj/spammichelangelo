@@ -62,10 +62,13 @@
 	
 	<s:form action="agendamentoAction!salvarAgendamento.action" theme="simple">	
 		<s:hidden name="agendamento.id" value="%{agendamento.id}"/>
+		<s:hidden name="agendamento.medico.id" value="%{agendamento.medico.id}"/>
+		<s:hidden name="agendamento.especialidadeMedica.id" value="%{agendamento.especialidadeMedica.id}"/>
+		
 		<table  border="0"  class="tabela_moldura" cellpadding="3" cellspacing="4">
 			<tr>
-				<td><label class="label">Médicos</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="medicos" name="agendamento.medico.id" listKey="id" listValue="usuario.nome" theme="simple"/></td>
-				<td><label class="label">Especialidades</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="especialidades" name="agendamento.especialidadeMedica.id" listKey="id" listValue="descricao" theme="simple"/></td>
+				<td><label class="label">Médicos</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="medicos" name="agendamento.medico.id" listKey="id" listValue="usuario.nome" theme="simple" disabled="true"/></td>
+				<td><label class="label">Especialidades</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="especialidades" name="agendamento.especialidadeMedica.id" listKey="id" listValue="descricao" theme="simple" disabled="true"/></td>
 			</tr>
 			<tr>
 				<td><label class="label">Tipo</label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="tipoAgendamento" name="agendamento.tipo" listKey="codigo" theme="simple"/></td>

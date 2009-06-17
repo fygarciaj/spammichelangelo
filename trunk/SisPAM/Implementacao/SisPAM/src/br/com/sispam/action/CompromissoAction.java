@@ -81,7 +81,7 @@ public class CompromissoAction extends Action{
 			compromissoFacade.validaHora(compromisso.getHoraInicial(), compromisso.getHoraFinal());
 
 			//verifica se já existe compromisso cadastrado com esses dados.
-			compromissoFacade.verificaExistencia(compromisso);
+			compromissoFacade.verificaExistencia(compromisso, 0);
 
 
 			if(compromisso.getId() > 0){

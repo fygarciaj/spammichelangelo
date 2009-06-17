@@ -182,7 +182,7 @@ public class AgendamentoFacade {
 			compromisso.setHoraInicial(agendamento.getHora());
 			compromisso.setHoraFinal(agendamento.getHora()+15);
 			compromisso.setMedico(agendamento.getMedico());
-			compromissoFacade.verificaExistencia(compromisso);
+			compromissoFacade.verificaExistencia(compromisso, agendamento.getId());
 		}
 	}
 }
