@@ -91,7 +91,7 @@ public class AgendamentoAction extends Action{
 	 */
 	public String salvarAgendamento(){
 		this.agendamentoFacade = new AgendamentoFacade();
-		
+
 		this.usuarioFacade = new UsuarioFacade();
 		//monta um mapa com os campos que devem ser inteiros
 		Map<String, String> camposInteiros = new HashMap<String, String>();
@@ -105,7 +105,7 @@ public class AgendamentoAction extends Action{
 			this.agendamento.setHora(Integer.parseInt(horario));		
 			this.agendamentoFacade.validaCampos(agendamento, dataAgendamento);
 			this.agendamentoFacade.verificaDisponivilidade(agendamento);
-			
+
 			if(agendamento.getId() > 0){
 				this.agendamentoFacade.salvarAgendamento(agendamento);
 				this.mensagens.put("sucesso", "Agendamento alterado com sucesso!");
@@ -121,7 +121,11 @@ public class AgendamentoAction extends Action{
 			}		
 		}catch (CampoInvalidoException e) {
 			this.erros.put("erro", e.getMessage());
-			return FALHA_SALVAR_AGENDMENTO;
+			if(agendamento.getId() > 0){
+				return FALHA_ALTERAR_AGENDAMENTO;
+			}else{
+				return FALHA_SALVAR_AGENDMENTO;
+			}
 		}
 		limparCampos();
 		apresentaMensagens();
@@ -146,7 +150,9 @@ public class AgendamentoAction extends Action{
 		this.especialidades = this.especialidadeFacade.recuperarTodas();
 		this.medicos = this.medicoFacade.recuperarTodos();
 		this.pacientes = this.pacienteFacade.recuperarTodos();
-
+		
+		apresentaErrors();
+		apresentaMensagens();
 		return SUCESSO_CARREGAR_EDICAO;
 	}
 
@@ -213,7 +219,7 @@ public class AgendamentoAction extends Action{
 	 */
 	public String consultarAgendamentoRealizado(){
 		this.agendamentoFacade = new AgendamentoFacade();
-		
+
 		try {
 			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento, getUsuarioLogado().getId());
 			this.agendamentoFacade.montarAgendamentos(agendamentos);

@@ -65,7 +65,7 @@ public class CompromissoFacade {
 	 * @throws CampoInvalidoException 
 	 * 
 	 */
-	public void verificaExistencia(Compromisso compromisso) throws CampoInvalidoException{
+	public void verificaExistencia(Compromisso compromisso, int idAgendamento) throws CampoInvalidoException{
 		compromissoDao = new CompromissoDao();				
 		List<Compromisso> compromissoNew = null;
 		List<Agendamento> agendamentosNew = null; 
@@ -82,7 +82,7 @@ public class CompromissoFacade {
 		agendamentosNew = (compromissoDao.consultarAgendamentoUnico(compromisso));
 		if(agendamentosNew != null && agendamentosNew.size() > 0){
 			for(Agendamento agend: agendamentosNew){
-				if(agend.getId() != 0){
+				if(agend.getId() != 0 && agend.getId() != idAgendamento){
 					throw new CampoInvalidoException("Já existe Agendamento no período informado!");
 				}
 			}
