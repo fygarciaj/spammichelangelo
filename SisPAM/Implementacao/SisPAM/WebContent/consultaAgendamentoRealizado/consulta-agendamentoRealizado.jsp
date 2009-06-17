@@ -77,7 +77,7 @@
 	<!-- Lista dos últimos Agendamentos Realizados -->
 	<s:if test="agendamentos != null && agendamentos.size() > 0">
 	<br>
-	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="center">
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2">
 		<tr>
 			<th colspan="8" class="principal style2" scope="col">Últimos Agendamentos Realizados<s:property value="agendamentoRetornado"/></th>
 		</tr>
