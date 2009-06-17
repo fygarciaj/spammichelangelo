@@ -105,14 +105,15 @@
 			</s:form>
 			</td>
 			<s:if test="medico != null">
-				<td><label class="label">Especialidades do Dr.</label></td><td><s:property value="medico.usuario.nome"/></td>
+				<td><label class="label">Especialidades do Dr. <s:property value="medico.usuario.nome"/></label></td>				
 				<td><s:select headerKey="0" headerValue="--Selecione--" list="medico.especialidades" id="especialidade" theme="simple" name="agendamento.especialidadeMedica.id" listKey="id" listValue="descricao" /></td>
+				
 			</s:if>
 			<s:elseif test="especialidadeMedica != null">
 				<s:form action="agendamentoAction!preparaInclusao.action" theme="simple">
 					<s:hidden name="tipo"  value="%{tipo}"/>
 					<s:hidden name="agendamento.especialidadeMedica.id" value="%{agendamento.especialidadeMedica.id}"/>
-					<td><label class="label">Médicos de&nbsp;&nbsp;<s:property value="especialidadeMedica.descricao"/></label>&nbsp;<s:select headerKey="0" headerValue="--Selecione--" list="especialidadeMedica.medicos" theme="simple" name="agendamento.medico.id" listKey="id" listValue="usuario.nome" onchange="preparaInclusaoDois()" /></td>
+					<td><label class="label">Médicos de&nbsp;&nbsp;<s:property value="especialidadeMedica.descricao"/></label></td><td><s:select headerKey="0" headerValue="--Selecione--" list="especialidadeMedica.medicos" theme="simple" name="agendamento.medico.id" listKey="id" listValue="usuario.nome" onchange="preparaInclusaoDois()" /></td>
 				</s:form>
 			</s:elseif>
 		</tr>
@@ -158,7 +159,7 @@
 			</tr>
 				<tr>
 				<td colspan="4">
-				<s:textarea name="agendamento.observacao" cols="90" rows="4" theme="simple"/></td>
+				<s:textarea name="agendamento.observacao" cols="88" rows="4" theme="simple"/></td>
 				</tr>
 			<tr>
 				<td colspan="4" align="center">
