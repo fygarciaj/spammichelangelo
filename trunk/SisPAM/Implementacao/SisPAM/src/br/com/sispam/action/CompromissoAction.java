@@ -78,7 +78,7 @@ public class CompromissoAction extends Action{
 			//verifica se os campos são inteiros
 			compromissoFacade.verificaCampoInteiro(mapa);
 
-			compromissoFacade.validaHora(compromisso);
+			compromissoFacade.validaHora(compromisso.getHoraInicial(), compromisso.getHoraFinal());
 
 			//verifica se já existe compromisso cadastrado com esses dados.
 			compromissoFacade.verificaExistencia(compromisso);
@@ -151,8 +151,11 @@ public class CompromissoAction extends Action{
 				this.compromisso.setData(new Date());
 				this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
 				this.agendamentosCadastrados = this.compromissoFacade.getAgendamentos();
+				
 			}
 		}
+		montaAgendamentos(agendamentosCadastrados);
+		montaCompromissos(compromissosCadastrados);
 		limparData();
 		return CARREGAR_CONSULTA_COMPROMISSO;
 	}
@@ -193,6 +196,7 @@ public class CompromissoAction extends Action{
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
 			this.agendamentosCadastrados = compromissoFacade.getAgendamentos();
 			montaAgendamentos(agendamentosCadastrados);
+			montaCompromissos(compromissosCadastrados);
 			if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 				this.medicos = new ArrayList<Medico>();
 				this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
@@ -253,6 +257,20 @@ public class CompromissoAction extends Action{
 		if(lista != null && lista.size() > 0){
 			for(Agendamento ag: lista){
 				ag.setTipoAgendamento(TipoAgendamento.getTipoAgendamento(ag.getTipo()));
+			}
+		}
+		return lista;
+	}
+	
+	/**
+	 * monta a exbição do compromisso.
+	 * @param lista
+	 * @return
+	 */
+	private List<Compromisso> montaCompromissos(List<Compromisso> lista){
+		if(lista != null && lista.size() > 0){
+			for(Compromisso comp: lista){
+				comp.setTipoCompromisso(TipoCompromisso.getTipoCompromisso(Integer.parseInt(comp.getTipo())));
 			}
 		}
 		return lista;

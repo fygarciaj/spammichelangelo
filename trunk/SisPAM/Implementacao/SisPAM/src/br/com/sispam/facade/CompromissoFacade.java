@@ -69,7 +69,7 @@ public class CompromissoFacade {
 		compromissoDao = new CompromissoDao();				
 		List<Compromisso> compromissoNew = null;
 		List<Agendamento> agendamentosNew = null; 
-		
+
 		compromissoNew = (compromissoDao.consultarCompromissoUnico(compromisso));
 		if(compromissoNew != null && compromissoNew.size() > 0){
 			for(Compromisso comp: compromissoNew){
@@ -78,7 +78,7 @@ public class CompromissoFacade {
 				}
 			}
 		}
-		
+
 		agendamentosNew = (compromissoDao.consultarAgendamentoUnico(compromisso));
 		if(agendamentosNew != null && agendamentosNew.size() > 0){
 			for(Agendamento agend: agendamentosNew){
@@ -101,41 +101,41 @@ public class CompromissoFacade {
 		agendamentoDao = new AgendamentoDao();
 		agendamento = new Agendamento();
 		List<Compromisso> compromissosRetornados = null;
-		
+
 		try {
 			if((compromisso.getMedico().getId() == 0)  
 					&& (compromisso.getData() == null)){
 				throw new CampoInvalidoException("Preencha os campos \"Médico\" e \"Data\" para efetuar a pesquisa!");
-			
+
 			}else if((compromisso.getMedico().getId() != 0) && (compromisso.getData() != null)){
 				compromissosRetornados = compromissoDao.consultarCompromissos(compromisso);
 				agendamento.setMedico(compromisso.getMedico());
 				agendamento.setData(compromisso.getData());
 				agendamentosRetornados = agendamentoDao.consultar(agendamento);
-			
+
 			}else if(compromisso.getMedico().getId() != 0 && compromisso.getData() == null){
 				compromissosRetornados = compromissoDao.consultarCompromissosMedico(compromisso);
 				agendamento.setMedico(compromisso.getMedico());
 				agendamentosRetornados = agendamentoDao.consultar(agendamento);
-				
+
 			}else if((compromisso.getMedico().getId() == 0 && compromisso.getData() != null)){
 				throw new CampoInvalidoException("Selecione o médico!");
 			}
-			
+
 			if ((compromissosRetornados == null || compromissosRetornados.size() == 0)&& (agendamentosRetornados == null || agendamentosRetornados.size() == 0)){
 				throw new CampoInvalidoException("Compromissos ou Agendamentos não encontrados.");
 			}
-				
+
 		} catch (NoResultException e) {
 			throw new CampoInvalidoException("Nenhum registro encontrado");
 		}
 		return compromissosRetornados;
 	}
-	
+
 	public void setAgendamentos(List<Agendamento> agendamentosRetornados){
 		this.agendamentosRetornados = agendamentosRetornados;
 	}
-	
+
 	public List<Agendamento> getAgendamentos(){
 		return agendamentosRetornados;
 	}
@@ -150,12 +150,12 @@ public class CompromissoFacade {
 		agendamentoDao = new AgendamentoDao();
 		agendamento = new Agendamento();
 		List<Compromisso> compromissosRetornados = null;
-		
+
 		compromissosRetornados = this.compromissoDao.consultarCompromissos(compromisso);
 		agendamento.setMedico(compromisso.getMedico());
 		agendamento.setData(compromisso.getData());
 		agendamentosRetornados = agendamentoDao.consultar(agendamento);
-				
+
 		return compromissosRetornados;
 	}
 
@@ -206,23 +206,22 @@ public class CompromissoFacade {
 			if(compromisso.getDescricao()== null || compromisso.getDescricao().length() == 0){
 				throw new CampoInvalidoException("Campo Descrição inválido!");
 			}						
-
 		}
 	}
-	
-	public void validaHora(Compromisso compromisso) throws CampoInvalidoException{
 
-		if(compromisso != null){
-			if(compromisso.getHoraInicial() > 2359){
-				throw new CampoInvalidoException("Hora Inicial deve ser menor ou igual a 23:59!");
-			}
-			if(compromisso.getHoraFinal() > 2359){
-				throw new CampoInvalidoException("Hora Final deve ser menor ou igual a 23:59!");
-			}
-			
-			if(compromisso.getHoraInicial() >= compromisso.getHoraFinal()){
-				throw new CampoInvalidoException("Hora Inicial deve ser menor que Hora Final!");
-			}
+	public void validaHora(int horaInicial, int horaFinal) throws CampoInvalidoException{
+
+
+		if(horaInicial > 2359){
+			throw new CampoInvalidoException("Hora Inicial deve ser menor ou igual a 23:59!");
+		}
+		if(horaFinal > 2359){
+			throw new CampoInvalidoException("Hora Final deve ser menor ou igual a 23:59!");
+		}
+
+		if(horaInicial >= horaFinal){
+			throw new CampoInvalidoException("Hora Inicial deve ser menor que Hora Final!");
 		}
 	}
+
 }
