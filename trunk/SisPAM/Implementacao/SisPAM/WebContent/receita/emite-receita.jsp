@@ -55,7 +55,12 @@
 <h2>Emissão de Receita</h2>
 
 <s:form action="receitaAction!consultarAgendamento.action" theme="simple">
-		<table class="tabela_consulta" >			
+	<s:hidden name="paciente.id" value="%{paciente.id}"/>
+	<div id="MensagensErro" >	
+		<s:fielderror theme="simple" cssClass="errorMessage" />
+		<s:actionmessage theme="simple" cssClass="sucessMessage" />
+	</div>	
+	<table class="tabela_consulta" >			
 			<tr>				
 				<td><label>Data de Atendimento:</label>&nbsp;<s:textfield id="dataAgendamento" size="12" maxlength="7" name="dataAgendamento" theme="simple"/></td>
 				<td></td><td><s:submit value="Consultar" cssClass="button" theme="simple"/></td>
@@ -63,11 +68,7 @@
 		</table>
 	</s:form>
 	
-	<s:hidden name="paciente.id" value="%{paciente.id}"/>
-	<div id="MensagensErro" >	
-		<s:fielderror theme="simple" cssClass="errorMessage" />
-		<s:actionmessage theme="simple" cssClass="sucessMessage" />
-	</div>
+	
 	<h3>Atenção! Clique no botão "Emitir Receita" para gerar a receita</h3>
 	<!-- Lista agendamentos realizados -->
 	<s:if test="agendamentosCadastrados != null && agendamentosCadastrados.size() > 0">

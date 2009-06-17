@@ -223,6 +223,9 @@ public class AgendamentoAction extends Action{
 		try {
 			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento, getUsuarioLogado().getId());
 			this.agendamentoFacade.montarAgendamentos(agendamentos);
+			if (agendamentos.size() == 0){
+				erros.put("erro", "Não existe Agendamentos Realizados para a data informada!");
+			}
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.CONSULTA, getUsuarioLogado()));
@@ -230,6 +233,7 @@ public class AgendamentoAction extends Action{
 			erros.put("erro", e.getMessage());
 			return FALHA_CONSULTAR_AGENDAMENTO_PACIENTE;
 		}
+		apresentaErrors();
 		limpaCamposConsulta();
 		return CONSULTA_AGENDAMENTOS_REALIZADOS;
 	}

@@ -306,34 +306,34 @@ a:hover{
 }
 
 .errorMessage{
-	font: bold 12px/1.5em Verdana;
+	font: bold 11px tahoma, verdana, arial, helvetica, sans-serif;
 	color:black;
 	border: 1px solid #ff0000;
 	margin: 5px 0px 5px 0px;
 	padding: 2px 2px 2px 28px;
 	background-position: center;
-	background: #FFf4f1 url(../img/ico_alert.gif) no-repeat 5px 1px ;
+	background: #FFf4f1 url(../img/ico_alert.gif) no-repeat 1px 1px ;
 	display:block;
 	text-align: left;
 	list-style-type: none;
-	width: 750px;
+	width: 718px;
 }
 
 .sucessMessage{
-	font: bold 12px/1.5em Verdana;
+	font: bold 11px tahoma, verdana, arial, helvetica, sans-serif;
 	color:black;
 	border: 1px solid #7f9db9;
 	margin: 5px 0px 5px 0px;
-	padding: 2px 0px 2px 28px;
-	background: #F2F7FE url(../img/positivo2.gif) no-repeat 5px 1px ;
+	padding: 2px 2px 2px 28px;
+	background: #F2F7FE url(../img/positivo2.gif) no-repeat 1px 1px ;
 	display:block;
 	text-align: left;
 	list-style-type: none;
-	width: 750px;
+	width: 718px;
 }
 
 .errorMessageSis{
-	font: bold 12px/1.5em Verdana;
+	font: bold 11px tahoma, verdana, arial, helvetica, sans-serif;
 	color:#FF0000;
 	border: 1px solid #ff0000;
 	margin: 5px 0px 5px 0px;
