@@ -3,8 +3,12 @@ package br.com.sispam.facade;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.persistence.RollbackException;
+
 import br.com.sispam.dao.AgendamentoDao;
 import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.Compromisso;
+import br.com.sispam.dominio.Medico;
 import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.enums.TipoAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
@@ -105,9 +109,13 @@ public class AgendamentoFacade {
 		}
 	}
 
-	public void excluir(Agendamento agendamento){
+	public void excluir(Agendamento agendamento) throws CampoInvalidoException{
 		Agendamento agendamento2 = this.agendamentoDao.recuperarAgendamento(agendamento.getId());
-		this.agendamentoDao.excluir(agendamento2);
+		try{
+			this.agendamentoDao.excluir(agendamento2);
+		}catch (RollbackException e) {
+			throw new CampoInvalidoException("Agendamento já realizado não pode ser excluído!");
+		}
 	}
 
 	/**
@@ -139,7 +147,16 @@ public class AgendamentoFacade {
 		} catch (ParseException e) {
 			new CampoInvalidoException("Data inválida! use o calendário ou digite no formato DD/MM/AAAA.");
 		}
+
+		if(agendamento.getHora() > 2359){
+			throw new CampoInvalidoException("Hora Inicial deve ser menor ou igual a 23:59!");
+		}
+		
+		MedicoFacade medicoFacade = new MedicoFacade();
+		medicoFacade.verificaDiasDeTrabalhoDoMedico(agendamento);
 	}
+	
+	
 
 	/**
 	 * Recupera os agendamentos do paciente.
@@ -157,7 +174,15 @@ public class AgendamentoFacade {
 		return lista;
 	}
 
-	public void verificaDisponivilidade(){
-
+	public void verificaDisponivilidade(Agendamento agendamento)throws CampoInvalidoException{
+		CompromissoFacade compromissoFacade = new CompromissoFacade();
+		Compromisso compromisso = new Compromisso();
+		if(agendamento != null){
+			compromisso.setData(agendamento.getData());
+			compromisso.setHoraInicial(agendamento.getHora());
+			compromisso.setHoraFinal(agendamento.getHora()+15);
+			compromisso.setMedico(agendamento.getMedico());
+			compromissoFacade.verificaExistencia(compromisso);
+		}
 	}
 }

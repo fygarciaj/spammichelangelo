@@ -3,6 +3,8 @@ package br.com.sispam.action;
 import java.util.Date;
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.CodigoDoenca;
 import br.com.sispam.dominio.HistoricoProntuario;
@@ -26,6 +28,7 @@ public class HistoricoProntuarioAction extends Action{
 	private List<CodigoDoenca> codigosDoencas;
 	private CodigoDoencaFacade codigoDoencaFacade;
 	private AuditoriaFacade auditoriaFacade;
+	private boolean atendeu = false;
 	
 	/**
 	 * : Carrega o agendamento do dia, caso seja médico recupera dele mesmo. 
@@ -43,7 +46,7 @@ public class HistoricoProntuarioAction extends Action{
 			this.agendamento.setStatus(StatusAgendamento.SOLICITADO.getCodigo());
 			this.agendamento.setData(new Date());
 			this.agendamentosCadastrados = this.historicoProntuarioFacade.recuperarAgendamentosDiaAtual(agendamento);
-			if (agendamentosCadastrados.size() == 0){
+			if ((agendamentosCadastrados.size() == 0) && (!atendeu)){
 				erros.put("vazio", "Desculpe Dr."+ this.getUsuarioLogado().getAcesso().toUpperCase() + ", sem agendamentos para atender!");
 			}
 		}
@@ -77,7 +80,7 @@ public class HistoricoProntuarioAction extends Action{
 			this.agendamento.setId(this.agendamento.getId());
 			return carregaAtualizacaoHistorico();
 		}
-		
+		atendeu = true;
 		limparCampos();
 		return ATUALIZAR_HISTORICO_PRONTUARIO;
 	}
@@ -166,6 +169,14 @@ public class HistoricoProntuarioAction extends Action{
 
 	public void setAuditoriaFacade(AuditoriaFacade auditoriaFacade) {
 		this.auditoriaFacade = auditoriaFacade;
+	}
+
+	public boolean isAtendeu() {
+		return atendeu;
+	}
+
+	public void setAtendeu(boolean atendeu) {
+		this.atendeu = atendeu;
 	}
 	
 	

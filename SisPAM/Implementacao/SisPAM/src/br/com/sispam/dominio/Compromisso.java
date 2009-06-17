@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import br.com.sispam.enums.TipoCompromisso;
 
 @Entity
 public class Compromisso {
@@ -22,6 +25,8 @@ public class Compromisso {
 	private int horaInicial;
 	private int horaFinal;
 	private String tipo;
+	private TipoCompromisso tipoCompromisso;
+	
 	
 	@Id
 	@Column(name="cpmcod")
@@ -79,6 +84,15 @@ public class Compromisso {
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
+	}
+	
+	@Transient
+	public TipoCompromisso getTipoCompromisso() {
+		return tipoCompromisso;
+	}
+
+	public void setTipoCompromisso(TipoCompromisso tipoCompromisso) {
+		this.tipoCompromisso = tipoCompromisso;
 	}
 	
 	

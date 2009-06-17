@@ -108,7 +108,7 @@ public class CompromissoDao {
 		List<Agendamento> agendamentos = null;
 	try{
 			Query query = manager.createQuery("from Agendamento where " +
-					"((hora >= :horaInicio and hora+15 < :horaFim) or (hora+15 > :horaInicio and hora <= :horaFim)) " +
+					"((hora >= :horaInicio and hora+15 < :horaFim) or (hora+15 > :horaInicio and hora < :horaFim)) " +
 					"and medico.id = :idMedico and data = :data ");
 			//seta o parametro
 			query.setParameter("idMedico", compromisso.getMedico().getId());

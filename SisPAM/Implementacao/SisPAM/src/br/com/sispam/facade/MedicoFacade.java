@@ -1,8 +1,11 @@
 package br.com.sispam.facade;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import br.com.sispam.dao.MedicoDao;
+import br.com.sispam.dominio.Agendamento;
+import br.com.sispam.dominio.Compromisso;
 import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
@@ -142,6 +145,26 @@ public class MedicoFacade {
 		}
 		return diaString;
 	}
+
+	public void verificaDiasDeTrabalhoDoMedico(Agendamento agendamento) throws CampoInvalidoException{
+
+		Medico medico = recuperar(agendamento.getMedico().getId());
+		montaMedico(medico);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(agendamento.getData());
+		int diaData = calendar.getTime().getDay();
+		boolean diaValido = false;
+		for(Dia dia: medico.getDias()){
+			if(dia.getCodigo() == diaData){
+				diaValido = true;
+				break;
+			}
+		}
+		if(diaValido == false){
+			throw new CampoInvalidoException("O médico "+medico.getUsuario().getNome()+" não atende "+Dia.newInstance(diaData));
+		}
+	}
+
 
 	/**
 	 * : Remove o médico do sistema.

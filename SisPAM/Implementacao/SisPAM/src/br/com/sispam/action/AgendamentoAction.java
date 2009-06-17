@@ -91,6 +91,7 @@ public class AgendamentoAction extends Action{
 	 */
 	public String salvarAgendamento(){
 		this.agendamentoFacade = new AgendamentoFacade();
+		
 		this.usuarioFacade = new UsuarioFacade();
 		//monta um mapa com os campos que devem ser inteiros
 		Map<String, String> camposInteiros = new HashMap<String, String>();
@@ -100,11 +101,11 @@ public class AgendamentoAction extends Action{
 		camposInteiros.put("horário", horario);
 
 		try {
-			this.agendamentoFacade.validaCampos(agendamento, dataAgendamento);
-			this.agendamentoFacade.verificaDisponivilidade();
 			this.usuarioFacade.verificaCampoInteiro(camposInteiros);
-			this.agendamento.setHora(Integer.parseInt(horario));			
-
+			this.agendamento.setHora(Integer.parseInt(horario));		
+			this.agendamentoFacade.validaCampos(agendamento, dataAgendamento);
+			this.agendamentoFacade.verificaDisponivilidade(agendamento);
+			
 			if(agendamento.getId() > 0){
 				this.agendamentoFacade.salvarAgendamento(agendamento);
 				this.mensagens.put("sucesso", "Agendamento alterado com sucesso!");
@@ -169,16 +170,16 @@ public class AgendamentoAction extends Action{
 	 * @return
 	 */
 	public String excluirAgendamento(){
-		this.agendamentoFacade = new AgendamentoFacade();
-		this.agendamentoFacade.excluir(agendamento);
 
 		try {
+			this.agendamentoFacade = new AgendamentoFacade();
+			this.agendamentoFacade.excluir(agendamento);
+			this.mensagens.put("sucesso", "Agendamento excluído com sucesso!");
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_AGENDAMENTO, Acao.EXCLUSAO, getUsuarioLogado()));
 		} catch (CampoInvalidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.erros.put("erro", e.getMessage());
 		}
 		return SUCESSO_EXCLUIR_AGENDAMENTO;
 	}

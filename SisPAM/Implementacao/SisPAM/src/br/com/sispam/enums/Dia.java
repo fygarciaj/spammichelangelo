@@ -2,7 +2,7 @@ package br.com.sispam.enums;
 
 public enum Dia {
 	SEGUNDA(1, "SEG", "Segunda"), TERÇA(2,"TER", "Terça"), QUARTA(3, "QUA", "Quarta"), QUINTA(4, "QUI", "Quinta"), SEXTA(5, "SEX", "Sexta"),
-	SABADO(6, "SAB", "Sábado"), DOMINGO(7, "DOM", "Domingo");
+	SABADO(6, "SAB", "Sábado"), DOMINGO(0, "DOM", "Domingo");
 	
 	private int codigo;
 	private String sigla;
@@ -44,7 +44,7 @@ public enum Dia {
 			return SEXTA;
 		case 6:
 			return SABADO;
-		case 7:
+		case 0:
 			return DOMINGO;
 		default:
 			return null;
@@ -65,7 +65,7 @@ public enum Dia {
 			return SEXTA;
 		case '6':
 			return SABADO;
-		case '7':
+		case '0':
 			return DOMINGO;
 		default:
 			return null;
