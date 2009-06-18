@@ -79,7 +79,7 @@
 				</td>
 				<td align="center">
 					<s:date name="data" format="dd/MM/yyyy"/>
-					<td>
+					<td align="center">
 					<s:property value="hora"/>
 				</td>				
 				<td>
