@@ -104,6 +104,9 @@
 			<th width="10%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Tipo</span>
 			</th>
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Status</span>
+			</th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Editar</span>
 			</th>
@@ -139,6 +142,9 @@
 				</td>
 				<td align="center">
 					<s:property value="tipoAgendamento"/>
+				</td>
+				<td align="center">
+					<s:property value="statusAgendamento"/>
 				</td>
 				<td align="center">
 					<s:a href="%{#editarAgendamento}" cssClass="linkEditar" cssStyle="linkEditar"></s:a>
