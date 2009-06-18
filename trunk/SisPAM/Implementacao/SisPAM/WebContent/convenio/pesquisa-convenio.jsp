@@ -101,13 +101,13 @@
 				<td>
 					<s:property value="nome" />
 				</td>
-				<td>
+				<td align="center">
 					<s:property value="cnpj"/>
 				</td>
-				<td>
+				<td align="center">
 					<s:property value="telefone"/>
 				</td>
-				<td>
+				<td align="center">
 					<s:property value="codigoANS"/>
 				</td>
 				<td align="center">

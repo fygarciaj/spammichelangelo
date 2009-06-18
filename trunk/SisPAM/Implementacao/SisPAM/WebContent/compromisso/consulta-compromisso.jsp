@@ -147,20 +147,20 @@
 			
 		</tr>
 		<tr>
-			<th width="10%" bgcolor="#A7C2DA" scope="col">
+			<th width="8%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Data</span>
-			</th>		
-			<th width="10%" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Paciente</span>
-			</th>
-			<th width="10%" bgcolor="#A7C2DA" scope="col">
+			</th>					
+			<th width="9%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Hora</span>
 			</th>
 			<th width="15%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Tipo</span>
-			</th>
-			<th width="50%" bgcolor="#A7C2DA" scope="col">
+			</th>			
+			<th width="23%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Especialidade</span>
+			</th>
+			<th width="45%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Paciente</span>
 			</th>
 		</tr>
 
@@ -170,20 +170,19 @@
 								
 				<td align="center">
 					<s:date name="data" format="dd/MM/yyyy" />
-				</td>				
-				<td align="center">
-					<s:property value="paciente.usuario.nome" />
-				</td>
+				</td>								
 				<td align="center">
 					<s:property value="hora"/>
 				</td>
 				<td align="center">
 					<s:property value="tipoAgendamento"/>
-				</td>
+				</td>				
 				<td>
 					<s:property value="especialidadeMedica.descricao"/>
 				</td>
-				
+				<td align="left">
+					<s:property value="paciente.usuario.nome" />
+				</td>
 			</tr>
 		</s:iterator>	
 	</table>
