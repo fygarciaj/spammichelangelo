@@ -6,6 +6,7 @@ import java.util.Map;
 
 import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.Usuario;
+import br.com.sispam.enums.Status;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
@@ -74,7 +75,7 @@ public class UsuarioFacade {
 	 * @param cpf
 	 */
 	public void verificaCpfJaExistente(String cpf, int id)throws CampoInvalidoException{
-		Usuario usuario = this.usuarioDao.recupera(cpf);
+		Usuario usuario = this.usuarioDao.recupera(cpf, Status.ATIVO.getCodigo());
 		if(usuario != null && id != usuario.getId()){
 			throw new CampoInvalidoException("Este CPF já está sendo usado!");
 		}
@@ -101,7 +102,7 @@ public class UsuarioFacade {
 		}
 		else if(cpf != null && cpf.trim().length() > 0){
 			lista = new ArrayList<Usuario>();
-			usuario = usuarioDao.recupera(cpf);
+			usuario = usuarioDao.recupera(cpf, Status.ATIVO.getCodigo());
 			if(usuario != null){
 				lista.add(usuario);
 			}
@@ -124,12 +125,15 @@ public class UsuarioFacade {
 	}
 
 	/**
-	 * Remove o usuário do sistema.
+	 * Remove o usuário do sistema (exclusão lógica).
 	 * @param id
 	 */
 	public void removerUsuario(int id){
 		Usuario usuario = this.usuarioDao.recuperarPeloId(id);
-		this.usuarioDao.removerUsuario(usuario);
+		if(usuario != null){
+			usuario.setStatus(Status.INATIVO.getCodigo());
+			this.usuarioDao.salvarUsuario(usuario);
+		}
 	}
 
 	/**

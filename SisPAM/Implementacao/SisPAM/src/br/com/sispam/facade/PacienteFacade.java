@@ -8,6 +8,7 @@ import javax.persistence.RollbackException;
 
 import br.com.sispam.dao.PacienteDao;
 import br.com.sispam.dominio.Paciente;
+import br.com.sispam.enums.Status;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
 
@@ -36,14 +37,11 @@ public class PacienteFacade {
 	 * @param id
 	 * @throws CampoInvalidoException 
 	 */
-	public void removerPaciente(int id) throws CampoInvalidoException{
+	public void removerPaciente(int id){
 		Paciente paciente = null;
-		try{
-			paciente = this.pacienteDao.recuperarPeloId(id);
-			this.pacienteDao.removerPaciente(paciente);
-		}catch (RollbackException e) {
-			throw new CampoInvalidoException("Não é possível excluir o Pacinte "+paciente.getUsuario().getNome());
-		}
+		paciente = this.pacienteDao.recuperarPeloId(id);
+		paciente.getUsuario().setStatus(Status.INATIVO.getCodigo());
+		this.pacienteDao.salvar(paciente);
 	}
 
 	public Paciente recuperarPeloUsuario(int idUsuario){
@@ -72,13 +70,13 @@ public class PacienteFacade {
 		}
 		else if(paciente.getUsuario().getCpf() != null && paciente.getUsuario().getCpf().trim().length() > 0){
 			lista = new ArrayList<Paciente>();
-			pacienteRecuperado = pacienteDao.recuperarPeloCpf(paciente.getUsuario().getCpf());
+			pacienteRecuperado = pacienteDao.recuperarPeloCpf(paciente.getUsuario().getCpf(), Status.ATIVO.getCodigo());
 			if(pacienteRecuperado != null){
 				lista.add(pacienteRecuperado);
 			}
 
 		}else{
-			lista = pacienteDao.recuperarPeloNome(paciente.getUsuario().getNome());
+			lista = pacienteDao.recuperarPeloNome(paciente.getUsuario().getNome(), Status.ATIVO.getCodigo());
 		}
 
 		return lista;
