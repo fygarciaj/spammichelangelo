@@ -32,6 +32,7 @@ public class Usuario {
 	private String acesso;
 	private String dtHoraAcesso;
 	private Date dataNascimento;
+	private int status;
 
 
 	/*Get & Set*/
@@ -166,6 +167,13 @@ public class Usuario {
 	}
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	@Column(name="usrsts")
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 

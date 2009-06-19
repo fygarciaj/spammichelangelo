@@ -42,13 +42,14 @@ public class UsuarioDao {
 	 * Lista todos usuários apartir do perfil passado.
 	 * @param perfil
 	 */
-	public List<Usuario> recuperaLista(Perfil perfil){
+	public List<Usuario> recuperaLista(Perfil perfil, int status){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		//cria uma queri para fazer a busca pelo perfil
-		Query query = manager.createQuery("from Usuario u where u.perfil = :perfil ");
+		Query query = manager.createQuery("from Usuario u where u.perfil = :perfil and status = :status");
 		//seta o parametro
 		query.setParameter("perfil", perfil);
+		query.setParameter("status", status);
 		List<Usuario> lista = query.getResultList();
 		
 		return lista;
@@ -84,15 +85,16 @@ public class UsuarioDao {
 	 * @param cpf
 	 * @return
 	 */
-	public Usuario recupera(String cpf){
+	public Usuario recupera(String cpf, int status){
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
 		Usuario usuario = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Usuario where cpf = :cpf ");
+			Query query = manager.createQuery("from Usuario where cpf = :cpf and status = :status");
 			//seta o parametro
 			query.setParameter("cpf", cpf);
+			query.setParameter("status", status);
 			usuario = (Usuario) query.getSingleResult();
 		}catch (NoResultException e) {
 			e.printStackTrace();
@@ -113,7 +115,7 @@ public class UsuarioDao {
 		List<Usuario> lista = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Usuario where nome like :nome and perfil = :perfil");
+			Query query = manager.createQuery("from Usuario where nome like :nome and perfil = :perfil and status = 1");
 			//seta o parametro
 			query.setParameter("nome", "%"+nome+"%");
 			query.setParameter("perfil", codigoPerfil);
@@ -134,7 +136,7 @@ public class UsuarioDao {
 		manager = conexao.getEntityManger();
 		List<Usuario> lista = null;
 		try{
-			Query query = manager.createQuery("from Usuario where perfil = :perfil order by id desc");
+			Query query = manager.createQuery("from Usuario where perfil = :perfil and status = 1 order by id desc");
 			query.setParameter("perfil", codigoPerfil);
 			query.setMaxResults(8);
 			lista = query.getResultList();

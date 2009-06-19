@@ -55,11 +55,12 @@ public class PacienteDao {
 	 * @param convenio
 	 * @return
 	 */
-	public List<Paciente> recuperaTodosPaciente(Convenio convenio){
+	public List<Paciente> recuperaTodosPaciente(Convenio convenio, int status){
 		this.conexao = new Conexao();
 		this.manager = conexao.getEntityManger();
-		Query query = this.manager.createQuery("from Paciente where convenio.id = :idConvenio");
+		Query query = this.manager.createQuery("from Paciente where convenio.id = :idConvenio and status = :status");
 		query.setParameter("idConvenio", convenio.getId());
+		query.setParameter("status", status);
 		return query.getResultList();
 	}
 
@@ -80,7 +81,7 @@ public class PacienteDao {
 		this.manager = conexao.getEntityManger();
 		List<Paciente> lista = null;
 		try{
-			Query query = this.manager.createQuery("from Paciente order by usuario.nome, id desc");
+			Query query = this.manager.createQuery("from Paciente where usuario.status = 1 order by id desc");
 			query.setMaxResults(8);
 			lista = query.getResultList();
 		}catch (NoResultException e) {
@@ -94,13 +95,14 @@ public class PacienteDao {
 	 * @param cpf
 	 * @return
 	 */
-	public Paciente recuperarPeloCpf(String cpf){
+	public Paciente recuperarPeloCpf(String cpf, int status){
 		this.conexao = new Conexao();
 		this.manager = conexao.getEntityManger();
 		Paciente paciente = null;
 		try{
-			Query query = this.manager.createQuery("from Paciente where usuario.cpf = :cpf");
+			Query query = this.manager.createQuery("from Paciente where usuario.cpf = :cpf and usuario.status = :status");
 			query.setParameter("cpf", cpf);
+			query.setParameter("status", status);
 			paciente = (Paciente) query.getSingleResult();
 		}catch (NoResultException e) {
 			e.printStackTrace();
@@ -114,13 +116,14 @@ public class PacienteDao {
 	 * @param nome
 	 * @return
 	 */
-	public List<Paciente> recuperarPeloNome(String nome){
+	public List<Paciente> recuperarPeloNome(String nome, int status){
 		this.conexao = new Conexao();
 		this.manager = this.conexao.getEntityManger();
 		List<Paciente> pacientes = null;
 		try{
-			Query query = this.manager.createQuery("from Paciente where usuario.nome like :nome");
+			Query query = this.manager.createQuery("from Paciente where usuario.nome like :nome and usuario.status = :status");
 			query.setParameter("nome", "%"+nome+"%");
+			query.setParameter("status", status);
 			pacientes = query.getResultList();
 		}catch (NoResultException e) {
 			e.printStackTrace();
@@ -138,7 +141,7 @@ public class PacienteDao {
 		this.manager = conexao.getEntityManger();
 		List<Paciente> pacientes = null;
 		try{
-			Query query = this.manager.createQuery("from Paciente");
+			Query query = this.manager.createQuery("from Paciente where usuario.status = 1");
 			pacientes = query.getResultList();
 		}catch (NoResultException e) {
 			e.printStackTrace();

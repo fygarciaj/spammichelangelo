@@ -13,6 +13,7 @@ import br.com.sispam.dao.UsuarioDao;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
+import br.com.sispam.enums.Status;
 import br.com.sispam.util.DataUtil;
 
 public class TesteUsuarioDao {
@@ -60,7 +61,7 @@ public class TesteUsuarioDao {
 		
 		//TESTE E VERIFICAÇÃO
 		
-		Usuario usuario2 = usuarioDao.recupera("1234567");
+		Usuario usuario2 = usuarioDao.recupera("1234567", Status.ATIVO.getCodigo());
 		assertNotNull(usuario2);
 		assertEquals(usuario.getNome(), usuario2.getNome());
 	}
