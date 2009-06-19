@@ -216,7 +216,7 @@ ORDER BY
 				</textField>
 				<textField pattern="">
 					<reportElement x="429" y="1" width="20" height="20"/>
-					<textElement verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrddd}]]></textFieldExpression>
 				</textField>
 				<textField>
