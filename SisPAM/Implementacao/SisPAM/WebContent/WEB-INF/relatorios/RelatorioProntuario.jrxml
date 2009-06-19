@@ -185,27 +185,27 @@ WHERE
 				<reportElement x="4" y="79" width="605" height="151" forecolor="#191970" backcolor="#F4F8FB"/>
 			</rectangle>
 			<textField pattern="########00000000">
-				<reportElement x="51" y="90" width="47" height="20" forecolor="#191970"/>
+				<reportElement x="69" y="90" width="47" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{pctidfseg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="209" y="90" width="395" height="20" forecolor="#191970"/>
+				<reportElement x="238" y="90" width="366" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrnom}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###.###.###/####-##">
-				<reportElement x="393" y="112" width="77" height="20" forecolor="#191970"/>
+				<reportElement x="399" y="112" width="77" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{usrcpf}.length() == 14 ? ($F{usrcpf}.substring(0, 2) + "." + $F{usrcpf}.substring(2, 5) + "." + $F{usrcpf}.substring(5, 8) + "/" + $F{usrcpf}.substring(8, 12) + "-" + $F{usrcpf}.substring(12, 14)) : ($F{usrcpf}.substring(0, 3) + "." + $F{usrcpf}.substring(3, 6) + "." + $F{usrcpf}.substring(6, 9) + "-" + $F{usrcpf}.substring(9, 11)) )]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement x="130" y="157" width="20" height="20" forecolor="#191970"/>
+				<reportElement x="162" y="157" width="20" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usrddd}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="270" y="157" width="47" height="20" forecolor="#191970"/>
+				<reportElement x="298" y="157" width="47" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usrtel}]]></textFieldExpression>
 			</textField>
@@ -224,59 +224,59 @@ WHERE
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Código]]></text>
+				<text><![CDATA[Código:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="90" width="107" height="20" forecolor="#191970"/>
+				<reportElement x="131" y="90" width="107" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nome do Paciente]]></text>
+				<text><![CDATA[Nome do Paciente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="358" y="112" width="32" height="20" forecolor="#191970"/>
+				<reportElement x="355" y="112" width="32" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CPF]]></text>
+				<text><![CDATA[CPF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="157" width="25" height="20" forecolor="#191970"/>
+				<reportElement x="130" y="157" width="29" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[DDD]]></text>
+				<text><![CDATA[DDD:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="212" y="157" width="58" height="20" forecolor="#191970"/>
+				<reportElement x="240" y="157" width="58" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Telefone]]></text>
+				<text><![CDATA[Telefone:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="358" y="157" width="41" height="20" forecolor="#191970"/>
+				<reportElement x="355" y="157" width="41" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[E-mail]]></text>
+				<text><![CDATA[E-mail:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="476" y="112" width="67" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data Nasc.]]></text>
+				<text><![CDATA[Data Nasc.:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="9" y="112" width="32" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Sexo]]></text>
+				<text><![CDATA[Sexo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="41" y="112" width="57" height="20" forecolor="#191970"/>
+				<reportElement x="69" y="112" width="57" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[( $F{usrsex}.equals("M") ? $F{usrsex}.concat( "asculino" ) : $F{usrsex}.concat( "eminino" ) )]]></textFieldExpression>
 			</textField>
@@ -285,7 +285,7 @@ WHERE
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Endereço]]></text>
+				<text><![CDATA[Endereço:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="68" y="135" width="289" height="20" forecolor="#191970"/>
@@ -293,11 +293,11 @@ WHERE
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrend}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="358" y="135" width="41" height="20" forecolor="#191970"/>
+				<reportElement x="355" y="135" width="42" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cidade]]></text>
+				<text><![CDATA[Cidade:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="399" y="135" width="77" height="20" forecolor="#191970"/>
@@ -309,10 +309,10 @@ WHERE
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Estado]]></text>
+				<text><![CDATA[Estado:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="518" y="135" width="69" height="20" forecolor="#191970"/>
+				<reportElement x="543" y="135" width="62" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{usruf}]]></textFieldExpression>
 			</textField>
@@ -321,34 +321,34 @@ WHERE
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CEP]]></text>
+				<text><![CDATA[CEP:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="37" y="157" width="61" height="20" forecolor="#191970"/>
+				<reportElement x="68" y="157" width="61" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usrcep}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="102" y="112" width="28" height="20" forecolor="#191970"/>
+				<reportElement x="130" y="112" width="28" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[RG]]></text>
+				<text><![CDATA[RG:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="130" y="112" width="79" height="20" forecolor="#191970"/>
+				<reportElement x="162" y="112" width="79" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usrrg}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="212" y="112" width="34" height="20" forecolor="#191970"/>
+				<reportElement x="240" y="112" width="34" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Exped.]]></text>
+				<text><![CDATA[Exp.:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="246" y="112" width="100" height="20" forecolor="#191970"/>
+				<reportElement x="270" y="112" width="59" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{usrorgexp}]]></textFieldExpression>
 			</textField>
@@ -357,7 +357,7 @@ WHERE
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Convênio]]></text>
+				<text><![CDATA[Convênio:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="68" y="179" width="161" height="20" forecolor="#191970"/>
@@ -365,40 +365,40 @@ WHERE
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cvndes}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="9" y="199" width="33" height="20" forecolor="#191970"/>
+				<reportElement x="9" y="199" width="46" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Plano]]></text>
+				<text><![CDATA[Plano:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="44" y="199" width="100" height="20" forecolor="#191970"/>
+				<reportElement x="68" y="199" width="100" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pctplnrde}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="212" y="199" width="53" height="20" forecolor="#191970"/>
+				<reportElement x="240" y="199" width="53" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Validade]]></text>
+				<text><![CDATA[Validade:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="433" y="199" width="100" height="20" forecolor="#191970"/>
+				<reportElement x="434" y="199" width="100" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pctacm}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="265" y="199" width="92" height="20" forecolor="#191970"/>
+				<reportElement x="298" y="199" width="57" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{pctplnvld}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="358" y="199" width="75" height="20" forecolor="#191970"/>
+				<reportElement x="355" y="199" width="76" height="20" forecolor="#191970"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Acomodação]]></text>
+				<text><![CDATA[Acomodação:]]></text>
 			</staticText>
 		</band>
 	</title>
