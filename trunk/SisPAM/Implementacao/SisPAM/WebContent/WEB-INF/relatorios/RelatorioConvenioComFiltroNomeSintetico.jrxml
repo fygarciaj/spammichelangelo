@@ -114,7 +114,7 @@ ORDER BY
 				<reportElement mode="Opaque" x="2" y="12" width="550" height="31" forecolor="#191970" backcolor="#191970"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="76" y="23" width="109" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="59" y="23" width="109" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -128,35 +128,35 @@ ORDER BY
 				<text><![CDATA[CNPJ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="4" y="23" width="69" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="4" y="23" width="55" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Código ANS]]></text>
+				<text><![CDATA[Cód. ANS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="306" y="23" width="48" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="291" y="23" width="48" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cidade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="373" y="23" width="34" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="358" y="23" width="30" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DDD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="417" y="23" width="59" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="392" y="23" width="59" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Telefone]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="475" y="23" width="62" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="451" y="23" width="86" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -169,12 +169,12 @@ ORDER BY
 			<frame>
 				<reportElement style="zebra" stretchType="RelativeToBandHeight" x="3" y="0" width="549" height="20"/>
 				<textField>
-					<reportElement x="0" y="0" width="100" height="20"/>
+					<reportElement x="0" y="0" width="56" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{cvnanscod}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="76" y="0" width="100" height="20"/>
+					<reportElement x="56" y="0" width="136" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvndes}]]></textFieldExpression>
 				</textField>
@@ -184,22 +184,22 @@ ORDER BY
 					<textFieldExpression class="java.lang.String"><![CDATA[( $F{cvncpj}.length() == 14 ? ($F{cvncpj}.substring(0, 2) + "." + $F{cvncpj}.substring(2, 5) + "." + $F{cvncpj}.substring(5, 8) + "/" + $F{cvncpj}.substring(8, 12) + "-" + $F{cvncpj}.substring(12, 14)) : ($F{cvncpj}.substring(0, 3) + "." + $F{cvncpj}.substring(3, 6) + "." + $F{cvncpj}.substring(6, 9) + "-" + $F{cvncpj}.substring(9, 11)) )]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="303" y="0" width="67" height="20"/>
+					<reportElement x="288" y="0" width="67" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvncde}]]></textFieldExpression>
 				</textField>
 				<textField pattern="">
-					<reportElement x="370" y="0" width="59" height="20"/>
-					<textElement verticalAlignment="Middle"/>
+					<reportElement x="355" y="0" width="30" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cvnddd}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="414" y="0" width="47" height="20"/>
+					<reportElement x="389" y="0" width="47" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{cvntel}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="472" y="0" width="77" height="20"/>
+					<reportElement x="448" y="0" width="101" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{cvnste}]]></textFieldExpression>
 				</textField>

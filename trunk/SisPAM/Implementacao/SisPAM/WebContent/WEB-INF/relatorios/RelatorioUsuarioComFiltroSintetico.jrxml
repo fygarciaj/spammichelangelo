@@ -169,14 +169,14 @@ ORDER BY
 				<text><![CDATA[DDD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="417" y="23" width="59" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="417" y="23" width="52" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Telefone]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="475" y="23" width="62" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="469" y="23" width="62" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -190,7 +190,7 @@ ORDER BY
 				<text><![CDATA[Perfil]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="325" y="23" width="67" height="20" forecolor="#FFFFFF"/>
+				<reportElement x="322" y="23" width="67" height="20" forecolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
@@ -219,7 +219,7 @@ ORDER BY
 				</textField>
 				<textField pattern="">
 					<reportElement x="386" y="0" width="20" height="20"/>
-					<textElement verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrddd}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -228,7 +228,7 @@ ORDER BY
 					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{usuario_usrtel}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="472" y="0" width="77" height="20"/>
+					<reportElement x="466" y="0" width="80" height="20"/>
 					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{usuario_usreml}]]></textFieldExpression>
 				</textField>

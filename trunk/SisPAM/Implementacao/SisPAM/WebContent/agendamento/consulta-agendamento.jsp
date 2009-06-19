@@ -98,7 +98,7 @@
 			<th width="15%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Especialidade</span>
 			</th>
-			<th width="10%" bgcolor="#A7C2DA" scope="col">
+			<th width="5%" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Horário</span>
 			</th>
 			<th width="10%" bgcolor="#A7C2DA" scope="col">
