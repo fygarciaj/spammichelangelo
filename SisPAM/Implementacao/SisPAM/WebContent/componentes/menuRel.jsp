@@ -14,9 +14,13 @@
 			}
 			else{
 				div.style.display = 'block'
-				document.getElementById("menuRelatorioLog").style.display = 'none';	
+				<% if(usuario.getPerfil() != 2 && usuario.getPerfil() == 1) {%>
+				document.getElementById("menuRelatorioLog").style.display = 'none';
+				<%}%>	
 				document.getElementById("menuRelatorioUsuario").style.display = 'none';
-				document.getElementById("menuRelatorioProntuario").style.display = 'none';
+				<% if(usuario.getPerfil() != 2 && usuario.getPerfil() == 3) {%>
+					document.getElementById("menuRelatorioProntuario").style.display = 'none';
+				<%}%>
 				}
 			break;
 		case "relatorioLog":
@@ -28,7 +32,9 @@
 				div.style.display = 'block'
 				document.getElementById("menuRelatorioConvenio").style.display = 'none';	
 				document.getElementById("menuRelatorioUsuario").style.display = 'none';
+				<% if(usuario.getPerfil() != 2 && usuario.getPerfil() == 3) {%>
 				document.getElementById("menuRelatorioProntuario").style.display = 'none';
+				<%}%>
 				}
 			break;
 		case "relatorioUsuario":
@@ -39,8 +45,12 @@
 			else{
 				div.style.display = 'block'
 				document.getElementById("menuRelatorioConvenio").style.display = 'none';
+				<% if(usuario.getPerfil() != 2 && usuario.getPerfil() == 1) {%>
 				document.getElementById("menuRelatorioLog").style.display = 'none';
-				document.getElementById("menuRelatorioProntuario").style.display = 'none';		
+				<%}%>
+				<% if(usuario.getPerfil() != 2 && usuario.getPerfil() == 3) {%>
+				document.getElementById("menuRelatorioProntuario").style.display = 'none';
+				<%}%>		
 				}
 			break;
 		case "relatorioProntuario":
