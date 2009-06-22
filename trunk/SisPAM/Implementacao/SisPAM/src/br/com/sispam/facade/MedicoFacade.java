@@ -10,6 +10,7 @@ import br.com.sispam.dominio.EspecialidadeMedica;
 import br.com.sispam.dominio.Medico;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Dia;
+import br.com.sispam.enums.Status;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.util.Cripto;
 
@@ -79,7 +80,14 @@ public class MedicoFacade {
 		if(medico.getHoraInicio() > medico.getHoraFim()){
 			throw new CampoInvalidoException("Hora Inicial deve ser menor que Hora Final!");
 		}
+		if(medico.getHoraFim() > 2359){
+			throw new CampoInvalidoException("Hora Final inválida!");
+		}
+		if(medico.getHoraInicio() > 2359){
+			throw new CampoInvalidoException("Hora Inicial inválida!");
+		}
 		medico.getUsuario().setSenha(cripto.criptografar(medico.getUsuario().getSenha()));
+		medico.getUsuario().setStatus(Status.ATIVO.getCodigo());
 		this.medicoDao.salvarMedico(medico);
 	}
 
@@ -150,6 +158,9 @@ public class MedicoFacade {
 
 		Medico medico = recuperar(agendamento.getMedico().getId());
 		montaMedico(medico);
+		if(agendamento.getHora() < medico.getHoraInicio() || agendamento.getHora() > medico.getHoraFim()){
+			throw new CampoInvalidoException("O médico "+medico.getUsuario().getNome()+" não atende nesse horário "+agendamento.getHora());
+		}
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(agendamento.getData());
 		int diaData = calendar.getTime().getDay();
@@ -172,9 +183,9 @@ public class MedicoFacade {
 	 */
 	public void removerMedico(int id){
 		Medico medico = this.medicoDao.recuperaPeloId(id);
+		medico.getUsuario().setStatus(Status.INATIVO.getCodigo());
 		this.medicoDao.remover(medico);
 	}
-
 	/**
 	 * : Recupera todos os médicos do banco.
 	 * @return

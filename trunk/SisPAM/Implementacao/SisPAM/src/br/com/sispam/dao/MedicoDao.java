@@ -73,7 +73,7 @@ public class MedicoDao {
 		Medico medico = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Medico where crm = :crm and crmUf = :uf ");
+			Query query = manager.createQuery("from Medico where crm = :crm and crmUf = :uf and usuario.status = 1 ");
 			//seta o parametro
 			query.setParameter("crm", crm);
 			query.setParameter("uf", estado);
@@ -96,7 +96,7 @@ public class MedicoDao {
 		Medico medico = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Medico where crm = :crm ");
+			Query query = manager.createQuery("from Medico where crm = :crm and usuario.status = 1 ");
 			//seta o parametro
 			query.setParameter("crm", crm);
 			return query.getResultList();
@@ -119,7 +119,7 @@ public class MedicoDao {
 		Medico medico = null;
 		try{
 			//cria uma queri para fazer a busca pelo perfil
-			Query query = manager.createQuery("from Medico where usuario.nome like :nome ");
+			Query query = manager.createQuery("from Medico where usuario.nome like :nome and usuario.status = 1 ");
 			//seta o parametro
 			query.setParameter("nome", "%"+nome+"%");
 			lista =query.getResultList();
@@ -140,7 +140,6 @@ public class MedicoDao {
 		manager = conexao.getEntityManger();
 		manager.getTransaction().begin();
 		medico = manager.merge(medico);
-		manager.remove(medico);
 		manager.getTransaction().commit();
 		
 	}
@@ -154,7 +153,7 @@ public class MedicoDao {
 		manager = conexao.getEntityManger();
 		List<Medico> lista = null;
 		try{
-			Query query = manager.createQuery("from Medico order by usuario.nome, id desc");
+			Query query = manager.createQuery("from Medico where usuario.status = 1 order by id desc");
 			query.setMaxResults(8);
 			lista = query.getResultList();
 		}catch (NoResultException e) {
@@ -173,7 +172,7 @@ public class MedicoDao {
 		manager = conexao.getEntityManger();
 		List<Medico> lista = null;
 		try{
-			Query query = manager.createQuery("from Medico order by usuario.nome");
+			Query query = manager.createQuery("from Medico where usuario.status = 1 order by usuario.nome");
 			lista = query.getResultList();
 		}catch (NoResultException e) {
 			e.printStackTrace();

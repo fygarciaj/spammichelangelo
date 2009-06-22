@@ -138,12 +138,16 @@
 				<param name="method">carregarAgendamentos</param>
 			</result>
 			
+			<result name="falhaCarregarEdicaoAgendamento" type="chain">
+				<param name="actionName">agendamentoAction</param>
+				<param name="method">carregarAgendamentos</param>
+			</result>
+				
 			<result name="falhaAlterarAgendamento" type="chain">
 				<param name="actionName">agendamentoAction</param>
 				<param name="method">carregaEdicaoAgendamento</param>
 			</result>
-			
-			
+					
 			<result name="falhaConsultarAgendamento" type="chain">
 				<param name="actionName">agendamentoAction</param>
 				<param name="method">carregarAgendamentos</param>

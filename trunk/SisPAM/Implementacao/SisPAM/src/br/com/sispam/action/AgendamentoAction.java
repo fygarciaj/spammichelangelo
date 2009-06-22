@@ -14,6 +14,7 @@ import br.com.sispam.dominio.Paciente;
 import br.com.sispam.dominio.Usuario;
 import br.com.sispam.enums.Acao;
 import br.com.sispam.enums.Funcionalidade;
+import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.enums.TipoAgendamento;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.AgendamentoFacade;
@@ -40,6 +41,7 @@ public class AgendamentoAction extends Action{
 	private String dataAgendamento;
 	private List<Paciente> pacientes;
 	private List<Agendamento> agendamentos;
+	private List<Agendamento> agendamentosConcluidos;
 	private AuditoriaFacade auditoriaFacade;
 	private MedicoFacade medicoFacade;
 	private EspecialidadeFacade especialidadeFacade;
@@ -143,6 +145,10 @@ public class AgendamentoAction extends Action{
 		this.especialidadeFacade = new EspecialidadeFacade();
 
 		this.agendamento = this.agendamentoFacade.recuperarPeloId(this.agendamento.getId());
+		if(this.agendamento.getStatus() == StatusAgendamento.CONCLUIDO.getCodigo()){
+			erros.put("erro", "Agendamento Concluído não pode ser alterado!");
+			return FALHA_CARREGAR_EDICAO_AGENDAMENTO;
+		}
 		this.dataAgendamento = DataUtil.dateToString(this.agendamento.getData());
 		this.horario = String.valueOf(this.agendamento.getHora());
 
@@ -165,7 +171,8 @@ public class AgendamentoAction extends Action{
 		apresentaMensagens();
 		this.agendamentoFacade = new AgendamentoFacade();
 		this.medicoFacade = new MedicoFacade();
-		this.agendamentos = this.agendamentoFacade.recuperarAgendamentosDoDia();
+		this.agendamentos = this.agendamentoFacade.recuperarAgendamentosDoDia(StatusAgendamento.SOLICITADO);
+		this.agendamentosConcluidos = this.agendamentoFacade.recuperarAgendamentosDoDia(StatusAgendamento.CONCLUIDO);
 		this.agendamentoRetornado = DataUtil.dateToString(new Date());
 		this.medicos = this.medicoFacade.recuperarTodos();
 		return SUCESSO_CARREGAR_AGENDAMENTOS;
@@ -199,8 +206,11 @@ public class AgendamentoAction extends Action{
 		this.medicoFacade = new MedicoFacade();
 
 		try {
-			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento);
+			this.agendamentos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento, StatusAgendamento.SOLICITADO);
+			this.agendamentosConcluidos = this.agendamentoFacade.consultar(this.agendamento, dataAgendamento, StatusAgendamento.CONCLUIDO);
 			this.agendamentoFacade.montarAgendamentos(agendamentos);
+			this.agendamentoFacade.montarAgendamentos(agendamentosConcluidos);
+			this.agendamentoRetornado = dataAgendamento;
 			this.medicos = this.medicoFacade.recuperarTodos();
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
@@ -435,5 +445,14 @@ public class AgendamentoAction extends Action{
 	public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
 		this.usuarioFacade = usuarioFacade;
 	}
+
+	public List<Agendamento> getAgendamentosConcluidos() {
+		return agendamentosConcluidos;
+	}
+
+	public void setAgendamentosConcluidos(List<Agendamento> agendamentosConcluidos) {
+		this.agendamentosConcluidos = agendamentosConcluidos;
+	}
+	
 
 }
