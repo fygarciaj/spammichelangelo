@@ -134,14 +134,8 @@ public class MedicoAction extends Action{
 		} catch (CampoInvalidoException e) {
 			e.printStackTrace();
 			erros.put("campoInvalido", e.getMessage());
-			if(this.medico != null && this.medico.getId() > 0){
-				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
-				preparaListaDeExibicao(medico2);
-				medico.setEspecialidades(medico2.getEspecialidades());
-				}
-			else{
-				this.especialidades = this.especialidadeFacade.recuperarTodas();
-			}
+			medico.setEspecialidades(this.especialidadeFacade.recuperaEspecialidades(especialidadesSelecionadas));
+			preparaListaDeExibicao(medico);
 			medico.setDataAtendimento(getDiasMarcados().toString());
 			diasString = this.medicoFacade.montaMedico(medico);
 			getListaDias();
@@ -150,15 +144,8 @@ public class MedicoAction extends Action{
 		}
 		catch (CampoInteiroException e) {
 			erros.put("campoInvalido", e.getMessage());
-
-			if(this.medico != null && this.medico.getId() > 0){
-				Medico medico2 = this.medicoFacade.recuperar(this.medico.getId());
-				preparaListaDeExibicao(medico2);
-				medico.setEspecialidades(medico2.getEspecialidades());
-			}
-			else{
-				this.especialidades = this.especialidadeFacade.recuperarTodas();
-			}
+			medico.setEspecialidades(this.especialidadeFacade.recuperaEspecialidades(especialidadesSelecionadas));
+			preparaListaDeExibicao(medico);
 			medico.setDataAtendimento(getDiasMarcados().toString());
 			diasString = this.medicoFacade.montaMedico(medico);
 			getListaDias();

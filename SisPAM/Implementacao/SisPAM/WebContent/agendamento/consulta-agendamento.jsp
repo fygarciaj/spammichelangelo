@@ -78,12 +78,12 @@
 		</table>	
 	</s:form>
 		
-	<!-- Lista dos últimos convênios cadastrados -->
+	<!-- Lista dos agendamentos solicitados cadastrados -->
 	<s:if test="agendamentos != null && agendamentos.size() > 0">
 	<br>
 	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
-			<th colspan="8" class="principal style2" scope="col">Agendamentos do dia&nbsp;<s:property value="agendamentoRetornado"/></th>
+			<th colspan="8" class="principal style2" scope="col">Agendamentos Solicitados do dia&nbsp;<s:property value="agendamentoRetornado"/></th>
 		</tr>
 		<tr>		
 			<th width="10%" bgcolor="#A7C2DA" scope="col">
@@ -156,6 +156,76 @@
 			</tr>
 		</s:iterator>	
 	</table>
+	</s:if>
+	<s:else>
+		<br>
+		<label class="label">Nenhum agendamento solicitado na data&nbsp;<s:property value="agendamentoRetornado"/></label>
+	</s:else>	
+
+
+	<!-- Lista dos agendamentos concluidos cadastrados -->
+	<s:if test="agendamentosConcluidos != null && agendamentosConcluidos.size() > 0">
+	<br/>
+	<br/>
+	<table class="tabela_moldura" width="90%" cellspacing="1" cellpadding="2" align="left">
+		<tr>
+			<th colspan="8" class="principal style2" scope="col">Agendamentos Concluídos do dia&nbsp;<s:property value="agendamentoRetornado"/></th>
+		</tr>
+		<tr>		
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Data</span>
+			</th>
+			<th width="20%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Médico</span>
+			</th>
+			<th width="20%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Paciente</span>
+			</th>
+			<th width="15%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Especialidade</span>
+			</th>
+			<th width="5%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Horário</span>
+			</th>
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Tipo</span>
+			</th>
+			<th width="10%" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Status</span>
+			</th>			
+		</tr>
+		<s:iterator value="agendamentosConcluidos" status="status">
+			<tr class="<s:if test="#status.odd == true"></s:if><s:else>zebra</s:else>">
+							
+				<td align="center">
+					<s:date name="data" format="dd/MM/yyyy" />
+				</td>
+				<td>
+					<s:property value="medico.usuario.nome"/>
+				</td>
+				<td>
+					<s:property value="paciente.usuario.nome"/>
+				</td>
+				<td>
+					<s:property value="especialidadeMedica.descricao"/>
+				</td>
+				<td align="center">
+					<s:property value="hora"/>
+				</td>
+				<td align="center">
+					<s:property value="tipoAgendamento"/>
+				</td>
+				<td align="center">
+					<s:property value="statusAgendamento"/>
+				</td>
+			</tr>
+		</s:iterator>	
+	</table>
 	</s:if>		
+	<s:else>
+		<br>
+		<br>
+		<label class="label">Nenhum agendamento concluído na data&nbsp;<s:property value="agendamentoRetornado" /></label>
+	</s:else>
 </body>
 </html>

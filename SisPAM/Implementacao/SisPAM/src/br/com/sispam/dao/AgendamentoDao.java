@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import br.com.sispam.banco.Conexao;
 import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.Compromisso;
+import br.com.sispam.enums.StatusAgendamento;
 
 
 public class AgendamentoDao {
@@ -42,12 +43,13 @@ public class AgendamentoDao {
 	 * Retorna os agendamentos do dia
 	 * @return
 	 */
-	public List<Agendamento> recuperarAgendamentosDoDia(){
+	public List<Agendamento> recuperarAgendamentosDoDia(StatusAgendamento status){
 		List<Agendamento> agendamentos = null;
 		this.conexao = new Conexao();
 		this.manager = this.conexao.getEntityManger();
-		Query query = this.manager.createQuery("from Agendamento where data = :data");
+		Query query = this.manager.createQuery("from Agendamento where data = :data and status = :status ");
 		query.setParameter("data", new Date());
+		query.setParameter("status", status.getCodigo());
 		agendamentos = query.getResultList();
 		return agendamentos;
 	}
@@ -146,6 +148,8 @@ public class AgendamentoDao {
 			query.setParameter("data", agendamento.getData());
 		}if(agendamento.getTipo() > 0){
 			query.setParameter("idTipo", agendamento.getTipo());
+		}if(agendamento.getStatus() > 0){
+			query.setParameter("status", agendamento.getStatus());
 		}
 		agendamentos = query.getResultList();
 		return agendamentos;
@@ -162,6 +166,7 @@ public class AgendamentoDao {
 		boolean data = false;
 		boolean tipo = false;
 		boolean usuario = false;
+	
 		builder.append("from Agendamento where ");
 
 		if(agendamento.getMedico() != null && agendamento.getMedico().getId() > 0){
@@ -182,10 +187,18 @@ public class AgendamentoDao {
 				builder.append("tipo = :idTipo ");
 			}
 		}if(idUsuario > 0){
+			usuario = true;
 			if(data == true || medico == true || tipo == true){
 				builder.append("and paciente.usuario.id = :usuario");
 			}else{
 				builder.append("paciente.usuario.id = :usuario");
+			}
+		}
+		if(agendamento.getStatus() > 0){
+			if(data == true || medico == true || tipo == true || usuario == true ){
+				builder.append("and status = :status");
+			}else{
+				builder.append("status = :status");
 			}
 		}
 

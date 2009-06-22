@@ -42,8 +42,8 @@ public class AgendamentoFacade {
 	 * : Retorna todos os agendamentos do dia.
 	 * @return
 	 */
-	public List<Agendamento>recuperarAgendamentosDoDia(){
-		List<Agendamento> lista = agendamentoDao.recuperarAgendamentosDoDia();
+	public List<Agendamento>recuperarAgendamentosDoDia(StatusAgendamento status){
+		List<Agendamento> lista = agendamentoDao.recuperarAgendamentosDoDia(status);
 		montarAgendamentos(lista);
 		return lista;
 	}
@@ -79,11 +79,12 @@ public class AgendamentoFacade {
 	 * @throws CampoInvalidoException 
 	 * @throws CampoInvalidoException
 	 */
-	public List<Agendamento> consultar(Agendamento agendamento, String data) throws CampoInvalidoException{
+	public List<Agendamento> consultar(Agendamento agendamento, String data, StatusAgendamento status) throws CampoInvalidoException{
 
 		if(agendamento != null){
 			try {
 				agendamento.setData(DataUtil.stringToDate(data));
+				agendamento.setStatus(status.getCodigo());
 			} catch (ParseException e) {
 				throw new CampoInvalidoException("Informe a data para a consulta!");
 			}

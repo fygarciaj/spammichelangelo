@@ -17,6 +17,7 @@ import br.com.sispam.enums.Dia;
 import br.com.sispam.enums.Funcionalidade;
 import br.com.sispam.enums.Perfil;
 import br.com.sispam.enums.Sexo;
+import br.com.sispam.enums.Status;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
 import br.com.sispam.facade.AuditoriaFacade;
@@ -134,7 +135,7 @@ public class UsuarioAction extends Action{
 			usuario.setDdd(Integer.parseInt(dddAux));
 			usuario.setRg(Long.parseLong(rgAux));
 			usuario.setTelefone(Long.parseLong(telefoneAux));
-
+			usuario.setStatus(Status.ATIVO.getCodigo());
 			usuarioFacade.salvarUsuario(usuario);
 			if(isEdicao){
 				mensagens.put("salvo", Perfil.getPerfil(usuario.getPerfil())+" alterado com sucesso!");

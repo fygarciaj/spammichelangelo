@@ -29,6 +29,7 @@ public class PacienteFacade {
 		Cripto cripto = new Cripto();
 		String senha = paciente.getUsuario().getSenha();
 		paciente.getUsuario().setSenha(cripto.criptografar(senha));
+		paciente.getUsuario().setStatus(Status.ATIVO.getCodigo());
 		return this.pacienteDao.salvar(paciente);
 	}
 

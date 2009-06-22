@@ -1,7 +1,7 @@
 package br.com.sispam.enums;
 
 public enum StatusAgendamento {
-	SOLICITADO(0), ATENDENDO(1), CONCLUIDO(2);
+	SOLICITADO(1), CONCLUIDO(2);
 
 	private int codigo;
 
@@ -19,10 +19,8 @@ public enum StatusAgendamento {
 	
 	public static StatusAgendamento getStatusAgendamento(int codigo){
 		switch (codigo) {
-		case 0:
-			return SOLICITADO;
 		case 1:
-			return ATENDENDO;
+			return SOLICITADO;
 		case 2:
 			return CONCLUIDO;			
 		default:
