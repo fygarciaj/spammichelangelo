@@ -7,7 +7,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.sispam.banco.Conexao;
+
 import br.com.sispam.dominio.Paciente;
+import br.com.sispam.dominio.Usuario;
 
 public class ProntuarioDao {
 	private Conexao conexao;
@@ -29,5 +31,24 @@ public class ProntuarioDao {
 			pacientes = null;
 		}
 		return pacientes;
+	}
+	
+	/**
+	 * : Recupera o paciente a partir do usuário.
+	 * @param usuario
+	 * @return
+	 */
+	public Paciente recuperar(Usuario usuario){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Paciente paciente =  null;
+		try{
+			Query query = manager.createQuery("from Paciente where usuario.id = :idUsuario");
+			query.setParameter("idUsuario", usuario.getId());
+			paciente = (Paciente) query.getSingleResult();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		return paciente;
 	}
 }

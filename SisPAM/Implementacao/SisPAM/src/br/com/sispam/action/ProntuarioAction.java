@@ -1,8 +1,12 @@
 package br.com.sispam.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
+
 import br.com.sispam.dominio.Paciente;
+import br.com.sispam.enums.Perfil;
+
 
 import br.com.sispam.facade.ProntuarioFacade;
 
@@ -18,9 +22,15 @@ public class ProntuarioAction extends Action{
 	 */
 	public String carregarPacientes(){
 		
-		this.prontuarioFacade = new ProntuarioFacade();
-		//monta a listas de pacientes		
-		this.pacientes = this.prontuarioFacade.recuperarTodos();
+		if(this.getUsuarioLogado().getPerfil() == Perfil.PACIENTE.getCodigo()){
+			this.pacientes = new ArrayList<Paciente>();
+			this.prontuarioFacade = new ProntuarioFacade();
+			this.pacientes.add(this.prontuarioFacade.recuperar(getUsuarioLogado()));
+		}else{
+			this.prontuarioFacade = new ProntuarioFacade();
+			//monta a listas de pacientes		
+			this.pacientes = this.prontuarioFacade.recuperarTodos();
+		}				
 
 		return SUCESSO_CARREGAR_PACIENTES;
 	}
