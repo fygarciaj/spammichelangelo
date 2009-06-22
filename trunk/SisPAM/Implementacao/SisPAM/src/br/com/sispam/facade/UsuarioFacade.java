@@ -75,7 +75,8 @@ public class UsuarioFacade {
 	 * @param cpf
 	 */
 	public void verificaCpfJaExistente(String cpf, int id)throws CampoInvalidoException{
-		Usuario usuario = this.usuarioDao.recupera(cpf, Status.ATIVO.getCodigo());
+		Usuario usuario = this.usuarioDao.recupera(cpf);
+		
 		if(usuario != null && id != usuario.getId()){
 			throw new CampoInvalidoException("Este CPF já está sendo usado!");
 		}

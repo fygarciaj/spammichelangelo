@@ -36,7 +36,8 @@
 							 showOtherMonths: true,
 							 changeMonth: true,
 							 changeYear: true,
-							 gotoCurrent: true
+							 gotoCurrent: true,
+							 yearRange: '2009:2012'
 				 });
 			}
 
