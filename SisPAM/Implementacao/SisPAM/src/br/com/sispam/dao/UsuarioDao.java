@@ -81,7 +81,7 @@ public class UsuarioDao {
 	}
 
 	/**
-	 * recupera o usuário pelo seu cpf.
+	 * recupera o usuário pelo seu cpf apartir do status.
 	 * @param cpf
 	 * @return
 	 */
@@ -95,6 +95,28 @@ public class UsuarioDao {
 			//seta o parametro
 			query.setParameter("cpf", cpf);
 			query.setParameter("status", status);
+			usuario = (Usuario) query.getSingleResult();
+		}catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		
+		return usuario;
+	}
+	
+	/**
+	 * recupera o usuário pelo seu cpf.
+	 * @param cpf
+	 * @return
+	 */
+	public Usuario recupera(String cpf){
+		conexao = new Conexao();
+		manager = conexao.getEntityManger();
+		Usuario usuario = null;
+		try{
+			//cria uma queri para fazer a busca pelo perfil
+			Query query = manager.createQuery("from Usuario where cpf = :cpf");
+			//seta o parametro
+			query.setParameter("cpf", cpf);
 			usuario = (Usuario) query.getSingleResult();
 		}catch (NoResultException e) {
 			e.printStackTrace();
