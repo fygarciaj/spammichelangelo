@@ -11,11 +11,13 @@
 				div.style.display = 'none';
 			}
 			else{
-				div.style.display = 'block'
+				div.style.display = 'block';
+				<% if(usuario.getPerfil() != 2 && usuario.getPerfil() != 1) {%>
 				document.getElementById("menuReceita").style.display = 'none';
 				document.getElementById("menuHistoricoProntuario").style.display = 'none';
-				document.getElementById("menuAgendamento").style.display = 'none';
 				document.getElementById("menuConsultaRealizados").style.display = 'none';
+				<%}%>
+				document.getElementById("menuAgendamento").style.display = 'none';
 				}
 			break;
 		case "agendamento":
@@ -24,11 +26,13 @@
 				div.style.display = 'none';
 			}
 			else{
-				div.style.display = 'block'
+				div.style.display = 'block';
+				<% if(usuario.getPerfil() != 2 && usuario.getPerfil() != 1) {%>
 				document.getElementById("menuReceita").style.display = 'none';
 				document.getElementById("menuHistoricoProntuario").style.display = 'none';
-				document.getElementById("menuAgendaMedica").style.display = 'none';
 				document.getElementById("menuConsultaRealizados").style.display = 'none';
+				<%}%>
+				document.getElementById("menuAgendaMedica").style.display = 'none';
 				}
 			break;
 

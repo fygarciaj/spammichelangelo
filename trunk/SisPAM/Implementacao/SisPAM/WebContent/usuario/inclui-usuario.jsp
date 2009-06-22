@@ -57,7 +57,8 @@
 							 showOtherMonths: true,
 							 changeMonth: true,
 							 changeYear: true,
-							 gotoCurrent: true
+							 gotoCurrent: true,
+							 yearRange: '1950:2012'
 				 });
 			}
 
