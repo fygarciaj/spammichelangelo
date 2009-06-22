@@ -65,7 +65,8 @@ CREATE TABLE usuario (
   usracs VARCHAR(25) NULL,
   usrsen VARCHAR(32) NULL,
   usrpfl NUMERIC(1) NOT NULL,
-  usrdatnsc DATE NULL
+  usrdatnsc DATE NULL,
+  usrsts INTEGER
 
 );
 
