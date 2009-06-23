@@ -55,18 +55,13 @@ public class EspecialidadeFacade {
 		this.especialidadeDao = new EspecialidadeDao();
 		List<String> listaString = new ArrayList<String>();
 		List<Integer> especialidades = new ArrayList<Integer>();
-		char[] espCharacter = esp.toCharArray();
+		String [] lista = esp.split("[,]");
 
-		for(char caracter: espCharacter){
-			if(caracter != ',' && caracter != ' '){
-				listaString.add(String.valueOf(caracter));
+		for(String caracter: lista){
+			if(!caracter.isEmpty()){
+				especialidades.add(Integer.parseInt(caracter.trim()));
 			}
 		}
-
-		for(String string: listaString){
-			especialidades.add(Integer.parseInt(string));
-		}
-
 		return this.especialidadeDao.recuperarEspecialidades(especialidades);
 	}
 
