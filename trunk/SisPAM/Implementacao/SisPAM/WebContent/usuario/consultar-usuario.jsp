@@ -43,7 +43,7 @@
 			<td>
 				<br>
 				<div>Cadastro<img src="/SisPAM/componentes/img/seta.gif" /> Usuário
-				<img src="/SisPAM/componentes/img/seta.gif" /> Consultar</div>
+				<img src="/SisPAM/componentes/img/seta.gif" />Alterar/Excluir</div>
 			</td>
 		</tr>
 	</table>
