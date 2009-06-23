@@ -54,35 +54,25 @@ public class CompromissoAction extends Action{
 			horaFinalAux = horaFinalAux.replaceAll("[:]", "");
 
 			Map<String, String> mapa = new HashMap<String, String>();
-			mapa.put("horaInicial", horaInicialAux);
-			mapa.put("horaFinal", horaFinalAux);
+			mapa.put("Hora Final", horaFinalAux);
+			mapa.put("Hora Inicial", horaInicialAux);
 			this.compromisso.setMedico(this.medicoFacade.recuperar(compromisso.getMedico().getId()));
 
-			if(dataAux != null && !dataAux.equals("")){
-				try {
-					compromisso.setData(DataUtil.stringToDate(dataAux));
-				} catch (ParseException e) {
-					erros.put("campoInvalido", "Data inválida!");
-					apresentaErrors();
-					return FALHA_SALVAR_COMPROMISSO;
-				}
-			}
-
 			//verifica se os campo obrigatorios foram preenchidos
-			compromissoFacade.validaCampos(compromisso);
-
+			compromissoFacade.validaCampos(compromisso, dataAux);
+			
+			//verifica se os campos são inteiros
+			compromissoFacade.verificaCampoInteiro(mapa);
+			
+			//Valida Hora inicial e Final
+			compromissoFacade.validaHora(horaInicialAux, horaFinalAux);
+			
 			//seta os valores das variváveis auxiliares.
 			compromisso.setHoraInicial(Integer.parseInt(horaInicialAux));
 			compromisso.setHoraFinal(Integer.parseInt(horaFinalAux));
-
-			//verifica se os campos são inteiros
-			compromissoFacade.verificaCampoInteiro(mapa);
-
-			compromissoFacade.validaHora(compromisso.getHoraInicial(), compromisso.getHoraFinal());
-
+		
 			//verifica se já existe compromisso cadastrado com esses dados.
 			compromissoFacade.verificaExistencia(compromisso, 0);
-
 
 			if(compromisso.getId() > 0){
 				compromissoFacade.salvaCompromisso(compromisso);
@@ -138,21 +128,21 @@ public class CompromissoAction extends Action{
 
 		this.medicoFacade = new MedicoFacade();
 		this.compromissoFacade = new CompromissoFacade();
+		this.compromisso = new Compromisso();
+		
 		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 			this.medicos = new ArrayList<Medico>();
 			this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
-		}else{
-			this.medicos = this.medicoFacade.recuperarTodos();
-		}
-		this.compromisso = new Compromisso();
-		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 			this.compromisso.setMedico(this.medicoFacade.recuperar(getUsuarioLogado()));
+
 			if((compromissosCadastrados == null || compromissosCadastrados.size() == 0)&& (agendamentosCadastrados == null || agendamentosCadastrados.size()== 0)){
 				this.compromisso.setData(new Date());
 				this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
 				this.agendamentosCadastrados = this.compromissoFacade.getAgendamentos();
 				
 			}
+		}else{
+			this.medicos = this.medicoFacade.recuperarTodos();
 		}
 		montaAgendamentos(agendamentosCadastrados);
 		montaCompromissos(compromissosCadastrados);
@@ -195,8 +185,8 @@ public class CompromissoAction extends Action{
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
 			this.agendamentosCadastrados = compromissoFacade.getAgendamentos();
-			montaAgendamentos(agendamentosCadastrados);
-			montaCompromissos(compromissosCadastrados);
+			
+			
 			if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 				this.medicos = new ArrayList<Medico>();
 				this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));
@@ -211,7 +201,7 @@ public class CompromissoAction extends Action{
 		}
 		apresentaErrors();
 		apresentaMensagens();
-		limparCampos();
+		limparData();
 		return carregarConsulta();
 
 	}

@@ -1,5 +1,6 @@
 package br.com.sispam.facade;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +10,10 @@ import br.com.sispam.dao.AgendamentoDao;
 import br.com.sispam.dao.CompromissoDao;
 import br.com.sispam.dominio.Agendamento;
 import br.com.sispam.dominio.Compromisso;
+import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.excecao.CampoInteiroException;
 import br.com.sispam.excecao.CampoInvalidoException;
+import br.com.sispam.util.DataUtil;
 
 public class CompromissoFacade {
 	private CompromissoDao compromissoDao; 
@@ -175,7 +178,7 @@ public class CompromissoFacade {
 					if(campoString != null && campoString.trim().length() > 0){
 						int valorCampo = Integer.parseInt(campoString);
 					}else{
-						throw new CampoInvalidoException("Campo "+nomeCampo+" inválido!");
+						throw new CampoInvalidoException("Campo "+nomeCampo+" deve ser informado!");
 					}
 				}
 				catch (NumberFormatException e) {
@@ -190,36 +193,38 @@ public class CompromissoFacade {
 	 * @param compromisso
 	 * @throws CampoInvalidoException 
 	 */
-	public void validaCampos(Compromisso compromisso) throws CampoInvalidoException{
+	public void validaCampos(Compromisso compromisso, String data) throws CampoInvalidoException{
 
 		if(compromisso != null){
 
 			if(compromisso.getMedico()== null){
-				throw new CampoInvalidoException("Campo Nome do Médico inválido!");
+				throw new CampoInvalidoException("O campo Médico deve ser informado!");
 			}						
 			if(compromisso.getTipo().contains("0") || compromisso.getTipo().isEmpty()) {
-				throw new CampoInvalidoException("Campo Tipo de Evento inválido!");
+				throw new CampoInvalidoException("O campo Tipo de Evento deve ser informado!");
 			}
-			if(compromisso.getData() == null ){
-				throw new CampoInvalidoException("Campo Data inválido!");
+			
+			try {
+				compromisso.setData(DataUtil.stringToDate(data));
+			} catch (ParseException e) {
+				throw new CampoInvalidoException("Preencha o campo Data conforme o formato DD/MM/AAAA ou use o Calendário.");
 			}
+								
 			if(compromisso.getDescricao()== null || compromisso.getDescricao().length() == 0){
 				throw new CampoInvalidoException("Campo Descrição inválido!");
-			}						
+			}
 		}
 	}
 
-	public void validaHora(int horaInicial, int horaFinal) throws CampoInvalidoException{
-
-
-		if(horaInicial > 2359){
+	public void validaHora(String horaIni, String horaFin) throws CampoInvalidoException{
+		if(Integer.parseInt(horaIni) > 2359){
 			throw new CampoInvalidoException("Hora Inicial deve ser menor ou igual a 23:59!");
 		}
-		if(horaFinal > 2359){
+		if(Integer.parseInt(horaFin) > 2359){
 			throw new CampoInvalidoException("Hora Final deve ser menor ou igual a 23:59!");
 		}
 
-		if(horaInicial >= horaFinal){
+		if(Integer.parseInt(horaIni) >= Integer.parseInt(horaFin)){
 			throw new CampoInvalidoException("Hora Inicial deve ser menor que Hora Final!");
 		}
 	}
