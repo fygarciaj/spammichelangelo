@@ -229,7 +229,7 @@
 						</s:iterator>			
 					</s:if>
 				</td>
-				<td align="center"><s:property value="horaInicio"/>&nbsp;às&nbsp;<s:property value="horaFim"/></td>
+				<td align="center"><s:property value="horaInicioFormatada"/>&nbsp;às&nbsp;<s:property value="horaFimFormatada"/></td>
 				<td align="center"><s:property value="consultorio" /></td>
 				<td align="center"><s:property value="usuario.telefone"/></td>
 				<td align="center"><s:a href="%{#editarMedico}" cssClass="linkEditar" cssStyle="linkEditar" ></s:a></td>

@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import br.com.sispam.enums.Dia;
+import br.com.sispam.util.CampoUtil;
 
 
 @Entity
@@ -119,6 +120,16 @@ public class Medico {
 	}
 	public void setDias(List<Dia> dias) {
 		this.dias = dias;
+	}
+	
+	@Transient
+	public String getHoraFimFormatada(){
+		return CampoUtil.formataHora(horaFim);
+	}
+	
+	@Transient
+	public String getHoraInicioFormatada(){
+		return CampoUtil.formataHora(horaInicio);
 	}
 	
 	

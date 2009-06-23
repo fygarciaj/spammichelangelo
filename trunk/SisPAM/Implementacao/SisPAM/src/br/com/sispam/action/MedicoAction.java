@@ -202,8 +202,8 @@ public class MedicoAction extends Action{
 		this.consultorioAux = String.valueOf(this.medico.getConsultorio());
 		this.crmAux = String.valueOf(this.medico.getCrm());
 		this.dddAux = String.valueOf(this.medico.getUsuario().getDdd());
-		this.horaFim = String.valueOf(this.medico.getHoraFim());
-		this.horaIni = String.valueOf(this.medico.getHoraInicio());
+		this.horaFim = this.medico.getHoraFimFormatada();
+		this.horaIni = this.medico.getHoraInicioFormatada();
 		this.telefoneAux = String.valueOf(this.medico.getUsuario().getTelefone());
 		this.rgAux = String.valueOf(this.medico.getUsuario().getRg());
 		this.dataNascimentoAux = DataUtil.dateToString(this.medico.getUsuario().getDataNascimento());

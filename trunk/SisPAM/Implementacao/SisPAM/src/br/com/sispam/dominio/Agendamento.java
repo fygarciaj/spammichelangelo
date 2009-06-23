@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 
 import br.com.sispam.enums.StatusAgendamento;
 import br.com.sispam.enums.TipoAgendamento;
+import br.com.sispam.util.CampoUtil;
 
 @Entity
 public class Agendamento {
@@ -111,6 +112,11 @@ public class Agendamento {
 	}
 	public void setTipoAgendamento(TipoAgendamento tipoAgendamento) {
 		this.tipoAgendamento = tipoAgendamento;
+	}
+	
+	@Transient
+	public String getHoraFormatada(){
+		return CampoUtil.formataHora(this.hora);
 	}
 	
 	

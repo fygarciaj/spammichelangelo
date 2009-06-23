@@ -134,7 +134,7 @@
 					</s:iterator>
 				</td>
 				<td>
-					<s:property value="agendamento.medico.horaInicio+' às '+agendamento.medico.horaFim"/>
+					<s:property value="agendamento.medico.horaInicioFormatada+' às '+agendamento.medico.horaFimFormatada"/>
 				</td>
 			</tr>
 		</table>

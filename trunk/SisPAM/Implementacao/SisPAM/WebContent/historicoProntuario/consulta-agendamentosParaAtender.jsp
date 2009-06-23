@@ -80,7 +80,7 @@
 				<td align="center">
 					<s:date name="data" format="dd/MM/yyyy"/>
 					<td align="center">
-					<s:property value="hora"/>
+					<s:property value="horaFormatada"/>
 				</td>				
 				<td>
 					<s:property value="especialidadeMedica.descricao"/>
