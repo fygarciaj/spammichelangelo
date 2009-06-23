@@ -157,12 +157,7 @@
 		</s:iterator>	
 	</table>
 	</s:if>
-	<s:else>
-		<br>
-		<label class="label">Nenhum agendamento solicitado na data&nbsp;<s:property value="agendamentoRetornado"/></label>
-	</s:else>	
-
-
+	
 	<!-- Lista dos agendamentos concluidos cadastrados -->
 	<s:if test="agendamentosConcluidos != null && agendamentosConcluidos.size() > 0">
 	<br/>
@@ -222,10 +217,6 @@
 		</s:iterator>	
 	</table>
 	</s:if>		
-	<s:else>
-		<br>
-		<br>
-		<label class="label">Nenhum agendamento concluído na data&nbsp;<s:property value="agendamentoRetornado" /></label>
-	</s:else>
+
 </body>
 </html>

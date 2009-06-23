@@ -251,13 +251,13 @@
 		<tr>
 			<th width="6%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Prontuário</span></th>
-			<th width="34%" bgcolor="#A7C2DA" scope="col"><span
+			<th width="35%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Nome</span></th>
 			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">CPF</span></th>
 			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Telefone</span></th>
-			<th width="12%" bgcolor="#A7C2DA" scope="col"><span
+			<th width="25%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Convênio</span></th>
 			<th width="5%" bgcolor="#A7C2DA" scope="col"><span
 				class="style5">Editar</span></th>
