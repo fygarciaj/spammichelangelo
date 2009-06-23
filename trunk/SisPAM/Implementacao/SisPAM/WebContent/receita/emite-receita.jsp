@@ -78,22 +78,22 @@
 			<th colspan="6" class="principal style2" scope="col">Agendamentos Atendidos do Dia</th>
 		</tr>
 		<tr>		
-			<th width="250px" bgcolor="#A7C2DA" scope="col">
+			<th width="220px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Paciente</span>
 			</th>
-			<th width="140px" bgcolor="#A7C2DA" scope="col">
+			<th width="70px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Data de Nascimento</span>
 			</th>
-			<th width="60px" bgcolor="#A7C2DA" scope="col">
+			<th width="200px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Convênio</span>
 			</th>
-			<th width="140px" bgcolor="#A7C2DA" scope="col">
-				<span class="style5">Data Agendamento</span>
+			<th width="70px" bgcolor="#A7C2DA" scope="col">
+				<span class="style5">Data Agendada</span>
 			</th>
-			<th width="100px" bgcolor="#A7C2DA" scope="col">
+			<th width="70px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Hora Agendada</span>
 			</th>
-			<th width="100px" bgcolor="#A7C2DA" scope="col">
+			<th width="150px" bgcolor="#A7C2DA" scope="col">
 				<span class="style5">Especialidade</span>
 			</th>		
 			<th width="25px" bgcolor="#A7C2DA" scope="col">
@@ -113,7 +113,7 @@
 					<s:date name="paciente.usuario.dataNascimento" format="dd/MM/yyyy"/>
 				</td>
 				<td>
-					<s:property value="paciente.usuario.convenio.nome"/>
+					<s:property value="paciente.convenio.nome"/>
 				</td>
 				<td align="center">
 					<s:date name="data" format="dd/MM/yyyy"/>
