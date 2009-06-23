@@ -109,16 +109,17 @@
 				<td>
 					<s:property value="paciente.usuario.nome" />
 				</td>
-				<td>
+				<td align="center">
 					<s:date name="paciente.usuario.dataNascimento" format="dd/MM/yyyy"/>
 				</td>
 				<td>
 					<s:property value="paciente.usuario.convenio.nome"/>
 				</td>
-				<td>
+				<td align="center">
 					<s:date name="data" format="dd/MM/yyyy"/>
-					<td>
-					<s:property value="hora"/>
+				</td>
+				<td align="center">
+					<s:property value="horaFormatada"/>
 				</td>				
 				<td>
 					<s:property value="especialidadeMedica.descricao"/>

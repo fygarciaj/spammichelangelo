@@ -138,7 +138,7 @@
 					<s:property value="especialidadeMedica.descricao"/>
 				</td>
 				<td align="center">
-					<s:property value="hora"/>
+					<s:property value="horaFormatada"/>
 				</td>
 				<td align="center">
 					<s:property value="tipoAgendamento"/>
@@ -210,7 +210,7 @@
 					<s:property value="especialidadeMedica.descricao"/>
 				</td>
 				<td align="center">
-					<s:property value="hora"/>
+					<s:property value="horaFormatada"/>
 				</td>
 				<td align="center">
 					<s:property value="tipoAgendamento"/>

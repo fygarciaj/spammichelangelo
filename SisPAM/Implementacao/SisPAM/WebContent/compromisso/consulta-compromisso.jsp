@@ -115,10 +115,10 @@
 					<s:date name="data" format="dd/MM/yyyy" />
 				</td>				
 				<td align="center">
-					<s:property value="horaInicial" />
+					<s:property value="horaInicialFormatada" />
 				</td>
 				<td align="center">
-					<s:property value="horaFinal"/>
+					<s:property value="horaFinalFormatada"/>
 				</td>
 				<td align="center">
 					<s:property value="tipoCompromisso"/>
@@ -172,7 +172,7 @@
 					<s:date name="data" format="dd/MM/yyyy" />
 				</td>								
 				<td align="center">
-					<s:property value="hora"/>
+					<s:property value="horaFormatada"/>
 				</td>
 				<td align="center">
 					<s:property value="tipoAgendamento"/>

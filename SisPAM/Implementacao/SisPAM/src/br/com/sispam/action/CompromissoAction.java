@@ -225,8 +225,8 @@ public class CompromissoAction extends Action{
 		this.medicoFacade = new MedicoFacade();
 		this.compromisso = this.compromissoFacade.recuperarPeloId(compromisso.getId());
 		this.dataAux = DataUtil.dateToString(this.compromisso.getData());
-		this.horaInicialAux = String.valueOf(this.compromisso.getHoraInicial());
-		this.horaFinalAux = String.valueOf(this.compromisso.getHoraFinal());
+		this.horaInicialAux = this.compromisso.getHoraInicialFormatada();
+		this.horaFinalAux = this.compromisso.getHoraFinalFormatada();
 		if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 			this.medicos = new ArrayList<Medico>();
 			this.medicos.add(this.medicoFacade.recuperar(getUsuarioLogado()));

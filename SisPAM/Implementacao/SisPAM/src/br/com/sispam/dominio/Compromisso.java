@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import br.com.sispam.enums.TipoCompromisso;
+import br.com.sispam.util.CampoUtil;
 
 @Entity
 public class Compromisso {
@@ -90,11 +91,20 @@ public class Compromisso {
 	public TipoCompromisso getTipoCompromisso() {
 		return tipoCompromisso;
 	}
-
+	
 	public void setTipoCompromisso(TipoCompromisso tipoCompromisso) {
 		this.tipoCompromisso = tipoCompromisso;
 	}
 	
+	@Transient
+	public String getHoraFinalFormatada(){
+		return CampoUtil.formataHora(horaFinal);
+	}
+	
+	@Transient
+	public String getHoraInicialFormatada(){
+		return CampoUtil.formataHora(horaInicial);
+	}
 	
 	
 }

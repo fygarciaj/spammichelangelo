@@ -150,7 +150,7 @@ public class AgendamentoAction extends Action{
 			return FALHA_CARREGAR_EDICAO_AGENDAMENTO;
 		}
 		this.dataAgendamento = DataUtil.dateToString(this.agendamento.getData());
-		this.horario = String.valueOf(this.agendamento.getHora());
+		this.horario = this.agendamento.getHoraFormatada();
 
 		//monta as listas de pacientes, medicos e especialidades
 		this.especialidades = this.especialidadeFacade.recuperarTodas();
