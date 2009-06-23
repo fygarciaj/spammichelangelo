@@ -32,6 +32,7 @@ public class CompromissoAction extends Action{
 	private List<Compromisso> compromissosCadastrados;
 	private List<Agendamento> agendamentosCadastrados;
 	private List<Medico> medicos;
+	private String nomMedico;
 	private String horaInicialAux;
 	private String horaFinalAux;
 	private String dataAux;
@@ -139,7 +140,6 @@ public class CompromissoAction extends Action{
 				this.compromisso.setData(new Date());
 				this.compromissosCadastrados = this.compromissoFacade.recuperarCompromissosDiaAtual(compromisso);
 				this.agendamentosCadastrados = this.compromissoFacade.getAgendamentos();
-				
 			}
 		}else{
 			this.medicos = this.medicoFacade.recuperarTodos();
@@ -179,13 +179,14 @@ public class CompromissoAction extends Action{
 	 */
 	public String consultarCompromisso(){
 		compromissoFacade= new CompromissoFacade();
+		nomMedico = null;
 		this.medicoFacade = new MedicoFacade();
 
 		try {
 			this.compromissosCadastrados = new ArrayList<Compromisso>();
 			this.compromissosCadastrados = compromissoFacade.pesquisaCompromisso(compromisso);
 			this.agendamentosCadastrados = compromissoFacade.getAgendamentos();
-			
+			this.nomMedico = this.medicoFacade.recuperar(compromisso.getMedico().getId()).getUsuario().getNome();		
 			
 			if(this.getUsuarioLogado().getPerfil() == Perfil.MEDICO.getCodigo()){
 				this.medicos = new ArrayList<Medico>();
@@ -352,4 +353,14 @@ public class CompromissoAction extends Action{
 	public void setTipoAgendamento(TipoAgendamento[] tipoAgendamento) {
 		this.tipoAgendamento = tipoAgendamento;
 	}
+
+	public String getNomMedico() {
+		return nomMedico;
+	}
+
+	public void setNomMedico(String nomMedico) {
+		this.nomMedico = nomMedico;
+	}
+	
+	
 }

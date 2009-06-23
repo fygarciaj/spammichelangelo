@@ -73,7 +73,7 @@
 	<br>
 	<table class="tabela_listagem" width="90%" cellspacing="1" cellpadding="2" align="left">
 		<tr>
-			<th colspan="6" class="principal style2" scope="col">Compromissos</th>
+			<th colspan="6" class="principal style2" scope="col">Compromissos do Médico: <s:text name="nomMedico"/></th>
 			
 		</tr>
 		<tr>
