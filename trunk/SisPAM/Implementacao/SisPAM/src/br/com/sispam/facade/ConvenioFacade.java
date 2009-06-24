@@ -3,6 +3,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import br.com.sispam.dao.ConvenioDao;
 import br.com.sispam.dominio.Convenio;
@@ -37,15 +39,11 @@ public class ConvenioFacade {
 	 * @param convenio
 	 * 
 	 */
-	public void excluiConvenio(Convenio convenio){
+	public void excluiConvenio(Convenio convenio) throws EntityExistsException{
 
 		convenioDao = new ConvenioDao();
-
-		try{			
-			convenioDao.excluirConvenio(convenio.getCnpj());							
-		}catch(Exception e){
-			e.getStackTrace();
-		}					
+		convenioDao.excluirConvenio(convenio.getCnpj());							
+					
 	}
 	
 	/**

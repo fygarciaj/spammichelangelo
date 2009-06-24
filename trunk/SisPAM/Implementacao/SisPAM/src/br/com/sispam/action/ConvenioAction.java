@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityExistsException;
+
 import br.com.sispam.dominio.Convenio;
 
 import br.com.sispam.enums.Acao;
@@ -106,10 +108,13 @@ public class ConvenioAction extends Action{
 			//salva o Log de auditoria
 			auditoriaFacade = new AuditoriaFacade();
 			auditoriaFacade.gravaAuditoria(AuditoriaUtil.montaAuditoria(Funcionalidade.MANTER_CONVENIO, Acao.EXCLUSAO, getUsuarioLogado()));
-		} catch (Exception e) {
+		}catch (CampoInvalidoException e) {
 			e.printStackTrace();					
 			return FALHA_EXCLUIR_CONVENIO;
-		}
+		}catch (EntityExistsException e){
+			erros.put("erro", "Atenção! Pacientes vinculados a esse convênio, não permitindo a sua exclusão.");			
+			return FALHA_EXCLUIR_CONVENIO;
+		}		
 		apresentaMensagens();		
 		return SUCESSO_EXCLUIR_CONVENIO;
 	}
@@ -142,6 +147,7 @@ public class ConvenioAction extends Action{
 	public String carregarConsulta(){
 		this.convenioFacade = new ConvenioFacade();
 		limparCampos();
+		apresentaErrors();
 		this.conveniosCadastrados = this.convenioFacade.recuperarUltimosCadastrados();
 		return SUCESSO_CARREGAR_CONSULTA;
 	}
