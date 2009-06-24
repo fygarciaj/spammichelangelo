@@ -36,7 +36,10 @@
 				<param name="actionName">convenioAction</param>
 				<param name="method">carregarConsulta</param>
 			</result>
-			<result name="falhaExcluirConvenio">/componentes/defaut.jsp</result>
+			<result name="falhaExcluirConvenio" type="chain">
+				<param name="actionName">convenioAction</param>
+				<param name="method">carregarConsulta</param>
+			</result>
 			<result name="carregarConvenioExistente">/convenio/retorno-convenio.jsp</result>
 			<result name="falhaCarregarConvenio">/componentes/defaut.jsp</result>
 			<result name="listaConvenios">/convenio/pesquisa-convenio.jsp</result>

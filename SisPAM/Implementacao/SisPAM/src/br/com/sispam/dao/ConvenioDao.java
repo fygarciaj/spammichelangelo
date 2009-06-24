@@ -48,18 +48,14 @@ public class ConvenioDao {
 				
 		conexao = new Conexao();
 		manager = conexao.getEntityManger();
-		try{
-			manager.getTransaction().begin();
-			
-			Query query = manager.createQuery("delete from Convenio where cnpj = :cnpj");
-			//seta o parametro
-			query.setParameter("cnpj", cnpj);
-			query.executeUpdate();
-			manager.getTransaction().commit();
-		}catch(EntityExistsException e){
-			e.printStackTrace();
-			throw new EntityExistsException("Atenção! Pacientes vinculados a esse convênio, não permitindo a sua exclusao.");
-		}
+		
+		manager.getTransaction().begin();
+
+		Query query = manager.createQuery("delete from Convenio where cnpj = :cnpj");
+		//seta o parametro
+		query.setParameter("cnpj", cnpj);
+		query.executeUpdate();
+		manager.getTransaction().commit();
 	
 	}
 	
